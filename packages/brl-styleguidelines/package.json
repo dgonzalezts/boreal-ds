@@ -1,0 +1,24 @@
+{
+  "name": "@boreal-ds/style-guidelines",
+  "version": "0.0.1",
+  "description": "Base guidelines para boreal",
+  "keywords": [
+    "boreal",
+    "design",
+    "system",
+    "boreal",
+    "ds",
+    "proximus"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.c11.telesign.com/scm/san/boreal-ds.git"
+  },
+  "license": "ISC",
+  "author": "BorealTeam",
+  "type": "module",
+  "main": "main.ts",
+  "scripts": {
+    "test": "test"
+  }
+}
