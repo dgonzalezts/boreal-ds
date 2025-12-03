@@ -1,5 +1,5 @@
 {
-  "name": "boral-web-components",
+  "name": "boreal-web-components",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/boral-web-components/boral-web-components.esm.js",
+  "unpkg": "dist/boreal-web-components/boreal-web-components.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/boral-web-components/boral-web-components.esm.js",
-      "require": "./dist/boral-web-components/boral-web-components.cjs.js"
+      "import": "./dist/boreal-web-components/boreal-web-components.esm.js",
+      "require": "./dist/boreal-web-components/boreal-web-components.cjs.js"
     },
     "./my-component": {
       "import": "./dist/components/my-component.js",
@@ -40,7 +40,11 @@
   },
   "devDependencies": {
     "@stencil/core": "^4.27.1",
-    "jest": "^29.7.0"
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.5",
+    "jest": "^29.7.0",
+    "jest-cli": "^29.7.0",
+    "puppeteer": "^24.3.0"
   },
   "license": "MIT"
 }

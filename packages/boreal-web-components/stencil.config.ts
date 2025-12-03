@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'boral-web-components',
+  namespace: 'boreal-web-components',
   outputTargets: [
     {
       type: 'dist',
