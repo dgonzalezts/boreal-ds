@@ -1,26 +1,13 @@
 dist/
 www/
 loader/
-
-*~
-*.sw[mnpcod]
-*.log
-*.lock
-*.tmp
-*.tmp.*
-log.txt
-*.sublime-project
-*.sublime-workspace
-
-.stencil/
-.idea/
-.vscode/
-.sass-cache/
-.versions/
+components-build/
+package-lock.json
+.editorconfig
 node_modules/
-$RECYCLE.BIN/
+.stencil
+*.tgz
+src/components.d.ts
 
-.DS_Store
-Thumbs.db
-UserInterfaceState.xcuserstate
-.env
+# IDE
+**/.vscode
