@@ -21,6 +21,10 @@
     },
     "./components/*": {
       "import": "./components-build/*"
+    },
+    "./types": {
+      "import": "./dist/collection/typed/index.js",
+      "types": "./dist/types/types/index.d.ts"
     }
   },
   "repository": {
