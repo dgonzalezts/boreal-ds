@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 import reactOutputTarget from './targets/react-output-target';
 import vueOutputTarget from './targets/vue-output-target';
 
@@ -30,6 +31,11 @@ export const config: Config = {
     },
     reactOutputTarget(),
     vueOutputTarget(),
+  ],
+  plugins: [
+    sass({
+      includePaths: ['node_modules']
+    })
   ],
   testing: {
     browserHeadless: "shell",
