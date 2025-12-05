@@ -25,7 +25,9 @@
     "./types": {
       "import": "./dist/collection/typed/index.js",
       "types": "./dist/types/types/index.d.ts"
-    }
+    },
+    "./styles/*": "./dist/boreal-web-components/*",
+    "./dist/*": "./dist/*"
   },
   "repository": {
     "type": "git",

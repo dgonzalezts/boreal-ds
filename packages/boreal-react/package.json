@@ -17,8 +17,27 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./__tests__/react-library.test.js",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "typescript": "^5.9.3"
+  },
+   "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@stencil/react-output-target": "^1.2.0"
   }
 }
