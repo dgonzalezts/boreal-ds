@@ -1,0 +1,24 @@
+{
+  "name": "boreal-react",
+  "version": "0.0.1",
+  "description": "Wrapper for React BorealDS",
+  "keywords": [
+    "Boreal",
+    "BorealDS",
+    "Design",
+    "System",
+    "React",
+    "WebComponents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.c11.telesign.com/projects/SAN/repos/boreal-ds/browse"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
