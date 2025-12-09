@@ -1,5 +1,5 @@
 {
-  "name": "boreal-web-components",
+  "name": "@boreal-ds/web-components",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -23,7 +23,7 @@
       "import": "./components-build/*"
     },
     "./types": {
-      "import": "./dist/collection/typed/index.js",
+      "import": "./dist/collection/types/index.js",
       "types": "./dist/types/types/index.d.ts"
     },
     "./styles/*": "./dist/boreal-web-components/*",
@@ -35,7 +35,8 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "components-build/"
   ],
   "scripts": {
     "build": "stencil build",

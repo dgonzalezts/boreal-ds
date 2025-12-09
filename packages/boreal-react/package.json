@@ -1,5 +1,5 @@
 {
-  "name": "boreal-react",
+  "name": "@boreal-ds/react",
   "version": "0.0.1",
   "description": "Wrapper for React BorealDS",
   "keywords": [
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.c11.telesign.com/projects/SAN/repos/boreal-ds/browse"
+    "url": "https://bitbucket.c11.telesign.com/projects/SAN/repos/boreal-ds/"
   },
   "license": "ISC",
   "author": "",
@@ -26,7 +26,8 @@
     "tsc": "tsc -p . --outDir ./dist"
   },
   "files": [
-    "dist"
+    "dist",
+    "./lib/*"
   ],
   "devDependencies": {
     "@types/react": "^19.2.7",
@@ -34,10 +35,11 @@
     "react-dom": "^19.2.1",
     "typescript": "^5.9.3"
   },
-   "publishConfig": {
+  "publishConfig": {
     "access": "public"
   },
   "dependencies": {
+    "@boreal-ds/web-components": "file:boreal-ds-web-components-0.0.1.tgz",
     "@stencil/react-output-target": "^1.2.0"
   }
 }
