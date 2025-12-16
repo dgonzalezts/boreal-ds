@@ -1,0 +1,35 @@
+{
+  "name": "@boreal-ds/vue",
+  "version": "0.0.1",
+  "description": "Wrapper for VueJS BorealDS",
+  "keywords": [
+    "Boreal",
+    "BorealDS",
+    "Design",
+    "System",
+    "VueJS",
+    "WebComponents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.c11.telesign.com/projects/SAN/repos/boreal-ds/"
+  },
+  "author": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "devDependencies": {
+    "@stencil/vue-output-target": "^0.11.8",
+    "@types/node": "^25.0.0",
+    "typescript": "^5.9.3",
+    "vue": "^3.5.25"
+  },
+  "dependencies": {
+    "@boreal-ds/web-components": "file:boreal-ds-web-components-0.0.1.tgz"
+  }
+}

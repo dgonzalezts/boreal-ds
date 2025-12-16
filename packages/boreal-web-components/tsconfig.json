@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    /* Language & Environment */
+    "target": "es2020",
+    "lib": ["es2020", "dom", "dom.iterable"],
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+
+    /* Modules */
+    "module": "esnext",
+    "moduleResolution": "node",
+    //"moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    
+    /* Type Checking */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    
+    /* Interop Constraints */
+    "allowJs": true,
+    "skipLibCheck": true,
+
+    /* Path Mapping */
+    "baseUrl": "./src/",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Default config for JSX */
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h.Fragment",
+
+    /* remain */
+    "allowUnreachableCode": false,
+    "preserveConstEnums": true,
+    "skipDefaultLibCheck": true
+  },
+ /* Include all src folder to avoid StencilJS warnings */
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

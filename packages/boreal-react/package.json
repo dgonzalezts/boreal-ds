@@ -1,0 +1,45 @@
+{
+  "name": "@boreal-ds/react",
+  "version": "0.0.1",
+  "description": "Wrapper for React BorealDS",
+  "keywords": [
+    "Boreal",
+    "BorealDS",
+    "Design",
+    "System",
+    "React",
+    "WebComponents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.c11.telesign.com/projects/SAN/repos/boreal-ds/"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "test": "node ./__tests__/react-library.test.js",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "files": [
+    "dist",
+    "./lib/*"
+  ],
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@boreal-ds/web-components": "file:boreal-ds-web-components-0.0.1.tgz",
+    "@stencil/react-output-target": "^1.2.0"
+  }
+}

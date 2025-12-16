@@ -1,0 +1,13 @@
+dist/
+www/
+loader/
+components-build/
+package-lock.json
+.editorconfig
+node_modules/
+.stencil
+*.tgz
+src/components.d.ts
+
+# IDE
+**/.vscode
