@@ -1,0 +1,10 @@
+# Build outputs
+dist
+loader
+www
+
+# Dependencies
+node_modules
+
+# Generated files
+*.d.ts
