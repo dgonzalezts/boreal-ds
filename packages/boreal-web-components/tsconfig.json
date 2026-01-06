@@ -10,12 +10,12 @@
 
     /* Modules */
     "module": "esnext",
-    "moduleResolution": "node",
-    //"moduleResolution": "Bundler",
+    //"moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    
+
     /* Type Checking */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -29,7 +29,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    
+
     /* Interop Constraints */
     "allowJs": true,
     "skipLibCheck": true,
@@ -45,12 +45,12 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment",
 
-    /* remain */
+    /* StencilJS provided */
     "allowUnreachableCode": false,
     "preserveConstEnums": true,
     "skipDefaultLibCheck": true
   },
- /* Include all src folder to avoid StencilJS warnings */
+  /* Include all src folder to avoid StencilJS warnings */
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
