@@ -1,18 +1,17 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 import storybook from 'eslint-plugin-storybook';
-import { defineConfig } from "eslint/config";
+import prettierConfig from 'eslint-config-prettier';
+import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,ts,tsx}"],
+    files: ['**/*.{js,mjs,cjs,ts,tsx}'],
     plugins: {
-      js
+      js,
     },
-    extends: [
-      "js/recommended",
-    ],
+    extends: ['js/recommended'],
     languageOptions: {
       globals: globals.browser,
     },
@@ -21,7 +20,7 @@ export default defineConfig([
   tseslint.configs.recommended,
   ...storybook.configs['flat/recommended'],
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ['**/*.{ts,tsx}'],
     rules: {
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -32,4 +31,5 @@ export default defineConfig([
       'no-unused-vars': 'off',
     },
   },
+  prettierConfig,
 ]);

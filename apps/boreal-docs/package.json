@@ -10,7 +10,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint \"**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix"
+    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\""
   },
   "dependencies": {
     "lit": "^3.3.1"
@@ -25,9 +27,11 @@
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
     "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-storybook": "^10.1.11",
     "globals": "^17.0.0",
     "playwright": "^1.57.0",
+    "prettier": "^3.7.4",
     "storybook": "^10.1.11",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.52.0",
