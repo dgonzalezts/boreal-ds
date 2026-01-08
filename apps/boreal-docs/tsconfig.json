@@ -15,13 +15,35 @@
     "moduleDetection": "force",
     "noEmit": true,
 
+    /* Module Interop */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Path Mappings */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"]
+    },
+
+    /* Source Maps for Debugging */
+    "sourceMap": true,
+    "inlineSources": true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitReturns": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Optional: Allow JavaScript files */
+    "allowJs": true,
+    "jsx": "react",
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.mdx"],
+  "exclude": ["node_modules", "dist"]
 }
