@@ -10,8 +10,7 @@ All notable changes to this project will be documented in this file.
 - 📦 CSS custom properties generation with `data-theme` selector
 - 🔧 SCSS variables and maps for Stencil integration
 - ⚙️ Configurable CSS variable prefix (`--boreal-` by default)
-- 📝 Comprehensive documentation (README, STENCIL_USAGE, TOKEN_NAMING)
-- 🎯 Interactive HTML example with theme switcher
+- 📝 Comprehensive documentation
 - 🧪 Token validation script to ensure valid CSS/SCSS names
 - 🔄 Automatic token sanitization (removes spaces, parentheses, etc.)
 
@@ -55,8 +54,6 @@ npm run validate   # Validate generated tokens
 
 ### Documentation
 - `README.md` - General documentation and getting started guide
-- `STENCIL_USAGE.md` - Specific guide for Stencil integration with examples
-- `TOKEN_NAMING.md` - Token naming conventions and best practices
 - `CHANGELOG.md` - Project changelog (this file)
 
 ### Token Structure
@@ -74,12 +71,6 @@ npm run validate   # Validate generated tokens
 - Text, background, UI, icon, stroke colors
 - Extended color palette
 
-### Browser Support
-- Chrome 80+
-- Firefox 80+
-- Safari 13+
-- Edge 80+
-
 ---
 
 ## Future Improvements
@@ -89,22 +80,12 @@ npm run validate   # Validate generated tokens
 - [ ] Shadow/elevation tokens
 - [ ] Animation/transition tokens
 - [ ] Breakpoint tokens for responsive design
-- [ ] Component-specific token sets
-- [ ] Dark mode variants
-- [ ] Accessibility color contrast validation
 - [ ] Token documentation generator (visual style guide)
 
 ### Performance
 - [ ] Minification options for production builds
 - [ ] Source maps for debugging
 - [ ] Tree-shaking support for unused tokens
-- [ ] CDN distribution
-
-### Developer Experience
-- [ ] VS Code extension for token autocomplete
-- [ ] Figma plugin for token sync
-- [ ] Live preview server for theme testing
-- [ ] CLI tool for token management
 
 ---
 

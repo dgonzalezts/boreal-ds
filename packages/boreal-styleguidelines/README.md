@@ -107,7 +107,7 @@ export const config: Config = {
 
 ### Use in Components
 
-#### Option 1: CSS Variables (Recommended for themes)
+#### Option 1: CSS Variables
 
 **my-component.css:**
 ```css
@@ -126,7 +126,7 @@ export const config: Config = {
 }
 ```
 
-#### Option 2: SCSS Variables
+#### Option 2: SCSS Variables (Recommended for themes and reuse)
 
 **my-component.scss:**
 ```scss
@@ -136,18 +136,6 @@ export const config: Config = {
   background: boreal.$boreal-ui-default;
   border-radius: boreal.$boreal-radius-m;
   padding: boreal.$boreal-spacing-m;
-}
-```
-
-#### Option 3: SCSS Maps
-
-```scss
-@use '@boreal-ds/style-guidelines/dist/scss/maps' as maps;
-@use 'sass:map';
-
-.component {
-  $spacing-m: map.get(maps.$boreal-primitives, 'spacing-m');
-  padding: $spacing-m;
 }
 ```
 
@@ -331,16 +319,6 @@ Example output:
 
 ## 🤝 Contributing
 
-1. Modify tokens in `src/tokens/`
+1. Modify tokens in `src/tokens/` download from figma
 2. Run `npm run build`
 3. Verify generated files in `dist/`
-
-## 📄 License
-
-ISC
-
-## 📚 Resources
-
-- [CSS Custom Properties Specification](https://www.w3.org/TR/css-variables/)
-- [SASS Documentation](https://sass-lang.com/documentation)
-- [Design Tokens Community Group](https://github.com/design-tokens/community-group)
