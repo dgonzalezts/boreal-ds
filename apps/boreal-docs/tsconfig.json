@@ -38,12 +38,17 @@
     "noImplicitReturns": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
 
     /* Optional: Allow JavaScript files */
     "allowJs": true,
     "jsx": "react",
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.mdx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.mdx",
+    ".storybook/**/*.ts",
+  ],
   "exclude": ["node_modules", "dist"]
 }
