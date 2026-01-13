@@ -1,14 +1,18 @@
 {
   "name": "@boreal-ds/style-guidelines",
   "version": "0.0.1",
-  "description": "Base guidelines para boreal",
+  "description": "Base guidelines for boreal",
   "keywords": [
     "boreal",
     "design",
     "system",
-    "boreal",
-    "ds",
-    "proximus"
+    "design-tokens",
+    "css-variables",
+    "scss",
+    "proximus",
+    "masiv",
+    "telesign",
+    "bics"
   ],
   "repository": {
     "type": "git",
@@ -17,13 +21,45 @@
   "license": "ISC",
   "author": "BorealTeam",
   "type": "module",
-  "main": "main.ts",
+  "main": "dist/css/boreal.css",
+  "files": [
+    "dist/css",
+    "dist/scss"
+  ],
+  "exports": {
+    ".": {
+      "default": "./dist/css/boreal.css"
+    },
+    "./css": "./dist/css/*",
+    "./css/global": "./dist/css/global.css",
+    "./css/theme-proximus": "./dist/css/theme-proximus.css",
+    "./css/theme-masiv": "./dist/css/theme-masiv.css",
+    "./css/theme-telesign": "./dist/css/theme-telesign.css",
+    "./css/theme-bics": "./dist/css/theme-bics.css",
+    "./scss/variables": "./dist/scss/variables/_index.scss",
+    "./scss/maps": "./dist/scss/maps/_index.scss",
+    "./scss": "./dist/scss/*"
+  },
   "scripts": {
+    "clean": "rimraf dist",
+    "generate": "tsx src/generators/generate.ts",
+    "validate": "tsx src/generators/validate.ts",
+    "build": "npm run clean && npm run generate && npm run validate",
+    "dev": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.13.9",
+    "fs-extra": "^11.3.0",
+    "rimraf": "^6.0.1",
+    "sass-embedded": "^1.85.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.2",
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
     "vitest": "^4.0.18"
