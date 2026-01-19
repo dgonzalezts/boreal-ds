@@ -1,0 +1,4 @@
+{
+  "*.{css,scss}": ["npm run format"],
+  "*.{js,jsx,ts,tsx}": ["npm run test"]
+}

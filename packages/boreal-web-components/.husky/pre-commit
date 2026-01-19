@@ -1,0 +1,6 @@
+# Folder containing commands
+cd packages/boreal-web-components
+
+# Executing commands on changed files only with lint staging
+echo "Pre-commit: Checking components..."
+npm run lint-staged
