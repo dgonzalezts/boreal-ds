@@ -10,7 +10,6 @@
 
     /* Modules */
     "module": "esnext",
-    //"moduleResolution": "node",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -37,7 +36,9 @@
     /* Path Mapping */
     "baseUrl": "./src/",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./src/utils/*"]
     },
 
     /* Default config for JSX */
@@ -45,12 +46,12 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment",
 
-    /* StencilJS provided */
+    /* StencilJS provided config */
     "allowUnreachableCode": false,
     "preserveConstEnums": true,
     "skipDefaultLibCheck": true
   },
-  /* Include all src folder to avoid StencilJS warnings */
+
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
