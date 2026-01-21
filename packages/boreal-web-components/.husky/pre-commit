@@ -1,12 +1,11 @@
-
 # Perform pre-commit tasks on main package (boreal-web-components)
+
+(
 cd packages/boreal-web-components
 
 echo "Pre-commit: Checking components..."
-# Execute commands on changed files with lint staging
-npm run lint-staged
 
-# Enter here additional tasks/scripts required inside another folder
-# Example:
-# cd packages/boreal-react
-# npm run test
+# Execute commands on changed files with lint staging
+
+npm run lint-staged
+)
