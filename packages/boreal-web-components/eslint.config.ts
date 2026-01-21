@@ -21,6 +21,7 @@ export default defineConfig(
       'eslint.config.ts',
       'stencil.config.ts',
       'src/**/*.d.ts',
+      '*.config.ts',
     ],
   },
   {
