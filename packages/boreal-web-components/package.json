@@ -43,6 +43,10 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write 'src/**/*.{ts,tsx,css,scss,json}'",
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,css,scss,json}'",
     "generate": "stencil generate"
   },
   "devDependencies": {
