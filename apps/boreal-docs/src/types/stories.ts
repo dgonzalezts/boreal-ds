@@ -11,13 +11,13 @@ type WithStylesParams<T, Required extends boolean = true> = Required extends tru
   : T & { parameters?: StylesOptions | undefined };
 
 /**
- * Generic type for Colibri component stories meta configuration
+ * Generic type for Boreal component stories meta configuration
  * @template T - The type of the story arguments
  */
-export type ColibriStoryMeta<T> = WithStylesParams<Meta<T>>;
+export type BorealStoryMeta<T> = WithStylesParams<Meta<T>>;
 
 /**
- * Generic type for Colibri component stories
+ * Generic type for Boreal component stories
  * @template T - The type of the story arguments
  */
-export type ColibriStory<T> = WithStylesParams<StoryObj<T>, false>;
+export type BorealStory<T> = WithStylesParams<StoryObj<T>, false>;
