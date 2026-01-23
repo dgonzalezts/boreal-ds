@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import meta, * as Icons from './Icons.stories.tsx';
+
+<Meta title="ImagesAndIcons/Icons" />
+
+# Icons
+
+The Boreal Design System provides a simple and efficient way to display font icons in your application. This feature offers an easier way to provide and implement consistent icons across your project. With support for various sizes and customization options such any font, that search reduce the external dependencies and prevent the performance machine issues in the projects. In this way enables designers and developers to maintain visual consistency while adding meaningful visual elements to enhance user experience and interface clarity.
+
+## How to use it
+
+1. Implement a link tag to the Boreal Icons stylesheet in your project.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://resources-borealds.s3.us-east-1.amazonaws.com/icons/current/boreal-styles.css"
+/>
+```
+
+2. Use the `<em>` tag to display the icon with a class attribute that matches the name of the icon you want to use with the `bds-icon-` prefix.
+
+```html
+<em class="bds-icon-home"></em>
+```
+
+3. Optionally, you can add a `style` attribute to the `<em>` tag to customize the size and color of the icon.
+
+```html
+<em class="bds-icon-home" style="font-size: 2rem; color: #000;"></em>
+```
+
+## Component preview
+
+You can click on the Show code button in the bottom-right section of the following code snippet to see how to use the component:
+
+<Canvas of={Icons.Default} />
+
+## Configurations
+
+<ArgTypes of={meta} />
+
+## Interact with the component
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the **Default** section.
