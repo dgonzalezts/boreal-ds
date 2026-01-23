@@ -11,6 +11,7 @@ export const config: Config = {
   buildEs5: 'prod',
   extras: {
     experimentalSlotFixes: true,
+    experimentalScopedSlotChanges: true,
   },
   outputTargets: [
     {
@@ -27,17 +28,26 @@ export const config: Config = {
       type: 'dist-custom-elements',
       externalRuntime: false,
       dir: './components-build',
-      generateTypeDeclarations: true
+      generateTypeDeclarations: true,
     },
     reactOutputTarget(),
     vueOutputTarget(),
   ],
   plugins: [
     sass({
-      includePaths: ['node_modules']
-    })
+      includePaths: ['node_modules'],
+    }),
   ],
   testing: {
-    browserHeadless: "shell",
+    browserHeadless: 'shell',
+    coverageReporters: ['text-summary', 'lcov'],
+    coverageThreshold: {
+      global: {
+        branches: 80,
+        functions: 80,
+        lines: 80,
+        statements: 80,
+      },
+    },
   },
 };
