@@ -1,1650 +1,1238 @@
 [
   {
-    "name": "bds-icon-flow-builder",
-    "isoCode": "ea9a"
+    "name": "bds-icon-flow-builder"
   },
   {
-    "name": "bds-icon-nps",
-    "isoCode": "ea9b"
+    "name": "bds-icon-nps"
   },
   {
-    "name": "bds-icon-gift",
-    "isoCode": "ea97"
+    "name": "bds-icon-gift"
   },
   {
-    "name": "bds-icon-email-send",
-    "isoCode": "ea82"
+    "name": "bds-icon-email-send"
   },
   {
-    "name": "bds-icon-ips",
-    "isoCode": "ea83"
+    "name": "bds-icon-ips"
   },
   {
-    "name": "bds-icon-carousel",
-    "isoCode": "ea84"
+    "name": "bds-icon-carousel"
   },
   {
-    "name": "bds-icon-width",
-    "isoCode": "ea85"
+    "name": "bds-icon-width"
   },
   {
-    "name": "bds-icon-height",
-    "isoCode": "ea86"
+    "name": "bds-icon-height"
   },
   {
-    "name": "bds-icon-banner",
-    "isoCode": "ea87"
+    "name": "bds-icon-banner"
   },
   {
-    "name": "bds-icon-join-list",
-    "isoCode": "ea88"
+    "name": "bds-icon-join-list"
   },
   {
-    "name": "bds-icon-mapping",
-    "isoCode": "ea89"
+    "name": "bds-icon-mapping"
   },
   {
-    "name": "bds-icon-counts",
-    "isoCode": "ea8a"
+    "name": "bds-icon-counts"
   },
   {
-    "name": "bds-icon-someone-comes-out",
-    "isoCode": "ea8b"
+    "name": "bds-icon-someone-comes-out"
   },
   {
-    "name": "bds-icon-someone-comes-in",
-    "isoCode": "ea8c"
+    "name": "bds-icon-someone-comes-in"
   },
   {
-    "name": "bds-icon-segmentation",
-    "isoCode": "ea8d"
+    "name": "bds-icon-segmentation"
   },
   {
-    "name": "bds-icon-column-changes",
-    "isoCode": "ea8e"
+    "name": "bds-icon-column-changes"
   },
   {
-    "name": "bds-icon-add-variable",
-    "isoCode": "ea8f"
+    "name": "bds-icon-add-variable"
   },
   {
-    "name": "bds-icon-tools-config",
-    "isoCode": "ea90"
+    "name": "bds-icon-tools-config"
   },
   {
-    "name": "bds-icon-email-unique-delivered",
-    "isoCode": "ea91"
+    "name": "bds-icon-email-unique-delivered"
   },
   {
-    "name": "bds-icon-white-label-panel",
-    "isoCode": "ea92"
+    "name": "bds-icon-white-label-panel"
   },
   {
-    "name": "bds-icon-domain-verification",
-    "isoCode": "ea93"
+    "name": "bds-icon-domain-verification"
   },
   {
-    "name": "bds-icon-consumption-report",
-    "isoCode": "ea94"
+    "name": "bds-icon-consumption-report"
   },
   {
-    "name": "bds-icon-email-templates",
-    "isoCode": "ea95"
+    "name": "bds-icon-email-templates"
   },
   {
-    "name": "bds-icon-suppression",
-    "isoCode": "ea96"
+    "name": "bds-icon-suppression"
   },
   {
-    "name": "bds-icon-email-download",
-    "isoCode": "ea81"
+    "name": "bds-icon-email-download"
   },
   {
-    "name": "bds-icon-email-bounced",
-    "isoCode": "ea7f"
+    "name": "bds-icon-email-bounced"
   },
   {
-    "name": "bds-icon-email-unsubscribed",
-    "isoCode": "ea80"
+    "name": "bds-icon-email-unsubscribed"
   },
   {
-    "name": "bds-icon-not-clicked",
-    "isoCode": "ea7e"
+    "name": "bds-icon-not-clicked"
   },
   {
-    "name": "bds-icon-whatsapp-lto",
-    "isoCode": "ea7d"
+    "name": "bds-icon-whatsapp-lto"
   },
   {
-    "name": "bds-icon-voice-arrow-down",
-    "isoCode": "ea77"
+    "name": "bds-icon-voice-arrow-down"
   },
   {
-    "name": "bds-icon-mail-arrow-down",
-    "isoCode": "ea78"
+    "name": "bds-icon-mail-arrow-down"
   },
   {
-    "name": "bds-icon-message-rcs-arrow-down",
-    "isoCode": "ea79"
+    "name": "bds-icon-message-rcs-arrow-down"
   },
   {
-    "name": "bds-icon-Journeys-arrow-down",
-    "isoCode": "ea7a"
+    "name": "bds-icon-Journeys-arrow-down"
   },
   {
-    "name": "bds-icon-message-arrow-down",
-    "isoCode": "ea7b"
+    "name": "bds-icon-message-arrow-down"
   },
   {
-    "name": "bds-icon-hourglass-empty-alert-circle-fill",
-    "isoCode": "ea7c"
+    "name": "bds-icon-hourglass-empty-alert-circle-fill"
   },
   {
-    "name": "bds-icon-domain",
-    "isoCode": "ea70"
+    "name": "bds-icon-domain"
   },
   {
-    "name": "bds-icon-email-spam",
-    "isoCode": "ea73"
+    "name": "bds-icon-email-spam"
   },
   {
-    "name": "bds-icon-sight-alert-circle-fill",
-    "isoCode": "ea6f"
+    "name": "bds-icon-sight-alert-circle-fill"
   },
   {
-    "name": "bds-icon-email-open",
-    "isoCode": "ea71"
+    "name": "bds-icon-email-open"
   },
   {
-    "name": "bds-icon-email-click",
-    "isoCode": "ea72"
+    "name": "bds-icon-email-click"
   },
   {
-    "name": "bds-icon-documentation",
-    "isoCode": "ea74"
+    "name": "bds-icon-documentation"
   },
   {
-    "name": "bds-icon-api",
-    "isoCode": "ea75"
+    "name": "bds-icon-api"
   },
   {
-    "name": "bds-icon-dash-board",
-    "isoCode": "ea76"
+    "name": "bds-icon-dash-board"
   },
   {
-    "name": "bds-icon-onsite",
-    "isoCode": "ea6d"
+    "name": "bds-icon-onsite"
   },
   {
-    "name": "bds-icon-message-failed",
-    "isoCode": "ea6e"
+    "name": "bds-icon-message-failed"
   },
   {
-    "name": "bds-icon-delivered-notifications",
-    "isoCode": "ea6a"
+    "name": "bds-icon-delivered-notifications"
   },
   {
-    "name": "bds-icon-sent-notifications",
-    "isoCode": "ea6b"
+    "name": "bds-icon-sent-notifications"
   },
   {
-    "name": "bds-icon-undelivered-notifications",
-    "isoCode": "ea6c"
+    "name": "bds-icon-undelivered-notifications"
   },
   {
-    "name": "bds-icon-reduce-decimals",
-    "isoCode": "ea68"
+    "name": "bds-icon-reduce-decimals"
   },
   {
-    "name": "bds-icon-increase-decimals",
-    "isoCode": "ea69"
+    "name": "bds-icon-increase-decimals"
   },
   {
-    "name": "bds-icon-photo-plus-circle",
-    "isoCode": "ea66"
+    "name": "bds-icon-photo-plus-circle"
   },
   {
-    "name": "bds-icon-camera",
-    "isoCode": "ea67"
+    "name": "bds-icon-camera"
   },
   {
-    "name": "bds-icon-role-swapping",
-    "isoCode": "ea65"
+    "name": "bds-icon-role-swapping"
   },
   {
-    "name": "bds-icon-web-chat",
-    "isoCode": "ea61"
+    "name": "bds-icon-web-chat"
   },
   {
-    "name": "bds-icon-gmb",
-    "isoCode": "ea62"
+    "name": "bds-icon-gmb"
   },
   {
-    "name": "bds-icon-messager-instagram",
-    "isoCode": "ea63"
+    "name": "bds-icon-messager-instagram"
   },
   {
-    "name": "bds-icon-messager-facebook",
-    "isoCode": "ea64"
+    "name": "bds-icon-messager-facebook"
   },
   {
-    "name": "bds-icon-check-numbers",
-    "isoCode": "ea60"
+    "name": "bds-icon-check-numbers"
   },
   {
-    "name": "bds-icon-capability-check",
-    "isoCode": "ea5f"
+    "name": "bds-icon-capability-check"
   },
   {
-    "name": "bds-icon-extract-generation",
-    "isoCode": "ea5c"
+    "name": "bds-icon-extract-generation"
   },
   {
-    "name": "bds-icon-message-pending",
-    "isoCode": "ea5d"
+    "name": "bds-icon-message-pending"
   },
   {
-    "name": "bds-icon-add-var-square",
-    "isoCode": "ea5e"
+    "name": "bds-icon-add-var-square"
   },
   {
-    "name": "bds-icon-right-arrow",
-    "isoCode": "ea5a"
+    "name": "bds-icon-right-arrow"
   },
   {
-    "name": "bds-icon-expired-time",
-    "isoCode": "ea5b"
+    "name": "bds-icon-expired-time"
   },
   {
-    "name": "bds-icon-payment",
-    "isoCode": "ea59"
+    "name": "bds-icon-payment"
   },
   {
-    "name": "bds-icon-unanswered",
-    "isoCode": "ea58"
+    "name": "bds-icon-unanswered"
   },
   {
-    "name": "bds-icon-roubot",
-    "isoCode": "ea54"
+    "name": "bds-icon-roubot"
   },
   {
-    "name": "bds-icon-vserv",
-    "isoCode": "ea55"
+    "name": "bds-icon-vserv"
   },
   {
-    "name": "bds-icon-2way",
-    "isoCode": "e901"
+    "name": "bds-icon-2way"
   },
   {
-    "name": "bds-icon-account-id",
-    "isoCode": "e902"
+    "name": "bds-icon-account-id"
   },
   {
-    "name": "bds-icon-account-manager",
-    "isoCode": "e903"
+    "name": "bds-icon-account-manager"
   },
   {
-    "name": "bds-icon-accounts-factory",
-    "isoCode": "e904"
+    "name": "bds-icon-accounts-factory"
   },
   {
-    "name": "bds-icon-add-fields",
-    "isoCode": "e905"
+    "name": "bds-icon-add-fields"
   },
   {
-    "name": "bds-icon-add-photos",
-    "isoCode": "e906"
+    "name": "bds-icon-add-photos"
   },
   {
-    "name": "bds-icon-add-social-media",
-    "isoCode": "e907"
+    "name": "bds-icon-add-social-media"
   },
   {
-    "name": "bds-icon-adjust-text",
-    "isoCode": "ea52"
+    "name": "bds-icon-adjust-text"
   },
   {
-    "name": "bds-icon-agregate",
-    "isoCode": "e908"
+    "name": "bds-icon-agregate"
   },
   {
-    "name": "bds-icon-a-half-dotted-circle",
-    "isoCode": "e909"
+    "name": "bds-icon-a-half-dotted-circle"
   },
   {
-    "name": "bds-icon-alert-circle",
-    "isoCode": "e90a"
+    "name": "bds-icon-alert-circle"
   },
   {
-    "name": "bds-icon-alert-circle-fill",
-    "isoCode": "e90b"
+    "name": "bds-icon-alert-circle-fill"
   },
   {
-    "name": "bds-icon-alert-major-triangle-down",
-    "isoCode": "e90c"
+    "name": "bds-icon-alert-major-triangle-down"
   },
   {
-    "name": "bds-icon-alert-major-triangle-down-fill",
-    "isoCode": "e90d"
+    "name": "bds-icon-alert-major-triangle-down-fill"
   },
   {
-    "name": "bds-icon-alert-warning-high",
-    "isoCode": "e90e"
+    "name": "bds-icon-alert-warning-high"
   },
   {
-    "name": "bds-icon-alert-warning-high-fill",
-    "isoCode": "e90f"
+    "name": "bds-icon-alert-warning-high-fill"
   },
   {
-    "name": "bds-icon-align-bottom",
-    "isoCode": "e910"
+    "name": "bds-icon-align-bottom"
   },
   {
-    "name": "bds-icon-align-center",
-    "isoCode": "e911"
+    "name": "bds-icon-align-center"
   },
   {
-    "name": "bds-icon-align-horizontal-rule-square",
-    "isoCode": "e912"
+    "name": "bds-icon-align-horizontal-rule-square"
   },
   {
-    "name": "bds-icon-align-justified-text",
-    "isoCode": "e913"
+    "name": "bds-icon-align-justified-text"
   },
   {
-    "name": "bds-icon-align-left",
-    "isoCode": "e914"
+    "name": "bds-icon-align-left"
   },
   {
-    "name": "bds-icon-align-right",
-    "isoCode": "e915"
+    "name": "bds-icon-align-right"
   },
   {
-    "name": "bds-icon-align-text-center",
-    "isoCode": "e916"
+    "name": "bds-icon-align-text-center"
   },
   {
-    "name": "bds-icon-align-text-left",
-    "isoCode": "e917"
+    "name": "bds-icon-align-text-left"
   },
   {
-    "name": "bds-icon-align-text-right",
-    "isoCode": "e918"
+    "name": "bds-icon-align-text-right"
   },
   {
-    "name": "bds-icon-align-top",
-    "isoCode": "e919"
+    "name": "bds-icon-align-top"
   },
   {
-    "name": "bds-icon-align-vertical-center",
-    "isoCode": "e91a"
+    "name": "bds-icon-align-vertical-center"
   },
   {
-    "name": "bds-icon-api-urlshortener",
-    "isoCode": "e91b"
+    "name": "bds-icon-api-urlshortener"
   },
   {
-    "name": "bds-icon-archived",
-    "isoCode": "e91c"
+    "name": "bds-icon-archived"
   },
   {
-    "name": "bds-icon-array-column",
-    "isoCode": "e91d"
+    "name": "bds-icon-array-column"
   },
   {
-    "name": "bds-icon-array-column-footer",
-    "isoCode": "e91e"
+    "name": "bds-icon-array-column-footer"
   },
   {
-    "name": "bds-icon-array-column-header",
-    "isoCode": "e91f"
+    "name": "bds-icon-array-column-header"
   },
   {
-    "name": "bds-icon-array-full-column",
-    "isoCode": "e920"
+    "name": "bds-icon-array-full-column"
   },
   {
-    "name": "bds-icon-arrow-clockwise",
-    "isoCode": "e921"
+    "name": "bds-icon-arrow-clockwise"
   },
   {
-    "name": "bds-icon-arrow-clockwise-timer",
-    "isoCode": "e922"
+    "name": "bds-icon-arrow-clockwise-timer"
   },
   {
-    "name": "bds-icon-arrow-counter-clockwise",
-    "isoCode": "e923"
+    "name": "bds-icon-arrow-counter-clockwise"
   },
   {
-    "name": "bds-icon-arrow-refresh-clockwise",
-    "isoCode": "e924"
+    "name": "bds-icon-arrow-refresh-clockwise"
   },
   {
-    "name": "bds-icon-arrow-resend",
-    "isoCode": "e925"
+    "name": "bds-icon-arrow-resend"
   },
   {
-    "name": "bds-icon-arrows-down-up-right-join",
-    "isoCode": "e926"
+    "name": "bds-icon-arrows-down-up-right-join"
   },
   {
-    "name": "bds-icon-arrows-in",
-    "isoCode": "e927"
+    "name": "bds-icon-arrows-in"
   },
   {
-    "name": "bds-icon-arrows-left-right",
-    "isoCode": "e928"
+    "name": "bds-icon-arrows-left-right"
   },
   {
-    "name": "bds-icon-arrows-move",
-    "isoCode": "e929"
+    "name": "bds-icon-arrows-move"
   },
   {
-    "name": "bds-icon-arrows-out",
-    "isoCode": "e92a"
+    "name": "bds-icon-arrows-out"
   },
   {
-    "name": "bds-icon-arrow-undo",
-    "isoCode": "e92b"
+    "name": "bds-icon-arrow-undo"
   },
   {
-    "name": "bds-icon-arrow-up-right-square",
-    "isoCode": "e92c"
+    "name": "bds-icon-arrow-up-right-square"
   },
   {
-    "name": "bds-icon-a-third-circle",
-    "isoCode": "e92d"
+    "name": "bds-icon-a-third-circle"
   },
   {
-    "name": "bds-icon-attachment",
-    "isoCode": "e92e"
+    "name": "bds-icon-attachment"
   },
   {
-    "name": "bds-icon-audio-3gpp",
-    "isoCode": "e92f"
+    "name": "bds-icon-audio-3gpp"
   },
   {
-    "name": "bds-icon-audio-mp3",
-    "isoCode": "e930"
+    "name": "bds-icon-audio-mp3"
   },
   {
-    "name": "bds-icon-audio-mp4",
-    "isoCode": "e931"
+    "name": "bds-icon-audio-mp4"
   },
   {
-    "name": "bds-icon-audio-wav",
-    "isoCode": "e932"
+    "name": "bds-icon-audio-wav"
   },
   {
-    "name": "bds-icon-automation",
-    "isoCode": "e933"
+    "name": "bds-icon-automation"
   },
   {
-    "name": "bds-icon-battery",
-    "isoCode": "e934"
+    "name": "bds-icon-battery"
   },
   {
-    "name": "bds-icon-billings",
-    "isoCode": "e981"
+    "name": "bds-icon-billings"
   },
   {
-    "name": "bds-icon-blacklist",
-    "isoCode": "e935"
+    "name": "bds-icon-blacklist"
   },
   {
-    "name": "bds-icon-bold-font",
-    "isoCode": "e936"
+    "name": "bds-icon-bold-font"
   },
   {
-    "name": "bds-icon-boolean",
-    "isoCode": "e937"
+    "name": "bds-icon-boolean"
   },
   {
-    "name": "bds-icon-boolean-circle",
-    "isoCode": "e938"
+    "name": "bds-icon-boolean-circle"
   },
   {
-    "name": "bds-icon-bound-diamonds-circles",
-    "isoCode": "e939"
+    "name": "bds-icon-bound-diamonds-circles"
   },
   {
-    "name": "bds-icon-calendar-clock",
-    "isoCode": "e93a"
+    "name": "bds-icon-calendar-clock"
   },
   {
-    "name": "bds-icon-calendar-dots",
-    "isoCode": "e93b"
+    "name": "bds-icon-calendar-dots"
   },
   {
-    "name": "bds-icon-calendar-event",
-    "isoCode": "e93c"
+    "name": "bds-icon-calendar-event"
   },
   {
-    "name": "bds-icon-campaign",
-    "isoCode": "ea4a"
+    "name": "bds-icon-campaign"
   },
   {
-    "name": "bds-icon-center",
-    "isoCode": "e93d"
+    "name": "bds-icon-center"
   },
   {
-    "name": "bds-icon-chatbot",
-    "isoCode": "e93e"
+    "name": "bds-icon-chatbot"
   },
   {
-    "name": "bds-icon-chat-ended",
-    "isoCode": "e93f"
+    "name": "bds-icon-chat-ended"
   },
   {
-    "name": "bds-icon-check",
-    "isoCode": "e940"
+    "name": "bds-icon-check"
   },
   {
-    "name": "bds-icon-check-circle",
-    "isoCode": "e941"
+    "name": "bds-icon-check-circle"
   },
   {
-    "name": "bds-icon-check-circle-fill",
-    "isoCode": "e942"
+    "name": "bds-icon-check-circle-fill"
   },
   {
-    "name": "bds-icon-check-list",
-    "isoCode": "e943"
+    "name": "bds-icon-check-list"
   },
   {
-    "name": "bds-icon-check-square",
-    "isoCode": "e944"
+    "name": "bds-icon-check-square"
   },
   {
-    "name": "bds-icon-chevron-double-down",
-    "isoCode": "e945"
+    "name": "bds-icon-chevron-double-down"
   },
   {
-    "name": "bds-icon-chevron-double-left",
-    "isoCode": "e946"
+    "name": "bds-icon-chevron-double-left"
   },
   {
-    "name": "bds-icon-chevron-double-right",
-    "isoCode": "e947"
+    "name": "bds-icon-chevron-double-right"
   },
   {
-    "name": "bds-icon-chevron-double-top",
-    "isoCode": "e948"
+    "name": "bds-icon-chevron-double-top"
   },
   {
-    "name": "bds-icon-chevron-down",
-    "isoCode": "e949"
+    "name": "bds-icon-chevron-down"
   },
   {
-    "name": "bds-icon-chevron-down-square",
-    "isoCode": "e94a"
+    "name": "bds-icon-chevron-down-square"
   },
   {
-    "name": "bds-icon-chevron-left",
-    "isoCode": "e94b"
+    "name": "bds-icon-chevron-left"
   },
   {
-    "name": "bds-icon-chevron-right",
-    "isoCode": "e94c"
+    "name": "bds-icon-chevron-right"
   },
   {
-    "name": "bds-icon-chevron-up",
-    "isoCode": "e94d"
+    "name": "bds-icon-chevron-up"
   },
   {
-    "name": "bds-icon-chevron-up-down",
-    "isoCode": "e94e"
+    "name": "bds-icon-chevron-up-down"
   },
   {
-    "name": "bds-icon-circle",
-    "isoCode": "e94f"
+    "name": "bds-icon-circle"
   },
   {
-    "name": "bds-icon-circle-fill",
-    "isoCode": "e950"
+    "name": "bds-icon-circle-fill"
   },
   {
-    "name": "bds-icon-circle-line-circle",
-    "isoCode": "e951"
+    "name": "bds-icon-circle-line-circle"
   },
   {
-    "name": "bds-icon-click",
-    "isoCode": "e952"
+    "name": "bds-icon-click"
   },
   {
-    "name": "bds-icon-close",
-    "isoCode": "e953"
+    "name": "bds-icon-close"
   },
   {
-    "name": "bds-icon-close-circle",
-    "isoCode": "e954"
+    "name": "bds-icon-close-circle"
   },
   {
-    "name": "bds-icon-close-circle-fill",
-    "isoCode": "e955"
+    "name": "bds-icon-close-circle-fill"
   },
   {
-    "name": "bds-icon-cloud-arrow-down-up",
-    "isoCode": "e956"
+    "name": "bds-icon-cloud-arrow-down-up"
   },
   {
-    "name": "bds-icon-code",
-    "isoCode": "e957"
+    "name": "bds-icon-code"
   },
   {
-    "name": "bds-icon-connection-type",
-    "isoCode": "e958"
+    "name": "bds-icon-connection-type"
   },
   {
-    "name": "bds-icon-conversation",
-    "isoCode": "e959"
+    "name": "bds-icon-conversation"
   },
   {
-    "name": "bds-icon-currency",
-    "isoCode": "e95a"
+    "name": "bds-icon-currency"
   },
   {
-    "name": "bds-icon-dash-circle",
-    "isoCode": "e95b"
+    "name": "bds-icon-dash-circle"
   },
   {
-    "name": "bds-icon-database",
-    "isoCode": "e95c"
+    "name": "bds-icon-database"
   },
   {
-    "name": "bds-icon-database-arrow-up",
-    "isoCode": "e95d"
+    "name": "bds-icon-database-arrow-up"
   },
   {
-    "name": "bds-icon-decimal",
-    "isoCode": "e95e"
+    "name": "bds-icon-decimal"
   },
   {
-    "name": "bds-icon-desktop",
-    "isoCode": "e95f"
+    "name": "bds-icon-desktop"
   },
   {
-    "name": "bds-icon-diagonal-line-circle",
-    "isoCode": "e960"
+    "name": "bds-icon-diagonal-line-circle"
   },
   {
-    "name": "bds-icon-diagonal-line-circle-fill",
-    "isoCode": "e961"
+    "name": "bds-icon-diagonal-line-circle-fill"
   },
   {
-    "name": "bds-icon-diamond-circle-line-circle",
-    "isoCode": "e962"
+    "name": "bds-icon-diamond-circle-line-circle"
   },
   {
-    "name": "bds-icon-dislike",
-    "isoCode": "e963"
+    "name": "bds-icon-dislike"
   },
   {
-    "name": "bds-icon-document",
-    "isoCode": "e964"
+    "name": "bds-icon-document"
   },
   {
-    "name": "bds-icon-document-blank-format",
-    "isoCode": "e965"
+    "name": "bds-icon-document-blank-format"
   },
   {
-    "name": "bds-icon-document-css",
-    "isoCode": "e966"
+    "name": "bds-icon-document-css"
   },
   {
-    "name": "bds-icon-document-csv",
-    "isoCode": "e967"
+    "name": "bds-icon-document-csv"
   },
   {
-    "name": "bds-icon-document-earmark-arrow-up",
-    "isoCode": "e968"
+    "name": "bds-icon-document-earmark-arrow-up"
   },
   {
-    "name": "bds-icon-document-earmark-text",
-    "isoCode": "e969"
+    "name": "bds-icon-document-earmark-text"
   },
   {
-    "name": "bds-icon-document-excel",
-    "isoCode": "e96a"
+    "name": "bds-icon-document-excel"
   },
   {
-    "name": "bds-icon-document-excel-extension",
-    "isoCode": "e96b"
+    "name": "bds-icon-document-excel-extension"
   },
   {
-    "name": "bds-icon-document-html",
-    "isoCode": "e96c"
+    "name": "bds-icon-document-html"
   },
   {
-    "name": "bds-icon-document-pdf",
-    "isoCode": "e96d"
+    "name": "bds-icon-document-pdf"
   },
   {
-    "name": "bds-icon-document-point-list",
-    "isoCode": "e96e"
+    "name": "bds-icon-document-point-list"
   },
   {
-    "name": "bds-icon-document-powerpoint",
-    "isoCode": "e96f"
+    "name": "bds-icon-document-powerpoint"
   },
   {
-    "name": "bds-icon-document-powerpoint-extension",
-    "isoCode": "e970"
+    "name": "bds-icon-document-powerpoint-extension"
   },
   {
-    "name": "bds-icon-document-word",
-    "isoCode": "e971"
+    "name": "bds-icon-document-word"
   },
   {
-    "name": "bds-icon-document-word-extension",
-    "isoCode": "e972"
+    "name": "bds-icon-document-word-extension"
   },
   {
-    "name": "bds-icon-document-zip",
-    "isoCode": "e973"
+    "name": "bds-icon-document-zip"
   },
   {
-    "name": "bds-icon-dotted-line",
-    "isoCode": "e974"
+    "name": "bds-icon-dotted-line"
   },
   {
-    "name": "bds-icon-double-check",
-    "isoCode": "e975"
+    "name": "bds-icon-double-check"
   },
   {
-    "name": "bds-icon-double-square",
-    "isoCode": "e976"
+    "name": "bds-icon-double-square"
   },
   {
-    "name": "bds-icon-download",
-    "isoCode": "e977"
+    "name": "bds-icon-download"
   },
   {
-    "name": "bds-icon-dropper",
-    "isoCode": "e978"
+    "name": "bds-icon-dropper"
   },
   {
-    "name": "bds-icon-edit",
-    "isoCode": "e979"
+    "name": "bds-icon-edit"
   },
   {
-    "name": "bds-icon-edit-square",
-    "isoCode": "e97a"
+    "name": "bds-icon-edit-square"
   },
   {
-    "name": "bds-icon-email",
-    "isoCode": "e97b"
+    "name": "bds-icon-email"
   },
   {
-    "name": "bds-icon-email-api",
-    "isoCode": "e97c"
+    "name": "bds-icon-email-api"
   },
   {
-    "name": "bds-icon-emoji-circle",
-    "isoCode": "e97d"
+    "name": "bds-icon-emoji-circle"
   },
   {
-    "name": "bds-icon-end-step",
-    "isoCode": "e97e"
+    "name": "bds-icon-end-step"
   },
   {
-    "name": "bds-icon-equal",
-    "isoCode": "e97f"
+    "name": "bds-icon-equal"
   },
   {
-    "name": "bds-icon-erp",
-    "isoCode": "e980"
+    "name": "bds-icon-erp"
   },
   {
-    "name": "bds-icon-factory",
-    "isoCode": "ea4c"
+    "name": "bds-icon-factory"
   },
   {
-    "name": "bds-icon-failed-call",
-    "isoCode": "ea56"
+    "name": "bds-icon-failed-call"
   },
   {
-    "name": "bds-icon-file",
-    "isoCode": "e982"
+    "name": "bds-icon-file"
   },
   {
-    "name": "bds-icon-file-arrow-up",
-    "isoCode": "e983"
+    "name": "bds-icon-file-arrow-up"
   },
   {
-    "name": "bds-icon-file-generator",
-    "isoCode": "e984"
+    "name": "bds-icon-file-generator"
   },
   {
-    "name": "bds-icon-file-share",
-    "isoCode": "e985"
+    "name": "bds-icon-file-share"
   },
   {
-    "name": "bds-icon-filter",
-    "isoCode": "e986"
+    "name": "bds-icon-filter"
   },
   {
-    "name": "bds-icon-filter-half",
-    "isoCode": "e987"
+    "name": "bds-icon-filter-half"
   },
   {
-    "name": "bds-icon-flag",
-    "isoCode": "e988"
+    "name": "bds-icon-flag"
   },
   {
-    "name": "bds-icon-folder",
-    "isoCode": "e989"
+    "name": "bds-icon-folder"
   },
   {
-    "name": "bds-icon-folder-arrow-down",
-    "isoCode": "e98a"
+    "name": "bds-icon-folder-arrow-down"
   },
   {
-    "name": "bds-icon-folder-arrow-left",
-    "isoCode": "e98b"
+    "name": "bds-icon-folder-arrow-left"
   },
   {
-    "name": "bds-icon-folder-arrow-right",
-    "isoCode": "e98c"
+    "name": "bds-icon-folder-arrow-right"
   },
   {
-    "name": "bds-icon-folder-arrow-top",
-    "isoCode": "e98d"
+    "name": "bds-icon-folder-arrow-top"
   },
   {
-    "name": "bds-icon-folder-drive",
-    "isoCode": "e98e"
+    "name": "bds-icon-folder-drive"
   },
   {
-    "name": "bds-icon-folder-ftp",
-    "isoCode": "e98f"
+    "name": "bds-icon-folder-ftp"
   },
   {
-    "name": "bds-icon-folder-minus",
-    "isoCode": "e990"
+    "name": "bds-icon-folder-minus"
   },
   {
-    "name": "bds-icon-folder-plus",
-    "isoCode": "e991"
+    "name": "bds-icon-folder-plus"
   },
   {
-    "name": "bds-icon-folder-share",
-    "isoCode": "e992"
+    "name": "bds-icon-folder-share"
   },
   {
-    "name": "bds-icon-four-squares",
-    "isoCode": "e993"
+    "name": "bds-icon-four-squares"
   },
   {
-    "name": "bds-icon-four-squares-fill",
-    "isoCode": "e994"
+    "name": "bds-icon-four-squares-fill"
   },
   {
-    "name": "bds-icon-handshake",
-    "isoCode": "e900"
+    "name": "bds-icon-handshake"
   },
   {
-    "name": "bds-icon-home",
-    "isoCode": "e995"
+    "name": "bds-icon-home"
   },
   {
-    "name": "bds-icon-hourglass-empty",
-    "isoCode": "e996"
+    "name": "bds-icon-hourglass-empty"
   },
   {
-    "name": "bds-icon-hub",
-    "isoCode": "e997"
+    "name": "bds-icon-hub"
   },
   {
-    "name": "bds-icon-image-gif",
-    "isoCode": "e998"
+    "name": "bds-icon-image-gif"
   },
   {
-    "name": "bds-icon-image-jpeg",
-    "isoCode": "e999"
+    "name": "bds-icon-image-jpeg"
   },
   {
-    "name": "bds-icon-image-jpg",
-    "isoCode": "e99a"
+    "name": "bds-icon-image-jpg"
   },
   {
-    "name": "bds-icon-image-png",
-    "isoCode": "e99b"
+    "name": "bds-icon-image-png"
   },
   {
-    "name": "bds-icon-info-circle",
-    "isoCode": "e99c"
+    "name": "bds-icon-info-circle"
   },
   {
-    "name": "bds-icon-info-circle-fill",
-    "isoCode": "e99d"
+    "name": "bds-icon-info-circle-fill"
   },
   {
-    "name": "bds-icon-info-major-triangle-up",
-    "isoCode": "e99e"
+    "name": "bds-icon-info-major-triangle-up"
   },
   {
-    "name": "bds-icon-info-major-triangle-up-fill",
-    "isoCode": "e99f"
+    "name": "bds-icon-info-major-triangle-up-fill"
   },
   {
-    "name": "bds-icon-info-square",
-    "isoCode": "e9a0"
+    "name": "bds-icon-info-square"
   },
   {
-    "name": "bds-icon-info-square-fill",
-    "isoCode": "e9a1"
+    "name": "bds-icon-info-square-fill"
   },
   {
-    "name": "bds-icon-input",
-    "isoCode": "e9a2"
+    "name": "bds-icon-input"
   },
   {
-    "name": "bds-icon-integrations",
-    "isoCode": "e9a3"
+    "name": "bds-icon-integrations"
   },
   {
-    "name": "bds-icon-italics-font",
-    "isoCode": "e9a4"
+    "name": "bds-icon-italics-font"
   },
   {
-    "name": "bds-icon-key",
-    "isoCode": "e9a5"
+    "name": "bds-icon-key"
   },
   {
-    "name": "bds-icon-landing",
-    "isoCode": "e9a6"
+    "name": "bds-icon-landing"
   },
   {
-    "name": "bds-icon-language",
-    "isoCode": "e9a7"
+    "name": "bds-icon-language"
   },
   {
-    "name": "bds-icon-leave",
-    "isoCode": "e9a8"
+    "name": "bds-icon-leave"
   },
   {
-    "name": "bds-icon-letter-a-circle",
-    "isoCode": "e9a9"
+    "name": "bds-icon-letter-a-circle"
   },
   {
-    "name": "bds-icon-letter-b-circle",
-    "isoCode": "e9aa"
+    "name": "bds-icon-letter-b-circle"
   },
   {
-    "name": "bds-icon-letter-c-circle",
-    "isoCode": "e9ab"
+    "name": "bds-icon-letter-c-circle"
   },
   {
-    "name": "bds-icon-letter-d-circle",
-    "isoCode": "e9ac"
+    "name": "bds-icon-letter-d-circle"
   },
   {
-    "name": "bds-icon-letter-e-circle",
-    "isoCode": "e9ad"
+    "name": "bds-icon-letter-e-circle"
   },
   {
-    "name": "bds-icon-letter-f-circle",
-    "isoCode": "e9ae"
+    "name": "bds-icon-letter-f-circle"
   },
   {
-    "name": "bds-icon-letter-p-circle",
-    "isoCode": "e9af"
+    "name": "bds-icon-letter-p-circle"
   },
   {
-    "name": "bds-icon-letter-spacing",
-    "isoCode": "e9b0"
+    "name": "bds-icon-letter-spacing"
   },
   {
-    "name": "bds-icon-like",
-    "isoCode": "e9b1"
+    "name": "bds-icon-like"
   },
   {
-    "name": "bds-icon-line-spacing",
-    "isoCode": "e9b2"
+    "name": "bds-icon-line-spacing"
   },
   {
-    "name": "bds-icon-link",
-    "isoCode": "e9b3"
+    "name": "bds-icon-link"
   },
   {
-    "name": "bds-icon-location",
-    "isoCode": "e9b4"
+    "name": "bds-icon-location"
   },
   {
-    "name": "bds-icon-lock-closed",
-    "isoCode": "e9b5"
+    "name": "bds-icon-lock-closed"
   },
   {
-    "name": "bds-icon-lock-open",
-    "isoCode": "e9b6"
+    "name": "bds-icon-lock-open"
   },
   {
-    "name": "bds-icon-long-text",
-    "isoCode": "e9b7"
+    "name": "bds-icon-long-text"
   },
   {
-    "name": "bds-icon-low-tps",
-    "isoCode": "e9b8"
+    "name": "bds-icon-low-tps"
   },
   {
-    "name": "bds-icon-mail",
-    "isoCode": "e9b9"
+    "name": "bds-icon-mail"
   },
   {
-    "name": "bds-icon-mail-check",
-    "isoCode": "e9ba"
+    "name": "bds-icon-mail-check"
   },
   {
-    "name": "bds-icon-mail-error",
-    "isoCode": "e9bb"
+    "name": "bds-icon-mail-error"
   },
   {
-    "name": "bds-icon-main-column-width-30",
-    "isoCode": "e9bc"
+    "name": "bds-icon-main-column-width-30"
   },
   {
-    "name": "bds-icon-main-column-width-50",
-    "isoCode": "e9bd"
+    "name": "bds-icon-main-column-width-50"
   },
   {
-    "name": "bds-icon-main-column-width-70",
-    "isoCode": "e9be"
+    "name": "bds-icon-main-column-width-70"
   },
   {
-    "name": "bds-icon-main-column-width-100",
-    "isoCode": "e9bf"
+    "name": "bds-icon-main-column-width-100"
   },
   {
-    "name": "bds-icon-map",
-    "isoCode": "e9c0"
+    "name": "bds-icon-map"
   },
   {
-    "name": "bds-icon-masivlinks",
-    "isoCode": "e9c1"
+    "name": "bds-icon-masivlinks"
   },
   {
-    "name": "bds-icon-message",
-    "isoCode": "e9c2"
+    "name": "bds-icon-message"
   },
   {
-    "name": "bds-icon-message-error",
-    "isoCode": "e9c3"
+    "name": "bds-icon-message-error"
   },
   {
-    "name": "bds-icon-message-incoming",
-    "isoCode": "e9c4"
+    "name": "bds-icon-message-incoming"
   },
   {
-    "name": "bds-icon-message-outgoing",
-    "isoCode": "e9c5"
+    "name": "bds-icon-message-outgoing"
   },
   {
-    "name": "bds-icon-message-plus",
-    "isoCode": "e9c6"
+    "name": "bds-icon-message-plus"
   },
   {
-    "name": "bds-icon-message-rcs",
-    "isoCode": "ea4d"
+    "name": "bds-icon-message-rcs"
   },
   {
-    "name": "bds-icon-message-stats",
-    "isoCode": "e9c7"
+    "name": "bds-icon-message-stats"
   },
   {
-    "name": "bds-icon-mic",
-    "isoCode": "e9c8"
+    "name": "bds-icon-mic"
   },
   {
-    "name": "bds-icon-mic-arrow-left-right",
-    "isoCode": "e9c9"
+    "name": "bds-icon-mic-arrow-left-right"
   },
   {
-    "name": "bds-icon-minus",
-    "isoCode": "e9ca"
+    "name": "bds-icon-minus"
   },
   {
-    "name": "bds-icon-minus-circle",
-    "isoCode": "e9cb"
+    "name": "bds-icon-minus-circle"
   },
   {
-    "name": "bds-icon-minus-circle-fill",
-    "isoCode": "e9cc"
+    "name": "bds-icon-minus-circle-fill"
   },
   {
-    "name": "bds-icon-mnv",
-    "isoCode": "ea4e"
+    "name": "bds-icon-mnv"
   },
   {
-    "name": "bds-icon-mobile",
-    "isoCode": "e9cd"
+    "name": "bds-icon-mobile"
   },
   {
-    "name": "bds-icon-monitoring",
-    "isoCode": "e9ce"
+    "name": "bds-icon-monitoring"
   },
   {
-    "name": "bds-icon-multivariate",
-    "isoCode": "e9cf"
+    "name": "bds-icon-multivariate"
   },
   {
-    "name": "bds-icon-network-operator",
-    "isoCode": "e9d0"
+    "name": "bds-icon-network-operator"
   },
   {
-    "name": "bds-icon-next-step",
-    "isoCode": "e9d1"
+    "name": "bds-icon-next-step"
   },
   {
-    "name": "bds-icon-notifications",
-    "isoCode": "e9d2"
+    "name": "bds-icon-notifications"
   },
   {
-    "name": "bds-icon-numeral-circle",
-    "isoCode": "e9d3"
+    "name": "bds-icon-numeral-circle"
   },
   {
-    "name": "bds-icon-otp",
-    "isoCode": "e9d4"
+    "name": "bds-icon-otp"
   },
   {
-    "name": "bds-icon-pause",
-    "isoCode": "e9d5"
+    "name": "bds-icon-pause"
   },
   {
-    "name": "bds-icon-pause-circle",
-    "isoCode": "e9d6"
+    "name": "bds-icon-pause-circle"
   },
   {
-    "name": "bds-icon-percent-circle",
-    "isoCode": "e9d7"
+    "name": "bds-icon-percent-circle"
   },
   {
-    "name": "bds-icon-person",
-    "isoCode": "e9d8"
+    "name": "bds-icon-person"
   },
   {
-    "name": "bds-icon-person-admin",
-    "isoCode": "e9d9"
+    "name": "bds-icon-person-admin"
   },
   {
-    "name": "bds-icon-person-arrow-right",
-    "isoCode": "e9da"
+    "name": "bds-icon-person-arrow-right"
   },
   {
-    "name": "bds-icon-person-book",
-    "isoCode": "e9db"
+    "name": "bds-icon-person-book"
   },
   {
-    "name": "bds-icon-person-minus",
-    "isoCode": "e9dc"
+    "name": "bds-icon-person-minus"
   },
   {
-    "name": "bds-icon-person-plus",
-    "isoCode": "e9dd"
+    "name": "bds-icon-person-plus"
   },
   {
-    "name": "bds-icon-person-roles",
-    "isoCode": "e9de"
+    "name": "bds-icon-person-roles"
   },
   {
-    "name": "bds-icon-person-sender",
-    "isoCode": "ea53"
+    "name": "bds-icon-person-sender"
   },
   {
-    "name": "bds-icon-person-view",
-    "isoCode": "e9df"
+    "name": "bds-icon-person-view"
   },
   {
-    "name": "bds-icon-phone",
-    "isoCode": "e9e0"
+    "name": "bds-icon-phone"
   },
   {
-    "name": "bds-icon-photo",
-    "isoCode": "e9e1"
+    "name": "bds-icon-photo"
   },
   {
-    "name": "bds-icon-photo-text-bottom",
-    "isoCode": "e9e2"
+    "name": "bds-icon-photo-text-bottom"
   },
   {
-    "name": "bds-icon-photo-text-left",
-    "isoCode": "e9e3"
+    "name": "bds-icon-photo-text-left"
   },
   {
-    "name": "bds-icon-photo-text-right",
-    "isoCode": "e9e4"
+    "name": "bds-icon-photo-text-right"
   },
   {
-    "name": "bds-icon-photo-text-top",
-    "isoCode": "e9e5"
+    "name": "bds-icon-photo-text-top"
   },
   {
-    "name": "bds-icon-pin",
-    "isoCode": "e9e6"
+    "name": "bds-icon-pin"
   },
   {
-    "name": "bds-icon-pin-fill",
-    "isoCode": "e9e7"
+    "name": "bds-icon-pin-fill"
   },
   {
-    "name": "bds-icon-play-circle",
-    "isoCode": "e9e8"
+    "name": "bds-icon-play-circle"
   },
   {
-    "name": "bds-icon-play-fill",
-    "isoCode": "e9e9"
+    "name": "bds-icon-play-fill"
   },
   {
-    "name": "bds-icon-plus",
-    "isoCode": "e9ea"
+    "name": "bds-icon-plus"
   },
   {
-    "name": "bds-icon-plus-circle",
-    "isoCode": "e9eb"
+    "name": "bds-icon-plus-circle"
   },
   {
-    "name": "bds-icon-plus-circle-fill",
-    "isoCode": "e9ec"
+    "name": "bds-icon-plus-circle-fill"
   },
   {
-    "name": "bds-icon-point-list",
-    "isoCode": "e9ed"
+    "name": "bds-icon-point-list"
   },
   {
-    "name": "bds-icon-point-list-lock-open",
-    "isoCode": "e9ee"
+    "name": "bds-icon-point-list-lock-open"
   },
   {
-    "name": "bds-icon-polygon-nodes",
-    "isoCode": "e9ef"
+    "name": "bds-icon-polygon-nodes"
   },
   {
-    "name": "bds-icon-power",
-    "isoCode": "e9f0"
+    "name": "bds-icon-power"
   },
   {
-    "name": "bds-icon-predefined-answers",
-    "isoCode": "e9f1"
+    "name": "bds-icon-predefined-answers"
   },
   {
-    "name": "bds-icon-products",
-    "isoCode": "e9f2"
+    "name": "bds-icon-products"
   },
   {
-    "name": "bds-icon-profile",
-    "isoCode": "e9f3"
+    "name": "bds-icon-profile"
   },
   {
-    "name": "bds-icon-profile-autentication-square",
-    "isoCode": "e9f4"
+    "name": "bds-icon-profile-autentication-square"
   },
   {
-    "name": "bds-icon-profile-plus-square",
-    "isoCode": "e9f5"
+    "name": "bds-icon-profile-plus-square"
   },
   {
-    "name": "bds-icon-profile-search-square",
-    "isoCode": "e9f6"
+    "name": "bds-icon-profile-search-square"
   },
   {
-    "name": "bds-icon-profile-square",
-    "isoCode": "e9f7"
+    "name": "bds-icon-profile-square"
   },
   {
-    "name": "bds-icon-push",
-    "isoCode": "e9f8"
+    "name": "bds-icon-push"
   },
   {
-    "name": "bds-icon-qr-code",
-    "isoCode": "e9f9"
+    "name": "bds-icon-qr-code"
   },
   {
-    "name": "bds-icon-question-mark-circle",
-    "isoCode": "e9fa"
+    "name": "bds-icon-question-mark-circle"
   },
   {
-    "name": "bds-icon-question-mark-circle-fill",
-    "isoCode": "e9fb"
+    "name": "bds-icon-question-mark-circle-fill"
   },
   {
-    "name": "bds-icon-replacement",
-    "isoCode": "e9fc"
+    "name": "bds-icon-replacement"
   },
   {
-    "name": "bds-icon-repository",
-    "isoCode": "e9fd"
+    "name": "bds-icon-repository"
   },
   {
-    "name": "bds-icon-response",
-    "isoCode": "e9fe"
+    "name": "bds-icon-response"
   },
   {
-    "name": "bds-icon-route",
-    "isoCode": "e9ff"
+    "name": "bds-icon-route"
   },
   {
-    "name": "bds-icon-save",
-    "isoCode": "ea00"
+    "name": "bds-icon-save"
   },
   {
-    "name": "bds-icon-scout",
-    "isoCode": "ea01"
+    "name": "bds-icon-scout"
   },
   {
-    "name": "bds-icon-search",
-    "isoCode": "ea02"
+    "name": "bds-icon-search"
   },
   {
-    "name": "bds-icon-send",
-    "isoCode": "ea03"
+    "name": "bds-icon-send"
   },
   {
-    "name": "bds-icon-send-arrow-down",
-    "isoCode": "ea04"
+    "name": "bds-icon-send-arrow-down"
   },
   {
-    "name": "bds-icon-send-check",
-    "isoCode": "ea05"
+    "name": "bds-icon-send-check"
   },
   {
-    "name": "bds-icon-send-money",
-    "isoCode": "ea06"
+    "name": "bds-icon-send-money"
   },
   {
-    "name": "bds-icon-server",
-    "isoCode": "ea07"
+    "name": "bds-icon-server"
   },
   {
-    "name": "bds-icon-services",
-    "isoCode": "ea08"
+    "name": "bds-icon-services"
   },
   {
-    "name": "bds-icon-settings",
-    "isoCode": "ea09"
+    "name": "bds-icon-settings"
   },
   {
-    "name": "bds-icon-sherlock",
-    "isoCode": "ea0a"
+    "name": "bds-icon-sherlock"
   },
   {
-    "name": "bds-icon-shield",
-    "isoCode": "ea0b"
+    "name": "bds-icon-shield"
   },
   {
-    "name": "bds-icon-shopping-cart",
-    "isoCode": "ea0c"
+    "name": "bds-icon-shopping-cart"
   },
   {
-    "name": "bds-icon-sight-off",
-    "isoCode": "ea0d"
+    "name": "bds-icon-sight-off"
   },
   {
-    "name": "bds-icon-sight-on",
-    "isoCode": "ea0e"
+    "name": "bds-icon-sight-on"
   },
   {
-    "name": "bds-icon-sight-preview",
-    "isoCode": "ea0f"
+    "name": "bds-icon-sight-preview"
   },
   {
-    "name": "bds-icon-signal",
-    "isoCode": "ea10"
+    "name": "bds-icon-signal"
   },
   {
-    "name": "bds-icon-simcard-validation",
-    "isoCode": "ea11"
+    "name": "bds-icon-simcard-validation"
   },
   {
-    "name": "bds-icon-single-select",
-    "isoCode": "ea12"
+    "name": "bds-icon-single-select"
   },
   {
-    "name": "bds-icon-six-dots",
-    "isoCode": "ea30"
+    "name": "bds-icon-six-dots"
   },
   {
-    "name": "bds-icon-sliders",
-    "isoCode": "ea13"
+    "name": "bds-icon-sliders"
   },
   {
-    "name": "bds-icon-sms",
-    "isoCode": "ea14"
+    "name": "bds-icon-sms"
   },
   {
-    "name": "bds-icon-snipping-tool",
-    "isoCode": "ea15"
+    "name": "bds-icon-snipping-tool"
   },
   {
-    "name": "bds-icon-solid-line",
-    "isoCode": "ea16"
+    "name": "bds-icon-solid-line"
   },
   {
-    "name": "bds-icon-split-texts-into-columns",
-    "isoCode": "ea17"
+    "name": "bds-icon-split-texts-into-columns"
   },
   {
-    "name": "bds-icon-square",
-    "isoCode": "ea18"
+    "name": "bds-icon-square"
   },
   {
-    "name": "bds-icon-square-diagonal-line-circle",
-    "isoCode": "ea19"
+    "name": "bds-icon-square-diagonal-line-circle"
   },
   {
-    "name": "bds-icon-square-fill",
-    "isoCode": "ea1a"
+    "name": "bds-icon-square-fill"
   },
   {
-    "name": "bds-icon-stack",
-    "isoCode": "ea1b"
+    "name": "bds-icon-stack"
   },
   {
-    "name": "bds-icon-star",
-    "isoCode": "ea1c"
+    "name": "bds-icon-star"
   },
   {
-    "name": "bds-icon-star-fill",
-    "isoCode": "ea1d"
+    "name": "bds-icon-star-fill"
   },
   {
-    "name": "bds-icon-stats",
-    "isoCode": "ea1e"
+    "name": "bds-icon-stats"
   },
   {
-    "name": "bds-icon-stats-tps",
-    "isoCode": "ea1f"
+    "name": "bds-icon-stats-tps"
   },
   {
-    "name": "bds-icon-status-bound-message",
-    "isoCode": "ea20"
+    "name": "bds-icon-status-bound-message"
   },
   {
-    "name": "bds-icon-status-disconnected",
-    "isoCode": "ea21"
+    "name": "bds-icon-status-disconnected"
   },
   {
-    "name": "bds-icon-status-high-rejectioned",
-    "isoCode": "ea22"
+    "name": "bds-icon-status-high-rejectioned"
   },
   {
-    "name": "bds-icon-status-unbound-message",
-    "isoCode": "ea23"
+    "name": "bds-icon-status-unbound-message"
   },
   {
-    "name": "bds-icon-steps",
-    "isoCode": "ea24"
+    "name": "bds-icon-steps"
   },
   {
-    "name": "bds-icon-sword",
-    "isoCode": "ea25"
+    "name": "bds-icon-sword"
   },
   {
-    "name": "bds-icon-table",
-    "isoCode": "ea26"
+    "name": "bds-icon-table"
   },
   {
-    "name": "bds-icon-tablet",
-    "isoCode": "ea27"
+    "name": "bds-icon-tablet"
   },
   {
-    "name": "bds-icon-team",
-    "isoCode": "ea28"
+    "name": "bds-icon-team"
   },
   {
-    "name": "bds-icon-team-minus",
-    "isoCode": "ea29"
+    "name": "bds-icon-team-minus"
   },
   {
-    "name": "bds-icon-team-plus",
-    "isoCode": "ea2a"
+    "name": "bds-icon-team-plus"
   },
   {
-    "name": "bds-icon-template",
-    "isoCode": "ea2b"
+    "name": "bds-icon-template"
   },
   {
-    "name": "bds-icon-text",
-    "isoCode": "ea2c"
+    "name": "bds-icon-text"
   },
   {
-    "name": "bds-icon-three-dots-circle",
-    "isoCode": "ea2d"
+    "name": "bds-icon-three-dots-circle"
   },
   {
-    "name": "bds-icon-three-dots-circle-fill",
-    "isoCode": "ea2e"
+    "name": "bds-icon-three-dots-circle-fill"
   },
   {
-    "name": "bds-icon-three-dots-horizontal",
-    "isoCode": "ea2f"
+    "name": "bds-icon-three-dots-horizontal"
   },
   {
-    "name": "bds-icon-three-dots-vertical",
-    "isoCode": "ea31"
+    "name": "bds-icon-three-dots-vertical"
   },
   {
-    "name": "bds-icon-tickets-manager",
-    "isoCode": "ea32"
+    "name": "bds-icon-tickets-manager"
   },
   {
-    "name": "bds-icon-timer",
-    "isoCode": "ea33"
+    "name": "bds-icon-timer"
   },
   {
-    "name": "bds-icon-tone-capture",
-    "isoCode": "ea57"
+    "name": "bds-icon-tone-capture"
   },
   {
-    "name": "bds-icon-tools",
-    "isoCode": "ea34"
+    "name": "bds-icon-tools"
   },
   {
-    "name": "bds-icon-trash",
-    "isoCode": "ea35"
+    "name": "bds-icon-trash"
   },
   {
-    "name": "bds-icon-trending-up-square",
-    "isoCode": "ea36"
+    "name": "bds-icon-trending-up-square"
   },
   {
-    "name": "bds-icon-triangle",
-    "isoCode": "ea37"
+    "name": "bds-icon-triangle"
   },
   {
-    "name": "bds-icon-triangle-fill",
-    "isoCode": "ea38"
+    "name": "bds-icon-triangle-fill"
   },
   {
-    "name": "bds-icon-trueauth",
-    "isoCode": "ea4f"
+    "name": "bds-icon-trueauth"
   },
   {
-    "name": "bds-icon-truidv",
-    "isoCode": "ea50"
+    "name": "bds-icon-truidv"
   },
   {
-    "name": "bds-icon-truscore",
-    "isoCode": "ea51"
+    "name": "bds-icon-truscore"
   },
   {
-    "name": "bds-icon-type-circle",
-    "isoCode": "ea39"
+    "name": "bds-icon-type-circle"
   },
   {
-    "name": "bds-icon-undefined-diamond",
-    "isoCode": "ea3a"
+    "name": "bds-icon-undefined-diamond"
   },
   {
-    "name": "bds-icon-undefined-diamond-fill",
-    "isoCode": "ea3b"
+    "name": "bds-icon-undefined-diamond-fill"
   },
   {
-    "name": "bds-icon-underlined",
-    "isoCode": "ea3c"
+    "name": "bds-icon-underlined"
   },
   {
-    "name": "bds-icon-upload",
-    "isoCode": "ea3d"
+    "name": "bds-icon-upload"
   },
   {
-    "name": "bds-icon-user-manager",
-    "isoCode": "ea3e"
+    "name": "bds-icon-user-manager"
   },
   {
-    "name": "bds-icon-variable-square",
-    "isoCode": "ea3f"
+    "name": "bds-icon-variable-square"
   },
   {
-    "name": "bds-icon-verifier",
-    "isoCode": "ea40"
+    "name": "bds-icon-verifier"
   },
   {
-    "name": "bds-icon-voice",
-    "isoCode": "ea41"
+    "name": "bds-icon-voice"
   },
   {
-    "name": "bds-icon-volume-off",
-    "isoCode": "ea42"
+    "name": "bds-icon-volume-off"
   },
   {
-    "name": "bds-icon-volume-on",
-    "isoCode": "ea43"
+    "name": "bds-icon-volume-on"
   },
   {
-    "name": "bds-icon-waybox",
-    "isoCode": "ea44"
+    "name": "bds-icon-waybox"
   },
   {
-    "name": "bds-icon-web-channel",
-    "isoCode": "ea45"
+    "name": "bds-icon-web-channel"
   },
   {
-    "name": "bds-icon-whatsapp",
-    "isoCode": "ea46"
+    "name": "bds-icon-whatsapp"
   },
   {
-    "name": "bds-icon-whatsapp-business",
-    "isoCode": "ea47"
+    "name": "bds-icon-whatsapp-business"
   },
   {
-    "name": "bds-icon-whatsapp-business-fill",
-    "isoCode": "ea48"
+    "name": "bds-icon-whatsapp-business-fill"
   },
   {
-    "name": "bds-icon-zoom-in",
-    "isoCode": "ea49"
+    "name": "bds-icon-zoom-in"
   },
   {
-    "name": "bds-icon-zoom-out",
-    "isoCode": "ea4b"
+    "name": "bds-icon-zoom-out"
   },
   {
-    "name": "bds-icon-sort-by",
-    "isoCode": "ea99"
+    "name": "bds-icon-sort-by"
   },
   {
-    "name": "bds-icon-insights",
-    "isoCode": "ea98"
+    "name": "bds-icon-insights"
   }
 ]
