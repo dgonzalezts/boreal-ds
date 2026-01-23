@@ -95,7 +95,8 @@ const styles = css`
     gap: 10px;
     margin: 20px;
   }
-  .icon-name {
+  .icons-page {
+    width: 100%;
     font-family:
       'Nunito Sans',
       -apple-system,
@@ -107,6 +108,54 @@ const styles = css`
       Helvetica,
       Arial,
       sans-serif;
+  }
+
+  .icons-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 12px;
+    border-left: 4px solid #007bff;
+  }
+
+  .icons-tip {
+    color: #111827;
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  .icons-tip__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e5e7eb;
+  }
+
+  .icons-tip__text strong {
+    font-weight: 700;
+  }
+
+  .icons-counter {
+    display: block;
+    align-items: center;
+    gap: 6px;
+
+    border-radius: 999px;
+    margin-top: 1rem;
+
+    font-size: 0.8rem;
+  }
+  .icon-name {
     align-self: flex-start;
     margin-bottom: 0.25rem;
     font-size: 0.75rem;
@@ -185,24 +234,40 @@ export const AllIcons: Story = {
       <style>
         ${styles}
       </style>
-      <div class="icon-row">
-        ${filteredIcons.map(
-          (icon: any) => html`
-            <div class="icon-card">
-              <span class="icon-name">
-                name:
-                <strong>${icon.name}</strong>
-              </span>
-              <em
-                class="${icon.name}"
-                style="
+      <div class="icons-page">
+        <div class="icons-header">
+          <div class="icons-tip" role="status" aria-live="polite">
+            <span class="icons-tip__icon" aria-hidden="true">💡</span>
+            <span class="icons-tip__text">
+              <strong>Tip:</strong> Use the search control in the
+              <strong>search/filter</strong> section of the controls panel to find specific icons
+            </span>
+          </div>
+
+          <div class="icons-counter">
+            Showing <strong>${filteredIcons.length}</strong> of
+            <strong>${icons.length}</strong> icons
+          </div>
+        </div>
+        <div class="icon-row">
+          ${filteredIcons.map(
+            (icon: any) => html`
+              <div class="icon-card">
+                <span class="icon-name">
+                  name:
+                  <strong>${icon.name}</strong>
+                </span>
+                <em
+                  class="${icon.name}"
+                  style="
                   color: ${args.color};
                   font-size: ${args.size};
                 "
-              ></em>
-            </div>
-          `
-        )}
+                ></em>
+              </div>
+            `
+          )}
+        </div>
       </div>
     `;
   },
