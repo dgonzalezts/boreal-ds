@@ -1,9 +1,10 @@
 import type { BorealStory, BorealStoryMeta } from '@/types/stories';
 import { css, html } from 'lit';
-import { createIconData } from './icons/helpers/getIcons';
-import { DEFAULT_VALUES } from './icons/constants/Values';
-import { disableControls } from '@/utils/disableControls';
+import { createIconData } from './helpers/getIcons';
+import { DEFAULT_VALUES } from '../icons/constants/Values';
+import { disableControls } from '@/utils/helpers';
 import { formatHtmlSource } from '@/utils';
+import type { Icon } from './types/Icon.type';
 
 type StoryArgs = {
   name: string;
@@ -13,8 +14,7 @@ type StoryArgs = {
 };
 
 const meta: BorealStoryMeta<StoryArgs> = {
-  title: 'imagesAndIcons/Icons',
-  component: 'em',
+  title: 'Images & Icons/Icons',
   parameters: {
     docs: {
       source: {
@@ -26,11 +26,12 @@ const meta: BorealStoryMeta<StoryArgs> = {
   argTypes: {
     name: {
       control: 'text',
-      description: 'The name of the icon to display.',
+      description:
+        'The name of the icon to display. This is applied to the `class` attribute of the `<em>` tag.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: DEFAULT_VALUES.name },
-        category: 'Core',
+        category: 'Styling',
       },
     },
     search: {
@@ -48,16 +49,17 @@ const meta: BorealStoryMeta<StoryArgs> = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: DEFAULT_VALUES.size },
-        category: 'Core',
+        category: 'Styling',
       },
     },
     color: {
       control: 'color',
-      description: 'The color of the icon. Can be any valid CSS value.',
+      description:
+        'The color of the icon. Can be any valid CSS color value (e.g., "#000", "rgb(255, 0, 0) )".',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: DEFAULT_VALUES.color },
-        category: 'Core',
+        category: 'Styling',
       },
     },
   },
@@ -208,7 +210,7 @@ export const Default: Story = {
   `,
 };
 
-const fetchIcons = async (): Promise<{ name: string }[]> => {
+const fetchIcons = async (): Promise<Icon[]> => {
   return await createIconData();
 };
 

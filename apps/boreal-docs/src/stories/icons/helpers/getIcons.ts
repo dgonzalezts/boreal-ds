@@ -1,4 +1,4 @@
-import { PREFIX, PSEUDO_CLASS } from '../constants/Prefix';
+import type { Icon } from '../types/Icon.type';
 import Icons from './icons.json';
 
 /**
@@ -17,7 +17,7 @@ import Icons from './icons.json';
  * // returns Icons from resource
  * ```
  */
-const getData = async () => {
+const getData = async (): Promise<Icon[]> => {
   try {
     // Mocking the fetch call
     return new Promise(res => {
@@ -25,6 +25,7 @@ const getData = async () => {
     });
   } catch (e) {
     console.log('Error getting icons:', e);
+    return [];
   }
 };
 
@@ -46,7 +47,7 @@ const getData = async () => {
  * // returns an array of icon metadata
  * ```
  */
-export const createIconData = async () => {
+export const createIconData = async (): Promise<Icon[]> => {
   try {
     // Here will be placed the real logic to transform the data to JSON
     return getData();

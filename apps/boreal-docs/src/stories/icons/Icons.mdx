@@ -1,7 +1,8 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
-import meta, * as Icons from './Icons.stories.tsx';
+import * as IconsStories from './Icons.stories.tsx';
+import LinkTo from '@storybook/addon-links/react';
 
-<Meta title="ImagesAndIcons/Icons" />
+<Meta title="Images & Icons/Icons" />
 
 # Icons
 
@@ -34,12 +35,14 @@ Boreal makes it easy to display font icons with consistent styling across your a
 
 You can click on the Show code button in the bottom-right section of the following code snippet to see how to use the component:
 
-<Canvas of={Icons.Default} />
+<Canvas of={IconsStories.Default} />
 
 ## Configurations
 
-<ArgTypes of={meta} />
+**Important:** The controls below demonstrate some attributes you'll use in your code, **not component props** that will change the aspect of the icon. _These are styling properties for documentation purposes only_.
+
+<ArgTypes of={IconsStories} />
 
 ## Interact with the component
 
-To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the **Default** section.
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={IconsStories.default.title} story="default">Default</LinkTo> section.
