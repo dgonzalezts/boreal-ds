@@ -1,0 +1,1238 @@
+[
+  {
+    "name": "bds-icon-flow-builder"
+  },
+  {
+    "name": "bds-icon-nps"
+  },
+  {
+    "name": "bds-icon-gift"
+  },
+  {
+    "name": "bds-icon-email-send"
+  },
+  {
+    "name": "bds-icon-ips"
+  },
+  {
+    "name": "bds-icon-carousel"
+  },
+  {
+    "name": "bds-icon-width"
+  },
+  {
+    "name": "bds-icon-height"
+  },
+  {
+    "name": "bds-icon-banner"
+  },
+  {
+    "name": "bds-icon-join-list"
+  },
+  {
+    "name": "bds-icon-mapping"
+  },
+  {
+    "name": "bds-icon-counts"
+  },
+  {
+    "name": "bds-icon-someone-comes-out"
+  },
+  {
+    "name": "bds-icon-someone-comes-in"
+  },
+  {
+    "name": "bds-icon-segmentation"
+  },
+  {
+    "name": "bds-icon-column-changes"
+  },
+  {
+    "name": "bds-icon-add-variable"
+  },
+  {
+    "name": "bds-icon-tools-config"
+  },
+  {
+    "name": "bds-icon-email-unique-delivered"
+  },
+  {
+    "name": "bds-icon-white-label-panel"
+  },
+  {
+    "name": "bds-icon-domain-verification"
+  },
+  {
+    "name": "bds-icon-consumption-report"
+  },
+  {
+    "name": "bds-icon-email-templates"
+  },
+  {
+    "name": "bds-icon-suppression"
+  },
+  {
+    "name": "bds-icon-email-download"
+  },
+  {
+    "name": "bds-icon-email-bounced"
+  },
+  {
+    "name": "bds-icon-email-unsubscribed"
+  },
+  {
+    "name": "bds-icon-not-clicked"
+  },
+  {
+    "name": "bds-icon-whatsapp-lto"
+  },
+  {
+    "name": "bds-icon-voice-arrow-down"
+  },
+  {
+    "name": "bds-icon-mail-arrow-down"
+  },
+  {
+    "name": "bds-icon-message-rcs-arrow-down"
+  },
+  {
+    "name": "bds-icon-Journeys-arrow-down"
+  },
+  {
+    "name": "bds-icon-message-arrow-down"
+  },
+  {
+    "name": "bds-icon-hourglass-empty-alert-circle-fill"
+  },
+  {
+    "name": "bds-icon-domain"
+  },
+  {
+    "name": "bds-icon-email-spam"
+  },
+  {
+    "name": "bds-icon-sight-alert-circle-fill"
+  },
+  {
+    "name": "bds-icon-email-open"
+  },
+  {
+    "name": "bds-icon-email-click"
+  },
+  {
+    "name": "bds-icon-documentation"
+  },
+  {
+    "name": "bds-icon-api"
+  },
+  {
+    "name": "bds-icon-dash-board"
+  },
+  {
+    "name": "bds-icon-onsite"
+  },
+  {
+    "name": "bds-icon-message-failed"
+  },
+  {
+    "name": "bds-icon-delivered-notifications"
+  },
+  {
+    "name": "bds-icon-sent-notifications"
+  },
+  {
+    "name": "bds-icon-undelivered-notifications"
+  },
+  {
+    "name": "bds-icon-reduce-decimals"
+  },
+  {
+    "name": "bds-icon-increase-decimals"
+  },
+  {
+    "name": "bds-icon-photo-plus-circle"
+  },
+  {
+    "name": "bds-icon-camera"
+  },
+  {
+    "name": "bds-icon-role-swapping"
+  },
+  {
+    "name": "bds-icon-web-chat"
+  },
+  {
+    "name": "bds-icon-gmb"
+  },
+  {
+    "name": "bds-icon-messager-instagram"
+  },
+  {
+    "name": "bds-icon-messager-facebook"
+  },
+  {
+    "name": "bds-icon-check-numbers"
+  },
+  {
+    "name": "bds-icon-capability-check"
+  },
+  {
+    "name": "bds-icon-extract-generation"
+  },
+  {
+    "name": "bds-icon-message-pending"
+  },
+  {
+    "name": "bds-icon-add-var-square"
+  },
+  {
+    "name": "bds-icon-right-arrow"
+  },
+  {
+    "name": "bds-icon-expired-time"
+  },
+  {
+    "name": "bds-icon-payment"
+  },
+  {
+    "name": "bds-icon-unanswered"
+  },
+  {
+    "name": "bds-icon-roubot"
+  },
+  {
+    "name": "bds-icon-vserv"
+  },
+  {
+    "name": "bds-icon-2way"
+  },
+  {
+    "name": "bds-icon-account-id"
+  },
+  {
+    "name": "bds-icon-account-manager"
+  },
+  {
+    "name": "bds-icon-accounts-factory"
+  },
+  {
+    "name": "bds-icon-add-fields"
+  },
+  {
+    "name": "bds-icon-add-photos"
+  },
+  {
+    "name": "bds-icon-add-social-media"
+  },
+  {
+    "name": "bds-icon-adjust-text"
+  },
+  {
+    "name": "bds-icon-agregate"
+  },
+  {
+    "name": "bds-icon-a-half-dotted-circle"
+  },
+  {
+    "name": "bds-icon-alert-circle"
+  },
+  {
+    "name": "bds-icon-alert-circle-fill"
+  },
+  {
+    "name": "bds-icon-alert-major-triangle-down"
+  },
+  {
+    "name": "bds-icon-alert-major-triangle-down-fill"
+  },
+  {
+    "name": "bds-icon-alert-warning-high"
+  },
+  {
+    "name": "bds-icon-alert-warning-high-fill"
+  },
+  {
+    "name": "bds-icon-align-bottom"
+  },
+  {
+    "name": "bds-icon-align-center"
+  },
+  {
+    "name": "bds-icon-align-horizontal-rule-square"
+  },
+  {
+    "name": "bds-icon-align-justified-text"
+  },
+  {
+    "name": "bds-icon-align-left"
+  },
+  {
+    "name": "bds-icon-align-right"
+  },
+  {
+    "name": "bds-icon-align-text-center"
+  },
+  {
+    "name": "bds-icon-align-text-left"
+  },
+  {
+    "name": "bds-icon-align-text-right"
+  },
+  {
+    "name": "bds-icon-align-top"
+  },
+  {
+    "name": "bds-icon-align-vertical-center"
+  },
+  {
+    "name": "bds-icon-api-urlshortener"
+  },
+  {
+    "name": "bds-icon-archived"
+  },
+  {
+    "name": "bds-icon-array-column"
+  },
+  {
+    "name": "bds-icon-array-column-footer"
+  },
+  {
+    "name": "bds-icon-array-column-header"
+  },
+  {
+    "name": "bds-icon-array-full-column"
+  },
+  {
+    "name": "bds-icon-arrow-clockwise"
+  },
+  {
+    "name": "bds-icon-arrow-clockwise-timer"
+  },
+  {
+    "name": "bds-icon-arrow-counter-clockwise"
+  },
+  {
+    "name": "bds-icon-arrow-refresh-clockwise"
+  },
+  {
+    "name": "bds-icon-arrow-resend"
+  },
+  {
+    "name": "bds-icon-arrows-down-up-right-join"
+  },
+  {
+    "name": "bds-icon-arrows-in"
+  },
+  {
+    "name": "bds-icon-arrows-left-right"
+  },
+  {
+    "name": "bds-icon-arrows-move"
+  },
+  {
+    "name": "bds-icon-arrows-out"
+  },
+  {
+    "name": "bds-icon-arrow-undo"
+  },
+  {
+    "name": "bds-icon-arrow-up-right-square"
+  },
+  {
+    "name": "bds-icon-a-third-circle"
+  },
+  {
+    "name": "bds-icon-attachment"
+  },
+  {
+    "name": "bds-icon-audio-3gpp"
+  },
+  {
+    "name": "bds-icon-audio-mp3"
+  },
+  {
+    "name": "bds-icon-audio-mp4"
+  },
+  {
+    "name": "bds-icon-audio-wav"
+  },
+  {
+    "name": "bds-icon-automation"
+  },
+  {
+    "name": "bds-icon-battery"
+  },
+  {
+    "name": "bds-icon-billings"
+  },
+  {
+    "name": "bds-icon-blacklist"
+  },
+  {
+    "name": "bds-icon-bold-font"
+  },
+  {
+    "name": "bds-icon-boolean"
+  },
+  {
+    "name": "bds-icon-boolean-circle"
+  },
+  {
+    "name": "bds-icon-bound-diamonds-circles"
+  },
+  {
+    "name": "bds-icon-calendar-clock"
+  },
+  {
+    "name": "bds-icon-calendar-dots"
+  },
+  {
+    "name": "bds-icon-calendar-event"
+  },
+  {
+    "name": "bds-icon-campaign"
+  },
+  {
+    "name": "bds-icon-center"
+  },
+  {
+    "name": "bds-icon-chatbot"
+  },
+  {
+    "name": "bds-icon-chat-ended"
+  },
+  {
+    "name": "bds-icon-check"
+  },
+  {
+    "name": "bds-icon-check-circle"
+  },
+  {
+    "name": "bds-icon-check-circle-fill"
+  },
+  {
+    "name": "bds-icon-check-list"
+  },
+  {
+    "name": "bds-icon-check-square"
+  },
+  {
+    "name": "bds-icon-chevron-double-down"
+  },
+  {
+    "name": "bds-icon-chevron-double-left"
+  },
+  {
+    "name": "bds-icon-chevron-double-right"
+  },
+  {
+    "name": "bds-icon-chevron-double-top"
+  },
+  {
+    "name": "bds-icon-chevron-down"
+  },
+  {
+    "name": "bds-icon-chevron-down-square"
+  },
+  {
+    "name": "bds-icon-chevron-left"
+  },
+  {
+    "name": "bds-icon-chevron-right"
+  },
+  {
+    "name": "bds-icon-chevron-up"
+  },
+  {
+    "name": "bds-icon-chevron-up-down"
+  },
+  {
+    "name": "bds-icon-circle"
+  },
+  {
+    "name": "bds-icon-circle-fill"
+  },
+  {
+    "name": "bds-icon-circle-line-circle"
+  },
+  {
+    "name": "bds-icon-click"
+  },
+  {
+    "name": "bds-icon-close"
+  },
+  {
+    "name": "bds-icon-close-circle"
+  },
+  {
+    "name": "bds-icon-close-circle-fill"
+  },
+  {
+    "name": "bds-icon-cloud-arrow-down-up"
+  },
+  {
+    "name": "bds-icon-code"
+  },
+  {
+    "name": "bds-icon-connection-type"
+  },
+  {
+    "name": "bds-icon-conversation"
+  },
+  {
+    "name": "bds-icon-currency"
+  },
+  {
+    "name": "bds-icon-dash-circle"
+  },
+  {
+    "name": "bds-icon-database"
+  },
+  {
+    "name": "bds-icon-database-arrow-up"
+  },
+  {
+    "name": "bds-icon-decimal"
+  },
+  {
+    "name": "bds-icon-desktop"
+  },
+  {
+    "name": "bds-icon-diagonal-line-circle"
+  },
+  {
+    "name": "bds-icon-diagonal-line-circle-fill"
+  },
+  {
+    "name": "bds-icon-diamond-circle-line-circle"
+  },
+  {
+    "name": "bds-icon-dislike"
+  },
+  {
+    "name": "bds-icon-document"
+  },
+  {
+    "name": "bds-icon-document-blank-format"
+  },
+  {
+    "name": "bds-icon-document-css"
+  },
+  {
+    "name": "bds-icon-document-csv"
+  },
+  {
+    "name": "bds-icon-document-earmark-arrow-up"
+  },
+  {
+    "name": "bds-icon-document-earmark-text"
+  },
+  {
+    "name": "bds-icon-document-excel"
+  },
+  {
+    "name": "bds-icon-document-excel-extension"
+  },
+  {
+    "name": "bds-icon-document-html"
+  },
+  {
+    "name": "bds-icon-document-pdf"
+  },
+  {
+    "name": "bds-icon-document-point-list"
+  },
+  {
+    "name": "bds-icon-document-powerpoint"
+  },
+  {
+    "name": "bds-icon-document-powerpoint-extension"
+  },
+  {
+    "name": "bds-icon-document-word"
+  },
+  {
+    "name": "bds-icon-document-word-extension"
+  },
+  {
+    "name": "bds-icon-document-zip"
+  },
+  {
+    "name": "bds-icon-dotted-line"
+  },
+  {
+    "name": "bds-icon-double-check"
+  },
+  {
+    "name": "bds-icon-double-square"
+  },
+  {
+    "name": "bds-icon-download"
+  },
+  {
+    "name": "bds-icon-dropper"
+  },
+  {
+    "name": "bds-icon-edit"
+  },
+  {
+    "name": "bds-icon-edit-square"
+  },
+  {
+    "name": "bds-icon-email"
+  },
+  {
+    "name": "bds-icon-email-api"
+  },
+  {
+    "name": "bds-icon-emoji-circle"
+  },
+  {
+    "name": "bds-icon-end-step"
+  },
+  {
+    "name": "bds-icon-equal"
+  },
+  {
+    "name": "bds-icon-erp"
+  },
+  {
+    "name": "bds-icon-factory"
+  },
+  {
+    "name": "bds-icon-failed-call"
+  },
+  {
+    "name": "bds-icon-file"
+  },
+  {
+    "name": "bds-icon-file-arrow-up"
+  },
+  {
+    "name": "bds-icon-file-generator"
+  },
+  {
+    "name": "bds-icon-file-share"
+  },
+  {
+    "name": "bds-icon-filter"
+  },
+  {
+    "name": "bds-icon-filter-half"
+  },
+  {
+    "name": "bds-icon-flag"
+  },
+  {
+    "name": "bds-icon-folder"
+  },
+  {
+    "name": "bds-icon-folder-arrow-down"
+  },
+  {
+    "name": "bds-icon-folder-arrow-left"
+  },
+  {
+    "name": "bds-icon-folder-arrow-right"
+  },
+  {
+    "name": "bds-icon-folder-arrow-top"
+  },
+  {
+    "name": "bds-icon-folder-drive"
+  },
+  {
+    "name": "bds-icon-folder-ftp"
+  },
+  {
+    "name": "bds-icon-folder-minus"
+  },
+  {
+    "name": "bds-icon-folder-plus"
+  },
+  {
+    "name": "bds-icon-folder-share"
+  },
+  {
+    "name": "bds-icon-four-squares"
+  },
+  {
+    "name": "bds-icon-four-squares-fill"
+  },
+  {
+    "name": "bds-icon-handshake"
+  },
+  {
+    "name": "bds-icon-home"
+  },
+  {
+    "name": "bds-icon-hourglass-empty"
+  },
+  {
+    "name": "bds-icon-hub"
+  },
+  {
+    "name": "bds-icon-image-gif"
+  },
+  {
+    "name": "bds-icon-image-jpeg"
+  },
+  {
+    "name": "bds-icon-image-jpg"
+  },
+  {
+    "name": "bds-icon-image-png"
+  },
+  {
+    "name": "bds-icon-info-circle"
+  },
+  {
+    "name": "bds-icon-info-circle-fill"
+  },
+  {
+    "name": "bds-icon-info-major-triangle-up"
+  },
+  {
+    "name": "bds-icon-info-major-triangle-up-fill"
+  },
+  {
+    "name": "bds-icon-info-square"
+  },
+  {
+    "name": "bds-icon-info-square-fill"
+  },
+  {
+    "name": "bds-icon-input"
+  },
+  {
+    "name": "bds-icon-integrations"
+  },
+  {
+    "name": "bds-icon-italics-font"
+  },
+  {
+    "name": "bds-icon-key"
+  },
+  {
+    "name": "bds-icon-landing"
+  },
+  {
+    "name": "bds-icon-language"
+  },
+  {
+    "name": "bds-icon-leave"
+  },
+  {
+    "name": "bds-icon-letter-a-circle"
+  },
+  {
+    "name": "bds-icon-letter-b-circle"
+  },
+  {
+    "name": "bds-icon-letter-c-circle"
+  },
+  {
+    "name": "bds-icon-letter-d-circle"
+  },
+  {
+    "name": "bds-icon-letter-e-circle"
+  },
+  {
+    "name": "bds-icon-letter-f-circle"
+  },
+  {
+    "name": "bds-icon-letter-p-circle"
+  },
+  {
+    "name": "bds-icon-letter-spacing"
+  },
+  {
+    "name": "bds-icon-like"
+  },
+  {
+    "name": "bds-icon-line-spacing"
+  },
+  {
+    "name": "bds-icon-link"
+  },
+  {
+    "name": "bds-icon-location"
+  },
+  {
+    "name": "bds-icon-lock-closed"
+  },
+  {
+    "name": "bds-icon-lock-open"
+  },
+  {
+    "name": "bds-icon-long-text"
+  },
+  {
+    "name": "bds-icon-low-tps"
+  },
+  {
+    "name": "bds-icon-mail"
+  },
+  {
+    "name": "bds-icon-mail-check"
+  },
+  {
+    "name": "bds-icon-mail-error"
+  },
+  {
+    "name": "bds-icon-main-column-width-30"
+  },
+  {
+    "name": "bds-icon-main-column-width-50"
+  },
+  {
+    "name": "bds-icon-main-column-width-70"
+  },
+  {
+    "name": "bds-icon-main-column-width-100"
+  },
+  {
+    "name": "bds-icon-map"
+  },
+  {
+    "name": "bds-icon-masivlinks"
+  },
+  {
+    "name": "bds-icon-message"
+  },
+  {
+    "name": "bds-icon-message-error"
+  },
+  {
+    "name": "bds-icon-message-incoming"
+  },
+  {
+    "name": "bds-icon-message-outgoing"
+  },
+  {
+    "name": "bds-icon-message-plus"
+  },
+  {
+    "name": "bds-icon-message-rcs"
+  },
+  {
+    "name": "bds-icon-message-stats"
+  },
+  {
+    "name": "bds-icon-mic"
+  },
+  {
+    "name": "bds-icon-mic-arrow-left-right"
+  },
+  {
+    "name": "bds-icon-minus"
+  },
+  {
+    "name": "bds-icon-minus-circle"
+  },
+  {
+    "name": "bds-icon-minus-circle-fill"
+  },
+  {
+    "name": "bds-icon-mnv"
+  },
+  {
+    "name": "bds-icon-mobile"
+  },
+  {
+    "name": "bds-icon-monitoring"
+  },
+  {
+    "name": "bds-icon-multivariate"
+  },
+  {
+    "name": "bds-icon-network-operator"
+  },
+  {
+    "name": "bds-icon-next-step"
+  },
+  {
+    "name": "bds-icon-notifications"
+  },
+  {
+    "name": "bds-icon-numeral-circle"
+  },
+  {
+    "name": "bds-icon-otp"
+  },
+  {
+    "name": "bds-icon-pause"
+  },
+  {
+    "name": "bds-icon-pause-circle"
+  },
+  {
+    "name": "bds-icon-percent-circle"
+  },
+  {
+    "name": "bds-icon-person"
+  },
+  {
+    "name": "bds-icon-person-admin"
+  },
+  {
+    "name": "bds-icon-person-arrow-right"
+  },
+  {
+    "name": "bds-icon-person-book"
+  },
+  {
+    "name": "bds-icon-person-minus"
+  },
+  {
+    "name": "bds-icon-person-plus"
+  },
+  {
+    "name": "bds-icon-person-roles"
+  },
+  {
+    "name": "bds-icon-person-sender"
+  },
+  {
+    "name": "bds-icon-person-view"
+  },
+  {
+    "name": "bds-icon-phone"
+  },
+  {
+    "name": "bds-icon-photo"
+  },
+  {
+    "name": "bds-icon-photo-text-bottom"
+  },
+  {
+    "name": "bds-icon-photo-text-left"
+  },
+  {
+    "name": "bds-icon-photo-text-right"
+  },
+  {
+    "name": "bds-icon-photo-text-top"
+  },
+  {
+    "name": "bds-icon-pin"
+  },
+  {
+    "name": "bds-icon-pin-fill"
+  },
+  {
+    "name": "bds-icon-play-circle"
+  },
+  {
+    "name": "bds-icon-play-fill"
+  },
+  {
+    "name": "bds-icon-plus"
+  },
+  {
+    "name": "bds-icon-plus-circle"
+  },
+  {
+    "name": "bds-icon-plus-circle-fill"
+  },
+  {
+    "name": "bds-icon-point-list"
+  },
+  {
+    "name": "bds-icon-point-list-lock-open"
+  },
+  {
+    "name": "bds-icon-polygon-nodes"
+  },
+  {
+    "name": "bds-icon-power"
+  },
+  {
+    "name": "bds-icon-predefined-answers"
+  },
+  {
+    "name": "bds-icon-products"
+  },
+  {
+    "name": "bds-icon-profile"
+  },
+  {
+    "name": "bds-icon-profile-autentication-square"
+  },
+  {
+    "name": "bds-icon-profile-plus-square"
+  },
+  {
+    "name": "bds-icon-profile-search-square"
+  },
+  {
+    "name": "bds-icon-profile-square"
+  },
+  {
+    "name": "bds-icon-push"
+  },
+  {
+    "name": "bds-icon-qr-code"
+  },
+  {
+    "name": "bds-icon-question-mark-circle"
+  },
+  {
+    "name": "bds-icon-question-mark-circle-fill"
+  },
+  {
+    "name": "bds-icon-replacement"
+  },
+  {
+    "name": "bds-icon-repository"
+  },
+  {
+    "name": "bds-icon-response"
+  },
+  {
+    "name": "bds-icon-route"
+  },
+  {
+    "name": "bds-icon-save"
+  },
+  {
+    "name": "bds-icon-scout"
+  },
+  {
+    "name": "bds-icon-search"
+  },
+  {
+    "name": "bds-icon-send"
+  },
+  {
+    "name": "bds-icon-send-arrow-down"
+  },
+  {
+    "name": "bds-icon-send-check"
+  },
+  {
+    "name": "bds-icon-send-money"
+  },
+  {
+    "name": "bds-icon-server"
+  },
+  {
+    "name": "bds-icon-services"
+  },
+  {
+    "name": "bds-icon-settings"
+  },
+  {
+    "name": "bds-icon-sherlock"
+  },
+  {
+    "name": "bds-icon-shield"
+  },
+  {
+    "name": "bds-icon-shopping-cart"
+  },
+  {
+    "name": "bds-icon-sight-off"
+  },
+  {
+    "name": "bds-icon-sight-on"
+  },
+  {
+    "name": "bds-icon-sight-preview"
+  },
+  {
+    "name": "bds-icon-signal"
+  },
+  {
+    "name": "bds-icon-simcard-validation"
+  },
+  {
+    "name": "bds-icon-single-select"
+  },
+  {
+    "name": "bds-icon-six-dots"
+  },
+  {
+    "name": "bds-icon-sliders"
+  },
+  {
+    "name": "bds-icon-sms"
+  },
+  {
+    "name": "bds-icon-snipping-tool"
+  },
+  {
+    "name": "bds-icon-solid-line"
+  },
+  {
+    "name": "bds-icon-split-texts-into-columns"
+  },
+  {
+    "name": "bds-icon-square"
+  },
+  {
+    "name": "bds-icon-square-diagonal-line-circle"
+  },
+  {
+    "name": "bds-icon-square-fill"
+  },
+  {
+    "name": "bds-icon-stack"
+  },
+  {
+    "name": "bds-icon-star"
+  },
+  {
+    "name": "bds-icon-star-fill"
+  },
+  {
+    "name": "bds-icon-stats"
+  },
+  {
+    "name": "bds-icon-stats-tps"
+  },
+  {
+    "name": "bds-icon-status-bound-message"
+  },
+  {
+    "name": "bds-icon-status-disconnected"
+  },
+  {
+    "name": "bds-icon-status-high-rejectioned"
+  },
+  {
+    "name": "bds-icon-status-unbound-message"
+  },
+  {
+    "name": "bds-icon-steps"
+  },
+  {
+    "name": "bds-icon-sword"
+  },
+  {
+    "name": "bds-icon-table"
+  },
+  {
+    "name": "bds-icon-tablet"
+  },
+  {
+    "name": "bds-icon-team"
+  },
+  {
+    "name": "bds-icon-team-minus"
+  },
+  {
+    "name": "bds-icon-team-plus"
+  },
+  {
+    "name": "bds-icon-template"
+  },
+  {
+    "name": "bds-icon-text"
+  },
+  {
+    "name": "bds-icon-three-dots-circle"
+  },
+  {
+    "name": "bds-icon-three-dots-circle-fill"
+  },
+  {
+    "name": "bds-icon-three-dots-horizontal"
+  },
+  {
+    "name": "bds-icon-three-dots-vertical"
+  },
+  {
+    "name": "bds-icon-tickets-manager"
+  },
+  {
+    "name": "bds-icon-timer"
+  },
+  {
+    "name": "bds-icon-tone-capture"
+  },
+  {
+    "name": "bds-icon-tools"
+  },
+  {
+    "name": "bds-icon-trash"
+  },
+  {
+    "name": "bds-icon-trending-up-square"
+  },
+  {
+    "name": "bds-icon-triangle"
+  },
+  {
+    "name": "bds-icon-triangle-fill"
+  },
+  {
+    "name": "bds-icon-trueauth"
+  },
+  {
+    "name": "bds-icon-truidv"
+  },
+  {
+    "name": "bds-icon-truscore"
+  },
+  {
+    "name": "bds-icon-type-circle"
+  },
+  {
+    "name": "bds-icon-undefined-diamond"
+  },
+  {
+    "name": "bds-icon-undefined-diamond-fill"
+  },
+  {
+    "name": "bds-icon-underlined"
+  },
+  {
+    "name": "bds-icon-upload"
+  },
+  {
+    "name": "bds-icon-user-manager"
+  },
+  {
+    "name": "bds-icon-variable-square"
+  },
+  {
+    "name": "bds-icon-verifier"
+  },
+  {
+    "name": "bds-icon-voice"
+  },
+  {
+    "name": "bds-icon-volume-off"
+  },
+  {
+    "name": "bds-icon-volume-on"
+  },
+  {
+    "name": "bds-icon-waybox"
+  },
+  {
+    "name": "bds-icon-web-channel"
+  },
+  {
+    "name": "bds-icon-whatsapp"
+  },
+  {
+    "name": "bds-icon-whatsapp-business"
+  },
+  {
+    "name": "bds-icon-whatsapp-business-fill"
+  },
+  {
+    "name": "bds-icon-zoom-in"
+  },
+  {
+    "name": "bds-icon-zoom-out"
+  },
+  {
+    "name": "bds-icon-sort-by"
+  },
+  {
+    "name": "bds-icon-insights"
+  }
+]
