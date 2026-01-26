@@ -1,0 +1,18 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create:pack-vue": "node ./create-packages/index.mjs vue dev",
+    "create:pack-react": "node ./create-packages/index.mjs react dev",
+    "create:pack-angular": "node ./create-packages/index.mjs angular dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "execa": "^9.6.1"
+  }
+}
