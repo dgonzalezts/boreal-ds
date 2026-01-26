@@ -7,8 +7,8 @@ import { formatHtmlSource } from '@/utils';
 import type { Icon } from './types/Icon.type';
 
 type StoryArgs = {
-  name: string;
-  size?: string;
+  iconClass: string;
+  fontSize?: string;
   color?: string;
   search?: string;
 };
@@ -24,38 +24,39 @@ const meta: BorealStoryMeta<StoryArgs> = {
     },
   },
   argTypes: {
-    name: {
+    iconClass: {
       control: 'text',
       description:
-        'The name of the icon to display. This is applied to the `class` attribute of the `<em>` tag.',
+        'The name of the icon to display. This is applied to the `class` attribute of the `<em>` tag. (e.g, `class="bds-icon-home"`)',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: DEFAULT_VALUES.name },
-        category: 'Styling',
+        defaultValue: { summary: DEFAULT_VALUES.iconClass },
+        category: 'Configuration',
       },
     },
     search: {
       control: 'text',
-      description: 'Search icons by name.',
+      description:
+        'Search icons by name. Not change anything related the icon, is only used by the icon filter on the ** All Icons** page.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: '' },
         category: 'Search/Filter',
       },
     },
-    size: {
+    fontSize: {
       control: 'text',
-      description: 'The size of the icon. Can be specified in "px", "rem" or "rem ".',
+      description: 'CSS font-size value to control icon can be specified in "px", "rem" or "rem ".',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: DEFAULT_VALUES.size },
+        defaultValue: { summary: DEFAULT_VALUES.fontSize },
         category: 'Styling',
       },
     },
     color: {
       control: 'color',
       description:
-        'The color of the icon. Can be any valid CSS color value (e.g., "#000", "rgb(255, 0, 0) )".',
+        'CSS color value can be any valid CSS color value (e.g., "#000", "rgb(255, 0, 0) ).',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: DEFAULT_VALUES.color },
@@ -198,10 +199,10 @@ export const Default: Story = {
     <div class="icon-container icon-container--full">
       <div class="icon-card">
         <em
-          class="${args.name}"
+          class="${args.iconClass}"
           style="
             color: ${args.color};
-            font-size: ${args.size};
+            font-size: ${args.fontSize};
           "
         >
         </em>
@@ -215,7 +216,7 @@ const fetchIcons = async (): Promise<Icon[]> => {
 };
 
 export const AllIcons: Story = {
-  argTypes: disableControls(meta.argTypes, 'name'),
+  argTypes: disableControls(meta.argTypes, 'iconClass'),
   args: {
     ...DEFAULT_VALUES,
   },
@@ -263,7 +264,7 @@ export const AllIcons: Story = {
                   class="${icon.name}"
                   style="
                   color: ${args.color};
-                  font-size: ${args.size};
+                  font-size: ${args.fontSize};
                 "
                 ></em>
               </div>
