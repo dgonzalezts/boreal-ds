@@ -1,7 +1,7 @@
 import { html } from 'lit/static-html.js';
 import { createElement } from 'react';
 import type { Preview, WebComponentsRenderer } from '@storybook/web-components-vite';
-import type { DecoratorFunction, StoryContext } from '@storybook/types';
+import type { DecoratorFunction, StoryContext } from 'storybook/internal/types';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -45,9 +45,9 @@ const getStyles = (options?: StylesOptions): string => {
  * Decorator function for Storybook that applies a theme to the story.
  * This function retrieves the theme from the globals context and sets it as a data attribute on the body element.
  *
- * @param {Function} story - The story function to be decorated
- * @param {Object} context - The context object containing globals information, including the theme
- * @returns {TemplateResult} The result of the story function execution
+ * @param story - The story function to be decorated
+ * @param context - The context object containing globals information, including the theme
+ * @returns The result of the story function execution
  *
  * @example
  */
@@ -72,9 +72,9 @@ export const withThemeProvider: DecoratorFunction<WebComponentsRenderer> = (
  * context parameters provided by Storybook. It uses the `getStyles` function to
  * convert parameters into CSS style attributes.
  *
- * @param {Function} story - The story function to be decorated
- * @param {Object} context - The Storybook context object containing parameters
- * @returns {TemplateResult} An HTML template result with custom styling applied
+ * @param story - The story function to be decorated
+ * @param context - The Storybook context object containing parameters
+ * @returns An HTML template result with custom styling applied
  */
 export const withCustomStyling: DecoratorFunction<WebComponentsRenderer> = (
   story,
