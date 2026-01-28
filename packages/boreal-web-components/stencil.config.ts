@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import reactOutputTarget from './targets/react-output-target';
 import vueOutputTarget from './targets/vue-output-target';
+import { testingConfig } from './testing.config';
 
 export const config: Config = {
   namespace: 'boreal-web-components',
@@ -38,16 +39,6 @@ export const config: Config = {
       includePaths: ['node_modules'],
     }),
   ],
-  testing: {
-    browserHeadless: 'shell',
-    coverageReporters: ['text-summary', 'lcov'],
-    coverageThreshold: {
-      global: {
-        branches: 80,
-        functions: 80,
-        lines: 80,
-        statements: 80,
-      },
-    },
-  },
+  testing: testingConfig,
+  tsconfig: 'tsconfig.build.json',
 };

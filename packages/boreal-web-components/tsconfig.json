@@ -27,7 +27,6 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
 
     /* Interop Constraints */
     "allowJs": true,
@@ -36,9 +35,7 @@
     /* Path Mapping */
     "baseUrl": "./src/",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/utils/*": ["./src/utils/*"]
+      "@/*": ["./*"]
     },
 
     /* Default config for JSX */
@@ -52,6 +49,6 @@
     "skipDefaultLibCheck": true
   },
 
-  "include": ["src"],
+  "include": ["src", "__mocks__"],
   "exclude": ["node_modules", "dist"]
 }

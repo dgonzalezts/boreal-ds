@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { MyComponent } from '@/components/my-component/my-component';
 
 describe('my-component', () => {
   it('renders', async () => {
@@ -8,13 +8,11 @@ describe('my-component', () => {
       html: '<my-component></my-component>',
     });
     expect(root).toEqualHtml(`
-      <my-component>
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm
-          </div>
-        </mock:shadow-root>
-      </my-component>
+    <my-component>
+      <div>
+        Hello, World! I'm
+      </div>
+    </my-component>
     `);
   });
 
@@ -25,11 +23,9 @@ describe('my-component', () => {
     });
     expect(root).toEqualHtml(`
       <my-component first="Stencil" middle="'Don't call me a framework'" last="JS">
-        <mock:shadow-root>
-          <div>
-            Hello, World! I'm Stencil 'Don't call me a framework' JS
-          </div>
-        </mock:shadow-root>
+        <div>
+          Hello, World! I'm Stencil 'Don't call me a framework' JS
+        </div>
       </my-component>
     `);
   });
