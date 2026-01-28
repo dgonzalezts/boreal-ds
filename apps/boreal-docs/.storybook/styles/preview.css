@@ -1,0 +1,115 @@
+div.token-item,
+div.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+div.token-item {
+  margin-bottom: 24px;
+}
+
+div.color-item {
+  margin-block: 2rem;
+}
+
+.color-item__title {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+}
+
+.color-item__description {
+  margin-bottom: 0.5rem;
+}
+
+.color-item__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.color-item__swatch-wrapper {
+  display: flex;
+  flex: 1;
+  flex-basis: 180px;
+  flex-direction: column;
+  text-align: center;
+  min-width: 120px;
+  max-width: 180px;
+}
+
+.color-item__swatch {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  border: 1px solid var(--col-border-color, #ccc);
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+}
+
+.color-item__swatch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+}
+
+.color-item__variable-name,
+div.radius-item__variable-name,
+div.spacing-item__variable-name {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin: 0.125rem 0;
+}
+
+.color-item__color-value {
+  font-size: 0.75rem;
+  color: var(--col-text-secondary, #666);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.checkerboard {
+  position: relative;
+  background-image:
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
+}
+.sbdocs.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+  font-size: 16px;
+}
+* {
+  font-family:
+    'Segoe UI',
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Arial,
+    sans-serif; /* Replace with variable*/
+}
+.sbdocs-content h2 {
+  font-size: 28px; /* Replace with variable*/
+  line-height: 36px;
+  font-weight: 600;
+  color: #3d3d57; /* Replace with variable*/
+}
+.sbdocs-content h1 {
+  line-height: 48px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 40px;
+  color: #0e0e2c;
+}

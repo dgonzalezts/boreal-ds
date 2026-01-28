@@ -1,0 +1,122 @@
+import {
+  ACCENT_COLORS,
+  ALPHA_COLORS,
+  BACKGROUND_COLORS,
+  BASE,
+  BLACK_WHITE,
+  DANGER,
+  EXTENDED_COLORS,
+  FOCUS,
+  ICON_COLORS,
+  INFORMATION,
+  NEUTRAL,
+  PRIMARY_COLORS,
+  STROKE_COLORS,
+  SUCCESS,
+  TEXT_COLORS,
+  UI_COLORS,
+  WARNING,
+} from '@/utils';
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { ColorSection } from '../components/ColorSection';
+
+<Meta title="Foundations/Colors" />
+
+<Unstyled>
+# Colors
+
+The color system defines a comprehensive set of tokens that ensure consistency, accessibility, and
+brand alignment across all products and platforms. It is organized into six primary categories —
+Primary, Accent, Neutral, Base, Semantic, and Extended — each with a distinct role in the visual
+language of the interface.
+
+# Color Categories
+
+## Primary colors
+
+These are the most recognizable brand colors, used prominently across the UI. They serve as the backbone of the product's identity, applied to key actions like buttons, banners, links, and major navigation components. The primary palette reinforces brand recognition and should remain consistent across all touchpoints.
+
+<ColorSection name="Primary" values={PRIMARY_COLORS} />
+
+## Accent colors
+
+Accent colors are used more selectively and strategically. Their purpose is to create visual contrast, highlight important information, and guide user attention without overwhelming the design. Accents should complement the primary palette and maintain brand harmony.
+
+<ColorSection name="Accent" values={ACCENT_COLORS} />
+
+## Neutral colors
+
+The neutral palette consists of grayscale values—ranging from black and white to various shades of gray. These colors are foundational for building layouts, structuring hierarchy, and ensuring content legibility. Neutrals are also used for surfaces, dividers, containers, and backgrounds.
+
+<ColorSection name="Neutral" values={NEUTRAL} />
+<ColorSection name="Black & White" values={BLACK_WHITE} />
+
+## Base colors
+
+These are supporting colors used in UI components like input borders, tags, pills, and secondary surfaces. Base colors offer an extra level of customization, allowing brands to fine-tune component styling while preserving consistency and usability.
+
+<ColorSection name="Base" values={BASE} />
+
+## Semantic colors
+
+Semantic tokens communicate system feedback and status. This includes color tokens for Success, Error, Warning, and Information states. Semantic colors play a critical role in accessibility and UX clarity by aligning with universally recognized signals for user feedback and interaction.
+
+<ColorSection name="Success" values={SUCCESS} />
+<ColorSection name="Warning" values={WARNING} />
+<ColorSection name="Danger" values={DANGER} />
+<ColorSection name="Information" values={INFORMATION} />
+
+## Focus colors
+
+Focus colors highlight interactive elements when they receive keyboard focus. This is crucial for
+accessibility and helps users navigate the interface using keyboard controls.
+
+<ColorSection name="Focus" values={FOCUS} />
+
+## Extended Colors
+
+The extended palette provides additional flexibility for unique UI needs, themes, or product variants. These colors are optional and used to expand the visual language when the primary, accent, or semantic tokens are not sufficient. Extended colors should be used sparingly and with intention to maintain harmony within the system.
+
+<ColorSection name="Extended" prefix="extended" values={EXTENDED_COLORS} />
+
+## Color Usage Classification
+
+Colors are further classified based on their functional application within the interface. This structure helps define clear and consistent usage across design and code.
+
+<ColorSection
+  name="UI Colors"
+  description="Applied to interactive and visual interface elements such as buttons, toggles, badges, chips, and sliders. UI colors bring interactivity to life and should align with the hierarchy and role of the component (e.g., primary vs. secondary actions)."
+  prefix="ui"
+  values={UI_COLORS}
+/>
+<ColorSection
+  name="Text Colors"
+  description="Used for all typographic elements — including headers, body text, captions, labels, and links. Text colors should always maintain sufficient contrast against their background to meet accessibility standards. They typically derive from neutral, primary, or semantic categories depending on the context."
+  prefix="text"
+  values={TEXT_COLORS}
+/>
+<ColorSection
+  name="Background Colors"
+  description="Assigned to large surface areas including pages, cards, modals, drawers, and sections. These colors establish spatial zones and often derive from neutral, base, or extended palettes depending on the theme or product layer."
+  prefix="bg"
+  values={BACKGROUND_COLORS}
+/>
+<ColorSection
+  name="Icon Colors"
+  description="Used to colorize icons and symbolic figures. Icon colors should complement the surrounding text and UI elements while ensuring visibility and clarity. They often align with semantic or accent tones for status indicators or callouts."
+  prefix="icon"
+  values={ICON_COLORS}
+/>
+<ColorSection
+  name="Stroke Colors"
+  description="Used for outlines, borders, and dividers — supporting structure, visual grouping, and affordance. These colors often come from the base or neutral categories and must maintain enough contrast to distinguish components clearly."
+  prefix="stroke"
+  values={STROKE_COLORS}
+/>
+<ColorSection
+  name="Alpha Colors"
+  description="These are semi-transparent variations of existing tokens, primarily used for overlay states like hover, focus, disabled, or loading. Alpha colors allow for layering while preserving the visual tone of the underlying element. They are essential for creating subtle transitions and feedback in UI interactions."
+  prefix="alpha"
+  values={ALPHA_COLORS}
+/>
+</Unstyled>
