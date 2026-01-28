@@ -8,6 +8,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
+import '@/styles/tokens-fallback.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';

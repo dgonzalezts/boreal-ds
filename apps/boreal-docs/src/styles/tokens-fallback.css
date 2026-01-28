@@ -1,0 +1,92 @@
+/**
+ * TEMPORARY TOKEN FALLBACKS
+ *
+ * This file provides CSS custom properties with hardcoded fallback values
+ * until the styleguidelines token generation is complete.
+ *
+ * These values are reasonable approximations based on common design system patterns.
+ * When real tokens are generated from the styleguidelines branch, these will be
+ * automatically overridden by the actual token values.
+ *
+ * TODO: Delete this file when styleguidelines token generation is complete
+ * and import the generated CSS files instead.
+ */
+
+:root {
+  /* ========================================
+     Colors - UI Backgrounds
+     Light variants for callouts, alerts, cards
+     ======================================== */
+  --boreal-colors-ui-info-lighter: #e3f2fd;      /* Light blue */
+  --boreal-colors-ui-success-lighter: #e8f5e9;   /* Light green */
+  --boreal-colors-ui-warning-lighter: #fff3e0;   /* Light orange */
+  --boreal-colors-ui-danger-lighter: #ffebee;    /* Light red */
+  --boreal-colors-ui-default-dark: #f5f5f5;      /* Light gray */
+
+  /* ========================================
+     Colors - Strokes/Borders
+     ======================================== */
+  --boreal-colors-stroke-info: #2196f3;          /* Blue */
+  --boreal-colors-stroke-success: #4caf50;       /* Green */
+  --boreal-colors-stroke-warning: #ff9800;       /* Orange */
+  --boreal-colors-stroke-danger: #f44336;        /* Red */
+  --boreal-colors-stroke-default: #e0e0e0;       /* Gray */
+
+  /* ========================================
+     Colors - Text
+     ======================================== */
+  --boreal-colors-text-primary: #1976d2;         /* Primary blue */
+  --boreal-colors-text-default: #424242;         /* Dark gray */
+  --boreal-colors-text-default-darker: #212121;  /* Darker gray */
+
+  /* ========================================
+     Colors - Backgrounds
+     ======================================== */
+  --boreal-colors-bg-default: #ffffff;           /* White */
+
+  /* ========================================
+     Shadows/Depth
+     ======================================== */
+  --boreal-depth-box-shadow-s: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* ========================================
+     Typography - Font Families
+     ======================================== */
+  --boreal-typography-font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ========================================
+     Typography - Font Sizes
+     ======================================== */
+  --boreal-typography-font-size-s: 0.875rem;     /* 14px */
+  --boreal-typography-font-size-m: 1rem;         /* 16px */
+  --boreal-typography-font-size-l: 1.125rem;     /* 18px */
+  --boreal-typography-text-heading-regular-3xl: 2rem; /* 32px */
+
+  /* ========================================
+     Spacing - Border Radius
+     ======================================== */
+  --boreal-radius-size-xs: 4px;
+  --boreal-radius-size-s: 8px;
+  --boreal-radius-size-m: 12px;
+
+  /* ========================================
+     Theme Colors - Neutral Palette
+     ======================================== */
+  --boreal-theme-neutral-25: #fafafa;
+  --boreal-theme-neutral-200: #eeeeee;
+  --boreal-theme-neutral-600: #757575;
+  --boreal-theme-neutral-700: #616161;
+
+  /* ========================================
+     Theme Colors - Primary
+     ======================================== */
+  --boreal-theme-primary-base: #1976d2;
+  --boreal-theme-primary-dark: #1565c0;
+
+  /* ========================================
+     Theme Colors - Accent & Utility
+     ======================================== */
+  --boreal-theme-accent-base: #ff6b35;
+  --boreal-theme-white: #ffffff;
+  --boreal-theme-danger-dark: #d32f2f;
+}
