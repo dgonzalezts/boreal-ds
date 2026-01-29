@@ -28,13 +28,13 @@ export interface CardProps {
  * </Card>
  * ```
  */
-export const Card: React.FC<CardProps> = ({
+export const Card = ({
   title,
   children,
   variant = 'default',
   size = 'md',
   className = '',
-}) => {
+}: CardProps) => {
   const variantClass = styles[variant] || styles.default;
   const sizeClass = styles[size] || styles.md;
 

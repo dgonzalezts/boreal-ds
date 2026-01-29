@@ -30,7 +30,7 @@ export interface CalloutProps {
  * </Callout>
  * ```
  */
-export const Callout: React.FC<CalloutProps> = ({ variant, icon, children }) => {
+export const Callout = ({ variant, icon, children }: CalloutProps) => {
   return (
     <div className={`${styles.callout} ${styles[variant]}`}>
       {icon && <div className={styles.icon}>{icon}</div>}
