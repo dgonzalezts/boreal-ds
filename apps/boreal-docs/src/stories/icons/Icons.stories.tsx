@@ -1,9 +1,8 @@
-import type { BorealStory, BorealStoryMeta } from '@/types/stories';
 import { css, html } from 'lit';
+import type { BorealStory, BorealStoryMeta } from '@/types/stories';
+import { formatHtmlSource, hideFromTable } from '@/utils';
 import { createIconData } from './helpers/getIcons';
-import { DEFAULT_VALUES } from '../icons/constants/Values';
-import { disableControls } from '@/utils/helpers';
-import { formatHtmlSource } from '@/utils';
+import { DEFAULT_VALUES } from './constants/values';
 import type { Icon } from './types/Icon.type';
 
 type StoryArgs = {
@@ -13,7 +12,9 @@ type StoryArgs = {
   search?: string;
 };
 
-const meta: BorealStoryMeta<StoryArgs> = {
+type Story = BorealStory<StoryArgs>;
+
+const meta = {
   title: 'Images & Icons/Icons',
   parameters: {
     docs: {
@@ -67,11 +68,9 @@ const meta: BorealStoryMeta<StoryArgs> = {
   args: {
     ...DEFAULT_VALUES,
   },
-};
+} satisfies BorealStoryMeta<StoryArgs>;
 
 export default meta;
-
-type Story = BorealStory<StoryArgs> & { args: StoryArgs };
 
 const styles = css`
   .icon-container {
@@ -187,7 +186,7 @@ const linkCss = html`<link
 />`;
 
 export const Default: Story = {
-  argTypes: disableControls(meta.argTypes, 'search'),
+  argTypes: hideFromTable(meta.argTypes, 'search'),
   args: {
     ...DEFAULT_VALUES,
   },
@@ -216,7 +215,7 @@ const fetchIcons = async (): Promise<Icon[]> => {
 };
 
 export const AllIcons: Story = {
-  argTypes: disableControls(meta.argTypes, 'iconClass'),
+  argTypes: hideFromTable(meta.argTypes, 'iconClass'),
   args: {
     ...DEFAULT_VALUES,
   },
