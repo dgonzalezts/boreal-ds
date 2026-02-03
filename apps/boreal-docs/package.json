@@ -9,7 +9,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
+    "generate:story": "plop story",
+    "generate": "plop"
   },
   "dependencies": {
     "lit": "^3.3.1"
