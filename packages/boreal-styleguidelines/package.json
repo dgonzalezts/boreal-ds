@@ -19,6 +19,13 @@
   "type": "module",
   "main": "main.ts",
   "scripts": {
-    "test": "test"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/ui": "^4.0.18",
+    "vitest": "^4.0.18"
   }
 }
