@@ -106,6 +106,22 @@ export default function (plop) {
         message: 'Include ArgTypes categories (Configuration, Styling, etc.)?',
         default: true,
       },
+      {
+        type: 'list',
+        name: 'storyDisplayMode',
+        message: 'How should stories be displayed in MDX documentation?',
+        choices: [
+          {
+            name: 'Automatic - Always in sync (recommended)',
+            value: 'auto',
+          },
+          {
+            name: 'Manual - Locked at generation',
+            value: 'manual',
+          },
+        ],
+        default: 'auto',
+      },
     ],
     actions: data => {
       // Prepare data transformations
@@ -121,6 +137,7 @@ export default function (plop) {
       data.componentNamePascal = plop.getHelper('pascalCase')(data.componentName);
       data.componentNameWithoutPrefix = plop.getHelper('stripPrefix')(data.componentName);
       data.titlePath = plop.getHelper('titlePath')(category, data.componentName);
+      data.storyDisplayMode = data.storyDisplayMode || 'auto'; // Default to auto if not set
 
       return [
         {
