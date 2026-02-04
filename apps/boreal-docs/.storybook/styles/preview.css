@@ -81,6 +81,7 @@
   hyphens: auto;
 }
 
-#stories {
+[id^='stories-'],
+[id^='stories'] {
   display: none;
 }

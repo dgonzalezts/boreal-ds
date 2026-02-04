@@ -118,7 +118,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    backgrounds: { value: 'figma' },
+    backgrounds: { value: 'light' },
   },
   decorators: [withThemeProvider, withCustomStyling],
   globalTypes: {
