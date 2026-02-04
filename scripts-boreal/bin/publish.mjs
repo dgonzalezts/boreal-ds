@@ -4,10 +4,13 @@ import { Logger } from '../lib/logger.mjs';;
 import { Cmd } from '../lib/cmd.mjs';
 import { ensureNodeModules, installPack } from '../lib/install.mjs';
 
-
 const run = Cmd.run;
 const packTo = Cmd.packTo;
 
+/**
+ * Build the web components package.
+ * @returns {Promise<void>}
+ */
 const buildWebComponent = async () => {
   Logger.log('info', '\nBuilding Web Components Library');
   await ensureNodeModules(CONFIG.webcomponents.wrapperRoute);
@@ -15,6 +18,11 @@ const buildWebComponent = async () => {
   Logger.log('success', 'Building Web Components Library');
 }
 
+/**
+ * Create a tgz pack for web components and copy it to wrapper/app.
+ * @param {'vue'|'react'|'angular'} framework
+ * @returns {Promise<string>}
+ */
 const createPackWebComponent = async (framework) => {
   Logger.log('info', '\nCreating Pack for Web Components Library');
   const { tgzName } = await packTo(CONFIG.webcomponents.wrapperRoute, CONFIG[framework].wrapperRoute);
@@ -24,6 +32,12 @@ const createPackWebComponent = async (framework) => {
   return tgzName;
 }
 
+/**
+ * Install web components pack and build the framework wrapper.
+ * @param {string} tgzNameComponent
+ * @param {'vue'|'react'|'angular'} framework
+ * @returns {Promise<void>}
+ */
 const buildWrapper = async (tgzNameComponent, framework) => {
   await installPack(
     CONFIG[framework].wrapperRoute,
@@ -38,6 +52,11 @@ const buildWrapper = async (tgzNameComponent, framework) => {
 
 }
 
+/**
+ * Create a tgz pack for the framework wrapper and move it to the demo app.
+ * @param {'vue'|'react'|'angular'} framework
+ * @returns {Promise<string>}
+ */
 const createPackWrapper = async (framework) => {
   Logger.log('info', 'Packing Wrapper');
   const { tgzName: tgzNameWrapper } = await packTo(CONFIG[framework].wrapperRoute, CONFIG[framework].app);
@@ -46,6 +65,12 @@ const createPackWrapper = async (framework) => {
   return tgzNameWrapper;
 }
 
+/**
+ * Install the wrapper pack in the demo app and run dev.
+ * @param {string} tgzNameWrapper
+ * @param {'vue'|'react'|'angular'} framework
+ * @returns {Promise<void>}
+ */
 const installWrapperApp = async (tgzNameWrapper, framework) => {
   await installPack(
     CONFIG[framework].app,
@@ -58,6 +83,10 @@ const installWrapperApp = async (tgzNameWrapper, framework) => {
   await run('npm', ['run', 'dev'], CONFIG[framework].app);
 }
 
+/**
+ * Run tests for the web components package.
+ * @returns {Promise<void>}
+ */
 const TestWebComponents = async () => {
   console.log('Testing Web Components Library...', CONFIG.webcomponents.wrapperRoute);
   await ensureNodeModules(CONFIG.webcomponents.wrapperRoute);

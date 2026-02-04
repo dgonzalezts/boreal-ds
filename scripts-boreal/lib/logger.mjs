@@ -1,7 +1,15 @@
-
 import chalk from 'chalk';
 
+/**
+ * Minimal console logger with consistent styling.
+ */
 export class Logger {
+  /**
+   * Log a styled message.
+   * @param {'title'|'info'|'warn'|'error'|'success'} level
+   * @param {string} message
+   * @param {...unknown} args
+   */
   static log(level, message, ...args) {
     const icons = {
       title: '\u{1F4D6} ',
