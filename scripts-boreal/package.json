@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Scripts for creating framework packages in Boreal DS.",
   "main": "index.js",
+  "bin": {
+    "boreal-pack": "./bin/boreal-pack.mjs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "create:pack-vue": "node ./bin/publish.mjs vue dev",

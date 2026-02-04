@@ -9,13 +9,13 @@ Utilities to build and package Boreal DS artifacts for local testing.
 ## Install
 
 ```bash
-cd scripts
+cd scripts-boreal
 npm install
 ```
 
 ## Available commands
 
-From `scripts/package.json`:
+From `scripts-boreal/package.json`:
 
 ```bash
 npm run create:pack-react
@@ -25,7 +25,7 @@ npm run create:pack-angular
 
 ## What the pipeline does
 
-The script `create-packages.mjs` runs this flow:
+The script `bin/publish.mjs` runs this flow:
 
 1. Build `@boreal-ds/web-components`.
 2. Pack it into a `.tgz` and install into the framework wrapper.
@@ -36,19 +36,20 @@ The script `create-packages.mjs` runs this flow:
 ## Usage (manual)
 
 ```bash
-node create-packages.mjs <framework> [environment]
+node bin/publish.mjs <framework> [environment]
 ```
 
 Examples:
 
 ```bash
-node create-packages.mjs react
-node create-packages.mjs vue dev
+node publish.mjs react
+node publish.mjs vue dev
 ```
 
 Supported frameworks: `vue`, `react`, `angular`.
 
 ## Notes
 
+- npm exec boreal-pack -- react dev whit bin
 - The repo currently includes the React demo app at `examples/react-testapp`.
 - If a demo app path is missing, the script warns and skips demo install/run.

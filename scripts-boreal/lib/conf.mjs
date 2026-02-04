@@ -1,10 +1,19 @@
-
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '../../');
+
+/**
+ * Shared locations and package names for Boreal DS scripts.
+ * @type {{
+ *   webcomponents: { wrapperRoute: string, wrapperName: string },
+ *   vue: { wrapperRoute: string, wrapperName: string, app: string },
+ *   react: { wrapperRoute: string, wrapperName: string, app: string },
+ *   angular: { wrapperRoute: string, wrapperName: string, app: string }
+ * }}
+ */
 export const CONFIG = {
   webcomponents: {
     wrapperRoute: path.resolve(ROOT, "packages/boreal-web-components"),
