@@ -1,0 +1,86 @@
+/*
+ * Storybook preview styles
+ *
+ * The preview is the iframe with id="storybook-preview-iframe" where stories
+ * and MDX files are rendered. These styles are injected into the preview's <head>.
+ *
+ * Reference: https://storybook.js.org/docs/api/main-config/main-config-preview-head
+ */
+
+.sbdocs-content blockquote,
+.sbdocs-content h1,
+.sbdocs-content h2,
+.sbdocs-content li,
+.sbdocs-content ol,
+.sbdocs-content p,
+.sbdocs-content table,
+.sbdocs-content td,
+.sbdocs-content th,
+.sbdocs-content tr,
+.sbdocs-content ul {
+  font-family: var(--boreal-typography-font-family-primary);
+  color: black;
+}
+
+.sbdocs-content ul {
+  padding-left: 30px;
+  list-style: disc;
+}
+
+.sbdocs-content li {
+  font-size: var(--boreal-typography-font-size-s);
+}
+
+.sbdocs-content a {
+  color: var(--boreal-theme-primary-base);
+  font-size: inherit;
+}
+
+.sbdocs-content h1 {
+  font-size: var(--boreal-typography-font-size-4xl);
+  line-height: 48px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.sbdocs-content h2 {
+  font-size: var(--boreal-typography-font-size-3xl);
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.sbdocs-content h3 {
+  font-size: var(--boreal-typography-font-size-2xl);
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.sbdocs-content h4 {
+  font-size: var(--boreal-typography-font-size-xl);
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.sbdocs.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+  font-size: 16px;
+}
+
+.sbdocs-content table {
+  width: 100%;
+  max-width: 1000px;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sbdocs-content table th,
+.sbdocs-content table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+#stories {
+  display: none;
+}
