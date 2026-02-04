@@ -1,15 +1,15 @@
-
+/*
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import chalk from 'chalk';
-
+import { fileURLToPath } from 'node:url'; */
+//import chalk from 'chalk';
+/* 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, '../../');
-
+const ROOT = path.resolve(process.cwd(), '../../');
+console.log('ROOT', ROOT);
 export const CONFIG = {
   webcomponents: {
-    wrapperRoute: path.resolve(ROOT, "packages/boreal-web-components"),
+    wrapperRoute: path.resolve(ROOT, "boreral-ds/packages/boreal-web-components"),
     wrapperName: '@boreal-ds/web-components'
   },
   vue: {
@@ -27,9 +27,9 @@ export const CONFIG = {
     wrapperName: '@boreal-ds/angular',
     app: path.resolve(ROOT, "examples/app-angular")
   }
-};
+}; */
 
-export const createLogger = (level, msg, ...args) => {
+/* export const createLogger = (level, msg, ...args) => {
   const styles = {
     info: chalk.blue,
     warn: chalk.yellow,
@@ -50,4 +50,4 @@ export const createLogger = (level, msg, ...args) => {
 
   msg = `${icons[level]}${String(msg).replace(/^\n+/, '')}`;
   console.log(styler(msg), ...args);
-}
+} */

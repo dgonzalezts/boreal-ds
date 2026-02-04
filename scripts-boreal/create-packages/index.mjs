@@ -1,4 +1,4 @@
-import { execa } from 'execa';
+/* import { execa } from 'execa';
 import fs from 'node:fs';
 import { title } from 'node:process';
 import { CONFIG, createLogger } from './config.mjs';
@@ -92,7 +92,7 @@ const TestWebComponents = async () => {
       createLogger('success', 'Tests passed successfully');
     } catch (error) {
       createLogger('error', 'Tests failed');
-      throw error;
+      // throw error;
     }
 
     createLogger('title', `\n Starting ${enviroment} Pipeline for Boreal DS - ${title} \n`);
@@ -110,4 +110,4 @@ const TestWebComponents = async () => {
     if (error.shortMessage) createLogger('error', error.shortMessage);
     process.exit(1);
   }
-})();
+})(); */

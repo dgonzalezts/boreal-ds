@@ -1,0 +1,18 @@
+{
+  "name": "scripts-boreal",
+  "version": "1.0.0",
+  "description": "Scripts for creating framework packages in Boreal DS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create:pack-vue": "node ./bin/publish.mjs vue dev",
+    "create:pack-react": "node ./bin/publish.mjs react dev",
+    "create:pack-angular": "node ./bin/publish.mjs angular dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "execa": "^9.6.1"
+  }
+}
