@@ -29,6 +29,12 @@ export default defineConfig([
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
       'no-unused-vars': 'off',
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        {
+          allowWithName: 'Args$',
+        },
+      ],
     },
   },
   prettierConfig,

@@ -9,7 +9,9 @@
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
+    "generate:story": "plop story",
+    "generate": "plop"
   },
   "dependencies": {
     "lit": "^3.3.1"
@@ -32,6 +34,7 @@
     "globals": "^17.0.0",
     "highlight.js": "^11.11.1",
     "playwright": "^1.57.0",
+    "plop": "^4.0.5",
     "prettier": "^3.7.4",
     "remark-gfm": "^4.0.1",
     "storybook": "^10.1.11",

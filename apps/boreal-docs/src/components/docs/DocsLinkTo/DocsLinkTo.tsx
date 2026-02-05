@@ -38,18 +38,18 @@ interface DocsLinkToProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
  * Note: This is a React-based documentation component, not a Lit-based Colibri web component.
  * Can be used in: MDX files only (not compatible with TSX files configured for Lit template rendering)
  *
+ * @param props - The component props
+ * @param props.title - The title of the target story/documentation page
+ * @param props.children - The link text or elements to be displayed
+ * @returns A link element that navigates to the specified documentation page
+ *
  * @example
- * ```mdx
- * import { DocsLinkTo } from '@/_storybook/components';
+ * ```tsx
+ * import { DocsLinkTo } from '@/components/docs';
  * import * as ComponentStories from './component.stories';
  *
  * <DocsLinkTo title="Foundation/Colors">See Colors Documentation</DocsLinkTo>
- *
  * <DocsLinkTo title={ComponentStories.default.title}>Component Docs</DocsLinkTo>
- *
- * <DocsLinkTo title="Components/Button" className="custom-link">
- *   Button Documentation
- * </DocsLinkTo>
  * ```
  */
 export const DocsLinkTo = ({ title, children, ...rest }: DocsLinkToProps) => {

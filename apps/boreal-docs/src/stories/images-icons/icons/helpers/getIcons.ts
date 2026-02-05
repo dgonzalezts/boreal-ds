@@ -1,4 +1,4 @@
-import type { Icon } from '../types/Icon.type';
+import type { Icon } from '../types/icon.type';
 import Icons from './icons.json';
 
 /**
