@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 export default function (plop) {
   // Utility function to convert kebab-case to PascalCase
   const toPascalCase = str => {
@@ -13,6 +16,29 @@ export default function (plop) {
     const parts = componentName.split('-');
     const withoutPrefix = parts.slice(1).join('-');
     return toPascalCase(withoutPrefix);
+  };
+
+  // Utility function to find existing component by name and return its category
+  const findExistingComponent = componentName => {
+    const storiesDir = 'src/stories';
+
+    if (!fs.existsSync(storiesDir)) {
+      return null;
+    }
+
+    const categories = fs
+      .readdirSync(storiesDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+
+    for (const category of categories) {
+      const componentDir = path.join(storiesDir, category, componentName);
+      if (fs.existsSync(componentDir)) {
+        return category;
+      }
+    }
+
+    return null;
   };
 
   // Helper for equality comparison in templates
@@ -125,8 +151,54 @@ export default function (plop) {
         ],
         default: 'auto',
       },
+      {
+        type: 'confirm',
+        name: 'confirmDuplicate',
+        message: answers => {
+          const existingCategory = findExistingComponent(answers.componentName);
+          const newCategory = answers.customCategory || answers.category;
+
+          return `⚠️  Component "${answers.componentName}" already exists in "${existingCategory}"
+
+You're creating it in "${newCategory}" - this will create a duplicate story.
+
+Both will appear in Storybook:
+  • ${existingCategory} > ${stripPrefix(answers.componentName)}
+  • ${newCategory} > ${stripPrefix(answers.componentName)}
+
+Continue anyway?`;
+        },
+        default: false,
+        when: answers => {
+          const existingCategory = findExistingComponent(answers.componentName);
+          const newCategory = answers.customCategory || answers.category;
+
+          return existingCategory && existingCategory !== newCategory;
+        },
+      },
     ],
     actions: data => {
+      // Check if user rejected duplicate creation
+      if (data.confirmDuplicate === false) {
+        const existingCategory = findExistingComponent(data.componentName);
+
+        return [
+          function cancelMessage() {
+            return `
+❌ Story generation cancelled
+
+Component "${data.componentName}" already exists in:
+📂 src/stories/${existingCategory}/${data.componentName}/
+
+💡 Options:
+1. Delete existing and regenerate (be careful): rm -rf src/stories/${existingCategory}/${data.componentName}
+2. Use a different component name and the same category "${existingCategory}"
+3. Use a different component name and a different category
+            `.trim();
+          },
+        ];
+      }
+
       // Prepare data transformations
       const category = data.customCategory || data.category;
       const stories = data.includeMultipleStories
@@ -146,6 +218,14 @@ export default function (plop) {
       data.titlePath = titlePath;
       data.storyDisplayMode = data.storyDisplayMode || 'auto';
 
+      // Check if files already exist
+      const baseDir = path.join('src/stories', category, data.componentName);
+      const storiesPath = path.join(baseDir, `${data.componentName}.stories.ts`);
+      const mdxPath = path.join(baseDir, `${data.componentName}.mdx`);
+      const storiesExists = fs.existsSync(storiesPath);
+      const mdxExists = fs.existsSync(mdxPath);
+      const filesAlreadyExist = storiesExists && mdxExists;
+
       return [
         {
           type: 'add',
@@ -162,10 +242,29 @@ export default function (plop) {
         // Custom action for post-generation message
         function customAction(answers) {
           const componentDisplay = stripPrefix(answers.componentName);
+          const location = `src/stories/${category}/${answers.componentName}/`;
+
+          // Different messages based on whether files existed
+          if (filesAlreadyExist) {
+            return `
+⚠️  Story already exists - no changes made
+
+📂 Location: ${location}
+
+The following files were preserved:
+- ${answers.componentName}.stories.ts
+- ${answers.componentName}.mdx
+
+💡 To regenerate this story:
+1. Delete the directory: rm -rf ${location}
+2. Run the generator again: pnpm generate:story
+            `.trim();
+          }
+
           return `
 ✨ Story generated successfully!
 
-📂 Location: src/stories/${category}/${answers.componentName}/
+📂 Location: ${location}
 
 📝 Next steps:
 1. Open ${answers.componentName}.stories.ts
@@ -177,7 +276,7 @@ export default function (plop) {
 💡 Storybook title: ${category}/${componentDisplay}
 💡 Component tag: <${answers.componentName}>
 
-See existing stories (Button, Icons) for implementation examples.
+See existing stories for implementation examples.
           `.trim();
         },
       ];
