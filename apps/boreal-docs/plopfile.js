@@ -41,6 +41,32 @@ export default function (plop) {
     return null;
   };
 
+  // Mapping from folder names (kebab-case) to display names
+  const categoryDisplayNames = {
+    actions: 'Actions',
+    'images-icons': 'Images & Icons',
+    feedback: 'Feedback',
+    forms: 'Forms',
+    'data-visualization': 'Data Visualization',
+    helpers: 'Helpers',
+    overlays: 'Overlays',
+    patterns: 'Patterns',
+    'title-text': 'Title & Text',
+    navigation: 'Navigation',
+    charts: 'Charts',
+  };
+
+  // Helper to get display name (with fallback for custom categories)
+  const getCategoryDisplayName = folderName => {
+    return (
+      categoryDisplayNames[folderName] ||
+      folderName
+        .split('-')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ')
+    );
+  };
+
   // Helper for equality comparison in templates
   plop.setHelper('eq', (a, b) => a === b);
 
@@ -71,30 +97,30 @@ export default function (plop) {
         name: 'category',
         message: 'Select story category:',
         choices: [
-          'Actions',
-          'Images & Icons',
-          'Feedback',
-          'Forms',
-          'Data Visualization',
-          'Helpers',
-          'Overlays',
-          'Patterns',
-          'Title & Text',
-          'Navigation',
-          'Charts',
+          { name: 'Actions', value: 'actions' },
+          { name: 'Images & Icons', value: 'images-icons' },
+          { name: 'Feedback', value: 'feedback' },
+          { name: 'Forms', value: 'forms' },
+          { name: 'Data Visualization', value: 'data-visualization' },
+          { name: 'Helpers', value: 'helpers' },
+          { name: 'Overlays', value: 'overlays' },
+          { name: 'Patterns', value: 'patterns' },
+          { name: 'Title & Text', value: 'title-text' },
+          { name: 'Navigation', value: 'navigation' },
+          { name: 'Charts', value: 'charts' },
           { name: 'Other (custom)', value: '__custom__' },
         ],
-        default: 'Actions',
+        default: 'actions',
       },
       {
         type: 'input',
         name: 'customCategory',
-        message: 'Enter custom category name:',
+        message: 'Enter custom category name (use kebab-case, e.g., "my-category"):',
         when: answers => answers.category === '__custom__',
         validate: value => {
           if (!value) return 'Category is required';
-          if (!/^[a-zA-Z0-9\s&-]+$/.test(value)) {
-            return 'Category should only contain letters, numbers, spaces, & and -';
+          if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(value)) {
+            return 'Category must be in kebab-case format (lowercase letters, numbers, hyphens only)';
           }
           return true;
         },
@@ -118,7 +144,8 @@ export default function (plop) {
       {
         type: 'input',
         name: 'additionalStories',
-        message: 'Story names (comma-separated, e.g., "Disabled, Loading, WithIcon"):',
+        message:
+          'Story names (PascalCase and comma-separated, e.g., "Disabled, Loading, WithIcon"):',
         when: answers => answers.includeMultipleStories,
         filter: value => {
           return value
@@ -156,15 +183,17 @@ export default function (plop) {
         name: 'confirmDuplicate',
         message: answers => {
           const existingCategory = findExistingComponent(answers.componentName);
+          const existingDisplay = getCategoryDisplayName(existingCategory);
           const newCategory = answers.customCategory || answers.category;
+          const newDisplay = getCategoryDisplayName(newCategory);
 
-          return `⚠️  Component "${answers.componentName}" already exists in "${existingCategory}"
+          return `⚠️  Component "${answers.componentName}" already exists in "${existingDisplay}"
 
-You're creating it in "${newCategory}" - this will create a duplicate story.
+You're creating it in "${newDisplay}" - this will create a duplicate story.
 
 Both will appear in Storybook:
-  • ${existingCategory} > ${stripPrefix(answers.componentName)}
-  • ${newCategory} > ${stripPrefix(answers.componentName)}
+  • ${existingDisplay} > ${stripPrefix(answers.componentName)}
+  • ${newDisplay} > ${stripPrefix(answers.componentName)}
 
 Continue anyway?`;
         },
@@ -181,6 +210,7 @@ Continue anyway?`;
       // Check if user rejected duplicate creation
       if (data.confirmDuplicate === false) {
         const existingCategory = findExistingComponent(data.componentName);
+        const existingDisplay = getCategoryDisplayName(existingCategory);
 
         return [
           function cancelMessage() {
@@ -192,7 +222,7 @@ Component "${data.componentName}" already exists in:
 
 💡 Options:
 1. Delete existing and regenerate (be careful): rm -rf src/stories/${existingCategory}/${data.componentName}
-2. Use a different component name and the same category "${existingCategory}"
+2. Use a different component name and the same category "${existingDisplay}"
 3. Use a different component name and a different category
             `.trim();
           },
@@ -200,7 +230,9 @@ Component "${data.componentName}" already exists in:
       }
 
       // Prepare data transformations
-      const category = data.customCategory || data.category;
+      const categoryFolder = data.customCategory || data.category;
+      const categoryDisplay = getCategoryDisplayName(categoryFolder);
+
       const stories = data.includeMultipleStories
         ? ['Default', ...(data.additionalStories || [])]
         : ['Default'];
@@ -208,9 +240,10 @@ Component "${data.componentName}" already exists in:
       // Add computed properties to data using utility functions
       const componentNameWithoutPrefix = stripPrefix(data.componentName);
       const componentNamePascal = toPascalCase(data.componentName);
-      const titlePath = `${category}/${componentNameWithoutPrefix}`;
+      const titlePath = `${categoryDisplay}/${componentNameWithoutPrefix}`;
 
-      data.finalCategory = category;
+      data.finalCategory = categoryFolder;
+      data.categoryDisplay = categoryDisplay;
       data.stories = stories;
       data.hasMultipleStories = stories.length > 1;
       data.componentNamePascal = componentNamePascal;
@@ -219,7 +252,7 @@ Component "${data.componentName}" already exists in:
       data.storyDisplayMode = data.storyDisplayMode || 'auto';
 
       // Check if files already exist
-      const baseDir = path.join('src/stories', category, data.componentName);
+      const baseDir = path.join('src/stories', categoryFolder, data.componentName);
       const storiesPath = path.join(baseDir, `${data.componentName}.stories.ts`);
       const mdxPath = path.join(baseDir, `${data.componentName}.mdx`);
       const storiesExists = fs.existsSync(storiesPath);
@@ -242,7 +275,7 @@ Component "${data.componentName}" already exists in:
         // Custom action for post-generation message
         function customAction(answers) {
           const componentDisplay = stripPrefix(answers.componentName);
-          const location = `src/stories/${category}/${answers.componentName}/`;
+          const location = `src/stories/${categoryFolder}/${answers.componentName}/`;
 
           // Different messages based on whether files existed
           if (filesAlreadyExist) {
@@ -273,7 +306,7 @@ The following files were preserved:
 4. Implement the render function with <${answers.componentName}> component
 5. Run 'pnpm dev' to preview in Storybook
 
-💡 Storybook title: ${category}/${componentDisplay}
+💡 Storybook title: ${categoryDisplay}/${componentDisplay}
 💡 Component tag: <${answers.componentName}>
 
 See existing stories for implementation examples.
