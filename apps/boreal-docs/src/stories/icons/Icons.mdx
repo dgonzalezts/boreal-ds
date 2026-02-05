@@ -1,0 +1,50 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as IconsStories from './Icons.stories.tsx';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Images & Icons/Icons" />
+
+# Icons
+
+Boreal makes it easy to display font icons with consistent styling across your application. Icons support customizable size and color as icon fonts, meanwhile reduced external dependencies and minimizing performance overhead. This helps teams maintain visual consistency and improve UI clarity through meaningful visual interfaces.
+
+## How to use it
+
+1. Implement a link tag to the Boreal Icons stylesheet in your project.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://resources-borealds.s3.us-east-1.amazonaws.com/icons/current/boreal-styles.css"
+/>
+```
+
+2. Use the `<em>` tag to display the icon with a class attribute that matches the name of the icon you want to use with the `bds-icon-` prefix.
+
+```html
+<em class="bds-icon-home"></em>
+```
+
+3. Optionally, you can add a `style` attribute to the `<em>` tag to customize the size and color of the icon.
+
+```html
+<em class="bds-icon-home" style="font-size: 2rem; color: #000;"></em>
+```
+
+## Component preview
+
+You can click on the Show code button in the bottom-right section of the following code snippet to see how to use the component:
+
+<Canvas of={IconsStories.Default} />
+
+## Configurations
+
+> **Important:** <br/>
+> The controls below demonstrate some attributes you'll use in your code that will change the aspect of the icon, **not component props**. _These are styling properties for documentation purposes only_. <br/>
+> The **color** and **size** properties are applied to the `<em>` tag as `style` properties. <br/>
+
+<ArgTypes of={IconsStories} />
+
+## Interact with the component
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={IconsStories.default.title} story="default">Default</LinkTo> section.

@@ -1,0 +1,51 @@
+.callout {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  border-style: solid;
+  border-width: 1px;
+  border-left-width: 4px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 !important;
+  border-radius: 8px;
+}
+
+.icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.content {
+  line-height: 1.5;
+  flex: 1;
+}
+
+.content strong {
+  font-weight: 600;
+}
+
+.content p {
+  margin: 0;
+}
+
+.info {
+  background-color: var(--boreal-colors-ui-info-lighter, #e3f2fd);
+  border-color: var(--boreal-colors-stroke-info, #2196f3);
+}
+
+.tip {
+  background-color: var(--boreal-colors-ui-success-lighter, #e8f5e9);
+  border-color: var(--boreal-colors-stroke-success, #4caf50);
+}
+
+.warning {
+  background-color: var(--boreal-colors-ui-warning-lighter, #fff3e0);
+  border-color: var(--boreal-colors-stroke-warning, #ff9800);
+}
+
+.error {
+  background-color: var(--boreal-colors-ui-danger-lighter, #ffebee);
+  border-color: var(--boreal-colors-stroke-danger, #f44336);
+}
