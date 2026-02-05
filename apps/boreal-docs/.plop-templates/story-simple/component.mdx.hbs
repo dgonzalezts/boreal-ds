@@ -10,9 +10,8 @@ import {
   Subtitle,
 } from '@storybook/addon-docs/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { StoryName } from '@root/.storybook/blocks';
+import { StoryName, Callout } from '@/components/docs';
 import * as {{componentNamePascal}}Stories from './{{componentName}}.stories';
-import { Callout } from '@/components';
 
 <Meta of={ {{~componentNamePascal}}Stories} />
 
@@ -59,10 +58,12 @@ The following examples showcase the core features and visual options of the {{co
 
   💡  Tip: Consider switching to automatic mode by using <Stories /> instead,
       which automatically discovers all stories at runtime and stays in sync.
+
+  👉  Feel free to remove this comment after reviewing.
 */}
 {{#each stories}}
-<StoryName of={ {{~../componentNamePascal}}Stories.{{this}}} />
-<Canvas of={ {{~../componentNamePascal}}Stories.{{this}}} />
+<StoryName of={ {{~../componentNamePascal}}Stories.{{this}} } />
+<Canvas of={ {{~../componentNamePascal}}Stories.{{this}} } />
 
 {{/each}}
 {{else}}
@@ -71,6 +72,8 @@ The following examples showcase the core features and visual options of the {{co
   all stories from {{componentName}}.stories.ts at runtime.
 
   ✅  Always in sync - no manual updates needed when adding/removing stories
+
+  👉  Feel free to remove this comment after reviewing.
 */}
 <Stories />
 {{/if}}

@@ -1,17 +1,19 @@
 export default function (plop) {
-  // Helper to strip prefix from component name (br-button -> Button)
-  plop.setHelper('stripPrefix', str => {
-    if (!str) return '';
-    const parts = str.split('-');
-    const withoutPrefix = parts.slice(1).join('-');
-    return plop.getHelper('pascalCase')(withoutPrefix);
-  });
+  // Utility function to convert kebab-case to PascalCase
+  const toPascalCase = str => {
+    return str
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join('');
+  };
 
-  // Helper to create title path (category + component without prefix)
-  plop.setHelper('titlePath', (category, componentName) => {
-    const withoutPrefix = plop.getHelper('stripPrefix')(componentName);
-    return `${category}/${withoutPrefix}`;
-  });
+  // Utility function to strip prefix from component name (br-button -> Button)
+  const stripPrefix = componentName => {
+    if (!componentName) return '';
+    const parts = componentName.split('-');
+    const withoutPrefix = parts.slice(1).join('-');
+    return toPascalCase(withoutPrefix);
+  };
 
   // Helper for equality comparison in templates
   plop.setHelper('eq', (a, b) => a === b);
@@ -74,10 +76,10 @@ export default function (plop) {
       {
         type: 'input',
         name: 'description',
-        message: 'Component description (optional):',
+        message: 'Component description for MDX documentation (optional):',
         default: answers => {
           // Strip prefix for description (br-button -> Button)
-          const withoutPrefix = plop.getHelper('stripPrefix')(answers.componentName);
+          const withoutPrefix = stripPrefix(answers.componentName);
           return `A ${withoutPrefix} component for the Boreal Design System`;
         },
       },
@@ -94,10 +96,11 @@ export default function (plop) {
         when: answers => answers.includeMultipleStories,
         filter: value => {
           return value
+            .replace(/^["']|["']$/g, '')
             .split(',')
             .map(s => s.trim())
             .filter(Boolean)
-            .map(s => plop.getHelper('pascalCase')(s));
+            .map(s => toPascalCase(s));
         },
       },
       {
@@ -130,14 +133,18 @@ export default function (plop) {
         ? ['Default', ...(data.additionalStories || [])]
         : ['Default'];
 
-      // Add computed properties to data
+      // Add computed properties to data using utility functions
+      const componentNameWithoutPrefix = stripPrefix(data.componentName);
+      const componentNamePascal = toPascalCase(data.componentName);
+      const titlePath = `${category}/${componentNameWithoutPrefix}`;
+
       data.finalCategory = category;
       data.stories = stories;
       data.hasMultipleStories = stories.length > 1;
-      data.componentNamePascal = plop.getHelper('pascalCase')(data.componentName);
-      data.componentNameWithoutPrefix = plop.getHelper('stripPrefix')(data.componentName);
-      data.titlePath = plop.getHelper('titlePath')(category, data.componentName);
-      data.storyDisplayMode = data.storyDisplayMode || 'auto'; // Default to auto if not set
+      data.componentNamePascal = componentNamePascal;
+      data.componentNameWithoutPrefix = componentNameWithoutPrefix;
+      data.titlePath = titlePath;
+      data.storyDisplayMode = data.storyDisplayMode || 'auto';
 
       return [
         {
@@ -154,7 +161,7 @@ export default function (plop) {
         },
         // Custom action for post-generation message
         function customAction(answers) {
-          const componentDisplay = plop.getHelper('stripPrefix')(answers.componentName);
+          const componentDisplay = stripPrefix(answers.componentName);
           return `
 ✨ Story generated successfully!
 

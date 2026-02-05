@@ -84,15 +84,17 @@ export default meta;
  * @returns An HTML template for the {{componentNameWithoutPrefix}} component
  */
 const render{{componentNameWithoutPrefix}}: Story['render'] = args => html`
+  <!-- 🚨 Make sure to remove the comments below when implementing the component markup to avoid rendering issues 🚨 -->
+  <!-- TODO: Remove the <style> tag below and the 'styles' variable if custom component styles are not required -->
   <style>
-    \${styles}
+    ${styles}
   </style>
   <!-- TODO: Implement your component markup here -->
   <!-- Component tag: <{{componentName}}> -->
   <{{componentName}}>
     <!-- Add your component content here -->
   </{{componentName}}>
-  `,
+  `;
 
 {{#each stories}}
 /**
@@ -105,9 +107,9 @@ export const {{this}}: Story = {
   // TODO: If the render function is different for this story, define it here. Otherwise, it will use the default render function.
   // Example:
   // render: (args) => html`
-  //  <{{componentName}} custom-prop=\${args.customProp}></{{componentName}}>
+  //  <{{componentName}} custom-prop=${args.customProp}></{{componentName}}>
   // `
-  render: render{{componentNameWithoutPrefix}},
+  render: render{{../componentNameWithoutPrefix}},
 };
 
 {{/each}}
