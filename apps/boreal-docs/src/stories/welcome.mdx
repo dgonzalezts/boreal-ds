@@ -1,0 +1,110 @@
+import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks';
+import { Callout } from '@/components/docs';
+
+<Meta title="Welcome" />
+
+<Title>Boreal Component Library</Title>
+
+<Callout type="warning" icon="⚠️" variant="warning">
+  **Alpha Release** - This is an early development version (v0.0.1). Components and APIs may change significantly.
+</Callout>
+
+<Subtitle>Welcome</Subtitle>
+
+Boreal is Proximus Group's design system, built with Stencil to provide Web Components that work across all modern frameworks. The library includes native support for React and Vue through framework-specific wrappers.
+
+<Subtitle>Technology Stack</Subtitle>
+
+- **Core**: Stencil (Web Components)
+- **Framework Support**: React, Vue
+- **Distribution**: ESM, Custom Elements, Framework Wrappers
+
+
+<Subtitle>Installation</Subtitle>
+
+> **Note**: Packages are not yet published to npm. For local development setup, refer to the repository README file.
+
+**Future npm installation** (when published):
+
+```bash
+# Web Components (vanilla JS, Angular, etc.)
+npm install @boreal-ds/web-components
+
+# React wrapper
+npm install @boreal-ds/react
+
+# Vue wrapper
+npm install @boreal-ds/vue
+```
+
+<Subtitle>Usage</Subtitle>
+
+**Vanilla JavaScript / Web Components**
+
+```typescript
+// Import and register all components
+import { defineCustomElements } from '@boreal-ds/web-components/loader';
+
+defineCustomElements();
+```
+
+```html
+<!-- Use components in HTML -->
+<br-button color="primary">Click Me</br-button>
+```
+
+**React**
+
+```tsx
+import { BrButton } from '@boreal-ds/react';
+
+function App() {
+  return (
+    <BrButton color="primary">
+      Click Me
+    </BrButton>
+  );
+}
+```
+
+**Vue 3**
+
+```typescript
+// main.ts
+import { BrButton } from '@boreal-ds/vue';
+
+app.component('BrButton', BrButton);
+```
+
+```vue
+<template>
+  <br-button color="primary">Click Me</br-button>
+</template>
+```
+
+<Subtitle>Browse Components</Subtitle>
+
+Explore the available components using the sidebar navigation. Each component includes:
+- Interactive playground
+- Props documentation
+- Usage examples
+- Accessibility guidelines
+
+<Subtitle>Core Features</Subtitle>
+
+- ⚡ **Framework-Agnostic**: Web Components work everywhere
+- ⚛️ **React & Vue Support**: First-class framework integration
+- 📘 **TypeScript**: Full type definitions included
+- 🎨 **Themeable**: Customizable design tokens
+- ♿ **Accessible**: Built with a11y in mind
+- 📦 **Tree-Shakeable**: Import only what you need
+
+
+<Subtitle>Browser Support</Subtitle>
+
+Boreal components work in all modern browsers that support Web Components:
+
+- Chrome/Edge ≥ 79
+- Firefox ≥ 67
+- Safari ≥ 14
+- iOS Safari ≥ 14

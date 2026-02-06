@@ -90,8 +90,22 @@ const preview: Preview = {
     controls: { expanded: true, hideNoControlsWarning: true },
     options: {
       storySort: {
-        //TODO: add custom story order based on design system structure
-        order: [],
+        order: [
+          'Welcome',
+          'Framework Integration',
+          'Foundations',
+          'Actions',
+          'Data Visualization',
+          'Feedback',
+          'Forms',
+          'Helpers',
+          'Images & Icons',
+          'Layouts',
+          'Navigation',
+          'Overlays',
+          'Patterns',
+          'Titles & Texts',
+        ],
       },
     },
     docs: {
@@ -118,7 +132,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    backgrounds: { value: 'figma' },
+    backgrounds: { value: 'light' },
   },
   decorators: [withThemeProvider, withCustomStyling],
   globalTypes: {

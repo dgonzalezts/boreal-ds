@@ -13,20 +13,18 @@ export interface CalloutProps {
  * Note: This is a React-based documentation component, not a Stencil-based Boreal web component.
  * Can be used in: MDX files only (not compatible with TSX files configured for Lit template rendering)
  *
+ * @param props - The component props
+ * @param props.variant - The variant of the callout, determining its style (info, tip, warning, error)
+ * @param props.icon - An optional icon to display alongside the callout content
+ * @param props.children - The content to be displayed inside the callout
+ * @returns A styled callout box component
+ *
  * @example
- * ```mdx
- * import { Callout } from '@/_storybook/components';
+ * ```tsx
+ * import { Callout } from '@/components/docs';
  *
  * <Callout variant="info" icon="ℹ️">
  *   This is an informational message.
- * </Callout>
- *
- * <Callout variant="warning" icon="⚠️">
- *   <p>Warning: This action cannot be undone.</p>
- * </Callout>
- *
- * <Callout variant="tip" icon="💡">
- *   Pro tip: Use dynamic links for better maintainability.
  * </Callout>
  * ```
  */

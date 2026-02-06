@@ -3,7 +3,7 @@ import type { BorealStory, BorealStoryMeta } from '@/types/stories';
 import { formatHtmlSource, hideFromTable } from '@/utils';
 import { createIconData } from './helpers/getIcons';
 import { DEFAULT_VALUES } from './constants/values';
-import type { Icon } from './types/Icon.type';
+import type { Icon } from './types/icon.type';
 
 type StoryArgs = {
   iconClass: string;

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "target": "ES2022",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
@@ -41,14 +42,8 @@
 
     /* Optional: Allow JavaScript files */
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.mdx",
-    ".storybook/**/*.ts",
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.mdx", ".storybook/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

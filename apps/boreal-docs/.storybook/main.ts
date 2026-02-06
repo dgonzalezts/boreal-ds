@@ -29,6 +29,17 @@ const config: StorybookConfig = {
   docs: {
     defaultName: 'Overview',
   },
+  managerHead: head => `
+    ${head}
+    <link rel="stylesheet" type="text/css" href="manager.css" />
+  `,
+  previewHead: head => `
+    ${head}
+    <link rel="stylesheet" type="text/css" href="preview.css" />
+    <script type="text/javascript">
+      window.global = window;
+    </script>
+  `,
   async viteFinal(config) {
     const { mergeConfig } = await import('vite');
     return mergeConfig(config, {
