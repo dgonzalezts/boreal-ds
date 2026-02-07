@@ -1,0 +1,83 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--boreal-radius-size-s, 8px);
+  margin: 1.5rem 0;
+  font-family: var(--boreal-typography-font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+}
+
+.title {
+  margin: 0 0 0.75rem 0;
+  color: var(--boreal-colors-text-default-darker, #212121);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.content {
+  line-height: 1.6;
+  color: var(--boreal-colors-text-default, #424242);
+}
+
+.content p {
+  margin: 0.5rem 0;
+}
+
+.content p:first-child {
+  margin-top: 0;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.default {
+  background-color: var(--boreal-colors-ui-default-dark, #f5f5f5);
+  border: 1px solid var(--boreal-colors-stroke-default, #e0e0e0);
+}
+
+.outlined {
+  background-color: var(--boreal-colors-bg-default, #ffffff);
+  border: 2px solid var(--boreal-colors-stroke-default, #e0e0e0);
+}
+
+.elevated {
+  background-color: var(--boreal-colors-bg-default, #ffffff);
+  border: 1px solid var(--boreal-colors-stroke-default, #e0e0e0);
+  box-shadow: var(--boreal-depth-box-shadow-s, 0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.sm {
+  padding: 0.75rem 1rem;
+}
+
+.sm .title {
+  font-size: var(--boreal-typography-font-size-m, 1rem);
+}
+
+.sm .content {
+  font-size: var(--boreal-typography-font-size-s, 0.875rem);
+}
+
+.md {
+  padding: 1rem 1.25rem;
+}
+
+.md .title {
+  font-size: var(--boreal-typography-font-size-l, 1.125rem);
+}
+
+.md .content {
+  font-size: var(--boreal-typography-font-size-m, 1rem);
+}
+
+.lg {
+  padding: 1.5rem 2rem;
+}
+
+.lg .title {
+  font-size: var(--boreal-typography-text-heading-regular-3xl, 2rem);
+}
+
+.lg .content {
+  font-size: var(--boreal-typography-font-size-l, 1.125rem);
+}

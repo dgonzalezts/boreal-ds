@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes, Title, Subtitle } from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import * as IconsStories from './icons.stories.tsx';
+import { Callout } from '@/components';
+
+<Meta of={IconsStories} />
+
+<Title of={IconsStories} />
+
+Boreal makes it easy to display font icons with consistent styling across your application. Icons support customizable size and color as icon fonts, meanwhile reduced external dependencies and minimizing performance overhead. This helps teams maintain visual consistency and improve UI clarity through meaningful visual interfaces.
+
+<Subtitle>How to use it</Subtitle>
+
+1. Implement a link tag to the Boreal Icons stylesheet in your project.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://resources-borealds.s3.us-east-1.amazonaws.com/icons/current/boreal-styles.css"
+/>
+```
+
+2. Use the `<em>` tag to display the icon with a class attribute that matches the name of the icon you want to use with the `bds-icon-` prefix.
+
+```html
+<em class="bds-icon-home"></em>
+```
+
+3. Optionally, you can add a `style` attribute to the `<em>` tag to customize the size and color of the icon.
+
+```html
+<em class="bds-icon-home" style="font-size: 2rem; color: #000;"></em>
+```
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the icons asset.
+
+<Callout variant="tip" icon="💡">
+  You can click on the **Show code** button in the bottom-right section of the following code
+  snippets to see how to use the asset.
+</Callout>
+
+<Canvas of={IconsStories.Default} />
+
+<Subtitle>Properties</Subtitle>
+
+<Callout variant="warning" icon="⚠️">
+  The controls below demonstrate some attributes you'll use in your code that will change the aspect of the icon, **not component props**. _These are styling properties for documentation purposes only_. <br/><br/>
+  The **color** and **size** properties are applied to the `<em>` tag as `style` properties. <br/>
+</Callout>
+
+<ArgTypes of={IconsStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={IconsStories.default.title} story="default">Default</LinkTo> section.
