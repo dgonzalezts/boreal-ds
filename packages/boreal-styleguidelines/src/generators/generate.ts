@@ -56,19 +56,25 @@ async function main() {
         const themeTokens = JSON.parse(await readFile(themePath, 'utf-8'));
 
         // Generate theme CSS with data-theme selector
+        // Pass theme tokens and usage tokens separately to resolve references properly
         await generator.generateThemeCSS(themeName, themeTokens, usage);
 
         // Generate SCSS files for the theme
+        // Pass theme tokens and usage tokens separately to resolve references properly
+        // Clear theme cache before processing each theme
         await generator.generateSCSSVariables(
           `theme-${themeName}`,
-          { ...themeTokens, ...usage },
-          true
+          themeTokens,
+          true,
+          usage,
+          true // clearThemeCache
         );
         await generator.generateSCSSMap(
           `theme-${themeName}`,
-          { ...themeTokens, ...usage },
+          themeTokens,
           `boreal-theme-${themeName}`,
-          true
+          true,
+          usage
         );
 
         themeConfigs.push({

@@ -61,12 +61,15 @@ export class StyleGenerator {
     themeTokens: any,
     usageTokens?: any
   ): Promise<void> {
-    // First process theme-specific tokens
-    const flattenedTheme = this.processor.flattenThemeTokens(themeTokens);
+    // Clear theme tokens map before processing new theme
+    this.processor.clearThemeTokens();
 
-    // Then process usage tokens if provided
+    // First process theme-specific tokens (use CSS var references)
+    const flattenedTheme = this.processor.flattenThemeTokensForCSS(themeTokens);
+
+    // Then process usage tokens if provided (use CSS var references)
     const flattenedUsage = usageTokens
-      ? this.processor.flattenThemeTokens(usageTokens)
+      ? this.processor.flattenThemeTokensForCSS(usageTokens)
       : {};
 
     // Combine both
@@ -90,11 +93,29 @@ export class StyleGenerator {
   async generateSCSSVariables(
     name: string,
     tokens: any,
-    isTheme: boolean = false
+    isTheme: boolean = false,
+    usageTokens?: any,
+    clearThemeCache: boolean = false
   ): Promise<void> {
-    const flattened = isTheme
-      ? this.processor.flattenThemeTokens(tokens)
-      : this.processor.flattenPrimitiveTokens(tokens);
+    if (clearThemeCache) {
+      this.processor.clearThemeTokens();
+    }
+
+    let flattened: any;
+
+    if (isTheme && usageTokens) {
+      // For themes with usage tokens, process separately to avoid overwrites
+      // First flatten theme tokens (populates lookup map)
+      const themeFlattened = this.processor.flattenThemeTokensForSCSS(tokens);
+      // Then flatten usage tokens (can reference theme tokens)
+      const usageFlattened = this.processor.flattenThemeTokensForSCSS(usageTokens);
+      // Merge results (usage takes precedence for final output)
+      flattened = { ...themeFlattened, ...usageFlattened };
+    } else if (isTheme) {
+      flattened = this.processor.flattenThemeTokensForSCSS(tokens);
+    } else {
+      flattened = this.processor.flattenPrimitiveTokens(tokens);
+    }
 
     const scssVariables = this.processor.generateSCSSVariables(flattened);
 
@@ -113,11 +134,24 @@ export class StyleGenerator {
     name: string,
     tokens: any,
     mapName: string,
-    isTheme: boolean = false
+    isTheme: boolean = false,
+    usageTokens?: any
   ): Promise<void> {
-    const flattened = isTheme
-      ? this.processor.flattenThemeTokens(tokens)
-      : this.processor.flattenPrimitiveTokens(tokens);
+    let flattened: any;
+
+    if (isTheme && usageTokens) {
+      // For themes with usage tokens, process separately to avoid overwrites
+      // First flatten theme tokens (populates lookup map)
+      const themeFlattened = this.processor.flattenThemeTokensForSCSS(tokens);
+      // Then flatten usage tokens (can reference theme tokens)
+      const usageFlattened = this.processor.flattenThemeTokensForSCSS(usageTokens);
+      // Merge results (usage takes precedence for final output)
+      flattened = { ...themeFlattened, ...usageFlattened };
+    } else if (isTheme) {
+      flattened = this.processor.flattenThemeTokensForSCSS(tokens);
+    } else {
+      flattened = this.processor.flattenPrimitiveTokens(tokens);
+    }
 
     const scssMap = this.processor.generateSCSSMap(flattened, mapName);
 
@@ -160,9 +194,11 @@ export class StyleGenerator {
 
     const themesCSS = themes
       .map(({ name, tokens, usage }) => {
-        const flattenedTheme = this.processor.flattenThemeTokens(tokens);
+        // Clear theme tokens map before processing each theme
+        this.processor.clearThemeTokens();
+        const flattenedTheme = this.processor.flattenThemeTokensForCSS(tokens);
         const flattenedUsage = usage
-          ? this.processor.flattenThemeTokens(usage)
+          ? this.processor.flattenThemeTokensForCSS(usage)
           : {};
         const allTokens = { ...flattenedTheme, ...flattenedUsage };
         return `[data-theme="${name}"] {\n${this.processor.generateCSSProperties(allTokens)}\n}`;

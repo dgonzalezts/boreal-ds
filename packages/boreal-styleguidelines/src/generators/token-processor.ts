@@ -16,6 +16,13 @@ export class TokenProcessor {
   }
 
   /**
+   * Clear theme tokens map (useful when processing multiple themes)
+   */
+  clearThemeTokens(): void {
+    this.themeTokens.clear();
+  }
+
+  /**
    * Process primitive tokens and store them for reference resolution
    */
   private processPrimitiveTokens(obj: any, path: string[] = []): void {
@@ -75,6 +82,95 @@ export class TokenProcessor {
   }
 
   /**
+   * Resolve token reference for SCSS (preserves references as SCSS variables)
+   */
+  private resolveSCSSReference(value: string, currentKey?: string): string {
+    if (typeof value !== 'string') {
+      return String(value);
+    }
+
+    // Check if it's a reference
+    const refMatch = value.match(/^\{(.+)\}$/);
+    if (!refMatch) {
+      return value;
+    }
+
+    const refPath = refMatch[1];
+
+    // Sanitize the reference path to match how variables are created
+    const sanitizedPath = refPath
+      .split('.')
+      .map(segment => this.sanitizeTokenKey(segment))
+      .join('-');
+
+    // Check for self-reference (e.g., usage token extended.purple-darker referencing {extended.purple-darker})
+    // If this reference points to the same key we're currently processing, use the stored value from theme tokens
+    if (currentKey && sanitizedPath === currentKey) {
+      if (this.themeTokens.has(sanitizedPath)) {
+        // Return what the theme token resolved to
+        return this.themeTokens.get(sanitizedPath)!;
+      }
+    }
+
+    // Convert the reference path to SCSS variable name
+    const scssVarName = this.tokenPathToSCSSVar(refPath);
+    return scssVarName;
+  }
+
+  /**
+   * Resolve token reference for CSS (preserves references as CSS variables)
+   */
+  private resolveCSSReference(value: string, currentKey?: string): string {
+    if (typeof value !== 'string') {
+      return String(value);
+    }
+
+    // Check if it's a reference
+    const refMatch = value.match(/^\{(.+)\}$/);
+    if (!refMatch) {
+      return value;
+    }
+
+    const refPath = refMatch[1];
+
+    // Sanitize the reference path to match how variables are created
+    const sanitizedPath = refPath
+      .split('.')
+      .map(segment => this.sanitizeTokenKey(segment))
+      .join('-');
+
+    // Check for self-reference (e.g., usage token extended.purple-darker referencing {extended.purple-darker})
+    // If this reference points to the same key we're currently processing, use the stored value from theme tokens
+    if (currentKey && sanitizedPath === currentKey) {
+      if (this.themeTokens.has(sanitizedPath)) {
+        // Return what the theme token resolved to
+        return this.themeTokens.get(sanitizedPath)!;
+      }
+    }
+
+    // Convert the reference path to CSS variable reference
+    const cssVarName = this.tokenPathToCSSVar(refPath);
+    return `var(${cssVarName})`;
+  }
+
+  /**
+   * Convert token path to SCSS variable name
+   */
+  private tokenPathToSCSSVar(path: string): string {
+    // Handle special cases
+    if (path === 'white') {
+      return `$${this.cssVarPrefix.replace(/^--/, '')}white`;
+    }
+
+    // Split path and sanitize each segment to match how variables are created
+    const segments = path.split('.');
+    const sanitizedSegments = segments.map(segment => this.sanitizeTokenKey(segment));
+    const normalized = sanitizedSegments.join('-');
+
+    return `$${this.cssVarPrefix.replace(/^--/, '')}${normalized}`;
+  }
+
+  /**
    * Sanitize a token key name to be valid for CSS
    * Removes parentheses, spaces, and normalizes the name
    */
@@ -96,12 +192,10 @@ export class TokenProcessor {
       return `${this.cssVarPrefix}white`;
     }
 
-    // Convert path like "color.proximus.mint.mint-70" to "--boreal-color-proximus-mint-70"
-    const normalized = path
-      .replace(/\./g, '-')
-      .replace(/\s+/g, '-')
-      .replace(/\(|\)/g, '')
-      .toLowerCase();
+    // Split path and sanitize each segment to match how variables are created
+    const segments = path.split('.');
+    const sanitizedSegments = segments.map(segment => this.sanitizeTokenKey(segment));
+    const normalized = sanitizedSegments.join('-');
 
     return `${this.cssVarPrefix}${normalized}`;
   }
@@ -127,6 +221,60 @@ export class TokenProcessor {
         this.themeTokens.set(currentKey, resolvedValue);
       } else if (typeof value === 'object' && value !== null) {
         const nested = this.flattenThemeTokens(value, currentKey);
+        Object.assign(result, nested);
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * Flatten theme tokens for SCSS (preserves references as SCSS variables)
+   */
+  flattenThemeTokensForSCSS(
+    themeTokens: any,
+    parentKey: string = ''
+  ): FlattenedTokens {
+    const result: FlattenedTokens = {};
+
+    for (const [key, value] of Object.entries(themeTokens)) {
+      const sanitizedKey = this.sanitizeTokenKey(key);
+      const currentKey = parentKey ? `${parentKey}-${sanitizedKey}` : sanitizedKey;
+
+      if (this.isTokenValue(value)) {
+        const resolvedValue = this.resolveSCSSReference(String(value.value), currentKey);
+        result[currentKey] = resolvedValue;
+        // Store what this key resolves to (for handling self-references in usage tokens)
+        this.themeTokens.set(currentKey, resolvedValue);
+      } else if (typeof value === 'object' && value !== null) {
+        const nested = this.flattenThemeTokensForSCSS(value, currentKey);
+        Object.assign(result, nested);
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * Flatten theme tokens for CSS (preserves references as CSS var() calls)
+   */
+  flattenThemeTokensForCSS(
+    themeTokens: any,
+    parentKey: string = ''
+  ): FlattenedTokens {
+    const result: FlattenedTokens = {};
+
+    for (const [key, value] of Object.entries(themeTokens)) {
+      const sanitizedKey = this.sanitizeTokenKey(key);
+      const currentKey = parentKey ? `${parentKey}-${sanitizedKey}` : sanitizedKey;
+
+      if (this.isTokenValue(value)) {
+        const resolvedValue = this.resolveCSSReference(String(value.value), currentKey);
+        result[currentKey] = resolvedValue;
+        // Store what this key resolves to (for handling self-references in usage tokens)
+        this.themeTokens.set(currentKey, resolvedValue);
+      } else if (typeof value === 'object' && value !== null) {
+        const nested = this.flattenThemeTokensForCSS(value, currentKey);
         Object.assign(result, nested);
       }
     }
@@ -194,11 +342,12 @@ export class TokenProcessor {
   /**
    * Generate SCSS variables
    */
-  generateSCSSVariables(tokens: FlattenedTokens): string {
+  generateSCSSVariables(tokens: FlattenedTokens, preserveReferences: boolean = false): string {
     return Object.entries(tokens)
       .map(([key, value]) => {
         const scssVarName = `$${this.cssVarPrefix.replace(/^--/, '')}${key}`;
-        const finalValue = this.addUnitIfNeeded(value, key);
+        // Don't add units to SCSS variable references
+        const finalValue = value.startsWith('$') ? value : this.addUnitIfNeeded(value, key);
         return `${scssVarName}: ${finalValue};`;
       })
       .join('\n');
@@ -210,7 +359,8 @@ export class TokenProcessor {
   generateSCSSMap(tokens: FlattenedTokens, mapName: string): string {
     const entries = Object.entries(tokens)
       .map(([key, value]) => {
-        const finalValue = this.addUnitIfNeeded(value, key);
+        // Don't add units to SCSS variable references
+        const finalValue = value.startsWith('$') ? value : this.addUnitIfNeeded(value, key);
         return `  '${key}': ${finalValue}`;
       })
       .join(',\n');
