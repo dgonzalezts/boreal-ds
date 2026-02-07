@@ -6,7 +6,6 @@ package-lock.json
 .editorconfig
 node_modules/
 .stencil
-coverage/
 *.tgz
 src/components.d.ts
 
