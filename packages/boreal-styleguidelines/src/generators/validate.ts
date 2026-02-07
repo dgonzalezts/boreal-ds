@@ -13,10 +13,6 @@ interface ValidationError {
   value: string;
 }
 
-const CSS_VAR_PATTERN = /--[a-z0-9-]+/g;
-const SCSS_VAR_PATTERN = /\$[a-z0-9-]+/g;
-const INVALID_CHARS_PATTERN = /[^a-z0-9-]/;
-
 /** Validate CSS file for invalid variable names */
 async function validateCSSFile(filePath: string): Promise<ValidationError[]> {
   const errors: ValidationError[] = [];
