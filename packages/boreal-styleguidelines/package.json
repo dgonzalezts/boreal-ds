@@ -1,7 +1,7 @@
 {
   "name": "@boreal-ds/style-guidelines",
-  "version": "0.0.1",
-  "description": "Base guidelines for boreal",
+  "version": "0.0.2",
+  "description": "Base guidelines for boreal - Multi-brand design system (Proximus, Masiv, Telesign, BICS)",
   "keywords": [
     "boreal",
     "design",
@@ -24,7 +24,8 @@
   "main": "dist/css/boreal.css",
   "files": [
     "dist/css",
-    "dist/scss"
+    "dist/scss",
+    "dist/stencil"
   ],
   "exports": {
     ".": {
@@ -36,9 +37,11 @@
     "./css/theme-masiv": "./dist/css/theme-masiv.css",
     "./css/theme-telesign": "./dist/css/theme-telesign.css",
     "./css/theme-bics": "./dist/css/theme-bics.css",
+    "./scss": "./dist/scss/_index.scss",
     "./scss/variables": "./dist/scss/variables/_index.scss",
     "./scss/maps": "./dist/scss/maps/_index.scss",
-    "./scss": "./dist/scss/*"
+    "./scss/global": "./dist/scss/global/_index.scss",
+    "./stencil": "./dist/stencil/_index.scss"
   },
   "scripts": {
     "clean": "rimraf dist",

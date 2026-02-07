@@ -17,6 +17,7 @@ const CSS_VAR_PATTERN = /--[a-z0-9-]+/g;
 const SCSS_VAR_PATTERN = /\$[a-z0-9-]+/g;
 const INVALID_CHARS_PATTERN = /[^a-z0-9-]/;
 
+/** Validate CSS file for invalid variable names */
 async function validateCSSFile(filePath: string): Promise<ValidationError[]> {
   const errors: ValidationError[] = [];
   const content = await readFile(filePath, 'utf-8');
@@ -53,6 +54,7 @@ async function validateCSSFile(filePath: string): Promise<ValidationError[]> {
   return errors;
 }
 
+/** Validate SCSS file for invalid variable names */
 async function validateSCSSFile(filePath: string): Promise<ValidationError[]> {
   const errors: ValidationError[] = [];
   const content = await readFile(filePath, 'utf-8');
