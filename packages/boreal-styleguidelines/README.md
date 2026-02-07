@@ -80,16 +80,17 @@ document.documentElement.setAttribute("data-theme", "telesign");
 
 ## 🎯 Available Themes
 
-- `proximus` (default)
+- `proximus`
 - `masiv`
 - `telesign`
 - `bics`
 
 ## 🔧 Stencil Integration
 
-### Load Global Styles
+### Load Global Styles in project you use components, IMPORTANT: the stencil vars point to this.
+### Go to use in projects to see more options to include in projects
 
-In your `src/global/global.css` or `src/global/app.css`:
+In your `src/global/global.css` or `src/app.css`:
 
 ```css
 /* Load complete bundle with all themes and global styles (reset, etc.) */
@@ -142,7 +143,7 @@ export const config: Config = {
 }
 ```
 
-#### Option 2: SCSS Variables (Recommended for themes and reuse)
+#### Option 2: SCSS Variables (Recommended for only one themes and reuse)
 
 **my-component.scss:**
 
