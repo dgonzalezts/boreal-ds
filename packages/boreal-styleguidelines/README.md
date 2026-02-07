@@ -11,6 +11,15 @@ Multi-brand design token system for Proximus, Masiv, Telesign, and BICS projects
 - **Configurable Prefix**: Easily modify custom property prefix
 - **Automatic Validation**: Ensures all generated tokens are valid
 
+## ✨ What's New in 0.0.2
+
+- **Stencil Generator**: New SCSS variables that wrap CSS custom properties for Stencil integration
+- **Global Generator**: Automatically compiles global SCSS files (reset, grid, etc.)
+- **Fixed Variable References**: SCSS and CSS outputs now preserve variable references instead of resolving to values
+- **New Package Exports**: Added `./stencil`, `./scss`, and `./scss/global` entry points
+
+See [CHANGELOG.md](./CHANGELOG.md) for complete details.
+
 ## 📦 Installation
 
 ```bash
@@ -26,30 +35,36 @@ npm run build
 ```
 
 This command generates:
-- `dist/css/global.css` - Global variables (primitives)
-- `dist/css/boreal.css` - Complete bundle with all themes
+
+- `dist/css/global.css` - Global variables (primitives) + compiled global styles
+- `dist/css/boreal.css` - Complete bundle with all themes and global styles
 - `dist/css/theme-{themeName}.css` - Individual theme CSS
+- `dist/scss/_index.scss` - Main SCSS entry point
 - `dist/scss/variables/_index.scss` - SCSS variables
 - `dist/scss/maps/_index.scss` - SCSS maps
+- `dist/scss/global/_index.scss` - Global SCSS files (reset, etc.)
+- `dist/stencil/_index.scss` - Stencil integration (SCSS vars wrapping CSS vars)
 
 ### Use in HTML
 
 ```html
 <!DOCTYPE html>
 <html data-theme="proximus">
-<head>
-  <!-- Option 1: Load complete bundle -->
-  <link rel="stylesheet" href="dist/css/boreal.css">
+  <head>
+    <!-- Option 1: Load complete bundle -->
+    <link rel="stylesheet" href="dist/css/boreal.css" />
 
-  <!-- Option 2: Load global + specific theme -->
-  <link rel="stylesheet" href="dist/css/global.css">
-  <link rel="stylesheet" href="dist/css/theme-proximus.css">
-</head>
-<body>
-  <div style="background: var(--boreal-primary-base); color: var(--boreal-white);">
-    Hello Proximus!
-  </div>
-</body>
+    <!-- Option 2: Load global + specific theme -->
+    <link rel="stylesheet" href="dist/css/global.css" />
+    <link rel="stylesheet" href="dist/css/theme-proximus.css" />
+  </head>
+  <body>
+    <div
+      style="background: var(--boreal-primary-base); color: var(--boreal-white);"
+    >
+      Hello Proximus!
+    </div>
+  </body>
 </html>
 ```
 
@@ -57,10 +72,10 @@ This command generates:
 
 ```javascript
 // Switch to Masiv theme
-document.documentElement.setAttribute('data-theme', 'masiv');
+document.documentElement.setAttribute("data-theme", "masiv");
 
 // Switch to Telesign theme
-document.documentElement.setAttribute('data-theme', 'telesign');
+document.documentElement.setAttribute("data-theme", "telesign");
 ```
 
 ## 🎯 Available Themes
@@ -77,8 +92,8 @@ document.documentElement.setAttribute('data-theme', 'telesign');
 In your `src/global/global.css` or `src/global/app.css`:
 
 ```css
-/* Load complete bundle with all themes */
-@import '@boreal-ds/style-guidelines/dist/css/boreal.css';
+/* Load complete bundle with all themes and global styles (reset, etc.) */
+@import "@boreal-ds/style-guidelines/dist/css/boreal.css";
 ```
 
 ### Configure SASS in Stencil
@@ -92,24 +107,25 @@ npm install --save-dev @stencil/sass
 In `stencil.config.ts`:
 
 ```typescript
-import { Config } from '@stencil/core';
-import { sass } from '@stencil/sass';
+import { Config } from "@stencil/core";
+import { sass } from "@stencil/sass";
 
 export const config: Config = {
   plugins: [
     sass({
-      includePaths: ['node_modules']
-    })
+      includePaths: ["node_modules"],
+    }),
   ],
   // ... rest of config
 };
 ```
 
-### Use in Components
+### Use in Projects
 
 #### Option 1: CSS Variables
 
 **my-component.css:**
+
 ```css
 .btn-primary {
   background: var(--boreal-ui-primary);
@@ -129,11 +145,31 @@ export const config: Config = {
 #### Option 2: SCSS Variables (Recommended for themes and reuse)
 
 **my-component.scss:**
+
 ```scss
-@use '@boreal-ds/style-guidelines/dist/scss/variables' as boreal;
+// Option A: Use main SCSS entry point (includes variables, maps, and global)
+@use "@boreal-ds/style-guidelines/scss" as boreal;
+
+// Option B: Use only variables
+@use "@boreal-ds/style-guidelines/scss/variables" as boreal;
 
 .card {
   background: boreal.$boreal-ui-default;
+  border-radius: boreal.$boreal-radius-m;
+  padding: boreal.$boreal-spacing-m;
+}
+```
+
+#### Stencil Integration (CSS vars wrapped in SCSS) IMPORTANT: Dev Components
+
+**my-component.scss:**
+
+```scss
+@use "@boreal-ds/style-guidelines/stencil" as boreal;
+
+.card {
+  // SCSS variables that reference CSS custom properties
+  background: boreal.$boreal-ui-default; // Outputs: var(--boreal-ui-default)
   border-radius: boreal.$boreal-radius-m;
   padding: boreal.$boreal-spacing-m;
 }
@@ -146,13 +182,33 @@ export const config: Config = {
 Edit `src/config/constants.ts`:
 
 ```typescript
-export const CSS_VAR_PREFIX = '--boreal-'; // Change to '--br-', '--my-ds-', etc.
+export const CSS_VAR_PREFIX = "--boreal-"; // Change to '--br-', '--my-ds-', etc.
 ```
 
 Then regenerate:
 
 ```bash
 npm run build
+```
+
+### Package Exports
+
+The package provides several import paths for flexibility:
+
+```javascript
+// CSS imports
+import '@boreal-ds/style-guidelines'; // Main bundle (boreal.css)
+import '@boreal-ds/style-guidelines/css/global'; // Only global styles
+import '@boreal-ds/style-guidelines/css/theme-proximus'; // Specific theme
+
+// SCSS imports
+@use '@boreal-ds/style-guidelines/scss'; // Main SCSS entry (variables + maps + global)
+@use '@boreal-ds/style-guidelines/scss/variables'; // Only variables
+@use '@boreal-ds/style-guidelines/scss/maps'; // Only maps
+@use '@boreal-ds/style-guidelines/scss/global'; // Only global SCSS
+
+// Stencil integration
+@use '@boreal-ds/style-guidelines/stencil'; // SCSS vars wrapping CSS vars
 ```
 
 ## 📁 Project Structure
@@ -165,21 +221,27 @@ boreal-styleguidelines/
 │   │   └── types.ts         # TypeScript types
 │   ├── generators/          # CSS/SCSS generators
 │   │   ├── generate.ts      # Main generation script
-│   │   ├── style-generator.ts
-│   │   ├── token-processor.ts
+│   │   ├── css-generator.ts # CSS custom properties generation
+│   │   ├── scss-generator.ts # SCSS variables and maps generation
+│   │   ├── token-processor.ts # Shared token processing logic
+│   │   ├── global-generator.ts # Global SCSS compilation
 │   │   └── validate.ts      # Token validation
 │   ├── styles/              # Base styles
 │   │   └── global/
-│   │       └── reset.css    # CSS Reset
+│   │       └── reset.scss   # CSS Reset
 │   └── tokens/              # Design tokens
 │       ├── primitives/      # Primitive tokens (colors, spacing, etc.)
 │       ├── theme/           # Brand/theme tokens
 │       └── usage/           # Usage tokens (semantic)
 ├── dist/                    # Generated files
 │   ├── css/                 # CSS custom properties
-│   └── scss/                # SCSS variables and maps
-│       ├── variables/
-│       └── maps/
+│   ├── scss/                # SCSS variables and maps
+│   │   ├── _index.scss      # Main SCSS entry point
+│   │   ├── variables/       # SCSS variables
+│   │   ├── maps/            # SCSS maps
+│   │   └── global/          # Global SCSS files
+│   └── stencil/             # Stencil integration
+│       └── _index.scss      # SCSS vars wrapping CSS vars
 ├── package.json
 ├── tsconfig.json
 ├── README.md
@@ -209,6 +271,7 @@ npm run validate
 Format: `--{prefix}{category}-{subcategory}-{variant}`
 
 Examples:
+
 - `--boreal-primary-base`
 - `--boreal-spacing-m`
 - `--boreal-neutral-700`
@@ -219,6 +282,7 @@ Examples:
 Format: `${prefix}{category}-{subcategory}-{variant}`
 
 Examples:
+
 - `$boreal-primary-base`
 - `$boreal-spacing-m`
 - `$boreal-neutral-700`
@@ -226,17 +290,20 @@ Examples:
 ### Token Naming Rules
 
 ✅ **Allowed:**
+
 - Lowercase letters: `a-z`
 - Numbers: `0-9`
 - Hyphens: `-`
 
 ❌ **Not Allowed:**
+
 - Spaces
 - Parentheses: `(` `)`
 - Uppercase letters
 - Special characters
 
 **The system automatically sanitizes invalid names:**
+
 - `"ui (components)"` → `"ui"`
 - `"bg (layout)"` → `"bg"`
 - `"base-alt-(text)"` → `"base-alt"`
@@ -244,10 +311,13 @@ Examples:
 ## 🎨 Semantic vs Primitive Tokens
 
 ### Primitives
+
 Base values that don't change between themes (e.g., `color.proximus.cobalt.cobalt-50`)
 
 ### Semantic (Usage)
+
 Tokens that reference primitives and change based on theme:
+
 - `primary-base` → `{color.proximus.cobalt.cobalt-40}` in Proximus theme
 - `text-default` → `{neutral-700}`
 - `bg-primary` → `{primary-base}`
@@ -260,11 +330,11 @@ Tokens that reference primitives and change based on theme:
 
 ```typescript
 export const THEMES = {
-  PROXIMUS: 'proximus',
-  MASIV: 'masiv',
-  TELESIGN: 'telesign',
-  BICS: 'bics',
-  NEW_THEME: 'new-theme', // ← Add here
+  PROXIMUS: "proximus",
+  MASIV: "masiv",
+  TELESIGN: "telesign",
+  BICS: "bics",
+  NEW_THEME: "new-theme", // ← Add here
 } as const;
 ```
 
@@ -273,6 +343,7 @@ export const THEMES = {
 ## 🧪 Token Validation
 
 The build process automatically validates all generated tokens to ensure:
+
 - ✅ Valid CSS variable names (no spaces or parentheses)
 - ✅ Valid SCSS variable names
 - ✅ Correct format (`--boreal-{name}` or `$boreal-{name}`)
@@ -299,6 +370,7 @@ Example output:
 ## 🎯 Available Token Categories
 
 ### Colors
+
 - **Primary, Accent**: Brand colors with variants (base, light, lighter, dark, darker)
 - **Semantic**: success, danger, warning, information
 - **Neutral**: 900, 800, 700, 600, 500, 400, 300, 200, 100, 50
@@ -306,15 +378,19 @@ Example output:
 - **Extended**: Additional color palette
 
 ### Spacing
+
 `4xs`, `3xs`, `2xs`, `1xs`, `xs`, `s`, `m`, `ml`, `l`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `7xl`
 
 ### Layout
+
 `xs`, `s`, `m`, `ml`, `l`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`
 
 ### Border Radius
+
 `none`, `xs2`, `xs`, `s`, `m`, `l`, `xl`, `full`
 
 ### Icons
+
 `s`, `m`, `l`, `xl`
 
 ## 🤝 Contributing
