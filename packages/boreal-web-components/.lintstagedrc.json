@@ -1,4 +1,4 @@
 {
   "src/**/*.{css,scss}": ["npm run format"],
-  "src/**/*.{js,jsx,ts,tsx}": ["npm run lint:fix", "npm run format", "npm run test"]
+  "src/**/*.{js,jsx,ts,tsx}": ["npm run lint:fix", "npm run format", "npm run test -- -- --findRelatedTests"]
 }
