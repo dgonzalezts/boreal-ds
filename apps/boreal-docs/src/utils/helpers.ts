@@ -132,3 +132,35 @@ export function createStoryCollection(
     });
   })}`;
 }
+
+/**
+ * Capitalizes the first letter of a string
+ * @param text - Text to capitalize
+ * @returns Capitalized text
+ */
+export function capitalize(text: string): string {
+  if (!text) return '';
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+export function getVariableValue(
+  name: string,
+  prefix?: string,
+  element: Element = document.body,
+  globalPrefix: string = 'boreal'
+): string {
+  try {
+    const themedElement = document.querySelector('[data-theme]') || element;
+
+    const prefixPart = prefix ? `-${prefix}` : '';
+
+    const fullName = name.startsWith('--') ? name : `--${globalPrefix}${prefixPart}-${name}`;
+
+    const value = getComputedStyle(themedElement).getPropertyValue(fullName).trim();
+
+    return value || 'Not set';
+  } catch (error) {
+    console.error('Error getting variable value:', error);
+    return 'Error';
+  }
+}
