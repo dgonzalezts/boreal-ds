@@ -81,7 +81,9 @@ async function main() {
 
         console.log(`  ✓ ${key} theme processed`);
       } catch (error) {
-        console.warn(`  ⚠ Could not load theme: ${themeName}`);
+        throw new Error(
+            `Failed to process theme "${themeName}" (${key}): ${error instanceof Error ? error.message : String(error)}`
+        );
       }
     }
 
