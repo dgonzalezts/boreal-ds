@@ -97,9 +97,6 @@ async function main() {
     const globalScssFiles = await globalGenerator.generateSCSSGlobalFiles();
     await globalGenerator.generateGlobalSCSSIndex(globalScssFiles);
 
-    // Generate main SCSS index
-    await globalGenerator.generateMainSCSSIndex();
-
     console.log('\n✅ Generation completed successfully!');
     console.log('\n📁 Output files:');
     console.log('  - dist/css/global.css');
@@ -107,10 +104,6 @@ async function main() {
     themeConfigs.forEach((t) => {
       console.log(`  - dist/css/theme-${t.name}.css`);
     });
-    console.log('  - dist/scss/_index.scss (main SCSS entry)');
-    console.log('  - dist/scss/variables/_index.scss');
-    console.log('  - dist/scss/maps/_index.scss');
-    console.log('  - dist/scss/global/_index.scss');
     console.log('  - dist/stencil/_index.scss');
   } catch (error) {
     console.error('❌ Generation failed:', error);

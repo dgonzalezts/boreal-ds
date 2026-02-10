@@ -88,19 +88,6 @@ export class GlobalGenerator {
     }
   }
 
-  /** Generate main SCSS index file that includes all modules */
-  async generateMainSCSSIndex(): Promise<void> {
-    const imports = [
-      "@forward 'variables';",
-      "@forward 'maps';",
-      "@forward 'global';",
-    ].join("\n");
-
-    const indexPath = join(this.outputDir, "scss", "_index.scss");
-    await writeFile(indexPath, imports, "utf-8");
-    console.log("✓ Generated scss/_index.scss");
-  }
-
   /** Generate global SCSS index file */
   async generateGlobalSCSSIndex(files: string[]): Promise<void> {
     if (files.length === 0) {
