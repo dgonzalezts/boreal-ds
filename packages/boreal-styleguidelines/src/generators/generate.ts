@@ -91,17 +91,6 @@ async function main() {
     await cssGenerator.generateCSSBundle(themeConfigs, globalStyles);
 
     console.log('\n📝 Generating SCSS index files...');
-    const scssVariableFiles = [
-      '_primitives.scss',
-      ...themeConfigs.map((t) => `_theme-${t.name}.scss`),
-    ];
-    const scssMapFiles = [
-      '_primitives.scss',
-      ...themeConfigs.map((t) => `_theme-${t.name}.scss`),
-    ];
-
-    await scssGenerator.generateSCSSIndex('variables', scssVariableFiles);
-    await scssGenerator.generateSCSSIndex('maps', scssMapFiles);
     await scssGenerator.generateStencilIndex();
 
     // Generate SCSS global files
