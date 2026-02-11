@@ -1,13 +1,14 @@
 import React from 'react';
 import { capitalize, getVariableValue } from '../../../utils';
+import type { ColorList, ColorSectionType } from '../types/Color.type';
 
-export const ColorSection = ({ name, description, values, prefix = '' }: any) => {
-  const [colorValues, setColorValues] = React.useState<any>({});
+export const ColorSection = ({ name, description, values, prefix = '' }: ColorSectionType ) => {
+  const [colorValues, setColorValues] = React.useState<ColorList>({});
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      const valueObj: any = {};
+      const valueObj: ColorList = {};
       values.forEach((colorName: string) => {
         valueObj[colorName] = getVariableValue(colorName, prefix);
       });
