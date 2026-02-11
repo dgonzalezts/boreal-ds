@@ -1,4 +1,4 @@
-/* Temporally getted from style-guidelines while a system will created to connect both projects s*/
+/* Temporarily obtained from style-guidelines while the system is being developed to connect both projects */
 import masiv from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/masiv.json';
 import bics from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/bics.json';
 import proximus from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/proximus.json';
