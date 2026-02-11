@@ -5,9 +5,9 @@
  * @telesign/colibri tokens object, replacing the need for hardcoded constants.
  */
 
-import themes from '../stories/foundations/colors/constants/themes';
 import primitives from '../../../../packages/boreal-styleguidelines/src/tokens/primitives/primitives.json';
 import UI from '../../../../packages/boreal-styleguidelines/src/tokens/usage/colors-themes.json';
+import themes from '../stories/foundations/colors/constants/themes';
 
 /**
  * Extracts all keys from a nested object, flattening the structure
@@ -99,7 +99,7 @@ export const ACCENT_COLORS = themeKeys
   .filter(createPrefixFilter('accent'))
   .filter(key => !isFontToken(key));
 
-export const BASE = themeKeys.filter(createPrefixFilter('base')).filter(key => !isFontToken(key));
+export const BASE = themeKeys.filter(createPrefixFilter('base')).filter(key => !isFontToken(key)).map((item) => item.replace(/\-\([a-zA-Z]+\)/g, ""));
 export const NEUTRAL = themeKeys.filter(createColorFilter(/^neutral-\d+$/, /^neutral$/));
 export const BLACK_WHITE = themeKeys.filter(createColorFilter(/^black$/, /^white$/));
 export const SUCCESS = themeKeys
