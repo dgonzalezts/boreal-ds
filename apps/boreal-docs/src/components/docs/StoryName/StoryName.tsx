@@ -1,4 +1,3 @@
-import React from 'react';
 import { useOf } from '@storybook/addon-docs/blocks';
 
 interface StoryNameProps {
