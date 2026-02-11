@@ -91,25 +91,11 @@ async function main() {
     await cssGenerator.generateCSSBundle(themeConfigs, globalStyles);
 
     console.log('\n📝 Generating SCSS index files...');
-    const scssVariableFiles = [
-      '_primitives.scss',
-      ...themeConfigs.map((t) => `_theme-${t.name}.scss`),
-    ];
-    const scssMapFiles = [
-      '_primitives.scss',
-      ...themeConfigs.map((t) => `_theme-${t.name}.scss`),
-    ];
-
-    await scssGenerator.generateSCSSIndex('variables', scssVariableFiles);
-    await scssGenerator.generateSCSSIndex('maps', scssMapFiles);
     await scssGenerator.generateStencilIndex();
 
     // Generate SCSS global files
     const globalScssFiles = await globalGenerator.generateSCSSGlobalFiles();
     await globalGenerator.generateGlobalSCSSIndex(globalScssFiles);
-
-    // Generate main SCSS index
-    await globalGenerator.generateMainSCSSIndex();
 
     console.log('\n✅ Generation completed successfully!');
     console.log('\n📁 Output files:');
@@ -118,10 +104,6 @@ async function main() {
     themeConfigs.forEach((t) => {
       console.log(`  - dist/css/theme-${t.name}.css`);
     });
-    console.log('  - dist/scss/_index.scss (main SCSS entry)');
-    console.log('  - dist/scss/variables/_index.scss');
-    console.log('  - dist/scss/maps/_index.scss');
-    console.log('  - dist/scss/global/_index.scss');
     console.log('  - dist/stencil/_index.scss');
   } catch (error) {
     console.error('❌ Generation failed:', error);
