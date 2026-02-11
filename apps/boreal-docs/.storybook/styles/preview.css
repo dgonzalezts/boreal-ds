@@ -110,6 +110,7 @@ div.color-item {
   display: block;
   margin-bottom: 0.5rem;
   font-size: var(--boreal-typography-font-size-l);
+  font-family: var(--boreal-typography-font-family-primary);
 }
 
 .color-item__description {

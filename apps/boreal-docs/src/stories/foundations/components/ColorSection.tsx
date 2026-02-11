@@ -25,7 +25,7 @@ export const ColorSection = ({ name, description, values, prefix = '' }: ColorSe
 
   return (
     <div className="color-item">
-      <div className="color-item__title">{capitalize(name)}</div>
+      <h5 className="color-item__title">{capitalize(name)}</h5>
       {description && <div className="color-item__description">{description}</div>}
       <div className="color-item__container">
         {values.map((colorName: string) => {
