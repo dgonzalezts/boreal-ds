@@ -1,4 +1,3 @@
-// ? How to separate progress states from user action states
 export const STATES = {
   DEFAULT: 'default',
   ERROR: 'error',

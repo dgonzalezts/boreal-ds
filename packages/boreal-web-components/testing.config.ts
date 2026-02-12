@@ -1,6 +1,7 @@
 import type { TestingConfig } from '@stencil/core/internal';
 
 export const testingConfig: TestingConfig = {
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', 'src/.*/types/.*'],
   moduleNameMapper: {
     '@utils/test': ['<rootDir>/src/utils/__test__'],
   },

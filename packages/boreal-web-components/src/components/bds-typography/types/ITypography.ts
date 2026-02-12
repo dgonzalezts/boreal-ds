@@ -1,4 +1,4 @@
-import type { TagElement, State, Variant, Alignment } from './types';
+import type { TagElement, State, Variant, Alignment, Size } from './types';
 
 export interface ITypography {
   element: TagElement;
@@ -6,10 +6,11 @@ export interface ITypography {
   align: Alignment;
   ellipsis: boolean;
   maxLines: number;
+  tooltip: string;
 
   // Depending on variant
   state: State;
-  size: string;
+  size: Size;
 
   // Label
   isRequired: boolean;

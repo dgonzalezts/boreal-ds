@@ -10,6 +10,7 @@ export const config: Config = {
   minifyCss: true,
   sourceMap: false,
   buildEs5: 'prod',
+  globalStyle: 'src/globals/main.scss',
   extras: {
     experimentalSlotFixes: true,
     experimentalScopedSlotChanges: true,

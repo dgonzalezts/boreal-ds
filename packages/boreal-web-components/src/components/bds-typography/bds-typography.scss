@@ -5,6 +5,17 @@
   font-family: $boreal-typography-font-family-primary;
   font-weight: $boreal-typography-font-weight-regular;
 
+  &__required-indicator {
+    color: $boreal-text-danger;
+    font-weight: $boreal-typography-font-weight-regular;
+    margin-left: $boreal-spacing-3xs;
+  }
+
+  &__info-icon {
+    color: $boreal-icon-default-light;
+    margin-left: $boreal-spacing-3xs;
+  }
+
   &--display,
   &--heading,
   &--subheading {
@@ -49,35 +60,12 @@
     &:active {
       color: $boreal-text-primary-dark;
     }
-  }
 
-  &--label {
-    font-size: $boreal-typography-font-size-xs;
-    font-weight: $boreal-typography-font-weight-semibold;
-    line-height: $boreal-typography-line-height-m;
-    color: $boreal-text-default-darker;
-  }
-
-  &--required {
-    &.bds-typography--label::after {
-      content: '*';
-      color: $boreal-text-danger;
-      font-weight: 400;
-      font-family: $boreal-typography-font-family-primary;
-      margin-left: $boreal-spacing-3xs;
+    &.bds-typography--size-s {
+      font-size: $boreal-typography-font-size-xs;
     }
-  }
-
-  &--error {
-    color: $boreal-text-danger;
-  }
-
-  &--disabled {
-    color: $boreal-text-disabled;
-    pointer-events: none;
-    cursor: not-allowed;
-    &.bds-typography--required::after {
-      color: $boreal-text-danger-light;
+    &.bds-typography--size-m {
+      font-size: $boreal-typography-font-size-s;
     }
   }
 
@@ -95,6 +83,35 @@
     display: inline;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
+  }
+
+  &--label {
+    font-size: $boreal-typography-font-size-xs;
+    font-weight: $boreal-typography-font-weight-semibold;
+    line-height: $boreal-typography-line-height-m;
+    color: $boreal-text-default-darker;
+  }
+
+  &--display {
+    font-weight: $boreal-typography-font-weight-regular;
+    color: $boreal-text-default;
+
+    &.bds-typography--size-s {
+      font-size: $boreal-typography-font-size-2xl;
+      line-height: 36px;
+    }
+    &.bds-typography--size-m {
+      font-size: $boreal-typography-font-size-3xl;
+      line-height: 40px;
+    }
+    &.bds-typography--size-l {
+      font-size: $boreal-typography-font-size-5xl;
+      line-height: 50px;
+    }
+    &.bds-typography--size-xl {
+      font-size: $boreal-typography-font-size-7xl;
+      line-height: 64px;
+    }
   }
 
   &--heading {
@@ -128,5 +145,42 @@
     font-size: $boreal-typography-font-size-m;
     font-weight: $boreal-typography-font-weight-semibold;
     line-height: 1.375em;
+  }
+
+  &--subheading {
+    font-size: $boreal-typography-font-size-m;
+    font-weight: $boreal-typography-font-weight-semibold;
+    line-height: 1.375em;
+  }
+
+  &--error {
+    color: $boreal-text-danger;
+  }
+
+  &--disabled {
+    color: $boreal-text-disabled;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    .bds-typography__required-indicator {
+      color: $boreal-text-danger-light;
+    }
+  }
+
+  &--ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &--ellipsis-multiline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 100%;
   }
 }

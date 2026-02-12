@@ -1,7 +1,8 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { ITypography } from './types/ITypography';
-// TODO create style map type
-type StyleModifiers = Record<string, boolean>;
+import { StyleModifiers } from '@/types/stylesMap';
+
+import { VARIANT_CONFIG } from './bds-typography-utils';
 
 @Component({
   tag: 'bds-typography',
@@ -9,7 +10,7 @@ type StyleModifiers = Record<string, boolean>;
 })
 export class BdsTypography implements ITypography {
   @Prop({ reflect: true }) readonly variant: ITypography['variant'] = 'display';
-  @Prop({ reflect: true }) readonly size: ITypography['size'] = 'md';
+  @Prop({ reflect: true }) readonly size: ITypography['size'] = 'm';
   @Prop({ reflect: true }) readonly state: ITypography['state'] = 'default';
 
   @Prop() readonly customClass: string;
@@ -18,6 +19,7 @@ export class BdsTypography implements ITypography {
   @Prop() readonly align: ITypography['align'] = 'start';
   @Prop() readonly ellipsis: ITypography['ellipsis'] = false;
   @Prop() readonly maxLines: ITypography['maxLines'] = 1;
+  @Prop() readonly tooltip: ITypography['tooltip'] = 'This is a tooltip';
 
   @Prop({ reflect: true }) readonly isRequired: ITypography['isRequired'] = null;
   @Prop() readonly htmlFor: ITypography['htmlFor'] = null;
@@ -27,10 +29,10 @@ export class BdsTypography implements ITypography {
   @Prop() readonly isDownloadable: ITypography['isDownloadable'] = null;
   @Prop() readonly filename: ITypography['filename'] = 'download';
 
-  private getAttr(): Record<string, Record<string, unknown>> {
-    return {
+  private getAttributesByTag = (tagName: string): Record<string, unknown> => {
+    const ATTR_MAP: Record<string, Record<string, unknown>> = {
       a: {
-        href: (this.state !== 'disabled' && this.href) || null,
+        href: this.state !== 'disabled' ? this.href : null,
         target: this.target,
         download: this.isDownloadable ? this.filename : null,
         rel: 'noopener noreferrer',
@@ -39,47 +41,39 @@ export class BdsTypography implements ITypography {
         htmlFor: this.htmlFor,
       },
     };
+
+    return ATTR_MAP[tagName] || {};
+  };
+
+  private getVariantConfig() {
+    return VARIANT_CONFIG[this.variant] ?? {};
   }
 
-  private getStylesByVariant(): Record<string, Record<string, boolean>> {
-    return {
-      helper: {
-        [`bds-typography--error`]: this.state === 'error',
-      },
-      link: {
-        [`bds-typography--disabled`]: this.state === 'disabled',
-        [`bds-typography--visited`]: this.state === 'visited',
-        [`bds-typography--hover`]: this.state === 'hover',
-        [`bds-typography--active`]: this.state === 'active',
-        [`bds-typography--focus`]: this.state === 'focus',
-      },
-      label: {
-        [`bds-typography--required`]: this.isRequired,
-        [`bds-typography--disabled`]: this.state === 'disabled',
-      },
-    };
-  }
-
-  private getGeneralStyles(): StyleModifiers {
+  private getVariantStateStyles(): StyleModifiers {
+    const config = this.getVariantConfig();
     return {
       [`bds-typography--${this.variant}`]: true,
-      [`text__size-${this.size}`]: true,
+      [`bds-typography--${this.state}`]: config?.states && config?.states.includes(this.state),
+      [`bds-typography--size-${this.size}`]: config?.size && config?.size.includes(this.size),
+      [`bds-typography--required`]: config?.isRequired && this.isRequired,
+      [`bds-typography--ellipsis`]: this.ellipsis && this.maxLines <= 1,
+      [`bds-typography--ellipsis-multiline`]: this.maxLines > 1,
     };
   }
 
   render() {
     const TagName = this.element.toLowerCase();
-    const attr: { [key: string]: unknown } = this.getAttr()[TagName] || {};
+    const attr = this.getAttributesByTag(TagName);
+    const classes = { ...this.getVariantStateStyles() };
 
-    const variants: StyleModifiers = this.getStylesByVariant()[this.variant];
-    const variantStyles: StyleModifiers = variants;
-    const classes = { ...this.getGeneralStyles(), ...variantStyles };
+    const { canUseTooltip = null, isRequired = null } = VARIANT_CONFIG[this.variant] ?? {};
 
     return (
       <Host class="bds-typography">
-        <TagName {...attr} class={classes}>
+        <TagName {...attr} class={classes} style={{ webkitLineClamp: this.maxLines }}>
           <slot></slot>
-          <span class="aq-icon-info-circle">i</span>
+          {this.isRequired && isRequired && <em class="bds-typography__required-indicator">*</em>}
+          {this.tooltip && canUseTooltip && <em class="bds-typography__info-icon bds-icon-info-circle"></em>}
         </TagName>
       </Host>
     );
