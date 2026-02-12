@@ -1,0 +1,132 @@
+@use '../../globals/tokens-replacement.scss' as *;
+
+.bds-typography {
+  box-sizing: border-box;
+  font-family: $boreal-typography-font-family-primary;
+  font-weight: $boreal-typography-font-weight-regular;
+
+  &--display,
+  &--heading,
+  &--subheading {
+    display: block;
+  }
+
+  &--caption,
+  &--helper,
+  &--label,
+  &--link {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  &--caption {
+    font-size: $boreal-typography-font-size-xs;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-m;
+    color: $boreal-text-default-light;
+  }
+
+  &--helper {
+    font-size: $boreal-typography-font-size-xs;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-m;
+    color: $boreal-text-default-light;
+  }
+
+  &--link {
+    font-size: $boreal-typography-font-size-s;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-m;
+    color: $boreal-text-primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: $boreal-text-primary;
+    }
+    &:active {
+      color: $boreal-text-primary-dark;
+    }
+  }
+
+  &--label {
+    font-size: $boreal-typography-font-size-xs;
+    font-weight: $boreal-typography-font-weight-semibold;
+    line-height: $boreal-typography-line-height-m;
+    color: $boreal-text-default-darker;
+  }
+
+  &--required {
+    &.bds-typography--label::after {
+      content: '*';
+      color: $boreal-text-danger;
+      font-weight: 400;
+      font-family: $boreal-typography-font-family-primary;
+      margin-left: $boreal-spacing-3xs;
+    }
+  }
+
+  &--error {
+    color: $boreal-text-danger;
+  }
+
+  &--disabled {
+    color: $boreal-text-disabled;
+    pointer-events: none;
+    cursor: not-allowed;
+    &.bds-typography--required::after {
+      color: $boreal-text-danger-light;
+    }
+  }
+
+  &--code {
+    font-family: $boreal-typography-font-family-secondary;
+    font-size: $boreal-typography-font-size-xs;
+    color: $boreal-text-default;
+    line-height: $boreal-typography-line-height-m;
+    overflow-wrap: break-word;
+
+    background-color: $boreal-ui-base-light;
+    padding: $boreal-spacing-3xs $boreal-spacing-xs;
+    border-radius: $boreal-radius-xs;
+
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  &--heading {
+    font-size: $boreal-typography-font-size-l;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: 1.75em;
+    color: $boreal-text-default;
+  }
+
+  h1.bds-typography--heading {
+    font-size: $boreal-typography-font-size-7xl;
+    line-height: 4em;
+  }
+  h2.bds-typography--heading {
+    font-size: $boreal-typography-font-size-5xl;
+    line-height: 3.125em;
+  }
+  h3.bds-typography--heading {
+    font-size: $boreal-typography-font-size-3xl;
+    line-height: 2.5em;
+  }
+  h4.bds-typography--heading {
+    font-size: $boreal-typography-font-size-2xl;
+    line-height: 2.25em;
+  }
+  h5.bds-typography--heading {
+    font-size: $boreal-typography-font-size-l;
+    line-height: 1.75em;
+  }
+  h6.bds-typography--heading {
+    font-size: $boreal-typography-font-size-m;
+    font-weight: $boreal-typography-font-weight-semibold;
+    line-height: 1.375em;
+  }
+}
