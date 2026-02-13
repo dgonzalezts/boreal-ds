@@ -19,7 +19,7 @@ export default {
       const isValid = when === "always" ? hasType : !hasType;
       const message = isValid
         ? ""
-        : 'Type is required. Use one of: feat, fix, test, docs, build, ci, refactor, revert, style, perf (e.g., "feat(react): EOA-9606 add button component")';
+        : 'Type is required. Use one of: feat, fix, test, chore, docs, build, ci, refactor, revert, style, perf (e.g., "feat(react): EOA-9606 add button component")';
 
       return [isValid, message];
     },

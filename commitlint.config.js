@@ -27,6 +27,7 @@ export default {
         "feat",
         "fix",
         "test",
+        "chore",
         "docs",
         "build",
         "ci",
