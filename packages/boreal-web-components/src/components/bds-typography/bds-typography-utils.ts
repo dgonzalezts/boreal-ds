@@ -1,4 +1,11 @@
+import { STATES } from '@/types/states';
 import { Size, State, Variant } from './types/types';
+import { SIZES } from '@/types/size';
+
+/*
+ * LINK consts
+ */
+export const FILENAME = 'download';
 
 type VariantSettings = {
   readonly states?: State[];
@@ -7,18 +14,21 @@ type VariantSettings = {
   readonly canUseTooltip?: boolean;
 };
 
+/*
+ * Variant config to apply size, state, etc, styles based on variant type
+ */
 export const VARIANT_CONFIG: Partial<Record<Variant, VariantSettings>> = {
   link: {
-    states: ['disabled', 'visited', 'hover', 'active', 'focus'],
-    size: ['s', 'm'],
+    states: [STATES.DISABLED, STATES.VISITED, STATES.HOVER, STATES.ACTIVE, STATES.FOCUS],
+    size: [SIZES.S, SIZES.M],
   },
   label: {
-    states: ['disabled'],
+    states: [STATES.DISABLED],
     isRequired: true,
     canUseTooltip: true,
   },
   heading: { canUseTooltip: true },
   subheading: { canUseTooltip: true },
-  helper: { states: ['error'] },
-  display: { size: ['xs', 's', 'm', 'l', 'xl'] },
+  helper: { states: [STATES.ERROR] },
+  display: { size: [SIZES.XS, SIZES.S, SIZES.M, SIZES.L, SIZES.XL] },
 } as const;

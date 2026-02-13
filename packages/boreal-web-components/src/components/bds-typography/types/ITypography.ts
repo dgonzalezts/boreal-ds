@@ -1,4 +1,7 @@
-import type { TagElement, State, Variant, Alignment, Size } from './types';
+import { Alignment } from '@/types/alignment';
+import type { TagElement, Variant } from './types';
+import { State } from '@/types/states';
+import { Size } from '@/types/size';
 
 export interface ITypography {
   element: TagElement;
@@ -8,7 +11,7 @@ export interface ITypography {
   maxLines: number;
   tooltip: string;
 
-  // Depending on variant
+  // Applies to some variants
   state: State;
   size: Size;
 
@@ -21,4 +24,6 @@ export interface ITypography {
   target: '_blank' | '_parent' | '_self' | '_top';
   isDownloadable: boolean;
   filename: string;
+
+  sanitizedHref: string;
 }

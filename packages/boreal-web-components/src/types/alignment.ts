@@ -4,3 +4,5 @@ export const ALIGNMENT = {
   END: 'end',
   INHERIT: 'inherit',
 } as const;
+
+export type Alignment = (typeof ALIGNMENT)[keyof typeof ALIGNMENT];

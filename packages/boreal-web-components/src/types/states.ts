@@ -8,6 +8,8 @@ export const STATES = {
   VISITED: 'visited',
 } as const;
 
+export type State = (typeof STATES)[keyof typeof STATES];
+
 export const STATUS_STATES = {
   NEUTRAL: 'neutral',
   PENDING: 'pending',
@@ -15,3 +17,5 @@ export const STATUS_STATES = {
   COMPLETE: 'complete',
   CANCEL: 'cancel',
 } as const;
+
+export type Status = (typeof STATUS_STATES)[keyof typeof STATUS_STATES];
