@@ -9,8 +9,9 @@
     },
     "test": {
       "dependsOn": ["build"],
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.spec.ts"],
       "outputs": ["coverage/**"],
-      "cache": false
+      "cache": true
     },
     "lint": {
       "outputs": [],
