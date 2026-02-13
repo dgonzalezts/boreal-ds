@@ -20,14 +20,22 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build --filter=!@boreal-ds/docs && changeset publish",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "cz"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
+    "@commitlint/cz-commitlint": "^20.4.1",
+    "commitizen": "^4.3.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "turbo": "^2.8.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }
