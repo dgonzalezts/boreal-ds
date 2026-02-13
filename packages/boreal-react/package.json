@@ -22,7 +22,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "test": "node ./__tests__/react-library.test.js",
-    "build": "npm run tsc",
+    "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
   },
   "files": [
@@ -39,7 +39,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@boreal-ds/web-components": "file:boreal-ds-web-components-0.0.1.tgz",
+    "@boreal-ds/web-components": "workspace:*",
     "@stencil/react-output-target": "^1.2.0"
   }
 }

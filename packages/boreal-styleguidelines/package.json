@@ -47,9 +47,9 @@
     "clean": "rimraf dist",
     "generate": "tsx src/generators/generate.ts",
     "validate": "tsx src/generators/validate.ts",
-    "build": "npm run clean && npm run generate && npm run validate",
-    "dev": "npm run build",
-    "prepublishOnly": "npm run build",
+    "build": "pnpm run clean && pnpm run generate && pnpm run validate",
+    "dev": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
@@ -66,5 +66,8 @@
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
     "vitest": "^4.0.18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

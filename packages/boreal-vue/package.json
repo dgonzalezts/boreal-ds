@@ -19,8 +19,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run tsc",
+    "test": "echo 'No tests configured'",
+    "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
   },
   "devDependencies": {
@@ -30,6 +30,9 @@
     "vue": "^3.5.25"
   },
   "dependencies": {
-    "@boreal-ds/web-components": "file:boreal-ds-web-components-0.0.1.tgz"
+    "@boreal-ds/web-components": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
