@@ -1,0 +1,1 @@
+pnpm turbo run test --filter=@boreal-ds/web-components
