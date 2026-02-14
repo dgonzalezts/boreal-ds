@@ -22,8 +22,18 @@ See [CHANGELOG.md](./CHANGELOG.md) for complete details.
 
 ## 📦 Installation
 
+This package is part of the Boreal DS monorepo. Install all dependencies from the **workspace root**:
+
 ```bash
-npm install
+# From monorepo root
+pnpm install
+```
+
+To add a new dependency to this package specifically:
+
+```bash
+# From monorepo root
+pnpm add -D <package> --filter @boreal-ds/style-guidelines
 ```
 
 ## 🔨 Usage
@@ -31,7 +41,7 @@ npm install
 ### Generate CSS and SCSS Files
 
 ```bash
-npm run build
+pnpm build
 ```
 
 This command generates:
@@ -99,10 +109,10 @@ In your `src/global/global.css` or `src/app.css`:
 
 ### Configure SASS in Stencil
 
-Install SASS:
+Install SASS (run from **monorepo root**):
 
 ```bash
-npm install --save-dev @stencil/sass
+pnpm add -D @stencil/sass --filter @boreal-ds/web-components
 ```
 
 In `stencil.config.ts`:
@@ -189,7 +199,7 @@ export const CSS_VAR_PREFIX = "--boreal-"; // Change to '--br-', '--my-ds-', etc
 Then regenerate:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ### Package Exports
@@ -253,16 +263,16 @@ boreal-styleguidelines/
 
 ```bash
 # Clean, generate and validate all styles
-npm run build
+pnpm build
 
 # Clean only
-npm run clean
+pnpm clean
 
 # Generate only
-npm run generate
+pnpm generate
 
 # Validate generated tokens
-npm run validate
+pnpm validate
 ```
 
 ## 📖 Naming Conventions
@@ -339,7 +349,7 @@ export const THEMES = {
 } as const;
 ```
 
-4. Rebuild: `npm run build`
+4. Rebuild: `pnpm build`
 
 ## 🧪 Token Validation
 
@@ -352,7 +362,7 @@ The build process automatically validates all generated tokens to ensure:
 Run validation manually:
 
 ```bash
-npm run validate
+pnpm validate
 ```
 
 Example output:
@@ -397,5 +407,5 @@ Example output:
 ## 🤝 Contributing
 
 1. Modify tokens in `src/tokens/` download from figma
-2. Run `npm run build`
+2. Run `pnpm build`
 3. Verify generated files in `dist/`

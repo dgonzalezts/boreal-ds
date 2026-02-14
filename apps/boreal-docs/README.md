@@ -47,10 +47,18 @@ This is the documentation application for Boreal Component Library, built with S
 
 ### Installation
 
+This app is part of the Boreal DS monorepo. Install all dependencies from the **workspace root**:
+
 ```bash
 # From monorepo root
-cd apps/boreal-docs
 pnpm install
+```
+
+To add a new dependency to this app specifically:
+
+```bash
+# From monorepo root
+pnpm add -D <package> --filter @boreal-ds/docs
 ```
 
 ### Development
