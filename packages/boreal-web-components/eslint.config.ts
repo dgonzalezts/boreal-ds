@@ -15,6 +15,7 @@ export default defineConfig(
     ignores: [
       'dist/',
       'www/',
+      'coverage/',
       'targets',
       'components-build/',
       'loader',
