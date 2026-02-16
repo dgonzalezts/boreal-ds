@@ -21,6 +21,7 @@
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "release": "release-it",
     "test": "node ./__tests__/react-library.test.js",
     "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"

@@ -1,0 +1,33 @@
+{
+  "git": {
+    "tagName": "@boreal-ds/react@${version}",
+    "tagAnnotation": "Release @boreal-ds/react v${version}",
+    "commitMessage": "chore(release): * release @boreal-ds/react v${version}",
+    "requireBranch": "release/current",
+    "requireCleanWorkingDir": true,
+    "push": true,
+    "pushRepo": "origin"
+  },
+  "npm": {
+    "publish": true,
+    "publishPath": "."
+  },
+  "github": {
+    "release": false
+  },
+  "hooks": {
+    "before:init": "turbo run build --filter=@boreal-ds/react...",
+    "after:release": "echo 'Released @boreal-ds/react@${version}'"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog",
+      "parserOpts": {
+        "headerPattern": "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s?(?:[A-Z0-9]+-\\d+\\s|\\*\\s)?(.*)$",
+        "headerCorrespondence": ["type", "scope", "subject"]
+      }
+    }
+  }
+}
