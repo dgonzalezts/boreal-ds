@@ -44,6 +44,7 @@
     "./stencil": "./dist/stencil/_index.scss"
   },
   "scripts": {
+    "release": "release-it",
     "clean": "rimraf dist",
     "generate": "tsx src/generators/generate.ts",
     "validate": "tsx src/generators/validate.ts",
