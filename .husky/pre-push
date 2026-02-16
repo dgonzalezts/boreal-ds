@@ -1,1 +1,1 @@
-pnpm turbo run test --filter=@boreal-ds/web-components
+pnpm turbo run test --filter=@telesign/boreal-web-components

@@ -1,8 +1,8 @@
 {
   "git": {
-    "tagName": "@boreal-ds/web-components@${version}",
-    "tagAnnotation": "Release @boreal-ds/web-components v${version}",
-    "commitMessage": "chore(release): * release @boreal-ds/web-components v${version}",
+    "tagName": "@telesign/boreal-web-components@${version}",
+    "tagAnnotation": "Release @telesign/boreal-web-components v${version}",
+    "commitMessage": "chore(release): * release @telesign/boreal-web-components v${version}",
     "requireBranch": "release/current",
     "requireCleanWorkingDir": true,
     "push": true,
@@ -10,14 +10,15 @@
   },
   "npm": {
     "publish": true,
-    "publishPath": "."
+    "publishPath": ".",
+    "tag": "alpha"
   },
   "github": {
     "release": false
   },
   "hooks": {
-    "before:init": "turbo run build --filter=@boreal-ds/web-components",
-    "after:release": "echo 'Released @boreal-ds/web-components@${version}'"
+    "before:init": "turbo run build --filter=@telesign/boreal-web-components",
+    "after:release": "echo 'Released @telesign/boreal-web-components@${version}'"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

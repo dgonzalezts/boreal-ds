@@ -10,20 +10,20 @@
  */
 export default {
   'packages/boreal-web-components/src/**/*.{ts,tsx}': [
-    () => 'pnpm --filter @boreal-ds/web-components run lint:fix',
-    () => 'pnpm --filter @boreal-ds/web-components run format',
+    () => 'pnpm --filter @telesign/boreal-web-components run lint:fix',
+    () => 'pnpm --filter @telesign/boreal-web-components run format',
   ],
 
   'packages/boreal-web-components/src/**/*.{css,scss}': [
-    () => 'pnpm --filter @boreal-ds/web-components run format',
+    () => 'pnpm --filter @telesign/boreal-web-components run format',
   ],
 
   'apps/boreal-docs/**/*.{ts,tsx}': [
-    () => 'pnpm --filter @boreal-ds/docs run lint:fix',
-    () => 'pnpm --filter @boreal-ds/docs run format',
+    () => 'pnpm --filter @telesign/boreal-docs run lint:fix',
+    () => 'pnpm --filter @telesign/boreal-docs run format',
   ],
 
   'apps/boreal-docs/**/*.{js,json,css,md,mdx}': [
-    () => 'pnpm --filter @boreal-ds/docs run format',
+    () => 'pnpm --filter @telesign/boreal-docs run format',
   ],
 };

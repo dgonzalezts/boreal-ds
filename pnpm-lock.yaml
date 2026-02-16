@@ -120,7 +120,7 @@ importers:
 
   examples/react-testapp:
     dependencies:
-      '@boreal-ds/react':
+      '@telesign/boreal-react':
         specifier: workspace:*
         version: link:../../packages/boreal-react
       react:
@@ -175,12 +175,12 @@ importers:
 
   packages/boreal-react:
     dependencies:
-      '@boreal-ds/web-components':
-        specifier: workspace:*
-        version: link:../boreal-web-components
       '@stencil/react-output-target':
         specifier: ^1.2.0
         version: 1.4.1(@stencil/core@4.42.1)(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@telesign/boreal-web-components':
+        specifier: workspace:*
+        version: link:../boreal-web-components
     devDependencies:
       '@types/react':
         specifier: ^19.2.7
@@ -233,7 +233,7 @@ importers:
 
   packages/boreal-vue:
     dependencies:
-      '@boreal-ds/web-components':
+      '@telesign/boreal-web-components':
         specifier: workspace:*
         version: link:../boreal-web-components
     devDependencies:

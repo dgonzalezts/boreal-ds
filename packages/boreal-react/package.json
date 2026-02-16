@@ -1,5 +1,5 @@
 {
-  "name": "@boreal-ds/react",
+  "name": "@telesign/boreal-react",
   "version": "0.0.1",
   "description": "Wrapper for React BorealDS",
   "keywords": [
@@ -40,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@boreal-ds/web-components": "workspace:*",
+    "@telesign/boreal-web-components": "workspace:*",
     "@stencil/react-output-target": "^1.2.0"
   }
 }

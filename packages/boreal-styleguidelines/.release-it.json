@@ -1,8 +1,8 @@
 {
   "git": {
-    "tagName": "@boreal-ds/style-guidelines@${version}",
-    "tagAnnotation": "Release @boreal-ds/style-guidelines v${version}",
-    "commitMessage": "chore(release): * release @boreal-ds/style-guidelines v${version}",
+    "tagName": "@telesign/boreal-style-guidelines@${version}",
+    "tagAnnotation": "Release @telesign/boreal-style-guidelines v${version}",
+    "commitMessage": "chore(release): * release @telesign/boreal-style-guidelines v${version}",
     "requireBranch": "release/current",
     "requireCleanWorkingDir": true,
     "push": true,
@@ -10,14 +10,15 @@
   },
   "npm": {
     "publish": true,
-    "publishPath": "."
+    "publishPath": ".",
+    "tag": "alpha"
   },
   "github": {
     "release": false
   },
   "hooks": {
-    "before:init": "turbo run build --filter=@boreal-ds/style-guidelines",
-    "after:release": "echo 'Released @boreal-ds/style-guidelines@${version}'"
+    "before:init": "turbo run build --filter=@telesign/boreal-style-guidelines",
+    "after:release": "echo 'Released @telesign/boreal-style-guidelines@${version}'"
   },
   "plugins": {
     "@release-it/conventional-changelog": {

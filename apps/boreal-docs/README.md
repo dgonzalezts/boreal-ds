@@ -58,7 +58,7 @@ To add a new dependency to this app specifically:
 
 ```bash
 # From monorepo root
-pnpm add -D <package> --filter @boreal-ds/docs
+pnpm add -D <package> --filter @telesign/boreal-docs
 ```
 
 ### Development

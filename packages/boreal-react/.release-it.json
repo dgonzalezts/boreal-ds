@@ -1,8 +1,8 @@
 {
   "git": {
-    "tagName": "@boreal-ds/react@${version}",
-    "tagAnnotation": "Release @boreal-ds/react v${version}",
-    "commitMessage": "chore(release): * release @boreal-ds/react v${version}",
+    "tagName": "@telesign/boreal-react@${version}",
+    "tagAnnotation": "Release @telesign/boreal-react v${version}",
+    "commitMessage": "chore(release): * release @telesign/boreal-react v${version}",
     "requireBranch": "release/current",
     "requireCleanWorkingDir": true,
     "push": true,
@@ -10,14 +10,15 @@
   },
   "npm": {
     "publish": true,
-    "publishPath": "."
+    "publishPath": ".",
+    "tag": "alpha"
   },
   "github": {
     "release": false
   },
   "hooks": {
-    "before:init": "turbo run build --filter=@boreal-ds/react...",
-    "after:release": "echo 'Released @boreal-ds/react@${version}'"
+    "before:init": "turbo run build --filter=@telesign/boreal-react...",
+    "after:release": "echo 'Released @telesign/boreal-react@${version}'"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
