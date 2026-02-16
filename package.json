@@ -17,6 +17,11 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "dev": "turbo run dev",
+    "release:styles": "pnpm --filter @boreal-ds/style-guidelines run release",
+    "release:wc": "pnpm --filter @boreal-ds/web-components run release",
+    "release:react": "pnpm --filter @boreal-ds/react run release",
+    "release:vue": "pnpm --filter @boreal-ds/vue run release",
+    "release:all": "pnpm run release:styles && pnpm run release:wc && pnpm run release:react && pnpm run release:vue",
     "prepare": "husky",
     "commit": "cz"
   },
@@ -24,9 +29,11 @@
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@commitlint/cz-commitlint": "^20.4.1",
+    "@release-it/conventional-changelog": "^10.0.5",
     "commitizen": "^4.3.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "release-it": "^19.2.4",
     "turbo": "^2.8.7"
   },
   "config": {
@@ -35,6 +42,10 @@
     }
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@parcel/watcher", "esbuild", "puppeteer"]
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "puppeteer"
+    ]
   }
 }
