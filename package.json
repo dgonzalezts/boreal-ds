@@ -17,14 +17,10 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "dev": "turbo run dev",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo run build --filter=!@boreal-ds/docs && changeset publish",
     "prepare": "husky",
     "commit": "cz"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@commitlint/cz-commitlint": "^20.4.1",
