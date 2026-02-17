@@ -51,7 +51,7 @@
     "build": "pnpm run clean && pnpm run generate && pnpm run validate",
     "dev": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
   },

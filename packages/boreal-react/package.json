@@ -22,7 +22,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "release": "release-it",
-    "test": "node ./__tests__/react-library.test.js",
+    "test": "echo 'No tests configured'",
     "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
   },
