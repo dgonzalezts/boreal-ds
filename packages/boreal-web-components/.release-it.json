@@ -17,7 +17,7 @@
     "release": false
   },
   "hooks": {
-    "before:init": "turbo run build --filter=@telesign/boreal-web-components",
+    "before:init": "turbo run build --filter=@telesign/boreal-web-components && tsx scripts/check-cem-changes.ts",
     "after:release": "echo 'Released @telesign/boreal-web-components@${version}'"
   },
   "plugins": {
