@@ -1,7 +1,7 @@
-import { Alignment } from '@/types/alignment';
+import type { Alignment } from '@/types/alignment';
 import type { TagElement, Variant } from './types';
-import { State } from '@/types/states';
-import { Size } from '@/types/size';
+import type { State } from '@/types/states';
+import type { Size } from '@/types/size';
 
 export interface ITypography {
   element: TagElement;
@@ -9,7 +9,7 @@ export interface ITypography {
   align: Alignment;
   ellipsis: boolean;
   maxLines: number;
-  tooltip: string;
+  tooltipText: string;
 
   // Applies to some variants
   state: State;

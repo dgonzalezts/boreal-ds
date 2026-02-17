@@ -1,7 +1,7 @@
 import { type State, STATES } from '@/types/states';
 import { type Size, SIZES } from '@/types/size';
-import type { Variant } from './types/types';
-import { ITypography } from './types/ITypography';
+import type { Variant } from '../types/types';
+import type { ITypography } from '../types/ITypography';
 
 /*
  * LINK consts
@@ -24,7 +24,7 @@ type VariantSettings = {
  */
 export const VARIANT_CONFIG: Partial<Record<Variant, VariantSettings>> = {
   link: {
-    states: [STATES.DISABLED, STATES.VISITED, STATES.HOVER, STATES.ACTIVE, STATES.FOCUS],
+    states: [STATES.DISABLED /* STATES.VISITED, STATES.HOVER, STATES.ACTIVE, STATES.FOCUS */],
     size: [SIZES.S, SIZES.M],
   },
   label: {
@@ -48,7 +48,7 @@ export const getAttributesByTag = (comp: ITypography, tagName: string): Record<s
       href: comp.state !== STATES.DISABLED ? comp.sanitizedHref : null,
       target: comp.target,
       download: comp.isDownloadable ? comp.filename : null,
-      rel: 'noopener noreferrer',
+      rel: comp.target === '_blank' ? 'noopener noreferrer' : '',
     },
     label: {
       htmlFor: comp.htmlFor,

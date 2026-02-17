@@ -2,11 +2,10 @@ import { Component, Host, Prop, State, Element, h } from '@stencil/core';
 import type { ITypography } from './types/ITypography';
 import type { StyleModifiers } from '@/types/stylesMap';
 
-import { FILENAME, VARIANT_CONFIG, getAttributesByTag } from './bds-typography-utils';
+import { FILENAME, VARIANT_CONFIG, getAttributesByTag } from './utils/bds-typography-utils';
 import { TAG_ELEMENT, VARIANT_TYPOGRAPHY } from './types/enum';
-import { SIZES } from '@/types/size';
-import { STATES } from '@/types/states';
 import { ALIGNMENT } from '@/types/alignment';
+import { SIZES } from '@/types/size';
 
 @Component({
   tag: 'bds-typography',
@@ -17,7 +16,7 @@ export class BdsTypography implements ITypography {
 
   @Prop({ reflect: true }) readonly variant: ITypography['variant'] = VARIANT_TYPOGRAPHY.DISPLAY;
   @Prop({ reflect: true }) readonly size: ITypography['size'] = SIZES.M;
-  @Prop({ reflect: true }) readonly state: ITypography['state'] = STATES.DEFAULT;
+  @Prop({ reflect: true }) readonly state: ITypography['state'];
 
   // ? To apply utility classes or create an inherit attributes
   @Prop() readonly customClass: string;
@@ -26,9 +25,9 @@ export class BdsTypography implements ITypography {
   @Prop() readonly align: ITypography['align'] = ALIGNMENT.START;
   @Prop() readonly ellipsis: ITypography['ellipsis'] = false;
   @Prop() readonly maxLines: ITypography['maxLines'] = 1;
-  @Prop() readonly tooltip: ITypography['tooltip'] = 'This is a tooltip';
-
+  @Prop() readonly tooltipText: ITypography['tooltipText'] = '';
   @Prop({ reflect: true }) readonly isRequired: ITypography['isRequired'] = false;
+
   @Prop() readonly htmlFor: ITypography['htmlFor'] = undefined;
 
   @Prop() readonly href: ITypography['href'] = null;
@@ -83,7 +82,7 @@ export class BdsTypography implements ITypography {
         <TagName class={classes} style={{ webkitLineClamp: this.maxLines }} {...attributes}>
           <slot></slot>
           {this.isRequired && isRequired && <em class="bds-typography__required-indicator">*</em>}
-          {this.tooltip && canUseTooltip && <em class="bds-typography__info-icon bds-icon-info-circle"></em>}
+          {this.tooltipText && canUseTooltip && <em class="bds-typography__info-icon bds-icon-info-circle"></em>}
         </TagName>
       </Host>
     );
