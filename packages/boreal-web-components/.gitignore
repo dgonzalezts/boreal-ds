@@ -2,6 +2,7 @@ dist/
 www/
 loader/
 components-build/
+custom-elements.json
 package-lock.json
 .editorconfig
 node_modules/
