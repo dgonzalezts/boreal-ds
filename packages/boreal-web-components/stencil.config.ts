@@ -31,6 +31,10 @@ export const config: Config = {
       dir: './components-build',
       generateTypeDeclarations: true,
     },
+    {
+      type: 'docs-custom-elements-manifest',
+      file: 'custom-elements.json',
+    },
     reactOutputTarget(),
     vueOutputTarget(),
   ],
