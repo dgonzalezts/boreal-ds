@@ -45,10 +45,10 @@ To add a dependency to a specific package, use `--filter` from the root — neve
 
 ```bash
 # Add a dev dependency to a specific package
-pnpm add -D <package> --filter @boreal-ds/web-components
+pnpm add -D <package> --filter @telesign/boreal-web-components
 
 # Add a runtime dependency
-pnpm add <package> --filter @boreal-ds/react
+pnpm add <package> --filter @telesign/boreal-react
 
 # Add a root-level dev dependency (tooling, hooks, etc.)
 pnpm add -D -w <package>
@@ -61,15 +61,14 @@ pnpm add -D -w <package>
 ```
 boreal-ds/
 ├── packages/
-│   ├── boreal-web-components/    # @boreal-ds/web-components — Stencil web components
-│   ├── boreal-react/             # @boreal-ds/react — React wrappers
-│   ├── boreal-vue/               # @boreal-ds/vue — Vue wrappers
-│   └── boreal-styleguidelines/   # @boreal-ds/style-guidelines — Design tokens (CSS/SCSS)
+│   ├── boreal-web-components/    # @telesign/boreal-web-components — Stencil web components
+│   ├── boreal-react/             # @telesign/boreal-react — React wrappers
+│   ├── boreal-vue/               # @telesign/boreal-vue — Vue wrappers
+│   └── boreal-styleguidelines/   # @telesign/boreal-style-guidelines — Design tokens (CSS/SCSS)
 ├── apps/
-│   └── boreal-docs/              # @boreal-ds/docs — Storybook documentation (not published)
+│   └── boreal-docs/              # @telesign/boreal-docs — Storybook documentation (not published)
 ├── examples/
 │   └── react-testapp/            # react-testapp — React integration sandbox (not published)
-├── .changeset/                   # Pending release notes
 ├── .husky/                       # Git hooks (pre-commit, commit-msg, pre-push)
 ├── commitlint.config.js          # Commit message rules
 ├── .lintstagedrc.js              # Lint-staged configuration
@@ -101,8 +100,8 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 To run a script for a single package only:
 
 ```bash
-pnpm --filter @boreal-ds/web-components build
-pnpm --filter @boreal-ds/docs dev
+pnpm --filter @telesign/boreal-web-components build
+pnpm --filter @telesign/boreal-docs dev
 ```
 
 ---
@@ -169,35 +168,28 @@ chore(deps): EOA-9999 bump stencil to v4.39
 
 ## Release Workflow
 
-Releases are managed with [Changesets](https://github.com/changesets/changesets). The `apps/boreal-docs` and `react-testapp` packages are excluded from versioning and publishing.
+Releases are managed with [release-it](https://github.com/release-it/release-it) and driven by conventional commit history. Each package has its own `.release-it.json` config and must be released from the `release/current` branch.
 
-### Step 1 — Describe your change
-
-Run this while working on a feature or fix. Creates a markdown file in `.changeset/` that describes what changed and the semver bump type.
+### Release a single package
 
 ```bash
-pnpm changeset
+pnpm release:styles   # @telesign/boreal-style-guidelines
+pnpm release:wc       # @telesign/boreal-web-components
+pnpm release:react    # @telesign/boreal-react
+pnpm release:vue      # @telesign/boreal-vue
 ```
 
-Commit the generated `.changeset/*.md` file with your PR.
-
-### Step 2 — Bump versions and generate changelogs
-
-When ready to cut a release, consume all pending changesets:
+### Release all packages in dependency order
 
 ```bash
-pnpm version-packages
+pnpm release:all
 ```
 
-This updates `package.json` versions and appends entries to each package's `CHANGELOG.md`. Review and commit the changes.
-
-### Step 3 — Build and publish
+### Dry run (preview without writing)
 
 ```bash
-pnpm release
+pnpm --filter @telesign/boreal-web-components run release -- --dry-run
 ```
-
-Builds all publishable packages (excluding `@boreal-ds/docs`) and publishes those whose version is newer than what is currently on the npm registry.
 
 ---
 
@@ -209,7 +201,7 @@ Builds all publishable packages (excluding `@boreal-ds/docs`) and publishes thos
 
 ```json
 {
-  "name": "@boreal-ds/my-package",
+  "name": "@telesign/boreal-my-package",
   "version": "0.0.1",
   "publishConfig": { "access": "public" }
 }

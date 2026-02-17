@@ -4,7 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "loader/**", "components-build/**", ".stencil/**"],
+      "outputs": ["dist/**", "loader/**", "components-build/**", ".stencil/**", "custom-elements.json"],
       "cache": true
     },
     "test": {

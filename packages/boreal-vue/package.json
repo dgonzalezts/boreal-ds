@@ -1,5 +1,5 @@
 {
-  "name": "@boreal-ds/vue",
+  "name": "@telesign/boreal-vue",
   "version": "0.0.1",
   "description": "Wrapper for VueJS BorealDS",
   "keywords": [
@@ -19,6 +19,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "release": "release-it",
     "test": "echo 'No tests configured'",
     "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
@@ -30,7 +31,7 @@
     "vue": "^3.5.25"
   },
   "dependencies": {
-    "@boreal-ds/web-components": "workspace:*"
+    "@telesign/boreal-web-components": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

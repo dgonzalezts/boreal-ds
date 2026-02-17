@@ -19,6 +19,7 @@ export default defineConfig(
       'targets',
       'components-build/',
       'loader',
+      'scripts/',
       'eslint.config.ts',
       'stencil.config.ts',
       'src/**/*.d.ts',

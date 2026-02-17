@@ -1,5 +1,5 @@
 {
-  "name": "@boreal-ds/react",
+  "name": "@telesign/boreal-react",
   "version": "0.0.1",
   "description": "Wrapper for React BorealDS",
   "keywords": [
@@ -21,7 +21,8 @@
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "test": "node ./__tests__/react-library.test.js",
+    "release": "release-it",
+    "test": "echo 'No tests configured'",
     "build": "pnpm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
   },
@@ -39,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@boreal-ds/web-components": "workspace:*",
+    "@telesign/boreal-web-components": "workspace:*",
     "@stencil/react-output-target": "^1.2.0"
   }
 }
