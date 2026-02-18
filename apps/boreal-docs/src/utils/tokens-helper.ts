@@ -15,14 +15,14 @@ import themes from '../stories/foundations/colors/constants/themes';
  * @param prefix - Optional prefix to add to keys
  * @returns Array of flattened keys
  */
-function extractKeys(obj: any, prefix: string = ''): string[] {
+function extractKeys(obj: Record<string, unknown>, prefix: string = ''): string[] {
   const keys: string[] = [];
 
   for (const [key, value] of Object.entries(obj)) {
     const fullKey = prefix ? `${prefix}-${key}` : key;
 
     if (value && typeof value === 'object' && !Array.isArray(value)) {
-      keys.push(...extractKeys(value, fullKey));
+      keys.push(...extractKeys(value as Record<string, unknown>, fullKey));
     } else {
       keys.push(fullKey);
     }
@@ -37,11 +37,14 @@ function extractKeys(obj: any, prefix: string = ''): string[] {
  * @param filter - Optional filter function
  * @returns Array of filtered keys
  */
-function extractCategoryKeys(category: any, filter?: (key: string) => boolean): string[] {
+function extractCategoryKeys(
+  category: Record<string, unknown>,
+  filter?: (key: string) => boolean
+): string[] {
   if (!category) return [];
 
   const keys = extractKeys(category);
-  const normalizedKeys = keys.map(key => key.replace(/(\-value)/g, ''));
+  const normalizedKeys = keys.map(key => key.replace(/(-value)/g, ''));
   return filter ? normalizedKeys.filter(filter) : normalizedKeys;
 }
 
@@ -99,7 +102,10 @@ export const ACCENT_COLORS = themeKeys
   .filter(createPrefixFilter('accent'))
   .filter(key => !isFontToken(key));
 
-export const BASE = themeKeys.filter(createPrefixFilter('base')).filter(key => !isFontToken(key)).map((item) => item.replace(/\-\([a-zA-Z]+\)/g, ""));
+export const BASE = themeKeys
+  .filter(createPrefixFilter('base'))
+  .filter(key => !isFontToken(key))
+  .map(item => item.replace(/-\([a-zA-Z]+\)/g, ''));
 export const NEUTRAL = themeKeys.filter(createColorFilter(/^neutral-\d+$/, /^neutral$/));
 export const BLACK_WHITE = themeKeys.filter(createColorFilter(/^black$/, /^white$/));
 export const SUCCESS = themeKeys
