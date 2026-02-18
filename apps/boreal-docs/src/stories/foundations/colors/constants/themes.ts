@@ -1,8 +1,7 @@
-/* Temporarily obtained from style-guidelines while the system is being developed to connect both projects */
-import masiv from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/masiv.json';
-import bics from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/bics.json';
-import proximus from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/proximus.json';
-import telesign from '../../../../../../../packages/boreal-styleguidelines/src/tokens/theme/telesign.json';
+import masiv from '@telesign/boreal-style-guidelines/tokens/theme/masiv';
+import bics from '@telesign/boreal-style-guidelines/tokens/theme/bics';
+import proximus from '@telesign/boreal-style-guidelines/tokens/theme/proximus';
+import telesign from '@telesign/boreal-style-guidelines/tokens/theme/telesign';
 
 export default {
   masiv,

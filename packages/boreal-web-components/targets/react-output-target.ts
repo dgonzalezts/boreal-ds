@@ -3,7 +3,7 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 export default (): OutputTargetCustom => {
   return reactOutputTarget({
-    stencilPackageName: '@boreal-ds/web-components',
+    stencilPackageName: '@telesign/boreal-web-components',
     customElementsDir: 'components',
     outDir: '../boreal-react/lib/components',
   });

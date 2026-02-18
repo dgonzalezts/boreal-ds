@@ -1,12 +1,12 @@
 /**
- * Token helper functions for extracting token names from the main library
+ * Token helper utilities for the Boreal design system.
  *
- * This file provides utility functions to extract token names from the
- * @telesign/colibri tokens object, replacing the need for hardcoded constants.
+ * Provides functions to extract and filter token names from style guideline imports,
+ * including primitives, UI color categories, and theme-specific colors.
  */
 
-import primitives from '../../../../packages/boreal-styleguidelines/src/tokens/primitives/primitives.json';
-import UI from '../../../../packages/boreal-styleguidelines/src/tokens/usage/colors-themes.json';
+import primitives from '@telesign/boreal-style-guidelines/tokens/primitives';
+import UI from '@telesign/boreal-style-guidelines/tokens/usage/colors-themes';
 import themes from '../stories/foundations/colors/constants/themes';
 
 /**
@@ -15,14 +15,14 @@ import themes from '../stories/foundations/colors/constants/themes';
  * @param prefix - Optional prefix to add to keys
  * @returns Array of flattened keys
  */
-function extractKeys(obj: any, prefix: string = ''): string[] {
+function extractKeys(obj: Record<string, unknown>, prefix: string = ''): string[] {
   const keys: string[] = [];
 
   for (const [key, value] of Object.entries(obj)) {
     const fullKey = prefix ? `${prefix}-${key}` : key;
 
     if (value && typeof value === 'object' && !Array.isArray(value)) {
-      keys.push(...extractKeys(value, fullKey));
+      keys.push(...extractKeys(value as Record<string, unknown>, fullKey));
     } else {
       keys.push(fullKey);
     }
@@ -37,11 +37,14 @@ function extractKeys(obj: any, prefix: string = ''): string[] {
  * @param filter - Optional filter function
  * @returns Array of filtered keys
  */
-function extractCategoryKeys(category: any, filter?: (key: string) => boolean): string[] {
+function extractCategoryKeys(
+  category: Record<string, unknown>,
+  filter?: (key: string) => boolean
+): string[] {
   if (!category) return [];
 
   const keys = extractKeys(category);
-  const normalizedKeys = keys.map(key => key.replace(/(\-value)/g, ''));
+  const normalizedKeys = keys.map(key => key.replace(/(-value)/g, ''));
   return filter ? normalizedKeys.filter(filter) : normalizedKeys;
 }
 
@@ -99,7 +102,10 @@ export const ACCENT_COLORS = themeKeys
   .filter(createPrefixFilter('accent'))
   .filter(key => !isFontToken(key));
 
-export const BASE = themeKeys.filter(createPrefixFilter('base')).filter(key => !isFontToken(key)).map((item) => item.replace(/\-\([a-zA-Z]+\)/g, ""));
+export const BASE = themeKeys
+  .filter(createPrefixFilter('base'))
+  .filter(key => !isFontToken(key))
+  .map(item => item.replace(/-\([a-zA-Z]+\)/g, ''));
 export const NEUTRAL = themeKeys.filter(createColorFilter(/^neutral-\d+$/, /^neutral$/));
 export const BLACK_WHITE = themeKeys.filter(createColorFilter(/^black$/, /^white$/));
 export const SUCCESS = themeKeys

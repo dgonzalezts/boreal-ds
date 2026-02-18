@@ -6,7 +6,16 @@ export const FormDemoStyles = css`
   h3,
   h4,
   h5 {
-    font-family: var(--boreal-typography-font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+    font-family: var(
+      --boreal-typography-font-family-primary,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     color: var(--boreal-colors-text-default, #424242);
     font-weight: 400;
   }

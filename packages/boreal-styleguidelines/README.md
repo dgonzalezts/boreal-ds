@@ -22,8 +22,18 @@ See [CHANGELOG.md](./CHANGELOG.md) for complete details.
 
 ## 📦 Installation
 
+This package is part of the Boreal DS monorepo. Install all dependencies from the **workspace root**:
+
 ```bash
-npm install
+# From monorepo root
+pnpm install
+```
+
+To add a new dependency to this package specifically:
+
+```bash
+# From monorepo root
+pnpm add -D <package> --filter @telesign/boreal-style-guidelines
 ```
 
 ## 🔨 Usage
@@ -31,7 +41,7 @@ npm install
 ### Generate CSS and SCSS Files
 
 ```bash
-npm run build
+pnpm build
 ```
 
 This command generates:
@@ -94,15 +104,15 @@ In your `src/global/global.css` or `src/app.css`:
 
 ```css
 /* Load complete bundle with all themes and global styles (reset, etc.) */
-@import "@boreal-ds/style-guidelines/dist/css/boreal.css";
+@import "@telesign/boreal-style-guidelines/dist/css/boreal.css";
 ```
 
 ### Configure SASS in Stencil
 
-Install SASS:
+Install SASS (run from **monorepo root**):
 
 ```bash
-npm install --save-dev @stencil/sass
+pnpm add -D @stencil/sass --filter @telesign/boreal-web-components
 ```
 
 In `stencil.config.ts`:
@@ -149,10 +159,10 @@ export const config: Config = {
 
 ```scss
 // Option A: Use main SCSS entry point (includes variables, maps, and global)
-@use "@boreal-ds/style-guidelines/scss" as boreal;
+@use "@telesign/boreal-style-guidelines/scss" as boreal;
 
 // Option B: Use only variables
-@use "@boreal-ds/style-guidelines/scss/variables" as boreal;
+@use "@telesign/boreal-style-guidelines/scss/variables" as boreal;
 
 .card {
   background: boreal.$boreal-ui-default;
@@ -166,7 +176,7 @@ export const config: Config = {
 **my-component.scss:**
 
 ```scss
-@use "@boreal-ds/style-guidelines/stencil" as boreal;
+@use "@telesign/boreal-style-guidelines/stencil" as boreal;
 
 .card {
   // SCSS variables that reference CSS custom properties
@@ -189,7 +199,7 @@ export const CSS_VAR_PREFIX = "--boreal-"; // Change to '--br-', '--my-ds-', etc
 Then regenerate:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ### Package Exports
@@ -198,18 +208,18 @@ The package provides several import paths for flexibility:
 
 ```javascript
 // CSS imports
-import '@boreal-ds/style-guidelines'; // Main bundle (boreal.css)
-import '@boreal-ds/style-guidelines/css/global'; // Only global styles
-import '@boreal-ds/style-guidelines/css/theme-proximus'; // Specific theme
+import '@telesign/boreal-style-guidelines'; // Main bundle (boreal.css)
+import '@telesign/boreal-style-guidelines/css/global'; // Only global styles
+import '@telesign/boreal-style-guidelines/css/theme-proximus'; // Specific theme
 
 // SCSS imports
-@use '@boreal-ds/style-guidelines/scss'; // Main SCSS entry (variables + maps + global)
-@use '@boreal-ds/style-guidelines/scss/variables'; // Only variables
-@use '@boreal-ds/style-guidelines/scss/maps'; // Only maps
-@use '@boreal-ds/style-guidelines/scss/global'; // Only global SCSS
+@use '@telesign/boreal-style-guidelines/scss'; // Main SCSS entry (variables + maps + global)
+@use '@telesign/boreal-style-guidelines/scss/variables'; // Only variables
+@use '@telesign/boreal-style-guidelines/scss/maps'; // Only maps
+@use '@telesign/boreal-style-guidelines/scss/global'; // Only global SCSS
 
 // Stencil integration
-@use '@boreal-ds/style-guidelines/stencil'; // SCSS vars wrapping CSS vars
+@use '@telesign/boreal-style-guidelines/stencil'; // SCSS vars wrapping CSS vars
 ```
 
 ## 📁 Project Structure
@@ -253,16 +263,16 @@ boreal-styleguidelines/
 
 ```bash
 # Clean, generate and validate all styles
-npm run build
+pnpm build
 
 # Clean only
-npm run clean
+pnpm clean
 
 # Generate only
-npm run generate
+pnpm generate
 
 # Validate generated tokens
-npm run validate
+pnpm validate
 ```
 
 ## 📖 Naming Conventions
@@ -339,7 +349,7 @@ export const THEMES = {
 } as const;
 ```
 
-4. Rebuild: `npm run build`
+4. Rebuild: `pnpm build`
 
 ## 🧪 Token Validation
 
@@ -352,7 +362,7 @@ The build process automatically validates all generated tokens to ensure:
 Run validation manually:
 
 ```bash
-npm run validate
+pnpm validate
 ```
 
 Example output:
@@ -397,5 +407,5 @@ Example output:
 ## 🤝 Contributing
 
 1. Modify tokens in `src/tokens/` download from figma
-2. Run `npm run build`
+2. Run `pnpm build`
 3. Verify generated files in `dist/`

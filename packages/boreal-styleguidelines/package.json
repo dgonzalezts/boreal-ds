@@ -1,5 +1,5 @@
 {
-  "name": "@boreal-ds/style-guidelines",
+  "name": "@telesign/boreal-style-guidelines",
   "version": "0.0.2",
   "description": "Base guidelines for  boreal - Multi-brand design system (Proximus, Masiv, Telesign, BICS)",
   "keywords": [
@@ -25,7 +25,8 @@
   "files": [
     "dist/css",
     "dist/scss",
-    "dist/stencil"
+    "dist/stencil",
+    "src/tokens"
   ],
   "exports": {
     ".": {
@@ -41,16 +42,23 @@
     "./scss/variables": "./dist/scss/variables/_index.scss",
     "./scss/maps": "./dist/scss/maps/_index.scss",
     "./scss/global": "./dist/scss/global/_index.scss",
-    "./stencil": "./dist/stencil/_index.scss"
+    "./stencil": "./dist/stencil/_index.scss",
+    "./tokens/theme/masiv": "./src/tokens/theme/masiv.json",
+    "./tokens/theme/bics": "./src/tokens/theme/bics.json",
+    "./tokens/theme/proximus": "./src/tokens/theme/proximus.json",
+    "./tokens/theme/telesign": "./src/tokens/theme/telesign.json",
+    "./tokens/primitives": "./src/tokens/primitives/primitives.json",
+    "./tokens/usage/colors-themes": "./src/tokens/usage/colors-themes.json"
   },
   "scripts": {
+    "release": "release-it",
     "clean": "rimraf dist",
     "generate": "tsx src/generators/generate.ts",
     "validate": "tsx src/generators/validate.ts",
-    "build": "npm run clean && npm run generate && npm run validate",
-    "dev": "npm run build",
-    "prepublishOnly": "npm run build",
-    "test": "vitest run",
+    "build": "pnpm run clean && pnpm run generate && pnpm run validate",
+    "dev": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "test": "vitest run --passWithNoTests",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
   },
@@ -66,5 +74,8 @@
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
     "vitest": "^4.0.18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

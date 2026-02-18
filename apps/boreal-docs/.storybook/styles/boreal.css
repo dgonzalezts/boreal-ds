@@ -404,7 +404,7 @@ h6 {
   overflow-wrap: break-word;
 }
 
-[data-theme="proximus"] {
+[data-theme='proximus'] {
   --boreal-accent-dark: var(--boreal-color-proximus-mint-mint-70);
   --boreal-black: var(--boreal-color-proximus-onyx-onyx-90);
   --boreal-accent-light: var(--boreal-color-proximus-mint-mint-20);
@@ -614,7 +614,7 @@ h6 {
   --boreal-stroke-danger-dark: var(--boreal-danger-dark);
 }
 
-[data-theme="masiv"] {
+[data-theme='masiv'] {
   --boreal-accent-dark: var(--boreal-color-masiv-rose-rose-70);
   --boreal-black: var(--boreal-color-masiv-ink-ink-90);
   --boreal-accent-light: var(--boreal-color-masiv-rose-rose-20);
@@ -824,7 +824,7 @@ h6 {
   --boreal-stroke-danger-dark: var(--boreal-danger-dark);
 }
 
-[data-theme="telesign"] {
+[data-theme='telesign'] {
   --boreal-accent-dark: var(--boreal-color-telesign-cobalt-cobalt-700);
   --boreal-black: var(--boreal-color-telesign-onyx-onyx-900);
   --boreal-accent-light: var(--boreal-color-telesign-cobalt-cobalt-50);
@@ -1034,7 +1034,7 @@ h6 {
   --boreal-stroke-danger-dark: var(--boreal-danger-dark);
 }
 
-[data-theme="bics"] {
+[data-theme='bics'] {
   --boreal-accent-dark: var(--boreal-color-bics-byzantine-byzantine-2);
   --boreal-black: var(--boreal-color-bics-black-black-1);
   --boreal-accent-light: var(--boreal-color-bics-byzantine-byzantine-5);
