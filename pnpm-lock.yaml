@@ -257,6 +257,10 @@ importers:
         version: 3.5.28(typescript@5.9.3)
 
   packages/boreal-web-components:
+    dependencies:
+      '@telesign/boreal-style-guidelines':
+        specifier: workspace:*
+        version: link:../boreal-styleguidelines
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.2
