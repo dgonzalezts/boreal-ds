@@ -49,6 +49,3 @@ describe('bds-typography link functionality', () => {
     expect(inner.getAttribute('download')).toEqual('custom_name.pdf');
   });
 });
-
-// TODO poner todo con variables
-// TODO probar Label
