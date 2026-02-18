@@ -1,12 +1,12 @@
 /**
- * Token helper functions for extracting token names from the main library
+ * Token helper utilities for the Boreal design system.
  *
- * This file provides utility functions to extract token names from the
- * @telesign/colibri tokens object, replacing the need for hardcoded constants.
+ * Provides functions to extract and filter token names from style guideline imports,
+ * including primitives, UI color categories, and theme-specific colors.
  */
 
-import primitives from '../../../../packages/boreal-styleguidelines/src/tokens/primitives/primitives.json';
-import UI from '../../../../packages/boreal-styleguidelines/src/tokens/usage/colors-themes.json';
+import primitives from '@telesign/boreal-style-guidelines/tokens/primitives';
+import UI from '@telesign/boreal-style-guidelines/tokens/usage/colors-themes';
 import themes from '../stories/foundations/colors/constants/themes';
 
 /**

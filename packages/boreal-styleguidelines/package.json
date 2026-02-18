@@ -25,7 +25,8 @@
   "files": [
     "dist/css",
     "dist/scss",
-    "dist/stencil"
+    "dist/stencil",
+    "src/tokens"
   ],
   "exports": {
     ".": {
@@ -41,7 +42,13 @@
     "./scss/variables": "./dist/scss/variables/_index.scss",
     "./scss/maps": "./dist/scss/maps/_index.scss",
     "./scss/global": "./dist/scss/global/_index.scss",
-    "./stencil": "./dist/stencil/_index.scss"
+    "./stencil": "./dist/stencil/_index.scss",
+    "./tokens/theme/masiv": "./src/tokens/theme/masiv.json",
+    "./tokens/theme/bics": "./src/tokens/theme/bics.json",
+    "./tokens/theme/proximus": "./src/tokens/theme/proximus.json",
+    "./tokens/theme/telesign": "./src/tokens/theme/telesign.json",
+    "./tokens/primitives": "./src/tokens/primitives/primitives.json",
+    "./tokens/usage/colors-themes": "./src/tokens/usage/colors-themes.json"
   },
   "scripts": {
     "release": "release-it",

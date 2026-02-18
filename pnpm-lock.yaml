@@ -41,6 +41,9 @@ importers:
 
   apps/boreal-docs:
     dependencies:
+      '@telesign/boreal-style-guidelines':
+        specifier: workspace:*
+        version: link:../../packages/boreal-styleguidelines
       lit:
         specifier: ^3.3.1
         version: 3.3.2
