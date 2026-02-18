@@ -2,7 +2,7 @@ import React from 'react';
 import { capitalize, getVariableValue } from '../../../utils';
 import type { ColorList, ColorSectionType } from '../types/Color.type';
 
-export const ColorSection = ({ name, description, values, prefix = '' }: ColorSectionType ) => {
+export const ColorSection = ({ name, description, values, prefix = '' }: ColorSectionType) => {
   const [colorValues, setColorValues] = React.useState<ColorList>({});
   const [isLoaded, setIsLoaded] = React.useState(false);
 
