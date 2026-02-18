@@ -12,13 +12,38 @@ New Proximus Group Design System
 ### Node.js setup (fnm)
 
 ```bash
-# Install the version declared in .nvmrc
+# Install fnm (if not already installed)
+# macOS/Linux:
+brew install fnm
+# Or use: curl -fsSL https://fnm.vercel.app/install | bash
+
+# Set up automatic version switching (recommended)
+# Add the appropriate command to your shell profile:
+eval "$(fnm env --use-on-cd --shell zsh)"  # For zsh (default on macOS)
+
+# Install the Node.js version declared in .node-version
 fnm install
 
 # Verify
 node --version
-# → v22.x.x
+# → v22.21.1
 ```
+
+**Shell-specific configuration:**
+
+The `--use-on-cd` flag works across all operating systems (macOS, Linux, Windows), but requires shell-specific setup:
+
+| Shell      | Config File                      | Command                                                                     |
+| ---------- | -------------------------------- | --------------------------------------------------------------------------- |
+| Zsh        | `~/.zshrc`                       | `eval "$(fnm env --use-on-cd --shell zsh)"`                                 |
+| Bash       | `~/.bashrc`                      | `eval "$(fnm env --use-on-cd --shell bash)"`                                |
+| Fish       | `~/.config/fish/conf.d/fnm.fish` | `fnm env --use-on-cd --shell fish \| source`                                |
+| PowerShell | `$PROFILE`                       | `fnm env --use-on-cd --shell powershell \| Out-String \| Invoke-Expression` |
+
+**How it works:**
+
+- ✅ **Navigation**: Automatically switches Node.js versions when you `cd` into any monorepo folder with `.node-version`
+- ⚠️ **Opening terminal directly in the workspace/monorepo root**: Requires running `fnm use` once in that session
 
 ### pnpm setup
 
