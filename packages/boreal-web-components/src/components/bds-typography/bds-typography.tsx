@@ -10,6 +10,7 @@ import type { ITypography } from './types/ITypography';
 import { TAG_ELEMENT, VARIANT_TYPOGRAPHY } from './types/enum';
 import { FILENAME, getAttributesByTag, VARIANT_CONFIG } from './utils/bds-typography-utils';
 
+/** Typography component with variants, sizes, states, truncation and tooltip support. */
 @Component({
   tag: 'bds-typography',
   styleUrl: 'bds-typography.scss',
@@ -17,29 +18,55 @@ import { FILENAME, getAttributesByTag, VARIANT_CONFIG } from './utils/bds-typogr
 export class BdsTypography implements ITypography {
   private inheritedAttributes: Attributes = {};
 
+  /** Host element reference. */
   @Element() el!: HTMLBdsTypographyElement;
 
+  /** Typography visual variant. */
   @Prop({ reflect: true }) readonly variant: ITypography['variant'] = VARIANT_TYPOGRAPHY.DISPLAY;
+
+  /** Typography size token. */
   @Prop({ reflect: true }) readonly size: ITypography['size'] = SIZES.M;
+
+  /** Visual state (if supported by variant). */
   @Prop({ reflect: true }) readonly state: ITypography['state'];
 
+  /** Additional custom CSS class. */
   @Prop() readonly customClass: string;
 
+  /** HTML tag used for rendering. */
   @Prop() readonly element: ITypography['element'] = TAG_ELEMENT.P;
+
+  /** Text alignment. */
   @Prop() readonly align: ITypography['align'] = ALIGNMENT.START;
+
+  /** Enables text ellipsis. */
   @Prop() readonly ellipsis: ITypography['ellipsis'] = false;
+
+  /** Max lines when ellipsis is enabled. */
   @Prop() readonly maxLines: ITypography['maxLines'] = 1;
+
+  /** Tooltip text (variant must support it). */
   @Prop() readonly tooltipText: ITypography['tooltipText'] = '';
 
+  /** Marks the field as required. */
   @Prop({ reflect: true }) readonly isRequired: ITypography['isRequired'] = false;
 
+  /** For attribute when rendered as a label. */
   @Prop() readonly htmlFor: ITypography['htmlFor'] = undefined;
 
+  /** Link href when rendered as anchor. */
   @Prop() readonly href: ITypography['href'] = null;
+
+  /** Anchor target. */
   @Prop() readonly target: ITypography['target'] = null;
+
+  /** Enables download behavior for anchor. */
   @Prop() readonly isDownloadable: ITypography['isDownloadable'] = false;
+
+  /** Suggested download filename. */
   @Prop() readonly filename: ITypography['filename'] = FILENAME;
 
+  /** Sanitized href for security. */
   @State() sanitizedHref: string = '';
 
   @Watch('href')
