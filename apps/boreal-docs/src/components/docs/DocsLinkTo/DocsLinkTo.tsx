@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, type MouseEvent, type ReactNode } from 'react';
+import { useEffect, useState, useCallback, type MouseEvent, type ReactNode } from 'react';
 import { navigate } from '@storybook/addon-links';
 import { toId } from 'storybook/internal/csf';
 

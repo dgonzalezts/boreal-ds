@@ -3,7 +3,16 @@
   flex-direction: column;
   border-radius: var(--boreal-radius-size-s, 8px);
   margin: 1.5rem 0;
-  font-family: var(--boreal-typography-font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  font-family: var(
+    --boreal-typography-font-family-primary,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif
+  );
 }
 
 .title {

@@ -226,10 +226,10 @@ export const AllIcons: Story = {
     },
   ],
   render: (args: StoryArgs, context) => {
-    const icons = context.loaded.icons ?? [];
+    const icons: Icon[] = context.loaded.icons ?? [];
 
     const searchTerm = args.search?.toLowerCase() || '';
-    const filteredIcons = icons.filter(({ name }: any) => name.toLowerCase().includes(searchTerm));
+    const filteredIcons = icons.filter(({ name }) => name.toLowerCase().includes(searchTerm));
 
     return html`
       ${linkCss}
@@ -253,7 +253,7 @@ export const AllIcons: Story = {
         </div>
         <div class="icon-row">
           ${filteredIcons.map(
-            (icon: any) => html`
+            icon => html`
               <div class="icon-card">
                 <span class="icon-name">
                   name:

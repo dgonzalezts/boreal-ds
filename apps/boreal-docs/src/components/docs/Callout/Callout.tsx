@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Callout.module.css';
 
 export interface CalloutProps {
