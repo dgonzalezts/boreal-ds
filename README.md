@@ -66,6 +66,17 @@ Always install from the **workspace root**. A single `pnpm-lock.yaml` governs th
 pnpm install
 ```
 
+> **⚠️ Migrating from npm?**
+> If you previously used npm, you must remove all `node_modules` directories and `package-lock.json` files before running `pnpm install`:
+>
+> ```bash
+> # macOS / Linux / Git Bash
+> find . -name "node_modules" -type d -prune -exec rm -rf '{}' + && find . -name "package-lock.json" -type f -delete
+>
+> # Windows (PowerShell)
+> Get-ChildItem -Path . -Include node_modules,package-lock.json -Recurse -Force | Remove-Item -Force -Recurse
+> ```
+
 To add a dependency to a specific package, use `--filter` from the root — never run `pnpm install` inside a subdirectory:
 
 ```bash
