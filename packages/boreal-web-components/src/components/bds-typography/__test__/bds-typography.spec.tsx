@@ -73,21 +73,21 @@ describe('bds-typography variant dependant prop rendering', () => {
   it('should render with specified size when variant supports it', async () => {
     const { root } = await newSpecPage({
       components: [BdsTypography],
-      html: '<bds-typography variant="display" size="l">Display text</bds-typography>',
+      html: '<bds-typography variant="display" size="lg">Display text</bds-typography>',
     });
 
     const inner = root.firstElementChild;
-    expect(inner.classList.contains('bds-typography--size-l')).toBe(true);
+    expect(inner.classList.contains('bds-typography--size-lg')).toBe(true);
   });
 
   it('should not render with specified size when variant does not support it', async () => {
     const { root } = await newSpecPage({
       components: [BdsTypography],
-      html: '<bds-typography variant="label" size="m">Label text</bds-typography>',
+      html: '<bds-typography variant="label" size="md">Label text</bds-typography>',
     });
 
     const inner = root.firstElementChild;
-    expect(inner.classList.contains('bds-typography--size-m')).toBe(false);
+    expect(inner.classList.contains('bds-typography--size-md')).toBe(false);
   });
 
   it('should not render invalid size', async () => {
@@ -320,7 +320,7 @@ describe('bds-typography accessibility attributes', () => {
 
     const inner = getInner(root);
 
-    expect(inner.getAttribute('htmlfor')).not.toBeNull();
+    expect(inner.getAttribute('for')).not.toBeNull();
   });
 
   it('should use for attribute when element="label"', async () => {
@@ -331,6 +331,6 @@ describe('bds-typography accessibility attributes', () => {
 
     const inner = getInner(root);
 
-    expect(inner.getAttribute('htmlfor')).not.toBeNull();
+    expect(inner.getAttribute('for')).not.toBeNull();
   });
 });
