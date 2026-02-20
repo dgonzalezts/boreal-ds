@@ -1,0 +1,34 @@
+{
+  "git": {
+    "tagName": "@telesign/boreal-vue@${version}",
+    "tagAnnotation": "Release @telesign/boreal-vue v${version}",
+    "commitMessage": "chore(release): * release @telesign/boreal-vue v${version}",
+    "requireBranch": "release/current",
+    "requireCleanWorkingDir": true,
+    "push": true,
+    "pushRepo": "origin"
+  },
+  "npm": {
+    "publish": true,
+    "publishPath": ".",
+    "tag": "alpha"
+  },
+  "github": {
+    "release": false
+  },
+  "hooks": {
+    "before:init": "turbo run build --filter=@telesign/boreal-vue...",
+    "after:release": "echo 'Released @telesign/boreal-vue@${version}'"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog",
+      "parserOpts": {
+        "headerPattern": "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s?(?:[A-Z0-9]+-\\d+\\s|\\*\\s)?(.*)$",
+        "headerCorrespondence": ["type", "scope", "subject"]
+      }
+    }
+  }
+}

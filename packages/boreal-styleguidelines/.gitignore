@@ -3,3 +3,4 @@ sass/*
 node_modules/*
 coverage/
 __test__/
+dist/*

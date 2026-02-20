@@ -15,9 +15,11 @@ export default defineConfig(
     ignores: [
       'dist/',
       'www/',
+      'coverage/',
       'targets',
       'components-build/',
       'loader',
+      'scripts/',
       'eslint.config.ts',
       'stencil.config.ts',
       'src/**/*.d.ts',

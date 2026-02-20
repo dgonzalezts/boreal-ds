@@ -36,6 +36,7 @@ const config: StorybookConfig = {
   previewHead: head => `
     ${head}
     <link rel="stylesheet" type="text/css" href="preview.css" />
+    <link rel="stylesheet" type="text/css" href="boreal.css" />
     <script type="text/javascript">
       window.global = window;
     </script>

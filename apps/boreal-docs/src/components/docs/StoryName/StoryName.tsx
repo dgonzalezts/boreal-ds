@@ -1,8 +1,8 @@
-import React from 'react';
 import { useOf } from '@storybook/addon-docs/blocks';
+import type { ModuleExport } from 'storybook/internal/types';
 
 interface StoryNameProps {
-  of?: any | 'story' | 'meta' | 'component';
+  of?: ModuleExport | 'story' | 'meta' | 'component';
 }
 
 /**

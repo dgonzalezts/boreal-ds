@@ -21,7 +21,7 @@ export interface ITypography {
 
   // Link
   href: string;
-  target: '_blank' | '_parent' | '_self' | '_top';
+  target: '_blank' | '_parent' | '_self' | '_top' | '';
   isDownloadable: boolean;
   filename: string;
 

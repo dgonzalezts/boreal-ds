@@ -28,13 +28,13 @@ Boreal is Proximus Group's design system, built with Stencil to provide Web Comp
 
 ```bash
 # Web Components (vanilla JS, Angular, etc.)
-npm install @boreal-ds/web-components
+npm install @telesign/boreal-web-components
 
 # React wrapper
-npm install @boreal-ds/react
+npm install @telesign/boreal-react
 
 # Vue wrapper
-npm install @boreal-ds/vue
+npm install @telesign/boreal-vue
 ```
 
 <Subtitle>Usage</Subtitle>
@@ -43,7 +43,7 @@ npm install @boreal-ds/vue
 
 ```typescript
 // Import and register all components
-import { defineCustomElements } from '@boreal-ds/web-components/loader';
+import { defineCustomElements } from '@telesign/boreal-web-components/loader';
 
 defineCustomElements();
 ```
@@ -56,7 +56,7 @@ defineCustomElements();
 **React**
 
 ```tsx
-import { BrButton } from '@boreal-ds/react';
+import { BrButton } from '@telesign/boreal-react';
 
 function App() {
   return (
@@ -71,7 +71,7 @@ function App() {
 
 ```typescript
 // main.ts
-import { BrButton } from '@boreal-ds/vue';
+import { BrButton } from '@telesign/boreal-vue';
 
 app.component('BrButton', BrButton);
 ```
