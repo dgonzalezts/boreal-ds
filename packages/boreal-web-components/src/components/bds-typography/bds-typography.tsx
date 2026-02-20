@@ -86,6 +86,7 @@ export class BdsTypography implements ITypography {
   }
 
   get getTagName() {
+    if (this.variant === VARIANT_TYPOGRAPHY.LINK) return TAG_ELEMENT.A;
     return this.element.toLowerCase();
   }
 

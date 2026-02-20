@@ -48,7 +48,7 @@ export const getAttributesByTag = (comp: ITypography, tagName: string): Record<s
       href: comp.state !== STATES.DISABLED ? comp.sanitizedHref : null,
       target: comp.target,
       download: comp.isDownloadable ? comp.filename : null,
-      rel: comp.target === '_blank' ? 'noopener noreferrer' : '',
+      rel: comp.target === '_blank' ? 'noopener noreferrer' : undefined,
     },
     label: {
       htmlFor: comp.htmlFor,
