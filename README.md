@@ -119,24 +119,25 @@ boreal-ds/
 
 All scripts are run from the **workspace root** using Turborepo to orchestrate the task pipeline across packages.
 
-| Script                    | Command                            | Description                                            |
-| ------------------------- | ---------------------------------- | ------------------------------------------------------ |
-| `pnpm build`              | `turbo run build`                  | Build all packages in dependency order                 |
-| `pnpm test`               | `turbo run test`                   | Run tests for all packages                             |
-| `pnpm lint`               | `turbo run lint`                   | Lint all packages                                      |
-| `pnpm lint:fix`           | `turbo run lint:fix`               | Auto-fix lint issues across all packages               |
-| `pnpm format`             | `turbo run format`                 | Format all source files                                |
-| `pnpm format:check`       | `turbo run format:check`           | Check formatting without writing                       |
-| `pnpm dev`                | `turbo run dev`                    | Start all dev servers concurrently                     |
-| `pnpm dev:components`     | `--filter boreal-web-components`   | Start only web components dev server                   |
-| `pnpm dev:docs`           | `--filter boreal-docs`             | Start only Storybook dev server                        |
-| `pnpm generate:component` | `--filter boreal-web-components`   | Interactive prompt to create a new web component       |
-| `pnpm generate:story`     | `--filter boreal-docs`             | Interactive prompt to create a new Storybook story     |
-| `pnpm rebuild:styles`     | `--filter boreal-style-guidelines` | Rebuild design tokens and CSS (after token changes)    |
-| `pnpm commit`             | `cz`                               | Interactive commit prompt (enforces commit convention) |
-| `pnpm changeset`          | `changeset`                        | Create a new changeset for upcoming release            |
-| `pnpm version-packages`   | `changeset version`                | Bump versions and generate changelogs                  |
-| `pnpm release`            | `turbo build + changeset publish`  | Build and publish changed packages to npm              |
+| Script                    | Command                                           | Description                                                                                   |
+| ------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `pnpm build`              | `turbo run build`                                 | Build all packages in dependency order                                                        |
+| `pnpm test`               | `turbo run test`                                  | Run tests for all packages                                                                    |
+| `pnpm lint`               | `turbo run lint`                                  | Lint all packages                                                                             |
+| `pnpm lint:fix`           | `turbo run lint:fix`                              | Auto-fix lint issues across all packages                                                      |
+| `pnpm format`             | `turbo run format`                                | Format all source files                                                                       |
+| `pnpm format:check`       | `turbo run format:check`                          | Check formatting without writing                                                              |
+| `pnpm dev`                | `turbo run dev`                                   | Start all dev servers concurrently (see note below)                                           |
+| `pnpm dev:components`     | `--filter boreal-web-components`                  | Start only web components dev server (Stencil `--dev --watch`, incomplete dist)               |
+| `pnpm dev:docs`           | `turbo run dev --filter=@telesign/boreal-docs`    | **Recommended** — full production build of `boreal-web-components` first, then Storybook only |
+| `pnpm clean:wc`           | `rm -rf dist .stencil` in `boreal-web-components` | Remove Stencil build output and incremental cache                                             |
+| `pnpm generate:component` | `--filter boreal-web-components`                  | Interactive prompt to create a new web component                                              |
+| `pnpm generate:story`     | `--filter boreal-docs`                            | Interactive prompt to create a new Storybook story                                            |
+| `pnpm rebuild:styles`     | `--filter boreal-style-guidelines`                | Rebuild design tokens and CSS (after token changes)                                           |
+| `pnpm commit`             | `cz`                                              | Interactive commit prompt (enforces commit convention)                                        |
+| `pnpm changeset`          | `changeset`                                       | Create a new changeset for upcoming release                                                   |
+| `pnpm version-packages`   | `changeset version`                               | Bump versions and generate changelogs                                                         |
+| `pnpm release`            | `turbo build + changeset publish`                 | Build and publish changed packages to npm                                                     |
 
 To run a script for a single package only:
 
@@ -144,6 +145,19 @@ To run a script for a single package only:
 pnpm --filter @telesign/boreal-web-components build
 pnpm --filter @telesign/boreal-docs dev
 ```
+
+> **⚠️ Use `pnpm dev:docs` for Storybook, not `pnpm dev`**
+>
+> `pnpm dev:docs` runs `turbo run dev --filter=@telesign/boreal-docs`. Because the Turborepo `dev` task declares `"dependsOn": ["^build"]`, Turborepo first runs a full **production** build of `boreal-web-components` (`stencil build`, no `--dev`) — producing the complete `dist/` including `esm/`, `cjs/`, and `esm-es5/`. Then it starts **only** Storybook, leaving the production dist intact.
+>
+> `pnpm dev` also goes through Turborepo, but it starts `boreal-web-components#dev` (`stencil build --dev --watch --serve`) concurrently, which produces an **incomplete** `dist/` (no `esm-es5/`, and the Stencil incremental cache may skip `esm/` and `cjs/` entirely), eventually overwriting the production build.
+>
+> If you delete `dist/` manually, also delete `.stencil/` (the Stencil incremental cache) to prevent a partially cached rebuild:
+>
+> ```bash
+> pnpm clean:wc   # removes dist/ and .stencil/ from boreal-web-components
+> pnpm dev:docs   # full production build → then Storybook
+> ```
 
 ---
 
