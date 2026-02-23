@@ -73,7 +73,7 @@ export class BdsTypography implements ITypography {
   private inheritedAttributes: Attributes = {};
 
   /** Host element reference. */
-  @Element() el!: HTMLBdsTypographyElement;
+  @Element() el!: HTMLElement;
 
   /** Typography visual variant. */
   @Prop({ reflect: true }) readonly variant: ITypography['variant'] = VARIANT_TYPOGRAPHY.DISPLAY;
