@@ -10,7 +10,61 @@ import type { ITypography } from './types/ITypography';
 import { TAG_ELEMENT, VARIANT_TYPOGRAPHY } from './types/enum';
 import { FILENAME, getAttributesByTag, VARIANT_CONFIG } from './utils/bds-typography-utils';
 
-/** Typography component with variants, sizes, states, truncation and tooltip support. */
+/**
+ * Typography component for displaying text with various styles, sizes, and interactive features.
+ *
+ * @element bds-typography
+ *
+ * @summary A comprehensive typography component that supports multiple text variants, sizes, alignments, states, and link functionality.
+ *
+ * @slot - The text displayed in the typography.
+ *
+ * @attr {string} variant - The variant of the typography for styling the text. Options: label, display, heading, subheading, helper, link, code, caption
+ * @attr {string} element - Defines the HTML element. For `heading` variant, the text size adjusts to the HTML heading level (`h1` through `h6`).
+ * @attr {string} state - The state of the typography. Only available for the `helper` and `label` variants. Options: default, error, disabled, hover, active, focus, visited
+ * @attr {string} align - The text alignment. Options: start, center, end, inherit
+ * @attr {string} size - The size of the typography. For `display` variant all options are available (`xl`, `lg`, `md`, `sm`), while for `link` variant only `md` and `sm` are available.
+ * @attr {boolean} is-required - Shows a required indicator when used with `label` variant.
+ * @attr {boolean} ellipsis - Truncates text with an ellipsis when it overflows.
+ * @attr {number} max-lines - Maximum number of lines to show before truncating with ellipsis.
+ * @attr {string} href - URL when the typography is an `a` element and a `link` variant.
+ * @attr {string} target - Specifies where to open the link. Options: _self, _blank, _top, _parent
+ * @attr {boolean} is-downloadable - Makes the `link` download a file.
+ * @attr {string} filename - Suggested filename when downloading a file from the `link`.
+ * @attr {string} html-for - The for attribute when rendered as a label
+ * @attr {string} tooltip-text - Text to display inside the tooltip when hovering the info icon. Only applicable for `heading`, `subheading`, and `label` variants.
+ * @attr {string} custom-class - Additional custom CSS class
+ *
+ * @property {string} variant - The variant of the typography for styling the text. Options: label, display, heading, subheading, helper, link, code, caption
+ * @property {string} element - Defines the HTML element. For `heading` variant, the text size adjusts to the HTML heading level (`h1` through `h6`).
+ * @property {string} state - The state of the typography. Only available for the `helper` and `label` variants. Options: default, error, disabled, hover, active, focus, visited
+ * @property {string} align - The text alignment. Options: start, center, end, inherit
+ * @property {string} size - The size of the typography. For `display` variant all options are available (`xl`, `lg`, `md`, `sm`), while for `link` variant only `md` and `sm` are available.
+ * @property {boolean} isRequired - Shows a required indicator when used with `label` variant.
+ * @property {boolean} ellipsis - Truncates text with an ellipsis when it overflows.
+ * @property {number} maxLines - Maximum number of lines to show before truncating with ellipsis.
+ * @property {string} href - URL when the typography is an `a` element and a `link` variant.
+ * @property {string} target - Specifies where to open the link. Options: _self, _blank, _top, _parent
+ * @property {boolean} isDownloadable - Makes the `link` download a file.
+ * @property {string} filename - Suggested filename when downloading a file from the `link`.
+ * @property {string} htmlFor - The for attribute when rendered as a label
+ * @property {string} tooltipText - Text to display inside the tooltip when hovering the info icon. Only applicable for `heading`, `subheading`, and `label` variants.
+ * @property {string} customClass - Additional custom CSS class
+ *
+ * @default 'display' - Default variant value
+ * @default 'p' - Default element value
+ * @default 'start' - Default align value
+ * @default 'md' - Default size value
+ * @default 'default' - Default state value
+ * @default false - Default isRequired state
+ * @default false - Default ellipsis state
+ * @default 1 - Default maxLines value
+ * @default '' - Default href value
+ * @default '' - Default target value
+ * @default false - Default isDownloadable state
+ * @default 'download' - Default filename value
+ * @default '' - Default tooltipText value
+ */
 @Component({
   tag: 'bds-typography',
   styleUrl: 'bds-typography.scss',
