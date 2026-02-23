@@ -44,6 +44,9 @@ importers:
       '@telesign/boreal-style-guidelines':
         specifier: workspace:*
         version: link:../../packages/boreal-styleguidelines
+      '@telesign/boreal-web-components':
+        specifier: workspace:*
+        version: link:../../packages/boreal-web-components
       lit:
         specifier: ^3.3.1
         version: 3.3.2
@@ -258,6 +261,9 @@ importers:
 
   packages/boreal-web-components:
     dependencies:
+      '@braintree/sanitize-url':
+        specifier: ^7.1.2
+        version: 7.1.2
       '@telesign/boreal-style-guidelines':
         specifier: workspace:*
         version: link:../boreal-styleguidelines
@@ -503,6 +509,9 @@ packages:
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
+
+  '@braintree/sanitize-url@7.1.2':
+    resolution: {integrity: sha512-jigsZK+sMF/cuiB7sERuo9V7N9jx+dhmHHnQyDSVdpZwVutaBu7WvNYqMDLSgFgfB30n452TP3vjDAvFC973mA==}
 
   '@bufbuild/protobuf@2.11.0':
     resolution: {integrity: sha512-sBXGT13cpmPR5BMgHE6UEEfEaShh5Ror6rfN3yEK5si7QVrtZg8LEPQb0VVhiLRUslD2yLnXtnRzG035J/mZXQ==}
@@ -5850,6 +5859,8 @@ snapshots:
   '@bcoe/v8-coverage@0.2.3': {}
 
   '@bcoe/v8-coverage@1.0.2': {}
+
+  '@braintree/sanitize-url@7.1.2': {}
 
   '@bufbuild/protobuf@2.11.0': {}
 
