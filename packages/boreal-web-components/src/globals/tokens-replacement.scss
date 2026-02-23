@@ -1,0 +1,77 @@
+$boreal-typography-font-family-primary:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Microsoft Sans Serif', Freesans, Helvetica, Arial,
+  sans-serif;
+$boreal-typography-font-family-secondary: Courier;
+
+/* FONT SIZE */
+$boreal-typography-font-size-xs: 0.75rem;
+$boreal-typography-font-size-sm: 0.875rem;
+$boreal-typography-font-size-md: 1rem;
+$boreal-typography-font-size-lg: 1.25rem;
+$boreal-typography-font-size-xl: 1.75rem;
+$boreal-typography-font-size-2xl: 2rem;
+$boreal-typography-font-size-3xl: 2.625rem;
+$boreal-typography-font-size-4xl: 3.375rem;
+
+/* LINE HEIGHT */
+$boreal-typography-line-height-xs: 1rem;
+$boreal-typography-line-height-sm: 1.25rem;
+$boreal-typography-line-height-md: 1.375rem;
+$boreal-typography-line-height-lg: 1.75rem;
+$boreal-typography-line-height-xl: 2.25rem;
+$boreal-typography-line-height-2xl: 2.5rem;
+$boreal-typography-line-height-3xl: 3.125rem;
+$boreal-typography-line-height-4xl: 4rem;
+
+/* FONT STYLE */
+$boreal-typography-font-style-normal: normal;
+$boreal-typography-font-style-italic: italic;
+
+/* FONT WEIGHT */
+$boreal-typography-font-weight-light: 300;
+$boreal-typography-font-weight-regular: 400;
+$boreal-typography-font-weight-semibold: 600;
+$boreal-typography-font-weight-bold: 700;
+
+/* RADIUS */
+$boreal-radius-full: 360px;
+$boreal-radius-xl: 24px;
+$boreal-radius-m: 12px;
+$boreal-radius-xs2: 2px;
+$boreal-radius-l: 16px;
+$boreal-radius-s: 8px;
+$boreal-radius-xs: 4px;
+$boreal-radius-none: 0px;
+
+/* SPACING */
+$boreal-spacing-4xs: 1px;
+$boreal-spacing-3xs: 2px;
+$boreal-spacing-2xs: 4px;
+$boreal-spacing-1xs: 6px;
+$boreal-spacing-xs: 8px;
+$boreal-spacing-s: 12px;
+$boreal-spacing-m: 16px;
+$boreal-spacing-ml: 20px;
+$boreal-spacing-l: 24px;
+$boreal-spacing-xl: 32px;
+$boreal-spacing-2xl: 40px;
+$boreal-spacing-3xl: 48px;
+$boreal-spacing-4xl: 56px;
+$boreal-spacing-5xl: 64px;
+$boreal-spacing-6xl: 80px;
+$boreal-spacing-7xl: 96px;
+
+/* COLOR */
+$boreal-text-default-darker: #131316;
+$boreal-text-default: #272a2f;
+$boreal-text-default-light: #8a8e96;
+
+$boreal-ui-base-light: #e3e3e6;
+
+$boreal-text-disabled: #b6b8be;
+$boreal-text-danger: #c7242b;
+$boreal-text-danger-light: #ffa3a5;
+$boreal-text-primary: #0a5bfc;
+$boreal-text-primary-dark: #023075;
+
+$boreal-icon-default-light: #b6b8be;

@@ -1,8 +1,8 @@
 export const SIZES = {
   XS: 'xs',
-  S: 's',
-  M: 'm',
-  L: 'l',
+  S: 'sm',
+  M: 'md',
+  L: 'lg',
   XL: 'xl',
 } as const;
 

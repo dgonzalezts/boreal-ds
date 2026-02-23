@@ -13,7 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css}\""
   },
   "dependencies": {
-    "@boreal-ds/react": "file:boreal-ds-react-0.0.1.tgz",
+    "@telesign/boreal-react": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
