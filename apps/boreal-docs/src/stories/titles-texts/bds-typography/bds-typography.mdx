@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Stories,
+  ArgTypes,
+  Title,
+  Subtitle,
+} from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { StoryName, Callout } from '@/components/docs';
+import * as BdsTypographyStories from './bds-typography.stories';
+
+<Meta of={BdsTypographyStories} />
+
+<Title of={BdsTypographyStories} />
+
+The Boreal Typography component provides consistent text styling across the application, with multiple variants, sizes, and states to match different design contexts.
+
+<Subtitle>How to use it</Subtitle>
+
+1. Import the component into your project.
+
+```ts
+import { BdsTypography } from '@telesign/boreal-web-components';
+```
+
+2. Use the `<bds-typography>` tag to display the component in your HTML.
+
+```html
+<bds-typography variant="heading" element="h1">Title</bds-typography>
+```
+
+<Subtitle>When to use it</Subtitle>
+The Typography component provides consistent text styling for various contexts:
+
+    - **Headings** - For page titles, section headers, and content organization
+    - **Subheading** - For section subtitles or dividing content groups
+    - **Display** - For large, prominent text elements that need visual emphasis
+    - **Labels** - For form controls, with support for required and disabled states
+    - **Helper** - For providing additional context or assistance, including error messages
+    - **Links** - For interactive text elements that navigate to new content
+    - **Caption** - For smaller supporting text like image captions or secondary information
+    - **Code** - For displaying inline code snippets or technical content
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the Typography component.
+
+<Callout variant="tip" icon="💡">
+  You can click on the **Show code** button in the bottom-right section of the following code
+  snippets to see how to use the component.
+</Callout>
+
+<Stories />
+
+<Subtitle>Accessibility</Subtitle>
+
+The Typography component is designed with accessibility in mind. It includes appropriate ARIA attributes and keyboard navigation support to ensure that all users can interact with it effectively.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsTypographyStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsTypographyStories.default.title} story="default">Default</LinkTo> section.
