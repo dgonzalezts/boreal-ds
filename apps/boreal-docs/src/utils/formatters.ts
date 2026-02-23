@@ -54,3 +54,20 @@ export const formatHtmlSource = async (source: string): Promise<string> => {
 
   return formatted.replace(/(\s[?.@]?\w+)=""/g, '$1');
 };
+
+/**
+ * Builds a CSS variable name based on the provided prefix and color name.
+ *
+ * @param prefix - An optional prefix to include in the variable name.
+ * @param colorName - The name of the color to include in the variable name.
+ * @returns The constructed CSS variable name in the format '--boreal[-prefix]-colorName'.
+ *
+ * @example
+ * ```ts
+ * buildVariableName('primary', '500'); // returns '--boreal-primary-500'
+ * buildVariableName(undefined, 'background'); // returns '--boreal-background'
+ * ```
+ */
+export const buildVariableName = (prefix: string | undefined, variant: string) => {
+  return `--boreal${prefix ? `-${prefix}` : ''}-${variant}`;
+};

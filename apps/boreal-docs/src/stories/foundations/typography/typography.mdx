@@ -3,8 +3,10 @@ import {
   Stories,
   Title,
   Subtitle,
+  Unstyled
 } from '@storybook/addon-docs/blocks';
 import { StoryName, Callout } from '@/components/docs';
+import { Preview } from './components/Preview';
 
 <Meta title="Foundations/Typography" />
 
@@ -12,10 +14,27 @@ import { StoryName, Callout } from '@/components/docs';
 
 The typography system defines the core text elements used throughout our product ecosystem. It consists of carefully calibrated font families, size scales, line heights, and weight variations that ensure optimal readability and clear information hierarchy. This comprehensive token system enables designers and developers to implement consistent typography that meets accessibility standards while maintaining brand fidelity across all platforms.
 
-<Callout variant="tip" icon="💡">
-  You can click on the **Show code** button in the bottom-right section of the following code
-  snippets to see how to use the component.
-</Callout>
+<Unstyled>
+  <Subtitle>Font Families</Subtitle>
 
-<Stories />
+  <h3>Segoe UI</h3>
+  As its primary font family, a versatile and modern typeface that provides excellent readability across devices and screen sizes.
+  <Preview typography="primary" />
+
+  <h3>Courier</h3>
+  As its monospace font family, optimized for code blocks, terminal output, and technical content.
+  <Preview typography="secondary" />
+
+
+  <Callout variant="tip" icon="💡">
+    You can click on the **Show code** button in the bottom-right section of the following code
+    snippets to see how to use the component.
+  </Callout>
+
+  <Subtitle>Typography Styles</Subtitle>
+  Boreal defines a set of typography styles that combine font size, weight, and line height to create a consistent type system across all interfaces. These styles are organized into three main categories: Heading, Body, and Supporting text.
+
+  <Stories />
+
+</Unstyled>
 

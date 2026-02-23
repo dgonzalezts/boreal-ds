@@ -1,5 +1,5 @@
 import React from 'react';
-import { capitalize, getVariableValue } from '../../../../utils';
+import { buildVariableName, capitalize, getVariableValue } from '../../../../utils';
 import type { ColorList, ColorSectionType } from '../types/Color.type';
 
 export const ColorSection = ({ name, description, values, prefix = '' }: ColorSectionType) => {
@@ -19,9 +19,7 @@ export const ColorSection = ({ name, description, values, prefix = '' }: ColorSe
     return () => clearTimeout(timer);
   }, [values, prefix]);
 
-  const buildVariableName = (colorName: string) => {
-    return `--boreal${prefix ? `-${prefix}` : ''}-${colorName}`;
-  };
+  const buildVariable = buildVariableName.bind(null, prefix);
 
   return (
     <div className="color-item">
@@ -37,16 +35,16 @@ export const ColorSection = ({ name, description, values, prefix = '' }: ColorSe
                 <div className="color-item__swatch checkerboard">
                   <div
                     className="color-item__swatch-overlay"
-                    style={{ backgroundColor: `var(${buildVariableName(colorName)})` }}
+                    style={{ backgroundColor: `var(${buildVariable(colorName)})` }}
                   ></div>
                 </div>
               ) : (
                 <div
                   className="color-item__swatch"
-                  style={{ backgroundColor: `var(${buildVariableName(colorName)})` }}
+                  style={{ backgroundColor: `var(${buildVariable(colorName)})` }}
                 ></div>
               )}
-              <p className="color-item__variable-name">{buildVariableName(colorName)}</p>
+              <p className="color-item__variable-name">{buildVariable(colorName)}</p>
               <p className="color-item__color-value">
                 {isLoaded ? colorValues[colorName] : 'Loading...'}
               </p>
