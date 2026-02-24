@@ -3,16 +3,10 @@ import { BdsButton } from '../bds-button';
 
 describe('bds-button', () => {
   it('renders', async () => {
-    const page = await newSpecPage({
+    const { root } = await newSpecPage({
       components: [BdsButton],
-      html: `<bds-button></bds-button>`,
+      html: `<bds-button label="Button Label">Button</bds-button>`,
     });
-    expect(page.root).toEqualHtml(`
-      <bds-button>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </bds-button>
-    `);
+    expect(root.querySelector('button').getAttribute('aria-label')).toBe('Button Label');
   });
 });
