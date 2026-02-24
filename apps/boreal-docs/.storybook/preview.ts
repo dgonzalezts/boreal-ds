@@ -5,6 +5,7 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import type { DecoratorFunction, StoryContext } from 'storybook/internal/types';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
+import htmlLanguage from 'highlight.js/lib/languages/xml';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
@@ -14,12 +15,14 @@ defineCustomElements();
 import 'highlight.js/styles/atom-one-dark.css';
 //TODO: Replace next line with Boreal design tokens when available and remove `tokens-fallback.css` file
 import '@/styles/tokens-fallback.css';
+import '@telesign/boreal-style-guidelines/scss/helpers';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';
 const BODY_SELECTOR = 'body.sb-show-main';
 const DEFAULT_THEME = 'telesign';
 
 hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('html', htmlLanguage);
 
 /**
  * Generates a CSS style string from the provided style options.

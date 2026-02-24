@@ -145,4 +145,20 @@ export const EXTENDED_COLORS = extractCategoryKeys(UI.extended, key => !key.incl
 export const SPACING = primitives.spacing;
 export const LAYOUT = primitives.layout;
 export const RADIUS = primitives.radius;
-/* export const TYPOGRAPHY = primitives.typography['font-size']; // Pendiente*/
+export const TYPOGRAPHY_SIZE = extractCategoryKeys(
+  primitives.typography['font-size'],
+  key => !key.includes('type')
+);
+
+export const TYPOGRAPHY_WEIGHT = extractCategoryKeys(
+  primitives.typography['font-weight'],
+  key => !key.includes('type')
+);
+export const TYPOGRAPHY_LINE_HEIGHT = extractCategoryKeys(
+  primitives.typography['line-height'],
+  key => !key.includes('type')
+);
+export const TYPOGRAPHY_FONT_FAMILY = extractCategoryKeys(
+  primitives.typography['font-family'],
+  key => !key.includes('type')
+);

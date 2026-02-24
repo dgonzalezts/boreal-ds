@@ -11,6 +11,7 @@
 .sbdocs-content h1,
 .sbdocs-content h2,
 .sbdocs-content h3,
+.sbdocs-content h4,
 .sbdocs-content li,
 .sbdocs-content ol,
 .sbdocs-content p,
@@ -199,4 +200,72 @@ div.spacing-item__variable-name {
 }
 .typography-preview p {
   margin: 0.35rem 0;
+}
+.typography-preview__card div {
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.typography-preview__card bds-typography > * {
+  padding: 0;
+  margin: 0;
+}
+.character-item__title {
+  font-size: var(--boreal-typography-font-size-l);
+  font-family: var(--boreal-typography-font-family-primary);
+  margin: var(--boreal-spacing-l) 0;
+}
+.character-item__container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--boreal-spacing-m);
+  flex-wrap: wrap;
+}
+.character-item__element {
+  width: 33vw;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: var(--boreal-spacing-m);
+  margin-bottom: var(--boreal-spacing-2xs);
+  text-align: center;
+}
+.character-item__variable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item__variable-value {
+  font-size: 0.75rem;
+  color: var(--boreal-color-text-secondary, #666);
+  margin: 0;
+  text-transform: uppercase;
+}
+.item__variable-name {
+  font-size: var(--boreal-typography-font-size-xs);
+  font-weight: var(--boreal-typography-font-weight-bold);
+  margin: 0.125rem 0;
+  margin-right: var(--boreal-spacing-2xs);
+  text-align: center;
+}
+.character-item__expression {
+  text-align: center;
+  margin-bottom: var(--boreal-spacing-xs);
+  font-size: var(--boreal-typography-font-size-xl);
+  background-color: var(--boreal-neutral-100);
+  border-radius: var(--boreal-radius-s);
+  display: inline;
+  padding: var(--boreal-spacing-2xs);
+}
+.helper-style-container {
+  margin-top: var(--boreal-spacing-m);
+}
+.helper-style-container p {
+  margin-bottom: var(--boreal-spacing-xl);
+}
+.helper-style-container code-block {
+  display: block;
+  margin: var(--boreal-spacing-l) 0px var(--boreal-spacing-2xl) 1px;
 }

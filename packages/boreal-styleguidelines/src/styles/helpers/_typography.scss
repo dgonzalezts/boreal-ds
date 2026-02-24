@@ -1,0 +1,157 @@
+@use "../../../dist/scss/variables/primitives" as *;
+
+.is-heading-4xl {
+	font-weight: $boreal-typography-font-weight-light;
+	font-size: $boreal-typography-font-size-4xl;
+	line-height: $boreal-typography-line-height-4xl;
+}
+.is-heading-3xl {
+	font-weight: $boreal-typography-font-weight-light;
+	font-size: $boreal-typography-font-size-3xl;
+	line-height: $boreal-typography-line-height-3xl;
+}
+.is-heading-2xl {
+	font-weight: $boreal-typography-font-weight-regular;
+	font-size: $boreal-typography-font-size-2xl;
+	line-height: $boreal-typography-line-height-2xl;
+}
+.is-heading-xl {
+	font-weight: $boreal-typography-font-weight-regular;
+	font-size: $boreal-typography-font-size-xl;
+	line-height: $boreal-typography-line-height-xl;
+}
+.is-heading-lg {
+	font-weight: $boreal-typography-font-weight-regular;
+	font-size: $boreal-typography-font-size-lg;
+	line-height: $boreal-typography-line-height-lg;
+}
+.is-heading-md {
+	font-weight: $boreal-typography-font-weight-semibold;
+	font-size: $boreal-typography-font-size-md;
+	line-height: $boreal-typography-line-height-md;
+}
+.is-heading-sm {
+	font-weight: $boreal-typography-font-weight-semibold;
+	font-size: $boreal-typography-font-size-sm;
+	line-height: $boreal-typography-line-height-sm;
+}
+
+.is-display-sm {
+	font-size: $boreal-typography-font-size-xl;
+	line-height: $boreal-typography-line-height-xl;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+.is-display-md {
+	font-size: $boreal-typography-font-size-2xl;
+	line-height: $boreal-typography-line-height-2xl;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+.is-display-lg {
+	font-size: $boreal-typography-font-size-3xl;
+	line-height: $boreal-typography-line-height-3xl;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+.is-display-xl {
+	font-size: $boreal-typography-font-size-4xl;
+	line-height: $boreal-typography-line-height-4xl;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+.is-display-xs {
+	font-size: $boreal-typography-font-size-xs;
+	line-height: $boreal-typography-line-height-xs;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+
+
+.is-label-lg {
+	font-size: $boreal-typography-font-size-lg;
+	font-weight: $boreal-typography-font-weight-semibold;
+	line-height: $boreal-typography-line-height-md;
+	color: $boreal-color-masiv-ink-ink-90;
+}
+.is-label-md {
+	font-size: $boreal-typography-font-size-md;
+	font-weight: $boreal-typography-font-weight-semibold;
+	line-height: $boreal-typography-line-height-md;
+	color: $boreal-color-masiv-ink-ink-90;
+}
+.is-label-sm {
+	font-size: $boreal-typography-font-size-sm;
+	font-weight: $boreal-typography-font-weight-semibold;
+	line-height: $boreal-typography-line-height-sm;
+	color: $boreal-color-masiv-ink-ink-90;
+}
+.is-label-xs {
+	font-size: $boreal-typography-font-size-xs;
+	font-weight: $boreal-typography-font-weight-semibold;
+	line-height: $boreal-typography-line-height-xs;
+	color: $boreal-color-masiv-ink-ink-90;
+}
+
+.is-support-text {
+	font-size: $boreal-typography-font-size-sm;
+	line-height: $boreal-typography-line-height-xs;
+	font-weight: $boreal-typography-font-weight-regular;
+}
+.is-code {
+	font-family: $boreal-typography-font-family-secondary;
+	font-size: $boreal-typography-font-size-xs;
+	font-weight: $boreal-typography-font-weight-regular;
+	color: $boreal-color-masiv-ink-ink-70;
+	line-height: $boreal-typography-line-height-md;
+	overflow-wrap: break-word;
+
+	background-color: $boreal-color-masiv-ink-ink-10;
+	padding: $boreal-spacing-3xs $boreal-spacing-xs;
+	border-radius: $boreal-radius-xs;
+
+	display: inline;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+.is-caption {
+	font-size: $boreal-typography-font-size-xs;
+	font-weight: $boreal-typography-font-weight-regular;
+	line-height: $boreal-typography-line-height-md;
+	color: $boreal-color-masiv-ink-ink-40;
+}
+.is-helper-text {
+	font-size: $boreal-typography-font-size-xs;
+	font-weight: $boreal-typography-font-weight-regular;
+	line-height: $boreal-typography-line-height-sm;
+	color: $boreal-color-masiv-ink-ink-40;
+}
+
+.is-link {
+	font-size: $boreal-typography-font-size-sm;
+	font-weight: $boreal-typography-font-weight-regular;
+	line-height: $boreal-typography-line-height-md;
+	color: $boreal-color-masiv-blue-blue-50;
+	text-decoration: none;	
+
+	&:hover {
+		text-decoration: underline;
+	}
+	&:visited {
+		color: $boreal-color-masiv-blue-blue-50;
+	}
+	&:active {
+		color: $boreal-color-masiv-blue-blue-70;
+	}
+
+	&-md {
+		@extend .is-link;
+		font-size: $boreal-typography-font-size-md;
+		line-height: $boreal-typography-line-height-md;	
+	}
+	&-sm {
+		@extend .is-link;
+		font-size: $boreal-typography-font-size-sm;
+		line-height: $boreal-typography-line-height-sm;	
+	}
+	&-xs {
+		@extend .is-link;
+		font-size: $boreal-typography-font-size-xs;
+		line-height: $boreal-typography-line-height-xs;	
+	}
+}
