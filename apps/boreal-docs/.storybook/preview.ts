@@ -8,7 +8,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
-import { defineCustomElements } from '@telesign/boreal-web-components/dist/esm/loader.js';
+import { defineCustomElements } from '@telesign/boreal-web-components/loader';
 defineCustomElements();
 
 import 'highlight.js/styles/atom-one-dark.css';
