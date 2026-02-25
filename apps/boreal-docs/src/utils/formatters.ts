@@ -1,3 +1,5 @@
+import hljs, { type HighlightOptions } from 'highlight.js';
+
 /**
  * Converts a string to kebab-case format by replacing all uppercase letters
  * with a hyphen followed by the lowercase version of that letter.
@@ -70,4 +72,21 @@ export const formatHtmlSource = async (source: string): Promise<string> => {
  */
 export const buildVariableName = (prefix: string | undefined, variant: string) => {
   return `--boreal${prefix ? `-${prefix}` : ''}-${variant}`;
+};
+
+/**
+ * Highlights code using highlight.js with the given language and options.
+ *
+ * @param code - The code to highlight.
+ * @param lang - The language to use for highlighting.
+ * @param opts - Optional highlight options to pass to highlight.js.
+ * @returns The highlighted HTML string.
+ * @example
+ * ```ts
+ * const highlighted = highlightCode('const x = 10;', 'javascript');
+ * // returns a highlighted HTML string for the JavaScript code
+ * ```
+ */
+export const highlightCode = (code: string, lang: string, opts?: HighlightOptions): string => {
+  return hljs.highlight(code, { language: lang, ...opts }).value;
 };

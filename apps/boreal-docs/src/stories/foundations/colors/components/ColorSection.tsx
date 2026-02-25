@@ -1,23 +1,9 @@
-import React from 'react';
-import { buildVariableName, capitalize, getVariableValue } from '../../../../utils';
-import type { ColorList, ColorSectionType } from '../types/Color.type';
+import { buildVariableName, capitalize } from '../../../../utils';
+import type { ColorSectionType } from '../types/Color.type';
+import { useTokens } from '@/hooks/useTokens';
 
 export const ColorSection = ({ name, description, values, prefix = '' }: ColorSectionType) => {
-  const [colorValues, setColorValues] = React.useState<ColorList>({});
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      const valueObj: ColorList = {};
-      values.forEach((colorName: string) => {
-        valueObj[colorName] = getVariableValue(colorName, prefix);
-      });
-      setColorValues(valueObj);
-      setIsLoaded(true);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [values, prefix]);
+  const { arrayValues, isLoaded } = useTokens(values, prefix);
 
   const buildVariable = buildVariableName.bind(null, prefix);
 
@@ -46,7 +32,7 @@ export const ColorSection = ({ name, description, values, prefix = '' }: ColorSe
               )}
               <p className="color-item__variable-name">{buildVariable(colorName)}</p>
               <p className="color-item__color-value">
-                {isLoaded ? colorValues[colorName] : 'Loading...'}
+                {isLoaded ? arrayValues[colorName] : 'Loading...'}
               </p>
             </div>
           );

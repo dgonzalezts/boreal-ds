@@ -1,26 +1,11 @@
-import { buildVariableName, capitalize, getVariableValue } from '@/utils';
-import React from 'react';
+import { useTokens } from '@/hooks/useTokens';
+import { buildVariableName, capitalize } from '@/utils';
 
-export const Character = ({ name, values, prefix }: any) => {
-  const [characValues, setCharacValues] = React.useState<any>({});
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      const valueObj: any = {};
-      values.forEach((colorName: string) => {
-        valueObj[colorName] = getVariableValue(colorName, prefix);
-      });
-      setCharacValues(valueObj);
-      setIsLoaded(true);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, [values, prefix]);
+export const FontStyleSection = ({ name, values, prefix }: any) => {
+  const { arrayValues, isLoaded } = useTokens(values, prefix);
 
   const buildVariable = buildVariableName.bind(null, prefix);
   const parsePrefix = (key: string): string => {
-    console.log(key.match(/typography-/g)?.length ? key.replace(/typography-/g, '') : key);
-
     return key.match(/typography-/g)?.length ? key.replace(/typography-/g, '') : key;
   };
 
@@ -40,7 +25,7 @@ export const Character = ({ name, values, prefix }: any) => {
               </p>
               <div className="character-item__variable">
                 <p className="item__variable-value">
-                  {isLoaded ? characValues[character] : 'Loading...'}
+                  {isLoaded ? arrayValues[character] : 'Loading...'}
                 </p>
                 <p className="item__variable-name">{buildVariable(character)}</p>
               </div>

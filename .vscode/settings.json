@@ -17,5 +17,8 @@
   },
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }

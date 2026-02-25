@@ -9,9 +9,10 @@ import { StoryName, Callout } from '@/components/docs';
 import { Preview } from './components/Preview';
 import { CodeBlock } from '../../../components/story/CodeBlock';
 import { Card } from '../../../components/docs/Card'
-import { Character } from './components/Character'
-import { TYPOGRAPHY_FONT_FAMILY, TYPOGRAPHY_LINE_HEIGHT, TYPOGRAPHY_SIZE, TYPOGRAPHY_WEIGHT } from '@/utils';
+import { FontStyleSection } from './components/FontStyleSection'
+import { highlightCode, TYPOGRAPHY_FONT_FAMILY, TYPOGRAPHY_LINE_HEIGHT, TYPOGRAPHY_SIZE, TYPOGRAPHY_WEIGHT } from '@/utils';
 import { HelperStyle } from './components/Helperstyle';
+import hljs from 'highlight.js/lib/core';
 
 <Meta title="Foundations/Typography" />
 
@@ -22,11 +23,11 @@ The typography system defines the core text elements used throughout our product
 <Unstyled>
   <h3>Size</h3>
   The tokens for font size are organized into a clear scale that provides a range of options for different text elements, from large headings to small captions. Each token is named according to its intended use and size, making it easy to select the appropriate font size for any given context while maintaining visual harmony across the interface.
-  <Character values={TYPOGRAPHY_SIZE} prefix="typography-font-size" name="font size"/>
+  <FontStyleSection values={TYPOGRAPHY_SIZE} prefix="typography-font-size" name="font size"/>
 
-  <Character values={TYPOGRAPHY_WEIGHT} prefix="typography-font-weight" name="font weight"/>
+  <FontStyleSection values={TYPOGRAPHY_WEIGHT} prefix="typography-font-weight" name="font weight"/>
 
-  <Character values={TYPOGRAPHY_LINE_HEIGHT} prefix="typography-line-height" name="line height"/>
+  <FontStyleSection values={TYPOGRAPHY_LINE_HEIGHT} prefix="typography-line-height" name="line height"/>
   
   <h3>Font Family</h3>
 
@@ -44,9 +45,20 @@ The typography system defines the core text elements used throughout our product
 
 
 <Subtitle>Typography Styles</Subtitle>
-<Unstyled>
   Boreal defines a set of typography styles that combine font size, weight, and line height to create a consistent type system across all interfaces. These styles are organized into three main categories: Heading, Body, and Supporting text.
 
+  <h3>How to use it?</h3>
+  1. Ensure the style guidelines are installed in the project and loaded at the root or component level.
+  <code-block language="js" code={highlightCode("npm i @telesign/boreal-style-guidelines", "js")} />
+  2. Import the styles in the root or target element.
+  * **SCSS or JS**
+  <code-block language="scss" code={highlightCode(`@import "@telesign/boreal-style-guidelines/scss/helpers";`, "scss")} />
+  * **CSS**
+  <code-block language="css" code={highlightCode(`@import url("@telesign/boreal-style-guidelines/scss/helpers");`, "css")} />
+  3. Apply any of the following styles to your element.
+  <code-block language="html" code={highlightCode(`<p class="is-display-lg">This is a large body text style.</p>`, "html")} />
+
+<Unstyled>
   <h3>Headings</h3>
   Heading styles are used for titles, subtitles, and section headers. They establish the information hierarchy and help users scan and navigate content. Headings should be used in descending order (H1 to H6) to maintain proper document structure.
   <HelperStyle name="is-heading-4xl" description="is-heading-4xl is our most prominent heading style, designed for page titles and major section headers. It features a substantial font size and bold weight, creating a strong visual anchor and clear hierarchy. This style is ideal for drawing attention to the most important content and establishing a sense of structure at the top level of the page." />
