@@ -164,7 +164,7 @@ div.spacing-item__variable-name {
 
 .color-item__color-value {
   font-size: 0.75rem;
-  color: var(--col-text-secondary, #666);
+  color: var(--boreal-color-text-secondary, #666);
   margin: 0;
   text-transform: uppercase;
 }
