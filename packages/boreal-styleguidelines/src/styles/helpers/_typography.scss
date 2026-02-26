@@ -1,4 +1,4 @@
-@use "../../../dist/scss/variables/primitives" as *;
+@use "../../../dist/stencil/index" as *;
 
 .is-heading-4xl {
 	font-weight: $boreal-typography-font-weight-light;
@@ -67,25 +67,25 @@
 	font-size: $boreal-typography-font-size-lg;
 	font-weight: $boreal-typography-font-weight-semibold;
 	line-height: $boreal-typography-line-height-md;
-	color: $boreal-color-masiv-ink-ink-90;
+	color: $boreal-text-default-darker;
 }
 .is-label-md {
 	font-size: $boreal-typography-font-size-md;
 	font-weight: $boreal-typography-font-weight-semibold;
 	line-height: $boreal-typography-line-height-md;
-	color: $boreal-color-masiv-ink-ink-90;
+	color: $boreal-text-default-darker;
 }
 .is-label-sm {
 	font-size: $boreal-typography-font-size-sm;
 	font-weight: $boreal-typography-font-weight-semibold;
 	line-height: $boreal-typography-line-height-sm;
-	color: $boreal-color-masiv-ink-ink-90;
+	color: $boreal-text-default-darker;
 }
 .is-label-xs {
 	font-size: $boreal-typography-font-size-xs;
 	font-weight: $boreal-typography-font-weight-semibold;
 	line-height: $boreal-typography-line-height-xs;
-	color: $boreal-color-masiv-ink-ink-90;
+	color: $boreal-text-default-darker;
 }
 
 .is-support-text {
@@ -97,11 +97,11 @@
 	font-family: $boreal-typography-font-family-secondary;
 	font-size: $boreal-typography-font-size-xs;
 	font-weight: $boreal-typography-font-weight-regular;
-	color: $boreal-color-masiv-ink-ink-70;
+	color: $boreal-text-base;
 	line-height: $boreal-typography-line-height-md;
 	overflow-wrap: break-word;
 
-	background-color: $boreal-color-masiv-ink-ink-10;
+	background-color: $boreal-ui-base-light;
 	padding: $boreal-spacing-3xs $boreal-spacing-xs;
 	border-radius: $boreal-radius-xs;
 
@@ -113,30 +113,30 @@
 	font-size: $boreal-typography-font-size-xs;
 	font-weight: $boreal-typography-font-weight-regular;
 	line-height: $boreal-typography-line-height-md;
-	color: $boreal-color-masiv-ink-ink-40;
+	color: $boreal-text-default-light;
 }
 .is-helper-text {
 	font-size: $boreal-typography-font-size-xs;
 	font-weight: $boreal-typography-font-weight-regular;
 	line-height: $boreal-typography-line-height-sm;
-	color: $boreal-color-masiv-ink-ink-40;
+	color: $boreal-text-default-light;
 }
 
 .is-link {
 	font-size: $boreal-typography-font-size-sm;
 	font-weight: $boreal-typography-font-weight-regular;
 	line-height: $boreal-typography-line-height-md;
-	color: $boreal-color-masiv-blue-blue-50;
+	color: $boreal-text-primary;
 	text-decoration: none;	
 
 	&:hover {
 		text-decoration: underline;
 	}
 	&:visited {
-		color: $boreal-color-masiv-blue-blue-50;
+		color: $boreal-text-primary;
 	}
 	&:active {
-		color: $boreal-color-masiv-blue-blue-70;
+		color: $boreal-text-primary-dark;
 	}
 
 	&-md {

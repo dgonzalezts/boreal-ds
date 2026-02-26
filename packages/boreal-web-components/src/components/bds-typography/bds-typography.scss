@@ -6,12 +6,12 @@
   font-weight: $boreal-typography-font-weight-regular;
 
   &__required-indicator {
-    color: $boreal-danger-base;
+    color: $boreal-icon-danger;
     font-weight: $boreal-typography-font-weight-regular;
   }
 
   &__info-icon {
-    color: $boreal-neutral-300;
+    color: $boreal-icon-default-light;
   }
 
   &--heading,
@@ -38,31 +38,31 @@
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-neutral-400;
+    color: $boreal-text-default-light;
   }
 
   &--helper {
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
     line-height: $boreal-typography-line-height-sm;
-    color: $boreal-neutral-400;
+    color: $boreal-text-default-light;
   }
 
   &--link {
     font-size: $boreal-typography-font-size-sm;
     font-weight: $boreal-typography-font-weight-regular;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-information-base;
+    color: $boreal-text-primary;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
     }
     &:visited {
-      color: $boreal-information-base;
+      color: $boreal-text-primary;
     }
     &:active {
-      color: $boreal-primary-dark;
+      color: $boreal-text-primary-dark;
     }
 
     &.bds-typography--size-sm {
@@ -77,7 +77,7 @@
     font-family: $boreal-typography-font-family-secondary;
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-base-alt;
+    color: $boreal-text-base;
     line-height: $boreal-typography-line-height-md;
     overflow-wrap: break-word;
 
@@ -94,12 +94,12 @@
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-semibold;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-black;
+    color: $boreal-text-default-darker;
   }
 
   &--display {
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-base-alt;
+    color: $boreal-text-base;
 
     &.bds-typography--size-sm {
       font-size: $boreal-typography-font-size-xl;
@@ -125,7 +125,7 @@
     font-size: $boreal-typography-font-size-lg;
     line-height: $boreal-typography-line-height-lg;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-base-alt;
+    color: $boreal-text-base;
   }
 
   h1.bds-typography--heading {
@@ -179,16 +179,16 @@
   }
 
   &--error {
-    color: $boreal-danger-base;
+    color: $boreal-text-danger;
   }
 
   &--disabled {
-    color: $boreal-danger-base;
+    color: $boreal-text-disabled;
     pointer-events: none;
     cursor: not-allowed;
 
     .bds-typography__required-indicator {
-      color: $boreal-danger-light;
+      color: $boreal-text-danger-light;
     }
   }
 
