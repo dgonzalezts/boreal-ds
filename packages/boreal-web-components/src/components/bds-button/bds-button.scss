@@ -1,15 +1,69 @@
+@use '../../globals/tokens-replacement.scss' as *;
+
 :host {
   display: block;
 }
+.bds-button {
+  height: fit-content;
+}
 
 .bds-button {
+  font-family: 'Inter', sans-serif !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 16px;
+  appearance: none;
+  border: none;
+  height: fit-content;
+  font-style: normal;
+  transition: 0.3s all ease;
+  margin: $boreal-spacing-3xs;
+
+  &--size-medium {
+    border-radius: $boreal-radius-xs;
+    font-size: $boreal-typography-font-size-sm;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-sm;
+    padding: $boreal-spacing-2xs $boreal-spacing-1xs;
+
+    .bds-button__content {
+      padding: 0 $boreal-spacing-3xs;
+    }
+  }
+
+  &--size-small {
+  }
+
+  &--size-large {
+  }
+
+  &--var-default {
+    color: $boreal-text-inverse;
+    background-color: $boreal-ui-components-primary;
+
+    &:hover {
+      background-color: $boreal-ui-components-primary-dark;
+    }
+
+    &:focus {
+      background-color: $boreal-ui-components-primary-base;
+      box-shadow:
+        0px 0px 0px 1px $boreal-ui-components-inverse,
+        0px 0px 0px 3px $boreal-stroke-focus;
+    }
+
+    &:active {
+      box-shadow:
+        0px 0px 0px 1px $boreal-ui-components-inverse,
+        0px 0px 0px 3px $boreal-stroke-focus;
+      background-color: $boreal-ui-components-primary-dark;
+    }
+
+    &.bds-button--is-disabled,
+    &.bds-button--is-loading {
+      background-color: $boreal-ui-components-primary-light;
+      cursor: not-allowed;
+    }
+  }
 }

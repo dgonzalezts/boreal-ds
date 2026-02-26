@@ -1,16 +1,43 @@
 <!doctype html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-    <link rel="stylesheet" href="/build/boreal-web-components.css" />
 
-    <script type="module" src="/build/boreal-web-components.esm.js"></script>
-    <script nomodule src="/build/boreal-web-components.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
-    <bds-button color="success" type="submit" aria-label="button component">Button</bds-button>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <link rel="stylesheet" href="/build/boreal-web-components.css" />
+
+  <script type="module" src="/build/boreal-web-components.esm.js"></script>
+  <script nomodule src="/build/boreal-web-components.js"></script>
+</head>
+
+<body>
+  <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+  <bds-button color="primary" label="Button component" id="button-clickable">Your Text</bds-button>
+  <bds-button type="submit" name="submit" label="Submit component" disabled>Submit</bds-button>
+  <bds-button type="submit" name="submit" label="Submit component" is-loading>loading</bds-button>
+
+
+  <form id="test-form">
+    <input type="text" name="name" required />
+    <input type="email" name="email" required />
+    <bds-button type="submit" name="submit" label="Submit component">Submit</bds-button>
+
+    <bds-button color="primary" label="Button component" id="button-clickable">Button</bds-button>
+    <bds-button color="success" type="reset" label="Reset Form">reset</bds-button>
+  </form>
+  <script>
+    document.getElementById('button-clickable')?.addEventListener('click', (event) => {
+      console.log('Custom click event received:', event);
+    });
+    document.getElementById('test-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      console.log('Form submitted with custom event:', name, email);
+    });
+  </script>
+</body>
+
 </html>

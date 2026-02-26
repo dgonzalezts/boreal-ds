@@ -10,5 +10,7 @@ export default interface IButton {
   color: CoreColors;
   variant: ButtonVariant;
   size: ButtonSizes;
-  status: State;
+  status?: State;
+  isLoading?: boolean;
+  form?: string;
 }
