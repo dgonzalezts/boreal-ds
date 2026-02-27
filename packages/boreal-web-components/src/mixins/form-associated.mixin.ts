@@ -12,8 +12,8 @@ import { AttachInternals, Prop, type MixedInCtor } from '@stencil/core';
  * ```typescript
  * import { Component, Prop, Mixin } from '@stencil/core';
  *
- * import { setFormValue } from '@/utils/form/form.utils';
- * import { formAssociatedMixin, type IFormAssociatedCallbacks } from '@/utils/form/mixins/form-associated.mixin';
+ * import { setFormValue } from '@/utils/form/form-utils';
+ * import { formAssociatedMixin, type IFormAssociatedCallbacks } from '@/mixins/form-associated.mixin';
  *
  * @Component({ tag: 'bds-input', formAssociated: true })
  * export class BdsInput extends Mixin(formAssociatedMixin) implements IFormAssociatedCallbacks {
