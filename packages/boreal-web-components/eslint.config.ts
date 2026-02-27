@@ -74,6 +74,7 @@ export default defineConfig(
       'stencil/reserved-member-names': 'error',
       'stencil/single-export': 'error',
       'stencil/strict-mutable': 'error',
+      'stencil/strict-boolean-conditions': 'warn',
     },
   },
   {
@@ -88,6 +89,8 @@ export default defineConfig(
     files: ['**/*.d.ts'],
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
+      'stencil/strict-boolean-conditions': 'off',
+      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }]
     },
   },
 );

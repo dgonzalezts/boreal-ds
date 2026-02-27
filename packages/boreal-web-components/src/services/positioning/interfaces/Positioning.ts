@@ -1,4 +1,4 @@
-import { Placement } from '@floating-ui/dom';
+import { MiddlewareData, Placement } from '@floating-ui/dom';
 
 type Strategy = 'absolute' | 'fixed';
 
@@ -15,11 +15,5 @@ export interface PositioningResult {
   x: number;
   y: number;
   placement: Placement;
-  middlewareData: {
-    arrow?: {
-      x: number;
-      y: number;
-      centerOffset: number;
-    };
-  };
+  middlewareData: MiddlewareData;
 }

@@ -1,11 +1,15 @@
-import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
+import { arrow, computePosition, ComputePositionReturn, flip, offset, shift } from '@floating-ui/dom';
 import { PositioningOptions, PositioningResult } from './interfaces/Positioning';
 import { ILogger, Logger } from '../logger/Logger';
 
 class FloatingAdapter {
   constructor(private readonly logger: ILogger) {}
 
-  async computePosition(reference: HTMLElement | null, floating: HTMLElement | null, options: PositioningOptions) {
+  async computePosition(
+    reference: HTMLElement | null,
+    floating: HTMLElement | null,
+    options: PositioningOptions,
+  ): Promise<PositioningResult> {
     if (!reference)
       this.logger.error('FloatingAdapter.computePosition', 'Reference element is required for positioning.');
     if (!floating)
@@ -29,9 +33,14 @@ class FloatingAdapter {
       placement,
       middleware,
       strategy,
-    });
+    })
+      .catch((err: Error) => {
+        this.logger.error('FloatingAdapter.computePosition', err.message);
+      })
+      .then((res: ComputePositionReturn) => {
+        return res;
+      });
     const { x, y, placement: computedPlacement, middlewareData } = result;
-
     return {
       x,
       y,
