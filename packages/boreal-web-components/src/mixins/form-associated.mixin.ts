@@ -1,4 +1,4 @@
-import { AttachInternals, Prop, type MixedInCtor } from '@stencil/core';
+import { Prop, type MixedInCtor } from '@stencil/core';
 
 /**
  * Lifecycle callbacks that each Form-Associated Custom Element must implement.
@@ -10,13 +10,15 @@ import { AttachInternals, Prop, type MixedInCtor } from '@stencil/core';
  *
  * @example
  * ```typescript
- * import { Component, Mixin, Prop } from '@stencil/core';
+ * import { AttachInternals, Component, Mixin, Prop } from '@stencil/core';
  *
  * import { setFormValue } from '@/utils/form';
  * import { formAssociatedMixin, type IFormAssociatedCallbacks } from '@/mixins/form-associated.mixin';
  *
  * @Component({ tag: 'bds-text-field', formAssociated: true })
  * export class BdsTextField extends Mixin(formAssociatedMixin) implements IFormAssociatedCallbacks {
+ *   @AttachInternals() internals!: ElementInternals;
+ *
  *   @Prop({ mutable: true, reflect: true }) value: string = '';
  *
  *   public formAssociatedCallback(): void {
@@ -60,18 +62,19 @@ export interface IFormAssociatedCallbacks {
  * Shared base mixin for Form-Associated Custom Elements in Boreal DS.
  *
  * Provides:
- * - `internals` for native form participation APIs
  * - `name`, `disabled`, and `required` form props
  * - `formDisabledCallback` with universal disabled sync behavior
  *
- * Components must still implement `IFormAssociatedCallbacks` for value
+ * Each component must declare `@AttachInternals() internals!: ElementInternals`
+ * directly on its class body — Stencil's compiler requires this decorator to be
+ * statically visible on the component class, not inside a mixin factory.
+ *
+ * Components must also implement `IFormAssociatedCallbacks` for value
  * registration, reset, and state restoration.
  */
 
 export const formAssociatedMixin = <B extends MixedInCtor>(Base: B) => {
   class FormAssociated extends Base {
-    @AttachInternals() internals!: ElementInternals;
-
     @Prop({ reflect: true }) name!: string;
 
     @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
