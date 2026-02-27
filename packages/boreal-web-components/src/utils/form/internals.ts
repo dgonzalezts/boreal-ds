@@ -47,13 +47,13 @@ export function setFormValue(internals: ElementInternals, value: FormDataEntryVa
  *   return [
  *     {
  *       key: 'valueMissing',
- *       isValid: (el) => !(el as BdsInput).required || (el as BdsInput).value !== '',
+ *       isValid: (el) => !(el as BdsTextField).required || (el as BdsTextField).value !== '',
  *       message: 'This field is required.',
  *     },
  *     {
  *       key: 'tooShort',
  *       isValid: (el) => {
- *         const { value, minLength } = el as BdsInput;
+ *         const { value, minLength } = el as BdsTextField;
  *         return minLength === undefined || value.length >= minLength;
  *       },
  *       message: `Minimum length not reached.`,

@@ -10,13 +10,13 @@ import { AttachInternals, Prop, type MixedInCtor } from '@stencil/core';
  *
  * @example
  * ```typescript
- * import { Component, Prop, Mixin } from '@stencil/core';
+ * import { Component, Mixin, Prop } from '@stencil/core';
  *
- * import { setFormValue } from '@/utils/form/form-utils';
+ * import { setFormValue } from '@/utils/form';
  * import { formAssociatedMixin, type IFormAssociatedCallbacks } from '@/mixins/form-associated.mixin';
  *
- * @Component({ tag: 'bds-input', formAssociated: true })
- * export class BdsInput extends Mixin(formAssociatedMixin) implements IFormAssociatedCallbacks {
+ * @Component({ tag: 'bds-text-field', formAssociated: true })
+ * export class BdsTextField extends Mixin(formAssociatedMixin) implements IFormAssociatedCallbacks {
  *   @Prop({ mutable: true, reflect: true }) value: string = '';
  *
  *   public formAssociatedCallback(): void {
