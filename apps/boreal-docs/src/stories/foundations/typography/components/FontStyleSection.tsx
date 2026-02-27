@@ -6,7 +6,13 @@ export const FontStyleSection = ({ name, values, prefix }: any) => {
 
   const buildVariable = buildVariableName.bind(null, prefix);
   const parsePrefix = (key: string): string => {
-    return key.match(/typography-/g)?.length ? key.replace(/typography-/g, '') : key;
+    const token = key.replace(/^typography-/, '');
+    const [first, ...rest] = token.split('-');
+    const camelCased = rest.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
+    return first + camelCased;
+  };
+  const toLowerCase = (str: string) => {
+    return str.toLowerCase();
   };
 
   return (
@@ -25,7 +31,7 @@ export const FontStyleSection = ({ name, values, prefix }: any) => {
               </p>
               <div className="character-item__variable">
                 <p className="item__variable-value">
-                  {isLoaded ? arrayValues[character] : 'Loading...'}
+                  {isLoaded ? toLowerCase(arrayValues[character]) : 'Loading...'}
                 </p>
                 <p className="item__variable-name">{buildVariable(character)}</p>
               </div>

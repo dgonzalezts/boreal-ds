@@ -149,7 +149,6 @@ export const TYPOGRAPHY_SIZE = extractCategoryKeys(
   primitives.typography['font-size'],
   key => !key.includes('type')
 );
-
 export const TYPOGRAPHY_WEIGHT = extractCategoryKeys(
   primitives.typography['font-weight'],
   key => !key.includes('type')

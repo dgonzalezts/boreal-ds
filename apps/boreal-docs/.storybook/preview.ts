@@ -15,8 +15,6 @@ import { defineCustomElements } from '@telesign/boreal-web-components/loader';
 defineCustomElements();
 
 import 'highlight.js/styles/atom-one-dark.css';
-//TODO: Replace next line with Boreal design tokens when available and remove `tokens-fallback.css` file
-import '@/styles/tokens-fallback.css';
 import '@telesign/boreal-style-guidelines/scss/helpers';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';
