@@ -1588,11 +1588,11 @@
     },
     "font-family": {
       "primary": {
-        "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Microsoft Sans Serif', Freesans, Helvetica, Arial, sans-serif",
+        "value": "'Inter', sans-serif",
         "type": "typography"
       },
       "secondary": {
-        "value": "Courier",
+        "value": "'Courier Prime', monospace",
         "type": "typography"
       }
     }
