@@ -1,8 +1,5 @@
 @use '../../globals/tokens-replacement.scss' as *;
 
-:host {
-  display: block;
-}
 .bds-button {
   height: fit-content;
 }
@@ -14,11 +11,12 @@
   justify-content: center;
   cursor: pointer;
   appearance: none;
-  border: none;
+  border: 1px solid transparent;
   height: fit-content;
   font-style: normal;
   transition: 0.3s all ease;
   margin: $boreal-spacing-3xs;
+  outline: none;
 
   &--size-medium {
     border-radius: $boreal-radius-xs;
@@ -28,42 +26,133 @@
     padding: $boreal-spacing-2xs $boreal-spacing-1xs;
 
     .bds-button__content {
-      padding: 0 $boreal-spacing-3xs;
+      padding: $boreal-spacing-3xs $boreal-spacing-2xs;
     }
   }
 
-  &--size-small {
-  }
+  &.bds-button--var-default {
+    &.bds-button--default {
+      color: $boreal-text-default;
+      background-color: $boreal-ui-components-inverse;
 
-  &--size-large {
-  }
+      &:hover {
+        background-color: $boreal-ui-components-default-lighter;
+        // TODO: Ask to design about the shadow for hover state, because in figma it is different from the one in the token
+        box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15);
+      }
 
-  &--var-default {
-    color: $boreal-text-inverse;
-    background-color: $boreal-ui-components-primary;
+      &:focus {
+        background-color: $boreal-ui-components-default-lighter;
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+      }
 
-    &:hover {
-      background-color: $boreal-ui-components-primary-dark;
+      &.bds-button--state-active,
+      &:active {
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus,
+          0 1px 2px 0 rgba(19, 19, 22, 0.15) inset;
+        background-color: $boreal-ui-components-default-lighter;
+      }
+
+      &.bds-button--is-disabled,
+      &.bds-button--is-loading {
+        color: $boreal-text-disabled;
+        background-color: $boreal-ui-components-inverse;
+        cursor: not-allowed;
+      }
     }
 
-    &:focus {
+    &.bds-button--primary {
+      color: $boreal-text-inverse;
       background-color: $boreal-ui-components-primary-base;
-      box-shadow:
-        0px 0px 0px 1px $boreal-ui-components-inverse,
-        0px 0px 0px 3px $boreal-stroke-focus;
+
+      &:hover {
+        background-color: $boreal-ui-components-primary-dark;
+      }
+
+      &:focus {
+        background-color: $boreal-ui-components-primary-base;
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+      }
+
+      &.bds-button--state-active,
+      &:active {
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+        background-color: $boreal-ui-components-primary-dark;
+      }
+
+      &.bds-button--is-disabled,
+      &.bds-button--is-loading {
+        background-color: $boreal-ui-components-primary-light;
+        cursor: not-allowed;
+      }
     }
 
-    &:active {
-      box-shadow:
-        0px 0px 0px 1px $boreal-ui-components-inverse,
-        0px 0px 0px 3px $boreal-stroke-focus;
-      background-color: $boreal-ui-components-primary-dark;
+    &.bds-button--success {
+      color: $boreal-text-inverse;
+      background-color: $boreal-ui-components-success-base;
+
+      &:hover {
+        background-color: $boreal-ui-components-success-dark;
+      }
+
+      &:focus {
+        background-color: $boreal-ui-components-success-base;
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+      }
+
+      &.bds-button--state-active,
+      &:active {
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+        background-color: $boreal-ui-components-success-dark;
+      }
+
+      &.bds-button--is-disabled,
+      &.bds-button--is-loading {
+        background-color: $boreal-ui-components-success-light;
+        cursor: not-allowed;
+      }
     }
 
-    &.bds-button--is-disabled,
-    &.bds-button--is-loading {
-      background-color: $boreal-ui-components-primary-light;
-      cursor: not-allowed;
+    &.bds-button--error {
+      color: $boreal-text-inverse;
+      background-color: $boreal-ui-components-danger-base;
+
+      &:hover {
+        background-color: $boreal-ui-components-danger-dark;
+      }
+
+      &:focus {
+        background-color: $boreal-ui-components-danger-base;
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+      }
+
+      &.bds-button--state-active,
+      &:active {
+        box-shadow:
+          0px 0px 0px 1px $boreal-ui-components-inverse,
+          0px 0px 0px 3px $boreal-stroke-focus;
+        background-color: $boreal-ui-components-danger-dark;
+      }
+
+      &.bds-button--is-disabled,
+      &.bds-button--is-loading {
+        background-color: $boreal-ui-components-danger-light;
+        cursor: not-allowed;
+      }
     }
   }
 }

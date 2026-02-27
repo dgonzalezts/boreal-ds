@@ -1,6 +1,6 @@
-import { AttachInternals, Component, Element, h, Prop } from '@stencil/core';
+import { AttachInternals, Component, Element, h, Prop, State } from '@stencil/core';
 import IButton from './types/IButton';
-import { StyleModifiers } from '@/types';
+import { STATES, StyleModifiers } from '@/types';
 import { BUTTON_SIZES, BUTTON_TYPES, BUTTON_VARIANTS } from './types/enum';
 import { CORE_COLORS } from '@/types/coreColors';
 import { Validate } from '@/utils/decorators/validate.decorate';
@@ -51,6 +51,8 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
   formAssociated: true,
 })
 export class BdsButton implements IButton {
+  /** State to manage states */
+  @State() currentState: IButton['currentState'] = STATES.DEFAULT;
   /* Props to manage the button attributes */
   /** The accessible name for the button, used for screen readers. It should be provided by the user for accessibility purposes. */
   @Prop() readonly label: IButton['label'] = '';
@@ -92,6 +94,18 @@ export class BdsButton implements IButton {
     this.setupFormAssociation();
   }
 
+  /** Event for listen keydown from button, make navigation easier */
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.currentState = STATES.ACTIVE;
+    }
+  };
+
+  /** reset status on keyup */
+  private handleKeyUp = () => {
+    this.currentState = STATES.DEFAULT;
+  };
+
   /** Select closest form or internal form from ElementInternals */
   private setupFormAssociation() {
     const closestForm = this.el.closest('form');
@@ -115,6 +129,12 @@ export class BdsButton implements IButton {
 
   /** Decide which form action to perform based on button type */
   private proccessFormClick() {
+    if (this.internalForm === undefined) {
+      console.warn(
+        '[BorealDS Button] No form found for submit/reset action. Please ensure the button is within a form or that the form is properly associated.',
+      );
+      return;
+    }
     const events: Record<string, () => void> = {
       [BUTTON_TYPES.SUBMIT]: () => this.internalForm.requestSubmit(),
       [BUTTON_TYPES.RESET]: () => this.internalForm.reset(),
@@ -133,6 +153,7 @@ export class BdsButton implements IButton {
       'bds-button': true,
       'bds-button--is-disabled': this.disabled,
       'bds-button--is-loading': this.isLoading,
+      [`bds-button--state-${this.currentState}`]: true,
       [`bds-button--${this.color}`]: true,
       [`bds-button--var-${this.variant}`]: true,
       [`bds-button--size-${this.size}`]: true,
@@ -152,9 +173,17 @@ export class BdsButton implements IButton {
         aria-disabled={this.disabled}
         tabIndex={this.disabled ? -1 : 0}
         onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
       >
         <span class="bds-button__content">
-          {!this.isLoading ? <slot></slot> : <span class="bds-button__loader" aria-hidden="true"></span>}
+          {!this.isLoading ? (
+            <slot></slot>
+          ) : (
+            <span class="bds-button__loader" aria-hidden="true">
+              a
+            </span>
+          )}
         </span>
       </button>
     );
