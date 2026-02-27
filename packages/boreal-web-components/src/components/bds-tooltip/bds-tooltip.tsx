@@ -174,7 +174,8 @@ export class BdsTooltip implements ITooltip {
 
     this.cleanupAutoUpdate?.();
     this.cleanupAutoUpdate = undefined;
-    this.tooltipContent.hidePopover();
+
+    this.tooltipContent.hidePopover?.();
   };
 
   private toggleTooltip = () => {
