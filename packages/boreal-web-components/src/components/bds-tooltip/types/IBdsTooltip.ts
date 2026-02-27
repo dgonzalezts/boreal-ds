@@ -18,18 +18,7 @@ export interface ITooltip {
   disabled: boolean;
   /** If true, tooltip is shown/hidden on click instead of hover/focus. */
   showOnClick: boolean;
-  /** Reference to the trigger slot element. */
-  triggerSlot: HTMLElement;
-  /** Reference to the tooltip content element. */
-  tooltipContent: HTMLElement;
-  /** Reference to the tooltip arrow element. */
-  arrowElement: HTMLElement;
 
   /** Whether the tooltip is currently visible. */
   isVisible: boolean;
-
-  /** Cleanup function for autoUpdate. */
-  cleanupAutoUpdate: () => void;
-  /** Reference to the previous trigger element. */
-  previousTrigger: HTMLElement;
 }
