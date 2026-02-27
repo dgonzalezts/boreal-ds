@@ -21,6 +21,6 @@ export class MyComponent {
   @Prop() readonly last: string = '';
 
   render() {
-    return <div>Hello, World! I'm StencilJS</div>;
+    return <div> Hello, World! I'm Stencil 'Don't call me a framework' JS</div>;
   }
 }
