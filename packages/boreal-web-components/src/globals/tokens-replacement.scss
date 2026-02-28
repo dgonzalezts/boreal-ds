@@ -72,21 +72,35 @@ $boreal-ui-components-primary: #0a5bfc;
 $boreal-ui-components-primary-dark: #023075;
 $boreal-ui-components-primary-base: #0a5bfc;
 $boreal-ui-components-primary-light: #9ec5ff;
+$boreal-ui-components-primary-lighter: #f0f7ff;
 $boreal-ui-components-success-base: #24a852;
 $boreal-ui-components-success-dark: #004a18;
 $boreal-ui-components-success-light: #96deb2;
+$boreal-ui-components-success-lighter: #eefbf4;
 $boreal-ui-components-danger-base: #c7242b;
 $boreal-ui-components-danger-dark: #6b0a15;
 $boreal-ui-components-danger-light: #ffa3a5;
+$boreal-ui-components-danger-lighter: #fff0f1;
 $boreal-ui-components-default-lighter: #f7f7f8;
 
 $boreal-text-disabled: #b6b8be;
 $boreal-text-danger: #c7242b;
+$boreal-text-danger-base: #c7242b;
 $boreal-text-danger-light: #ffa3a5;
 $boreal-text-primary: #0a5bfc;
+$boreal-text-primary-base: #0a5bfc;
 $boreal-text-primary-dark: #023075;
+$boreal-text-primary-light: #9ec5ff;
+$boreal-text-success-base: #24a852;
+$boreal-text-success-light: #96deb2;
 $boreal-text-inverse: #ffffff;
 
 $boreal-icon-default-light: #b6b8be;
 
 $boreal-stroke-focus: #9ec5ff;
+$boreal-stroke-primary-light: #9ec5ff;
+$boreal-stroke-success-base: #24a852;
+$boreal-stroke-success-light: #96deb2;
+$boreal-stroke-danger-base: #c7242b;
+$boreal-stroke-danger-light: #ffa3a5;
+$boreal-stroke-default-light: #e3e3e6;

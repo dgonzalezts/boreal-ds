@@ -1,7 +1,78 @@
 @use '../../globals/tokens-replacement.scss' as *;
 
-.bds-button {
-  height: fit-content;
+@mixin bds-button-logic(
+  $text,
+  $bg,
+  $hover-bg,
+  $focus-bg: null,
+  $active-bg: null,
+  $border: transparent,
+  $text-dis: $boreal-text-disabled,
+  $bg-dis: $boreal-ui-components-inverse,
+  $border-dis: transparent,
+  $has-inset-shadow: false
+) {
+  color: $text;
+  background-color: $bg;
+  border-color: $border;
+
+  &:hover {
+    background-color: $hover-bg;
+    box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15);
+  }
+
+  &:focus {
+    @if $focus-bg {
+      background-color: $focus-bg;
+    } @else {
+      background-color: $hover-bg;
+    }
+
+    box-shadow:
+      0px 0px 0px 1px $boreal-ui-components-inverse,
+      0px 0px 0px 3px $boreal-stroke-focus;
+  }
+
+  &:active,
+  &.bds-button--state-active {
+    @if $active-bg {
+      background-color: $active-bg;
+    } @else {
+      background-color: $hover-bg;
+    }
+
+    $shadow:
+      0px 0px 0px 1px $boreal-ui-components-inverse,
+      0px 0px 0px 3px $boreal-stroke-focus;
+
+    @if $has-inset-shadow {
+      $shadow:
+        #{$shadow},
+        0 1px 2px 0 rgba(19, 19, 22, 0.15) inset;
+    }
+
+    box-shadow: $shadow;
+  }
+
+  &.bds-button--is-disabled,
+  &.bds-button--is-loading {
+    cursor: not-allowed;
+    color: $text-dis;
+    background-color: $bg-dis;
+    border-color: $border-dis;
+    box-shadow: none;
+  }
+}
+
+@mixin bds-button-size($font-size, $padding, $line-height) {
+  border-radius: $boreal-radius-xs;
+  font-size: $font-size;
+  padding: $padding;
+  line-height: $line-height;
+
+  .bds-button__content {
+    padding: $boreal-spacing-3xs $boreal-spacing-2xs;
+  }
 }
 
 .bds-button {
@@ -9,150 +80,176 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   cursor: pointer;
   appearance: none;
   border: 1px solid transparent;
   height: fit-content;
-  font-style: normal;
   transition: 0.3s all ease;
   margin: $boreal-spacing-3xs;
   outline: none;
+  font-weight: $boreal-typography-font-weight-semibold;
+
+  &--size-small {
+    @include bds-button-size(
+      $boreal-typography-font-size-xs,
+      $boreal-spacing-3xs $boreal-spacing-2xs,
+      $boreal-typography-line-height-xs
+    );
+  }
 
   &--size-medium {
-    border-radius: $boreal-radius-xs;
-    font-size: $boreal-typography-font-size-sm;
-    font-weight: $boreal-typography-font-weight-regular;
-    line-height: $boreal-typography-line-height-sm;
-    padding: $boreal-spacing-2xs $boreal-spacing-1xs;
+    @include bds-button-size(
+      $boreal-typography-font-size-sm,
+      $boreal-spacing-2xs $boreal-spacing-1xs,
+      $boreal-typography-line-height-sm
+    );
+  }
 
-    .bds-button__content {
-      padding: $boreal-spacing-3xs $boreal-spacing-2xs;
-    }
+  &--size-large {
+    @include bds-button-size($boreal-typography-font-size-md, $boreal-spacing-xs, $boreal-typography-line-height-md);
   }
 
   &.bds-button--var-default {
     &.bds-button--default {
-      color: $boreal-text-default;
-      background-color: $boreal-ui-components-inverse;
-
-      &:hover {
-        background-color: $boreal-ui-components-default-lighter;
-        // TODO: Ask to design about the shadow for hover state, because in figma it is different from the one in the token
-        box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15);
-      }
-
-      &:focus {
-        background-color: $boreal-ui-components-default-lighter;
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-      }
-
-      &.bds-button--state-active,
-      &:active {
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus,
-          0 1px 2px 0 rgba(19, 19, 22, 0.15) inset;
-        background-color: $boreal-ui-components-default-lighter;
-      }
-
-      &.bds-button--is-disabled,
-      &.bds-button--is-loading {
-        color: $boreal-text-disabled;
-        background-color: $boreal-ui-components-inverse;
-        cursor: not-allowed;
-      }
+      @include bds-button-logic(
+        $boreal-text-default,
+        $boreal-ui-components-inverse,
+        $boreal-ui-components-default-lighter,
+        $has-inset-shadow: true
+      );
     }
 
     &.bds-button--primary {
-      color: $boreal-text-inverse;
-      background-color: $boreal-ui-components-primary-base;
-
-      &:hover {
-        background-color: $boreal-ui-components-primary-dark;
-      }
-
-      &:focus {
-        background-color: $boreal-ui-components-primary-base;
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-      }
-
-      &.bds-button--state-active,
-      &:active {
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-        background-color: $boreal-ui-components-primary-dark;
-      }
-
-      &.bds-button--is-disabled,
-      &.bds-button--is-loading {
-        background-color: $boreal-ui-components-primary-light;
-        cursor: not-allowed;
-      }
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-components-primary-base,
+        $boreal-ui-components-primary-dark,
+        $focus-bg: $boreal-ui-components-primary-base,
+        $active-bg: $boreal-ui-components-primary-dark,
+        $bg-dis: $boreal-ui-components-primary-light,
+        $text-dis: $boreal-text-inverse
+      );
     }
 
     &.bds-button--success {
-      color: $boreal-text-inverse;
-      background-color: $boreal-ui-components-success-base;
-
-      &:hover {
-        background-color: $boreal-ui-components-success-dark;
-      }
-
-      &:focus {
-        background-color: $boreal-ui-components-success-base;
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-      }
-
-      &.bds-button--state-active,
-      &:active {
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-        background-color: $boreal-ui-components-success-dark;
-      }
-
-      &.bds-button--is-disabled,
-      &.bds-button--is-loading {
-        background-color: $boreal-ui-components-success-light;
-        cursor: not-allowed;
-      }
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-components-success-base,
+        $boreal-ui-components-success-dark,
+        $focus-bg: $boreal-ui-components-success-base,
+        $active-bg: $boreal-ui-components-success-dark,
+        $bg-dis: $boreal-ui-components-success-light,
+        $text-dis: $boreal-text-inverse
+      );
     }
 
     &.bds-button--error {
-      color: $boreal-text-inverse;
-      background-color: $boreal-ui-components-danger-base;
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-components-danger-base,
+        $boreal-ui-components-danger-dark,
+        $focus-bg: $boreal-ui-components-danger-base,
+        $active-bg: $boreal-ui-components-danger-dark,
+        $bg-dis: $boreal-ui-components-danger-light,
+        $text-dis: $boreal-text-inverse
+      );
+    }
+  }
 
-      &:hover {
-        background-color: $boreal-ui-components-danger-dark;
-      }
+  &.bds-button--var-outline {
+    background-color: transparent;
 
-      &:focus {
-        background-color: $boreal-ui-components-danger-base;
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-      }
+    &.bds-button--default {
+      @include bds-button-logic(
+        $boreal-text-default,
+        transparent,
+        $boreal-ui-components-default-lighter,
+        $border: $boreal-stroke-default-light,
+        $border-dis: $boreal-stroke-default-light
+      );
+    }
 
-      &.bds-button--state-active,
-      &:active {
-        box-shadow:
-          0px 0px 0px 1px $boreal-ui-components-inverse,
-          0px 0px 0px 3px $boreal-stroke-focus;
-        background-color: $boreal-ui-components-danger-dark;
-      }
+    &.bds-button--primary {
+      @include bds-button-logic(
+        $boreal-text-primary-base,
+        transparent,
+        $boreal-ui-components-primary-lighter,
+        $border: $boreal-ui-components-primary-base,
+        $text-dis: $boreal-text-primary-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-primary-light
+      );
+    }
 
-      &.bds-button--is-disabled,
-      &.bds-button--is-loading {
-        background-color: $boreal-ui-components-danger-light;
-        cursor: not-allowed;
-      }
+    &.bds-button--success {
+      @include bds-button-logic(
+        $boreal-text-success-base,
+        transparent,
+        $boreal-ui-components-success-lighter,
+        $border: $boreal-stroke-success-base,
+        $text-dis: $boreal-text-success-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-success-light
+      );
+    }
+
+    &.bds-button--error {
+      @include bds-button-logic(
+        $boreal-text-danger-base,
+        transparent,
+        $boreal-ui-components-danger-lighter,
+        $border: $boreal-stroke-danger-base,
+        $text-dis: $boreal-text-danger-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-danger-light
+      );
+    }
+  }
+
+  &.bds-button--var-plain {
+    background-color: transparent;
+
+    &.bds-button--default {
+      @include bds-button-logic(
+        $boreal-text-default,
+        transparent,
+        $boreal-ui-components-default-lighter,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--primary {
+      @include bds-button-logic(
+        $boreal-text-primary-base,
+        transparent,
+        $boreal-ui-components-primary-lighter,
+        $text-dis: $boreal-text-primary-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--success {
+      @include bds-button-logic(
+        $boreal-text-success-base,
+        transparent,
+        $boreal-ui-components-success-lighter,
+        $text-dis: $boreal-text-success-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--error {
+      @include bds-button-logic(
+        $boreal-text-danger-base,
+        transparent,
+        $boreal-ui-components-danger-lighter,
+        $text-dis: $boreal-text-danger-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
     }
   }
 }
