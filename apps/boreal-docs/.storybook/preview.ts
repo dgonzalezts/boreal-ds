@@ -16,6 +16,7 @@ defineCustomElements();
 
 import 'highlight.js/styles/atom-one-dark.css';
 import '@telesign/boreal-style-guidelines/scss/helpers';
+import '@telesign/boreal-web-components/css/boreal.css';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';
 const BODY_SELECTOR = 'body.sb-show-main';

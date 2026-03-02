@@ -14,7 +14,6 @@
     "generate": "plop"
   },
   "dependencies": {
-    "@telesign/boreal-style-guidelines": "workspace:*",
     "@telesign/boreal-web-components": "workspace:*",
     "lit": "^3.3.1"
   },
