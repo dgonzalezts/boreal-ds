@@ -1,6 +1,6 @@
 /**
  * Decorator to validate that a property is within a set of valid values.
- * Maintains state per instance using WeakMap to avoid sharing values between component instances.
+ *
  * @param validValues Array of allowed values (T)
  * @param defaultValue Fallback value if validation fails
  */

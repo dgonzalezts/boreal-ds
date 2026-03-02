@@ -89,6 +89,7 @@
   margin: $boreal-spacing-3xs;
   outline: none;
   font-weight: $boreal-typography-font-weight-semibold;
+  width: fit-content;
 
   &--size-small {
     @include bds-button-size(
