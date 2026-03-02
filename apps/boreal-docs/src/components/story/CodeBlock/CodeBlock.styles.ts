@@ -23,7 +23,6 @@ export const CodeBlockStyles = css`
     background: #0e0e2c;
     color: #fff;
     border-radius: 8px;
-    display: flex;
     padding: 1rem;
     font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
     font-size: 0.95rem;

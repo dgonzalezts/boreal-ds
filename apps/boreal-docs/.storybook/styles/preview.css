@@ -224,16 +224,15 @@ div.spacing-item__variable-name {
 }
 
 .character-item__container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 30%));
   align-items: flex-start;
   justify-content: center;
   gap: var(--boreal-spacing-m);
-  flex-wrap: wrap;
 }
 
 .character-item__element {
-  width: 33vw;
+  width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: var(--boreal-spacing-m);
   margin-bottom: var(--boreal-spacing-2xs);
