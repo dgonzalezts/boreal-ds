@@ -1,8 +1,14 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { resolve } from 'path';
 import reactOutputTarget from './targets/react-output-target';
 import vueOutputTarget from './targets/vue-output-target';
 import { testingConfig } from './testing.config';
+
+const styleGuidelinesDir = resolve(
+  __dirname,
+  'node_modules/@telesign/boreal-style-guidelines/dist'
+);
 
 export const config: Config = {
   namespace: 'boreal-web-components',
@@ -27,11 +33,11 @@ export const config: Config = {
       empty: true,
       copy: [
         {
-          src: 'node_modules/@telesign/boreal-style-guidelines/dist/css',
+          src: `${styleGuidelinesDir}/css`,
           dest: 'css',
         },
         {
-          src: 'node_modules/@telesign/boreal-style-guidelines/dist/scss',
+          src: `${styleGuidelinesDir}/scss`,
           dest: 'scss',
         },
       ],
