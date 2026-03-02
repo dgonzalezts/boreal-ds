@@ -58,9 +58,11 @@ export const config: Config = {
   plugins: [
     sass({
       includePaths: ['node_modules'],
-      // Prepends the stencil SCSS tokens to every component SCSS file so that
+      // Injects the stencil SCSS tokens into every component SCSS file so that
       // $boreal-* variables are available without a per-file import.
-      additionalData: `@import '@telesign/boreal-style-guidelines/dist/stencil/index';`,
+      injectGlobalPaths: [
+        'node_modules/@telesign/boreal-style-guidelines/dist/stencil/_index.scss',
+      ],
     }),
   ],
   testing: testingConfig,
