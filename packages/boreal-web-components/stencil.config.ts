@@ -25,6 +25,16 @@ export const config: Config = {
       esmLoaderPath: '../loader',
       dir: 'dist',
       empty: true,
+      copy: [
+        {
+          src: 'node_modules/@telesign/boreal-style-guidelines/dist/css',
+          dest: 'css',
+        },
+        {
+          src: 'node_modules/@telesign/boreal-style-guidelines/dist/scss',
+          dest: 'scss',
+        },
+      ],
     },
     {
       type: 'dist-custom-elements',
@@ -42,6 +52,9 @@ export const config: Config = {
   plugins: [
     sass({
       includePaths: ['node_modules'],
+      // Prepends the stencil SCSS tokens to every component SCSS file so that
+      // $boreal-* variables are available without a per-file import.
+      additionalData: `@import '@telesign/boreal-style-guidelines/dist/stencil/index';`,
     }),
   ],
   testing: testingConfig,
