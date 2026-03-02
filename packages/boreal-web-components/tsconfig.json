@@ -49,6 +49,6 @@
     "skipDefaultLibCheck": true
   },
 
-  "include": ["src", "__mocks__"],
+  "include": ["scripts", "src", "__mocks__"],
   "exclude": ["node_modules", "dist"]
 }

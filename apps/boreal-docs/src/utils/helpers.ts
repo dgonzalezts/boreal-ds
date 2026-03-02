@@ -132,3 +132,46 @@ export function createStoryCollection(
     });
   })}`;
 }
+
+/**
+ * Capitalizes the first letter of a string
+ * @param text - Text to capitalize
+ * @returns Capitalized text
+ */
+export function capitalize(text: string): string {
+  if (!text) return '';
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+/**
+ * Retrieves the value of a CSS custom property (variable) from a themed element.
+ * If the variable name does not start with "--", it will be constructed using
+ * the provided global prefix and optional prefix.
+ *
+ * @param name - Name of the CSS variable (with or without "--" prefix)
+ * @param prefix - Optional prefix to namespace the variable
+ * @param element - Fallback element to read the computed theme from (defaults to document.body)
+ * @param globalPrefix - Global prefix used to build the CSS variable name (defaults to "boreal")
+ * @returns The trimmed value of the CSS variable, "Not set" if empty, or "Error" if an exception occurs
+ */
+export function getVariableValue(
+  name: string,
+  prefix?: string,
+  element: Element = document.body,
+  globalPrefix: string = 'boreal'
+): string {
+  try {
+    const themedElement = document.querySelector('[data-theme]') || element;
+
+    const prefixPart = prefix ? `-${prefix}` : '';
+
+    const fullName = name.startsWith('--') ? name : `--${globalPrefix}${prefixPart}-${name}`;
+
+    const value = getComputedStyle(themedElement).getPropertyValue(fullName).trim();
+
+    return value || 'Not set';
+  } catch (error) {
+    console.error('Error getting variable value:', error);
+    return 'Error';
+  }
+}

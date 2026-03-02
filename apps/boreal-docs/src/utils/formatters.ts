@@ -52,5 +52,5 @@ export const formatHtmlSource = async (source: string): Promise<string> => {
     singleAttributePerLine: true,
   });
 
-  return formatted.replace(/(\s[?.@]?\w+)=""/g, '$1');
+  return formatted.replace(/(\s[?.@]?[\w-]+)=""/g, '$1');
 };

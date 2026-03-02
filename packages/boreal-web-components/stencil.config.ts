@@ -10,6 +10,7 @@ export const config: Config = {
   minifyCss: true,
   sourceMap: false,
   buildEs5: 'prod',
+  globalStyle: 'src/globals/main.scss',
   extras: {
     experimentalSlotFixes: true,
     experimentalScopedSlotChanges: true,
@@ -30,6 +31,10 @@ export const config: Config = {
       externalRuntime: false,
       dir: './components-build',
       generateTypeDeclarations: true,
+    },
+    {
+      type: 'docs-custom-elements-manifest',
+      file: 'custom-elements.json',
     },
     reactOutputTarget(),
     vueOutputTarget(),

@@ -8,6 +8,9 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
+import { defineCustomElements } from '@telesign/boreal-web-components/loader';
+defineCustomElements();
+
 import 'highlight.js/styles/atom-one-dark.css';
 //TODO: Replace next line with Boreal design tokens when available and remove `tokens-fallback.css` file
 import '@/styles/tokens-fallback.css';

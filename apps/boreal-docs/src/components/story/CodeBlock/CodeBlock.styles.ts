@@ -2,7 +2,16 @@ import { css } from 'lit';
 
 export const CodeBlockStyles = css`
   .code-block-container h3 {
-    font-family: var(--boreal-typography-font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+    font-family: var(
+      --boreal-typography-font-family-primary,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     color: var(--boreal-colors-text-default, #424242);
     font-weight: 400;
     font-size: var(--boreal-typography-text-heading-regular-3xl, 2rem);
