@@ -1,4 +1,4 @@
-@use '../../globals/tokens-replacement.scss' as *;
+@use '../../styles/tokens-replacement.scss' as *;
 
 @mixin bds-button-logic(
   $text,
