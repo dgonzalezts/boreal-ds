@@ -1,0 +1,103 @@
+@use '../../../styles/theme' as *;
+
+@mixin banner-variant($border-color, $bg-color, $icon-color) {
+  border-color: $border-color;
+  background-color: $bg-color;
+
+  .bds-banner__vertical-line {
+    background-color: $border-color;
+  }
+
+  .bds-banner__status-icon {
+    color: $icon-color;
+  }
+}
+
+.bds-banner {
+  position: relative;
+  display: flex;
+  border: $boreal-spacing-4xs solid $boreal-stroke-info;
+  border-radius: $boreal-radius-xs;
+  border-left: 0;
+  font-family: $boreal-typography-font-family-primary;
+
+  height: 100%;
+  transition: all 0.3s ease-out;
+
+  &__vertical-line {
+    width: $boreal-spacing-2xs;
+    border-top-left-radius: $boreal-radius-xs;
+    border-bottom-left-radius: $boreal-radius-xs;
+
+    background-color: $boreal-stroke-info;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: $boreal-spacing-xs;
+    padding: $boreal-spacing-s;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__title {
+    font-weight: $boreal-typography-font-weight-semibold;
+    font-size: $boreal-typography-font-size-md;
+    line-height: $boreal-typography-line-height-md;
+  }
+
+  &__body {
+    padding-top: $boreal-spacing-2xs;
+    font-size: $boreal-typography-font-size-sm;
+    line-height: $boreal-typography-line-height-sm;
+  }
+
+  &__actions {
+    padding-top: $boreal-spacing-s;
+    min-height: 0px;
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__status-icon {
+    font-size: $boreal-typography-font-size-md;
+    line-height: $boreal-typography-line-height-md;
+    margin-top: $boreal-spacing-3xs;
+  }
+
+  &__close-icon {
+    background: none;
+    border: none;
+    align-self: start;
+    font-size: $boreal-typography-font-size-md;
+    line-height: $boreal-typography-line-height-md;
+    color: $boreal-neutral-400;
+    cursor: pointer;
+  }
+
+  &--info {
+    @include banner-variant($boreal-stroke-info, $boreal-ui-info-lighter, $boreal-stroke-info);
+  }
+
+  &--success {
+    @include banner-variant($boreal-stroke-success, $boreal-ui-success-lighter, $boreal-stroke-success);
+  }
+
+  &--warning {
+    @include banner-variant($boreal-stroke-warning, $boreal-ui-warning-lighter, $boreal-stroke-warning);
+  }
+
+  &--danger {
+    @include banner-variant($boreal-stroke-danger, $boreal-ui-danger-lighter, $boreal-stroke-danger);
+  }
+
+  &--closing {
+    opacity: 0;
+    height: 0;
+  }
+}

@@ -17,11 +17,11 @@ export interface ITypography {
 
   // Label
   isRequired: boolean;
-  htmlFor: string;
+  htmlFor: string | undefined;
 
   // Link
-  href: string;
-  target: '_blank' | '_parent' | '_self' | '_top' | '';
+  href: string | null;
+  target: '_blank' | '_parent' | '_self' | '_top' | '' | null;
   isDownloadable: boolean;
   filename: string;
 

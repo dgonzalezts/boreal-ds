@@ -10,7 +10,9 @@ describe('bds-typography component', () => {
     });
 
     expect(root).toBeTruthy();
-    expect(root.textContent.trim()).toBe('Hello world');
+
+    const inner = getInner(root);
+    expect(inner.textContent.trim()).toBe('Hello world');
   });
 });
 
@@ -35,7 +37,7 @@ describe('bds-typography basic prop rendering', () => {
       html: '<bds-typography variant="heading">Heading H1</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
 
     expect(inner.classList.contains('bds-typography--heading')).toBe(true);
     expect(inner.textContent.trim()).toContain('Heading H1');
@@ -47,9 +49,12 @@ describe('bds-typography basic prop rendering', () => {
       html: '<bds-typography element="h1">This is a H1 tag</bds-typography>',
     });
 
-    const h1 = root.querySelector('h1');
+    const h1 = root ? root.querySelector('h1') : null;
 
     expect(h1).not.toBeNull();
+
+    if (!h1) return;
+
     expect(h1.classList.contains('bds-typography--display')).toBe(true);
     expect(h1.textContent.trim()).toBe('This is a H1 tag');
   });
@@ -60,7 +65,7 @@ describe('bds-typography basic prop rendering', () => {
       html: '<bds-typography align="center">This is a paragraph</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
 
     expect(inner.classList.contains('bds-typography--align-center')).toBe(true);
   });
@@ -76,7 +81,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="display" size="lg">Display text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--size-lg')).toBe(true);
   });
 
@@ -86,7 +91,8 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="label" size="md">Label text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
+
     expect(inner.classList.contains('bds-typography--size-md')).toBe(false);
   });
 
@@ -96,7 +102,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="display" size="invalid-size">Label text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--size-invalid-size')).toBe(false);
   });
 
@@ -145,7 +151,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="helper" state="error">This is an error helper text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--error')).toBe(true);
   });
 
@@ -155,7 +161,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="heading" state="error">Heading text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
 
     expect(inner.classList.contains('bds-typography--error')).toBe(false);
   });
@@ -166,7 +172,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="helper" state="invalid-state">Text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--invalid-state')).toBe(false);
   });
 
@@ -179,7 +185,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography element="label" variant="label" is-required="true">Label text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.querySelector('.bds-typography__required-indicator')).not.toBeNull();
   });
 
@@ -189,7 +195,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography variant="heading" is-required="true">Text</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.querySelector('.bds-typography__required-indicator')).toBeNull();
   });
 
@@ -202,7 +208,7 @@ describe('bds-typography variant dependant prop rendering', () => {
       html: '<bds-typography element="label" variant="label" is-required="true" state="disabled">Text disabled and required.</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--required')).toBe(true);
     expect(inner.classList.contains('bds-typography--disabled')).toBe(true);
   });
@@ -215,7 +221,7 @@ describe('bds-typography ellipsis functionality', () => {
       html: '<bds-typography ellipsis="true">This is a long text with ellipsis.</bds-typography>',
     });
 
-    const inner = root.firstElementChild;
+    const inner = getInner(root);
     expect(inner.classList.contains('bds-typography--ellipsis')).toBe(true);
     expect(inner.classList.contains('bds-typography--ellipsis-multiline')).toBe(false);
   });

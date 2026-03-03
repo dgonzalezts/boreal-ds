@@ -1,0 +1,73 @@
+import {
+  Meta,
+  Stories,
+  ArgTypes,
+  Title,
+  Subtitle,
+} from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { StoryName, Callout } from '@/components/docs';
+import * as BdsBannerStories from './bds-banner.stories';
+
+<Meta of={BdsBannerStories} />
+
+<Title of={BdsBannerStories} />
+
+The bds-banner component displays an important, succinct message, and provides actions for users to address (or dismiss the banner).
+
+<Subtitle>How to use it</Subtitle>
+
+1. Import the component into your project.
+
+```ts
+import { BdsBanner } from '@telesign/boreal-web-components';
+
+```
+
+2. Use the `<bds-banner>` tag to display the component in your HTML.
+
+```html
+<bds-banner
+  variant="success"
+  enable-close
+>
+  <div slot="title">Title</div>
+  <div>
+    This banner can be closed using the close button or keyboard navigation. It
+    will emit a close event.
+  </div>
+</bds-banner>
+```
+
+<Subtitle>When to use it</Subtitle>
+The `bds-banner` component is a visual tool used to grab the user's attention and communicate important messages in a prominent way. Some use cases are described below:
+
+- **System Updates**: Inform users of scheduled maintenance, software upgrades, or service changes.
+- **Security Alerts**: Communicate security issues or important warnings that require the user's immediate attention.
+- **Product Launches**: Highlight new products or services available to attract users' attention.
+- **Policy Changes**: Inform about updates to privacy policies, terms of service, or any significant changes to the terms of use.
+- **Critical Errors**: Inform users of critical errors that affect the functionality of the platform and provide steps for resolution.
+- **Confirmations**: Display confirmation messages for successfully completed actions.
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the Banner component.
+
+<Callout variant="tip" icon="💡">
+  You can click on the **Show code** button in the bottom-right section of the following code
+  snippets to see how to use the component.
+</Callout>
+
+<Stories />
+
+<Subtitle>Accessibility</Subtitle>
+
+The Banner component is designed with accessibility in mind. It includes appropriate ARIA attributes and keyboard navigation support to ensure that all users can interact with it effectively.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsBannerStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsBannerStories.default.title} story="default">Default</LinkTo> section.
