@@ -18,12 +18,23 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./css/*": "./dist/css/*",
+    "./scss/*": "./dist/scss/*"
+  },
   "scripts": {
     "release": "release-it",
     "test": "echo 'No tests configured'",
-    "build": "pnpm run tsc",
+    "build": "pnpm run tsc && boreal-copy-styles",
     "tsc": "tsc -p . --outDir ./dist"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@stencil/vue-output-target": "^0.11.8",
     "@types/node": "^25.0.0",
