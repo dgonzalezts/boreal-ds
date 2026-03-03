@@ -29,7 +29,7 @@
   "scripts": {
     "release": "release-it",
     "test": "echo 'No tests configured'",
-    "build": "pnpm run tsc && node node_modules/@telesign/boreal-web-components/scripts/copy-styles.js",
+    "build": "pnpm run tsc && boreal-copy-styles",
     "tsc": "tsc -p . --outDir ./dist"
   },
   "files": [
