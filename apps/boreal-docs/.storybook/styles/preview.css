@@ -232,6 +232,7 @@ div.spacing-item__variable-name {
 }
 
 .character-item__element {
+  height: 100%;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: var(--boreal-spacing-m);
