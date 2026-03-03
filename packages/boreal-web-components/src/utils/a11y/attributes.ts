@@ -6,16 +6,18 @@
  * <span { ...myComponentAttr }>Hidden</span>
  */
 
-export type Attributes = { [key: string]: any };
+export interface Attributes {
+  [key: string]: string;
+}
 
-export const inheritAttributes = (el: HTMLElement, attributes: string[] = []) => {
+export const inheritAttributes = (el: HTMLElement, attributes: readonly string[] = []): Attributes => {
   const attributeObject: Attributes = {};
 
   attributes.forEach(attr => {
     if (el.hasAttribute(attr)) {
       const value = el.getAttribute(attr);
       if (value !== null) {
-        attributeObject[attr] = el.getAttribute(attr);
+        attributeObject[attr] = value;
       }
       el.removeAttribute(attr);
     }
@@ -24,7 +26,7 @@ export const inheritAttributes = (el: HTMLElement, attributes: string[] = []) =>
   return attributeObject;
 };
 
-const ariaAttributes = [
+const ariaAttributes: readonly string[] = [
   'role',
   'aria-activedescendant',
   'aria-atomic',
@@ -78,8 +80,8 @@ const ariaAttributes = [
   'aria-valuetext',
 ];
 
-export const inheritAriaAttributes = (el: HTMLElement, ignoreList?: string[]) => {
-  let attributesToInherit = ariaAttributes;
+export const inheritAriaAttributes = (el: HTMLElement, ignoreList?: readonly string[]): Attributes => {
+  let attributesToInherit: readonly string[] = ariaAttributes;
   if (ignoreList && ignoreList.length > 0) {
     attributesToInherit = attributesToInherit.filter(attr => !ignoreList.includes(attr));
   }
