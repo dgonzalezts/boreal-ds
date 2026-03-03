@@ -1,15 +1,15 @@
-import { Component, Element, Host, Prop, State, Watch, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
-import { autoUpdate, Placement } from '@floating-ui/dom';
-import { PositioningEngine } from '@/services/positioning/positioning.service';
-import { Logger } from '@/services/logger/Logger';
+import { floatingMixin, FloatingMixinOptions } from '@/mixins/floating.mixin';
+import { FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
+import { FLOATING_OPTIONS } from '@/utils/constants/floating/FloatingOptions';
 
 @Component({
   tag: 'bds-tooltip',
   styleUrl: 'bds-tooltip.scss',
   shadow: false,
 })
-export class BdsTooltip implements ITooltip {
+export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
   /**
    * If true, hides the tooltip arrow.
    * @default false
@@ -17,41 +17,13 @@ export class BdsTooltip implements ITooltip {
   @Prop({ reflect: true }) readonly hideArrow: boolean = false;
 
   /**
-   * If true, disables the tooltip (it will not show).
-   * @default false;
+   * Override default options for the floating mixin.
+   * This can be overridden by passing a different object to the `floatingOptions` prop.
    */
-  @Prop({ reflect: true }) readonly disabled: boolean = false;
-
-  /**
-   * Tooltip position relative to the trigger element.
-   * Accepts values like 'top', 'bottom', 'left', 'right', etc. (from Floating UI Placement)
-   * @default 'top'
-   */
-  @Prop() readonly position: Placement = 'top';
-
-  /**
-   * Width of the tooltip in pixels.
-   * @default 200
-   */
-  @Prop() readonly width: number = 200;
-
-  /**
-   * If true, allows multiline content in the tooltip.
-   * @default false
-   */
-  @Prop() readonly multiline: boolean = false;
-
-  /**
-   * Distance in pixels between the tooltip and the trigger element.
-   * @default 8
-   */
-  @Prop() readonly distance: number = 8;
-
-  /**
-   * If true, tooltip is shown/hidden on click instead of hover/focus.
-   * @default false
-   */
-  @Prop({ reflect: true }) readonly showOnClick: boolean = false;
+  @Prop() readonly floatingOptions: FloatingProp = {
+    ...FLOATING_OPTIONS,
+    showOnClick: true,
+  };
 
   /**
    * Whether the tooltip is currently visible.
@@ -59,132 +31,48 @@ export class BdsTooltip implements ITooltip {
    */
   @State() isVisible: boolean = false;
 
-  private cleanupAutoUpdate: () => void;
-  private previousTrigger: HTMLElement;
-  private positionEngine: PositioningEngine = new PositioningEngine();
-  private logger: Logger = new Logger();
-
   // Refs en Stencil se obtienen con el atributo ref en el render
-  private tooltipContent!: HTMLElement;
   private arrowElement!: HTMLElement;
-  private triggerSlot!: HTMLElement;
 
   @Element() el!: HTMLBdsTooltipElement;
 
+  get options(): FloatingMixinOptions {
+    return {
+      placement: this.floatingOptions.placement,
+      offset: this.floatingOptions.offset,
+      arrow: this.hideArrow ? undefined : this.arrowElement,
+      strategy: 'fixed',
+    };
+  }
   // --- Lifecycle ---
-
-  componentDidLoad() {
-    this.hide();
-    this.el.style.setProperty('--tooltip-width', `${this.width}px`);
-  }
-
-  @Watch('width')
-  onWidthChange(newValue: number) {
-    this.el.style.setProperty('--tooltip-width', `${newValue}px`);
-  }
-
-  disconnectedCallback() {
-    if (this.previousTrigger) {
-      this.previousTrigger.removeEventListener('focus', this.show);
-      this.previousTrigger.removeEventListener('blur', this.hide);
-      if (this.showOnClick) {
-        this.previousTrigger.removeEventListener('click', this.toggleTooltip);
-      }
-    }
-    this.cleanupAutoUpdate?.();
-  }
-
-  // --- Handlers ---
-
-  private handleSlotChange = (e: Event) => {
-    const newTrigger = e.target as HTMLElement;
-
-    if (this.previousTrigger) {
-      this.previousTrigger.removeEventListener('focus', this.show);
-      this.previousTrigger.removeEventListener('blur', this.hide);
-      if (this.showOnClick) {
-        this.previousTrigger.removeEventListener('click', this.toggleTooltip);
-      }
-    }
-
-    if (newTrigger) {
-      newTrigger.addEventListener('focus', this.show);
-      newTrigger.addEventListener('blur', this.hide);
-      if (this.showOnClick) {
-        newTrigger.addEventListener('click', this.toggleTooltip);
-      }
-      this.previousTrigger = newTrigger;
-    }
-  };
-
-  private handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') this.show();
-    if (e.key === 'Escape') this.hide();
-  };
-
-  // --- Tooltip control ---
-
-  private show = () => {
-    if (this.disabled) return;
-
+  private onBeforeShow = () => {
+    if (this.floatingOptions.disabled) return; // ¿cómo cortar el flujo? ver nota abajo
     this.isVisible = true;
-    if (!this.tooltipContent || !this.triggerSlot) return;
-
-    const triggerElement = this.triggerSlot;
-    if (!triggerElement) {
-      this.logger.warn('BDS-Tooltip', 'No trigger element found in tooltip slot');
-      return;
-    }
-
-    this.tooltipContent.showPopover();
-
-    const updatePosition = async () => {
-      const result = await this.positionEngine.computePosition(triggerElement, this.tooltipContent, {
-        placement: this.position,
-        offset: this.distance,
-        flip: true,
-        shift: true,
-        arrow: this.hideArrow ? undefined : this.arrowElement,
-        strategy: 'fixed',
-      });
-
-      this.positionEngine.applyPosition(this.tooltipContent, result);
-
-      if (result.middlewareData?.arrow && this.arrowElement) {
-        const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
-        Object.assign(this.arrowElement.style, {
-          left: arrowX != null ? `${arrowX}px` : '',
-          top: arrowY != null ? `${arrowY}px` : '',
-        });
-      }
-
-      this.tooltipContent.setAttribute('data-placement', result.placement);
-    };
-    const updatePositionSync = () => {
-      void updatePosition();
-    };
-
-    updatePositionSync();
-    this.cleanupAutoUpdate = autoUpdate(triggerElement, this.tooltipContent, updatePositionSync);
   };
-
-  private hide = () => {
+  private onAfterHide = () => {
     this.isVisible = false;
-    if (!this.tooltipContent) return;
-
-    this.cleanupAutoUpdate?.();
-    this.cleanupAutoUpdate = undefined;
-
-    this.tooltipContent.hidePopover();
   };
-
-  private toggleTooltip = () => {
-    if (this.isVisible) this.hide();
-    else this.show();
+  private onPositionUpdate = (result: PositioningResult) => {
+    this.floatingContent.setAttribute('data-placement', result.placement);
+    this.setArrowPosition(result);
+  };
+  private setArrowPosition = (result: PositioningResult) => {
+    if (result.middlewareData?.arrow && this.arrowElement) {
+      const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
+      Object.assign(this.arrowElement.style, {
+        left: arrowX != null ? `${arrowX}px` : '',
+        top: arrowY != null ? `${arrowY}px` : '',
+      });
+    }
+  };
+  private onKeyDown = (e: KeyboardEvent) => {
+    this.handleKeydown(e, this.show, this.hide);
+  };
+  private onSlotChange = (e: KeyboardEvent) => {
+    this.handleSlotChange(e, this.show, this.hide, this.toggle, this.floatingOptions.showOnClick);
   };
 
   // --- Render ---
-
   render() {
     return (
       <Host class="tooltip">
@@ -196,10 +84,10 @@ export class BdsTooltip implements ITooltip {
           aria-expanded={this.isVisible ? 'true' : 'false'}
           onMouseEnter={this.show}
           onMouseLeave={this.hide}
-          onKeyDown={this.handleKeydown}
+          onKeyDown={this.onKeyDown}
           ref={el => (this.triggerSlot = el)}
         >
-          <slot onSlotchange={this.handleSlotChange}></slot>
+          <slot onSlotchange={this.onSlotChange}></slot>
         </span>
         <div
           part="tooltip-content"
@@ -207,10 +95,10 @@ export class BdsTooltip implements ITooltip {
           popover="manual"
           role="tooltip"
           aria-hidden={this.isVisible ? 'false' : 'true'}
-          data-position={this.position}
+          data-position={this.floatingOptions.placement}
           data-multiLine={this.multiline}
           data-hidearrow={this.hideArrow}
-          ref={el => (this.tooltipContent = el as HTMLElement)}
+          ref={el => (this.floatingContent = el as HTMLElement)}
         >
           {!this.hideArrow && (
             <div class="tooltip-arrow" part="arrow" ref={el => (this.arrowElement = el as HTMLElement)} />

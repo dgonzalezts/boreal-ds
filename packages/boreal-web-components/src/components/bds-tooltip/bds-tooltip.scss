@@ -28,35 +28,58 @@
 
 .tooltip-arrow {
   position: absolute;
-  width: var(--tooltip-arrow-size);
-  height: var(--tooltip-arrow-size);
+  width: var(--tooltip-arrow-size, 8px);
+  height: var(--tooltip-arrow-size, 8px);
   pointer-events: none;
   z-index: -1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: var(--tooltip-arrow-size, 8px);
+    height: var(--tooltip-arrow-size, 8px);
+    background: black;
+    transform: rotate(45deg);
+  }
 }
 
-.tooltip-arrow::before {
-  content: '';
-  position: absolute;
-  width: var(--tooltip-arrow-size);
-  height: var(--tooltip-arrow-size);
-  background: black;
-  transform: rotate(45deg);
-  top: 0;
+// Según el placement, la flecha asoma hacia afuera del tooltip
+.tooltip-content[data-placement^='top'] .tooltip-arrow,
+.tooltip-content[data-placement^='bottom'] .tooltip-arrow {
   left: 0;
+  right: 0;
+  margin: auto;
 }
-
+.tooltip-content[data-placement^='left'] .tooltip-arrow,
+.tooltip-content[data-placement^='right'] .tooltip-arrow {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
 .tooltip-content[data-placement^='top'] .tooltip-arrow {
-  bottom: calc(var(--tooltip-arrow-size) / -2);
+  bottom: calc(var(--tooltip-arrow-size, 8px) / -2);
+  &::before {
+    top: 0;
+  }
 }
 
 .tooltip-content[data-placement^='bottom'] .tooltip-arrow {
-  top: calc(var(--tooltip-arrow-size) / -2);
+  top: calc(var(--tooltip-arrow-size, 8px) / -2);
+  &::before {
+    top: 0;
+  }
 }
 
 .tooltip-content[data-placement^='left'] .tooltip-arrow {
-  right: calc(var(--tooltip-arrow-size) / -2);
+  right: calc(var(--tooltip-arrow-size, 8px) / -2);
+  &::before {
+    left: 0;
+  }
 }
 
 .tooltip-content[data-placement^='right'] .tooltip-arrow {
-  left: calc(var(--tooltip-arrow-size) / -2);
+  left: calc(var(--tooltip-arrow-size, 8px) / -2);
+  &::before {
+    left: 0;
+  }
 }

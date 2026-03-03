@@ -75,6 +75,7 @@ export default defineConfig(
       'stencil/single-export': 'error',
       'stencil/strict-mutable': 'error',
       'stencil/strict-boolean-conditions': 'warn',
+      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }]
     },
   },
   {
@@ -90,7 +91,6 @@ export default defineConfig(
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       'stencil/strict-boolean-conditions': 'off',
-      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }]
     },
   },
 );
