@@ -13,21 +13,31 @@
 
 <body>
   <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
-  <bds-button label="Button component">Default</bds-button>
-  <bds-button label="Button component" color="primary" is-loading></bds-button>
-  primary
-
+  <bds-button label="Button component" is-loading>Default</bds-button>
+  <bds-button label="Button component" color="success" variant="outline" is-loading>
+    <i class="bds-icon-someone-comes-in" slot="icon"></i>
   </bds-button>
-  <bds-button label="Button component" color="primary" size="medium">Primary</bds-button>
-  <bds-button label="Button component" color="primary" size="small">Primary</bds-button>
-  <bds-button color="success" name="submit" label="Submit component">Success</bds-button>
-  <bds-button color="error" name="submit" label="Submit component">Errror</bds-button>
+  <bds-button label="Button component" color="primary">Primary</bds-button>
+  <bds-button label="Button component" has-disclosure></bds-button>
+  <bds-button label="Button component" color="primary">
+    Primary
+    <span slot="badge">0</span>
+  </bds-button>
+  <bds-button label="Button component" color="primary">
+    <i class="bds-icon-someone-comes-in" slot="icon"></i>
+  </bds-button>
+  <bds-button color="success" name="submit" label="Submit component" has-disclosure>
+    <i class="bds-icon-someone-comes-in" slot="icon"></i>
+    Success
+    <span slot="badge">0</span>
+  </bds-button>
 
+  <bds-button color="error" name="submit" label="Submit component">Errror</bds-button>
 
   <form id="test-form">
     <input type="text" name="name" required />
     <input type="email" name="email" required />
-    <bds-button color="info" type="submit" name="submit" label="Submit component">Submit</bds-button>
+    <bds-button type="submit" name="submit" label="Submit component">Submit</bds-button>
 
     <bds-button color="primary" label="Button component" id="button-clickable">Button</bds-button>
     <bds-button color="success" type="reset" label="Reset Form">reset</bds-button>

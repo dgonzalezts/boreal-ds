@@ -13,6 +13,8 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  *
  * @summary A versatile button component that can be customized with different colors, sizes, variants, and states to fit various use cases in the application.
  * @slot - The content of the button, typically text or an icon.
+ * @slot icon - Content to show button at the begining of the button
+ * @slot badge - Slot to place a badge component
  *
  * @attr {string} label - The accessible name for the button, used for screen readers. It should be provided by the user for accessibility purposes.
  * @attr {boolean} disabled - Disables the button when true, preventing user interaction and applying disabled styles.
@@ -23,6 +25,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @attr {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
  * @attr {string} status - The state of the button, which can be 'default', 'hover', 'active', 'focus', 'disabled', or 'loading'. Default is 'default'.
  * @attr {boolean} isLoading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
+ * @attr {boolean} hasDisclosure - Indicates if the button should show a chevron down at the end of the content.
  *
  * @property {string} label - The accessible name for the button, used for screen readers. It should be provided by the user for accessibility purposes.
  * @property {boolean} disabled - Disables the button when true, preventing user interaction and applying disabled styles.
@@ -33,7 +36,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @property {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
  * @property {string} status - The state of the button, which can be 'default', 'hover', 'active', 'focus', 'disabled', or 'loading'. Default is 'default'.
  * @property {boolean} isLoading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
- *
+ * @property {boolean} hasDisclosure - Indicates if the button should show a chevron down at the end of the content.
  *
  * @default 'button' - Default type value
  * @default 'default' - Default color value
@@ -44,6 +47,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @default '' - Default label value
  * @default '' - Default name value
  * @default false - Default isLoading value
+ * @default false - Default hasDisclosure value
  */
 @Component({
   tag: 'bds-button',
@@ -81,6 +85,9 @@ export class BdsButton implements IButton {
 
   /** isLoading is a boolean attribute. Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false. */
   @Prop() readonly isLoading: IButton['isLoading'] = false;
+
+  /** hasDisclosure is a boolean attribute. Used to show a chevron down at the of the content */
+  @Prop() readonly hasDisclosure: IButton['hasDisclosure'] = false;
 
   /** variable to store local HTMLElement */
   @Element() el: HTMLBdsButtonElement;
@@ -176,15 +183,20 @@ export class BdsButton implements IButton {
         onKeyDown={this.handleKeyDown}
         onKeyUp={this.handleKeyUp}
       >
-        <span class="bds-button__content">
-          {!this.isLoading ? (
-            <slot></slot>
-          ) : (
-            <span class="bds-button__loader" aria-hidden="true">
-              a
+        <div class="bds-button__content">
+          <span class="bds-button__content-icon">
+            <slot name="icon"></slot>
+          </span>
+          <slot></slot>
+          <span class="bds-button__content-badge">
+            <slot name="badge"></slot>
+          </span>
+          {this.hasDisclosure && (
+            <span class="bds-button__content-icon">
+              <i class="bds-icon-chevron-down"></i>
             </span>
           )}
-        </span>
+        </div>
       </button>
     );
   }

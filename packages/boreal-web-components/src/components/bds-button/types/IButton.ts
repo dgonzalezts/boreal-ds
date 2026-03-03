@@ -11,6 +11,8 @@ export default interface IButton {
   variant: ButtonVariant;
   size: ButtonSizes;
   currentState: State;
-  isLoading?: boolean;
+  isLoading: boolean;
+  hasDisclosure: boolean;
+
   form?: string;
 }
