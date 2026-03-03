@@ -240,20 +240,9 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
       this.previousTrigger = undefined;
       this.isVisible = false;
 
-      // That helps to prevent eslint error "this is not defined"
-      const show = (): void => {
-        this.show();
-      };
-      const hide = (): void => {
-        this.hide();
-      };
-      const toggle = (): void => {
-        this.toggle();
-      };
-
-      this.show = show;
-      this.hide = hide;
-      this.toggle = toggle;
+      this.show = this.show.bind(this) as typeof this.show;
+      this.hide = this.hide.bind(this) as typeof this.hide;
+      this.toggle = this.toggle.bind(this) as typeof this.toggle;
     }
   }
 
