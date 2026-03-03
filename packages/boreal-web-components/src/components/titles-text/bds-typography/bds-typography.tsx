@@ -82,10 +82,10 @@ export class BdsTypography implements ITypography {
   @Prop({ reflect: true }) readonly size: ITypography['size'] = SIZES.M;
 
   /** Visual state (if supported by variant). */
-  @Prop({ reflect: true }) readonly state: ITypography['state'];
+  @Prop({ reflect: true }) readonly state: ITypography['state'] = STATES.DEFAULT;
 
   /** Additional custom CSS class. */
-  @Prop() readonly customClass: string;
+  @Prop() readonly customClass: string = '';
 
   /** HTML tag used for rendering. */
   @Prop() readonly element: ITypography['element'] = TAG_ELEMENT.P;
@@ -162,11 +162,11 @@ export class BdsTypography implements ITypography {
     return {
       [`bds-typography--${this.variant}`]: true,
       [`bds-typography--align-${this.align}`]: true,
-      [`bds-typography--${this.state}`]: config?.states && config?.states.includes(this.state),
-      [`bds-typography--size-${this.size}`]: config?.size && config?.size.includes(this.size),
-      [`bds-typography--required`]: config?.isRequired && this.isRequired,
-      [`bds-typography--ellipsis`]: this.ellipsis && this.maxLines <= 1,
-      [`bds-typography--ellipsis-multiline`]: this.ellipsis && this.maxLines > 1,
+      [`bds-typography--${this.state}`]: !!(config?.states && config?.states.includes(this.state)),
+      [`bds-typography--size-${this.size}`]: !!(config?.size && config?.size.includes(this.size)),
+      'bds-typography--required': !!(config?.isRequired && this.isRequired),
+      'bds-typography--ellipsis': this.ellipsis && this.maxLines <= 1,
+      'bds-typography--ellipsis-multiline': this.ellipsis && this.maxLines > 1,
       [this.customClass]: !!this.customClass,
     };
   }
