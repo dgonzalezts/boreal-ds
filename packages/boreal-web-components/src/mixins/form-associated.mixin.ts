@@ -75,16 +75,20 @@ export interface IFormAssociatedCallbacks {
 
 export const formAssociatedMixin = <B extends MixedInCtor>(Base: B) => {
   class FormAssociated extends Base {
-    @Prop({ reflect: true }) name!: string;
+    /** Name of the form control, submitted as a key in the form data. */
+    @Prop({ reflect: true }) readonly name!: string;
 
-    @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+    /** Disables the control. Synced automatically from a parent `<fieldset>` or `<form>` via `formDisabledCallback`. */
+    @Prop({ reflect: true, mutable: true }) readonly disabled: boolean = false;
 
-    @Prop({ reflect: true }) required: boolean = false;
+    /** Marks the control as required for form submission. */
+    @Prop({ reflect: true }) readonly required: boolean = false;
 
     /**
-     * Sync component disabled state with parent form disabled state. */
+     * Sync component disabled state with parent form disabled state.
+     */
     formDisabledCallback(disabled: boolean) {
-      this.disabled = disabled;
+      (this as { disabled: boolean }).disabled = disabled;
     }
   }
 
