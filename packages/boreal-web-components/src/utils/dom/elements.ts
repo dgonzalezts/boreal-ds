@@ -13,7 +13,7 @@ export function hasSlotContent(el: HTMLElement, slotName?: string): boolean {
     return el.querySelector(`[slot="${slotName}"]`) !== null;
   }
   return Array.from(el.childNodes).some(node => {
-    if (node.nodeType === Node.ELEMENT_NODE) return (node as Element).slot === '';
+    if (node instanceof Element) return node.slot === '';
     if (node.nodeType === Node.TEXT_NODE) return node.textContent?.trim() !== '';
     return false;
   });
