@@ -4,7 +4,7 @@ import type { StyleModifiers } from '@/types/stylesMap';
 import { ALIGNMENT } from '@/types/alignment';
 import { SIZES } from '@/types/size';
 import { STATES } from '@/types/states';
-import { Attributes, inheritAriaAttributes } from '@/utils/helpers/accessibility/a11y-attributes';
+import { Attributes, inheritAriaAttributes } from '@/utils/a11y';
 
 import type { ITypography } from './types/ITypography';
 import { TAG_ELEMENT, VARIANT_TYPOGRAPHY } from './types/enum';
@@ -73,7 +73,7 @@ export class BdsTypography implements ITypography {
   private inheritedAttributes: Attributes = {};
 
   /** Host element reference. */
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLBdsTypographyElement;
 
   /** Typography visual variant. */
   @Prop({ reflect: true }) readonly variant: ITypography['variant'] = VARIANT_TYPOGRAPHY.DISPLAY;

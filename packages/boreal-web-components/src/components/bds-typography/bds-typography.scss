@@ -1,4 +1,4 @@
-@use '@telesign/boreal-style-guidelines/dist/stencil/_index.scss' as *;
+@use '../../styles/tokens-replacement.scss' as *;
 
 .bds-typography {
   box-sizing: border-box;
