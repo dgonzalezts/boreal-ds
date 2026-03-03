@@ -41,10 +41,10 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
   // --- Lifecycle ---
   get hooks(): FloatingHooks {
     return {
-      onPositionUpdate: result => this.onPositionUpdate?.(result),
+      onPositionUpdate: result => this.handlePosition(result),
     };
   }
-  private onPositionUpdate(result: PositioningResult) {
+  private handlePosition(result: PositioningResult) {
     this.floatingContent.setAttribute('data-placement', result.placement);
     this.setArrowPosition(result);
   }

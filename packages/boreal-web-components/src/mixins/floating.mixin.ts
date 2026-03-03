@@ -19,7 +19,6 @@ export interface IFloatingMixin extends FloatingHooks {
   arrowElement?: HTMLElement;
 
   get options(): FloatingMixinOptions;
-  onPositionUpdate?: (result: Awaited<ReturnType<PositioningEngine['computePosition']>>) => void;
   setArrowPosition?: (result: PositioningResult) => void;
 }
 
@@ -81,7 +80,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
       this.floatingContent.showPopover();
       this.startAutoUpdate(this.triggerSlot, this.floatingContent, this.options, result => {
-        this.onPositionUpdate?.(result);
+        this.hooks.onPositionUpdate?.(result);
       });
 
       this.floatingOptions.onAfterShow?.(this.floatingContent);
