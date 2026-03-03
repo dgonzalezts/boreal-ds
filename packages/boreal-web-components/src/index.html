@@ -8,14 +8,70 @@
 
     <script type="module" src="/build/boreal-web-components.esm.js"></script>
     <script nomodule src="/build/boreal-web-components.js"></script>
+
+    <style>
+      .center {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
   </head>
   <body>
     <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
-    <bds-tooltip>
-      Text, Icon or Label
-      <div slot="tooltip-content">
-        Tooltip Content
-      </div>
-    </bds-tooltip>
+    <div class="center">
+      <bds-tooltip id="bottom">
+        Text, Icon or Label
+        <div slot="tooltip-content">
+          Tooltip Content
+        </div>
+      </bds-tooltip>
+      <bds-tooltip id="top">
+        Text, Icon or Label
+        <div slot="tooltip-content">
+          Tooltip Content
+        </div>
+      </bds-tooltip>
+      <bds-tooltip id="right">
+        Text, Icon or Label
+        <div slot="tooltip-content">
+          Tooltip Content
+        </div>
+      </bds-tooltip>
+      <bds-tooltip id="left">
+        Text, Icon or Label
+        <div slot="tooltip-content">
+          Tooltip Content
+        </div>
+      </bds-tooltip>
+    </div>
+
+    <script>
+      const right = document.getElementById('right');
+      const bottom = document.getElementById('bottom');
+      const left = document.getElementById('left');
+      const ttop = document.getElementById('top');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        right.floatingOptions = {
+          placement: 'right',
+          offset: 16
+        }
+        bottom.floatingOptions = {
+          placement: 'bottom',
+          offset: 32
+        }
+        ttop.floatingOptions = {
+          placement: 'top',
+          offset: 0
+        }
+        left.floatingOptions = {
+          placement: 'left',
+          offset: 64
+        }
+      });
+    </script>
   </body>
 </html>

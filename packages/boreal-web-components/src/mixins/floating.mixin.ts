@@ -3,7 +3,7 @@ import { PositioningEngine } from '@/services/positioning/positioning.service';
 import { autoUpdate, Placement, Strategy } from '@floating-ui/dom';
 import { KEYBOARD } from '@/utils/constants/common/Keys';
 import { EVENTS } from '@/utils/constants/common/Events';
-import { FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
+import { FloatingHooks, FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
 import { ComponentInterface, MixedInCtor, Prop } from '@stencil/core';
 
 export interface FloatingMixinOptions {
@@ -14,16 +14,11 @@ export interface FloatingMixinOptions {
   arrow?: HTMLElement;
   strategy?: Strategy;
 }
-
-export interface IFloatingMixin {
+export interface IFloatingMixin extends FloatingHooks {
   floatingOptions: FloatingProp;
   arrowElement?: HTMLElement;
 
   get options(): FloatingMixinOptions;
-  onBeforeShow?: () => void;
-  onAfterShow?: () => void;
-  onBeforeHide?: () => void;
-  onAfterHide?: () => void;
   onPositionUpdate?: (result: Awaited<ReturnType<PositioningEngine['computePosition']>>) => void;
   setArrowPosition?: (result: PositioningResult) => void;
 }
@@ -34,18 +29,18 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
      * Width of the popover in pixels.
      * @default 200
      */
-    @Prop() readonly width?: number = 200;
+    @Prop() readonly width?: number;
     /**
      * If true, allows multiline content in the tooltip.
      * @default false
      */
-    @Prop() readonly multiline?: boolean = false;
+    @Prop() readonly multiline?: boolean;
 
     /**
      * If true, hides the tooltip arrow.
      * @default false
      */
-    @Prop({ reflect: true, mutable: true }) disabled?: boolean = false;
+    @Prop({ reflect: true, mutable: true }) disabled?: boolean;
 
     /**
      * Default options for the floating mixin.
@@ -56,8 +51,8 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
     cleanupAutoUpdate: (() => void) | undefined;
     previousTrigger: HTMLElement | undefined;
-    positionEngine: PositioningEngine = new PositioningEngine();
-    logger: Logger = new Logger();
+    positionEngine: PositioningEngine;
+    logger: Logger;
 
     onPositionUpdate?(result: Awaited<ReturnType<PositioningEngine['computePosition']>>): void;
 
@@ -72,48 +67,52 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
         strategy: 'fixed',
       };
     }
-    show = () => {
+    get hooks(): FloatingHooks {
+      return {};
+    }
+    show() {
       if (!this.floatingContent || !this.triggerSlot) {
         this.logger.error('TooltipMixin.show', 'Floating or trigger element is required for showing tooltip.');
         return;
       }
 
-      this.floatingOptions.onBeforeShow?.();
+      this.floatingOptions.onBeforeShow?.(this.floatingContent);
+      if (this.disabled) return;
 
       this.floatingContent.showPopover();
       this.startAutoUpdate(this.triggerSlot, this.floatingContent, this.options, result => {
         this.onPositionUpdate?.(result);
       });
 
-      this.floatingOptions.onAfterShow?.();
-    };
+      this.floatingOptions.onAfterShow?.(this.floatingContent);
+    }
 
-    hide = () => {
+    hide() {
       const floating = this.floatingContent;
 
-      this.floatingOptions.onBeforeHide?.();
+      this.floatingOptions.onBeforeHide?.(this.floatingContent);
 
       this.stopAutoUpdate();
       floating?.hidePopover();
 
-      this.floatingOptions.onAfterHide?.();
-    };
+      this.floatingOptions.onAfterHide?.(this.floatingContent);
+    }
 
-    toggle = () => {
+    toggle() {
       // El componente puede override isVisible o podemos rastrearlo aquí
       this.isVisible ? this.hide() : this.show();
-    };
+    }
 
     // Tracking interno de visibilidad para el toggle
-    isVisible = false;
+    isVisible: boolean;
 
     // --- Cleanup listeners ---
 
     detachTriggerListeners(
       trigger: HTMLElement,
-      showFn: () => void,
-      hideFn: () => void,
-      toggleFn: () => void,
+      showFn: (this: void) => void,
+      hideFn: (this: void) => void,
+      toggleFn: (this: void) => void,
       showOnClick: boolean,
     ) {
       if (showOnClick) {
@@ -126,9 +125,9 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
     attachTriggerListeners(
       trigger: HTMLElement,
-      showFn: () => void,
-      hideFn: () => void,
-      toggleFn: () => void,
+      showFn: (this: void) => void,
+      hideFn: (this: void) => void,
+      toggleFn: (this: void) => void,
       showOnClick: boolean,
     ) {
       if (showOnClick) {
@@ -143,7 +142,13 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
     // --- Slot change handler ---
 
-    handleSlotChange(e: Event, showFn: () => void, hideFn: () => void, toggleFn: () => void, showOnClick: boolean) {
+    handleSlotChange(
+      e: Event,
+      showFn: (this: void) => void,
+      hideFn: (this: void) => void,
+      toggleFn: (this: void) => void,
+      showOnClick: boolean,
+    ) {
       const newTrigger = e.target as HTMLElement;
 
       if (this.previousTrigger) {
@@ -157,7 +162,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
     // --- Keyboard handler ---
 
-    handleKeydown(e: KeyboardEvent, showFn: () => void, hideFn: () => void) {
+    handleKeydown(e: KeyboardEvent, showFn: (this: void) => void, hideFn: (this: void) => void) {
       if (e.key === KEYBOARD.Enter.key || e.key === ' ') showFn();
       if (e.key === KEYBOARD.Escape.key) hideFn();
     }
@@ -204,14 +209,51 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
     }
 
     // --- Disconnect ---
-    floatingDisconnect(showFn: () => void, hideFn: () => void, toggleFn: () => void, showOnClick: boolean) {
+    floatingDisconnect(
+      showFn: (this: void) => void,
+      hideFn: (this: void) => void,
+      toggleFn: (this: void) => void,
+      showOnClick: boolean,
+    ) {
       if (this.previousTrigger) {
         this.detachTriggerListeners(this.previousTrigger, showFn, hideFn, toggleFn, showOnClick);
       }
       this.stopAutoUpdate();
     }
     disconnectedCallback(): void {
-      this.floatingDisconnect(this.show, this.hide, this.toggle, this.floatingOptions.showOnClick);
+      this.floatingDisconnect(
+        () => this.show(),
+        () => this.hide(),
+        () => this.toggle(),
+        this.floatingOptions.showOnClick ?? false,
+      );
+    }
+
+    /**
+     * That prevent the component to be rendered twice or the dependency will shared between the components.
+     */
+    componentWillLoad() {
+      this.positionEngine = new PositioningEngine();
+      this.logger = new Logger();
+
+      this.cleanupAutoUpdate = undefined;
+      this.previousTrigger = undefined;
+      this.isVisible = false;
+
+      // That helps to prevent eslint error "this is not defined"
+      const show = (): void => {
+        this.show();
+      };
+      const hide = (): void => {
+        this.hide();
+      };
+      const toggle = (): void => {
+        this.toggle();
+      };
+
+      this.show = show;
+      this.hide = hide;
+      this.toggle = toggle;
     }
   }
 

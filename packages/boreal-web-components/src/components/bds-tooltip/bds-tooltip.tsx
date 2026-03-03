@@ -1,7 +1,7 @@
 import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
 import { floatingMixin, FloatingMixinOptions } from '@/mixins/floating.mixin';
-import { FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
+import { FloatingHooks, FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
 import { FLOATING_OPTIONS } from '@/utils/constants/floating/FloatingOptions';
 
 @Component({
@@ -22,41 +22,33 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
    */
   @Prop() readonly floatingOptions: FloatingProp = {
     ...FLOATING_OPTIONS,
-    showOnClick: true,
   };
-
-  /**
-   * Whether the tooltip is currently visible.
-   * @internal
-   */
-  @State() isVisible: boolean = false;
 
   // Refs en Stencil se obtienen con el atributo ref en el render
   private arrowElement!: HTMLElement;
+  @State() isVisible: boolean = false;
 
   @Element() el!: HTMLBdsTooltipElement;
 
   get options(): FloatingMixinOptions {
     return {
-      placement: this.floatingOptions.placement,
-      offset: this.floatingOptions.offset,
+      placement: this.floatingOptions.placement ?? 'bottom',
+      offset: this.floatingOptions.offset ?? 8,
       arrow: this.hideArrow ? undefined : this.arrowElement,
       strategy: 'fixed',
     };
   }
   // --- Lifecycle ---
-  private onBeforeShow = () => {
-    if (this.floatingOptions.disabled) return; // ¿cómo cortar el flujo? ver nota abajo
-    this.isVisible = true;
-  };
-  private onAfterHide = () => {
-    this.isVisible = false;
-  };
-  private onPositionUpdate = (result: PositioningResult) => {
+  get hooks(): FloatingHooks {
+    return {
+      onPositionUpdate: result => this.onPositionUpdate?.(result),
+    };
+  }
+  private onPositionUpdate(result: PositioningResult) {
     this.floatingContent.setAttribute('data-placement', result.placement);
     this.setArrowPosition(result);
-  };
-  private setArrowPosition = (result: PositioningResult) => {
+  }
+  private setArrowPosition(result: PositioningResult) {
     if (result.middlewareData?.arrow && this.arrowElement) {
       const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
       Object.assign(this.arrowElement.style, {
@@ -64,12 +56,22 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
         top: arrowY != null ? `${arrowY}px` : '',
       });
     }
-  };
+  }
   private onKeyDown = (e: KeyboardEvent) => {
-    this.handleKeydown(e, this.show, this.hide);
+    this.handleKeydown(
+      e,
+      () => this.show(),
+      () => this.hide(),
+    );
   };
   private onSlotChange = (e: KeyboardEvent) => {
-    this.handleSlotChange(e, this.show, this.hide, this.toggle, this.floatingOptions.showOnClick);
+    this.handleSlotChange(
+      e,
+      () => this.show(),
+      () => this.hide(),
+      () => this.toggle(),
+      this.floatingOptions.showOnClick,
+    );
   };
 
   // --- Render ---
@@ -82,9 +84,9 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
           tabindex="0"
           aria-describedby="tooltip-content"
           aria-expanded={this.isVisible ? 'true' : 'false'}
-          onMouseEnter={this.show}
-          onMouseLeave={this.hide}
-          onKeyDown={this.onKeyDown}
+          onMouseEnter={() => this.show()}
+          onMouseLeave={() => this.hide()}
+          onKeyDown={() => this.onKeyDown}
           ref={el => (this.triggerSlot = el)}
         >
           <slot onSlotchange={this.onSlotChange}></slot>
