@@ -3,23 +3,17 @@ import type { BuildOptions } from 'vite';
 import remarkGfm from 'remark-gfm';
 
 type RollupOnWarn = NonNullable<NonNullable<BuildOptions['rollupOptions']>['onwarn']>;
-import { existsSync } from 'fs';
+import { createRequire } from 'module';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
-// Resolve the boreal CSS directory.
-// Primary:  boreal-web-components/dist/css  (present after a full Stencil build)
-// Fallback: boreal-style-guidelines/dist/css via web-components' own node_modules
-//           (always available since it is a direct dependency of that package)
-const wcDist = resolve(__dirname, '../../../packages/boreal-web-components/dist');
-const sgDist = resolve(
-  __dirname,
-  '../../../packages/boreal-web-components/node_modules/@telesign/boreal-style-guidelines/dist'
-);
-const borealCssDir = existsSync(`${wcDist}/css`) ? `${wcDist}/css` : `${sgDist}/css`;
+// Resolve the boreal CSS directory using Node module resolution.
+// The default export resolves to dist/css/boreal.css — dirname gives us dist/css/
+const borealCssDir = dirname(require.resolve('@telesign/boreal-style-guidelines'));
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
