@@ -3,7 +3,7 @@ import { PositioningEngine } from '@/services/positioning/positioning.service';
 import { autoUpdate, Placement, Strategy } from '@floating-ui/dom';
 import { KEYBOARD } from '@/utils/constants/common/Keys';
 import { EVENTS } from '@/utils/constants/common/Events';
-import { FloatingHooks, FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
+import { FloatingHooks, FloatingProp } from '@/services/positioning/interfaces/Positioning';
 import { ComponentInterface, MixedInCtor, Prop } from '@stencil/core';
 
 export interface FloatingMixinOptions {
@@ -16,10 +16,8 @@ export interface FloatingMixinOptions {
 }
 export interface IFloatingMixin extends FloatingHooks {
   floatingOptions: FloatingProp;
-  arrowElement?: HTMLElement;
 
   get options(): FloatingMixinOptions;
-  setArrowPosition?: (result: PositioningResult) => void;
 }
 
 export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
