@@ -162,6 +162,21 @@ Thin wrappers that expose each Stencil component as a native React or Vue compon
 
 ---
 
+## Available Themes
+
+Boreal DS currently ships **4 brand themes**. Each theme defines its own set of color tokens, typography, and spacing overrides:
+
+| Theme | `data-theme` value | Individual CSS | Token source |
+| --- | --- | --- | --- |
+| **Telesign** | `telesign` | `theme-telesign.css` | `tokens/theme/telesign.json` |
+| **Proximus** | `proximus` | `theme-proximus.css` | `tokens/theme/proximus.json` |
+| **Masiv** | `masiv` | `theme-masiv.css` | `tokens/theme/masiv.json` |
+| **BICS** | `bics` | `theme-bics.css` | `tokens/theme/bics.json` |
+
+> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-telesign.css`).
+
+---
+
 ## Using Boreal DS in Your Project
 
 ### Install
