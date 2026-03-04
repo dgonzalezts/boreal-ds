@@ -10,12 +10,21 @@ export const STATES = {
 
 export type State = (typeof STATES)[keyof typeof STATES];
 
-export const STATUS_STATES = {
+export const PROCESS_STATUS = {
   NEUTRAL: 'neutral',
   PENDING: 'pending',
-  INPROGRESS: 'inprogress',
+  IN_PROGRESS: 'in-progress',
   COMPLETE: 'complete',
   CANCEL: 'cancel',
 } as const;
 
-export type Status = (typeof STATUS_STATES)[keyof typeof STATUS_STATES];
+export type Status = (typeof PROCESS_STATUS)[keyof typeof PROCESS_STATUS];
+
+export const STATUS_VARIANT = {
+  INFO: 'info',
+  SUCCESS: 'success',
+  WARNING: 'warning',
+  DANGER: 'danger',
+} as const;
+
+export type StatusVariant = (typeof STATUS_VARIANT)[keyof typeof STATUS_VARIANT];

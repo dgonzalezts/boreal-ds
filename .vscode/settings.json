@@ -4,12 +4,4 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "tsx"
-  ],
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
 }

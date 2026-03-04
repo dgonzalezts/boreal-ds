@@ -43,6 +43,7 @@ export default defineConfig(
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/require-await': 'off',
 
       // Stencil-specific rules
       'stencil/async-methods': 'error',
@@ -73,8 +74,9 @@ export default defineConfig(
       'stencil/required-jsdoc': 'error',
       'stencil/reserved-member-names': 'error',
       'stencil/single-export': 'error',
-      'stencil/strict-mutable': 'error',
-      'stencil/strict-boolean-conditions': 'warn',
+      'stencil/strict-mutable': 'warn', // Allow mutable props but warn about them
+      'stencil/strict-boolean-conditions': 'warn', // Allow non-boolean conditions but warn about them
+      'react/jsx-no-bind': 'off', // Allow inline functions in JSX for Stencil components
       "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }]
     },
   },
@@ -83,6 +85,7 @@ export default defineConfig(
     files: ['**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      'stencil/strict-boolean-conditions': 'off',
     },
   },
   {

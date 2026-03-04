@@ -4,7 +4,10 @@ import type { Preview, WebComponentsRenderer } from '@storybook/web-components-v
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import type { DecoratorFunction, StoryContext } from 'storybook/internal/types';
 import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
+import jsLang from 'highlight.js/lib/languages/javascript';
+import htmlLang from 'highlight.js/lib/languages/xml';
+import cssLang from 'highlight.js/lib/languages/css';
+import scssLang from 'highlight.js/lib/languages/scss';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
@@ -12,14 +15,16 @@ import { defineCustomElements } from '@telesign/boreal-web-components/loader';
 defineCustomElements();
 
 import 'highlight.js/styles/atom-one-dark.css';
-//TODO: Replace next line with Boreal design tokens when available and remove `tokens-fallback.css` file
-import '@/styles/tokens-fallback.css';
+import '@telesign/boreal-style-guidelines/scss/helpers';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';
 const BODY_SELECTOR = 'body.sb-show-main';
 const DEFAULT_THEME = 'telesign';
 
-hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('js', jsLang);
+hljs.registerLanguage('html', htmlLang);
+hljs.registerLanguage('css', cssLang);
+hljs.registerLanguage('scss', scssLang);
 
 /**
  * Generates a CSS style string from the provided style options.
