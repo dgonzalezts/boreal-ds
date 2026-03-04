@@ -73,7 +73,7 @@ class FloatingAdapter {
    * @param {HTMLElement} element Is the floating element to apply the position.
    * @param {PositioningResult} result Is the positioning result with the position and the placement.
    */
-  applyPosition(element: HTMLElement | null, result: PositioningResult) {
+  applyPosition(element: HTMLElement, result: PositioningResult) {
     if (element !== undefined || element !== null)
       this.logger.error('FloatingAdapter.applyPosition', 'Element is required to apply positioning.');
 
