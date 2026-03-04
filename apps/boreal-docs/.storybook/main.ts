@@ -3,23 +3,15 @@ import type { BuildOptions } from 'vite';
 import remarkGfm from 'remark-gfm';
 
 type RollupOnWarn = NonNullable<NonNullable<BuildOptions['rollupOptions']>['onwarn']>;
-import { existsSync } from 'fs';
+import { createRequire } from 'module';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
-// Resolve the boreal CSS directory.
-// Primary:  boreal-web-components/dist/css  (present after a full Stencil build)
-// Fallback: boreal-style-guidelines/dist/css via web-components' own node_modules
-//           (always available since it is a direct dependency of that package)
-const wcDist = resolve(__dirname, '../../../packages/boreal-web-components/dist');
-const sgDist = resolve(
-  __dirname,
-  '../../../packages/boreal-web-components/node_modules/@telesign/boreal-style-guidelines/dist'
-);
-const borealCssDir = existsSync(`${wcDist}/css`) ? `${wcDist}/css` : `${sgDist}/css`;
+const wcCssDir = dirname(require.resolve('@telesign/boreal-style-guidelines'));
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
@@ -57,7 +49,6 @@ const config: StorybookConfig = {
   `,
   async viteFinal(config) {
     const { mergeConfig, createLogger } = await import('vite');
-    // Suppress warnings about dynamic imports of ESM modules in Storybook's Vite setup during development
     const logger = createLogger(config.logLevel);
     const originalWarn = logger.warn.bind(logger);
     logger.warn = (msg, options) => {
@@ -71,17 +62,14 @@ const config: StorybookConfig = {
         alias: [
           { find: '@', replacement: resolve(__dirname, '../src') },
           { find: '@root', replacement: resolve(__dirname, '..') },
-          // Resolve @telesign/boreal-web-components/css/* to the actual CSS directory.
-          // Falls back to boreal-style-guidelines when dist/css has not been built yet.
           {
             find: /^@telesign\/boreal-web-components\/css\/(.+)$/,
-            replacement: `${borealCssDir}/$1`,
+            replacement: `${wcCssDir}/$1`,
           },
         ],
       },
       build: {
         rollupOptions: {
-          // Suppress warnings about dynamic imports of ESM modules in Storybook's Vite setup during production builds
           onwarn: ((warning, warn) => {
             if (warning.plugin === 'vite:import-analysis' && warning.id?.includes('esm-es5')) {
               return;
