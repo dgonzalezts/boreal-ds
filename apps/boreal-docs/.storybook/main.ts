@@ -32,12 +32,13 @@ const config: StorybookConfig = {
     },
   ],
   framework: '@storybook/web-components-vite',
-  staticDirs: ['./static', './styles'],
+  staticDirs: ['./static', './styles', { from: wcCssDir, to: '/boreal-tokens' }],
   docs: {
     defaultName: 'Overview',
   },
   managerHead: head => `
     ${head}
+    <link rel="stylesheet" type="text/css" href="/boreal-tokens/boreal.css" />
     <link rel="stylesheet" type="text/css" href="manager.css" />
   `,
   previewHead: head => `
