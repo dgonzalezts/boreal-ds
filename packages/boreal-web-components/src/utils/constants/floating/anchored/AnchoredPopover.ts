@@ -1,4 +1,4 @@
-import { FloatingPopoverProp } from '@/components';
+import { FloatingPopoverProp } from '@/services/floating/interfaces/Props';
 
 export const ANCHORED_POPOVER: FloatingPopoverProp = {
   placement: 'bottom',
