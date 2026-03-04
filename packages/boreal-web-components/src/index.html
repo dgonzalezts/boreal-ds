@@ -15,11 +15,17 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        height: 100vh;
+        height: 50vh;
       }
     </style>
   </head>
   <body data-theme="bics">
+    <div class="center">
+      <button id="my-btn">Abrir</button>
+      <bds-popover trigger="my-btn" close-on-click-outside="true">
+        <p>Contenido</p>
+      </bds-popover>
+    </div>
     <div class="center">
       <bds-tooltip id="bottom">
         Text, Icon or Label

@@ -29,9 +29,9 @@ class FloatingAdapter {
     floating: HTMLElement | null,
     options: PositioningOptions,
   ): Promise<PositioningResult> {
-    if (reference !== undefined || reference !== null)
+    if (reference === undefined || reference === null)
       this.logger.error('FloatingAdapter.computePosition', 'Reference element is required for positioning.');
-    if (floating !== undefined || floating !== null)
+    if (floating === undefined || floating === null)
       this.logger.error('FloatingAdapter.computePosition', 'Floating element is required for positioning.');
 
     const {
@@ -74,7 +74,7 @@ class FloatingAdapter {
    * @param {PositioningResult} result Is the positioning result with the position and the placement.
    */
   applyPosition(element: HTMLElement, result: PositioningResult) {
-    if (element !== undefined || element !== null)
+    if (element === undefined || element === null)
       this.logger.error('FloatingAdapter.applyPosition', 'Element is required to apply positioning.');
 
     element.style.left = `${result.x}px`;

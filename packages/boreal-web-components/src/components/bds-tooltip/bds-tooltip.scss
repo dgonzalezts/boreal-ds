@@ -47,18 +47,6 @@ bds-tooltip {
 }
 
 // Según el placement, la flecha asoma hacia afuera del tooltip
-.tooltip-content[data-placement^='top'] .tooltip-arrow,
-.tooltip-content[data-placement^='bottom'] .tooltip-arrow {
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.tooltip-content[data-placement^='left'] .tooltip-arrow,
-.tooltip-content[data-placement^='right'] .tooltip-arrow {
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
 .tooltip-content[data-placement^='top'] .tooltip-arrow {
   bottom: calc(var(--tooltip-arrow-size) / -2);
   &::before {

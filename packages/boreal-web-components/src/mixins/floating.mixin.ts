@@ -23,6 +23,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
     onBeforeShow(target?: HTMLElement): boolean {
       const hookControl = this.hooks.onBeforeShow?.(target) ?? true;
       const propControl = this.floatingOptions?.onBeforeShow?.(target) ?? true;
+
       return hookControl && propControl;
     }
 
@@ -43,10 +44,9 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
 
     show(target?: HTMLElement) {
       if (this.isVisible) return;
+
       if (!this.onBeforeShow(target)) return;
-
       this.showElement();
-
       this.onAfterShow(target);
     }
 
@@ -70,13 +70,6 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
     onAfterHide(target?: HTMLElement): void {
       this.hooks.onAfterHide?.(target);
       this.floatingOptions?.onAfterHide?.(target);
-    }
-
-    componentWillLoad() {
-      this.isVisible = false;
-      this.show = this.show.bind(this) as typeof this.show;
-      this.hide = this.hide.bind(this) as typeof this.hide;
-      this.toggle = this.toggle.bind(this) as typeof this.toggle;
     }
   }
   return Floating;

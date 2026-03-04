@@ -9,7 +9,6 @@ import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 
 export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
   class Anchored extends floatingMixin(Base) {
-    triggerSlot!: HTMLElement;
     previousTrigger: HTMLElement | undefined;
     cleanupAutoUpdate: (() => void) | undefined;
     positionEngine: PositioningEngine;
@@ -19,22 +18,22 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       return { placement: 'bottom', offset: 8, strategy: 'fixed' };
     }
 
+    triggerSlot!: HTMLElement;
+
     showElement(): void {
       this.floatingContent.showPopover();
       this.isVisible = true;
+
       this.startAutoUpdate(this.triggerSlot, this.floatingContent, this.options, result => {
         this.hooks.onPositionUpdate?.(result);
       });
     }
     onBeforeShow(target?: HTMLElement): boolean {
-      if (this.triggerSlot !== undefined || this.triggerSlot !== null) {
-        this.logger.error('anchoredMixin.show', 'triggerSlot is required');
+      if (this.triggerSlot === null) {
+        this.logger.error('AnchoredMixin.show', 'triggerSlot is required');
         return false;
       }
       return super.onBeforeShow(target);
-    }
-    onBeforeHide(target?: HTMLElement): boolean {
-      return super.onBeforeHide(target);
     }
     hideElement(): void {
       this.stopAutoUpdate();
@@ -42,20 +41,14 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       this.isVisible = false;
     }
 
-    handleSlotChange(
-      e: Event,
-      showFn: (this: void) => void,
-      hideFn: (this: void) => void,
-      toggleFn: (this: void) => void,
-      showOnClick: boolean,
-    ) {
+    handleSlotChange(e: Event, showFn: (this: void) => void, hideFn: (this: void) => void) {
       const newTrigger = e.target as HTMLElement;
 
       if (this.previousTrigger !== undefined || this.previousTrigger !== null) {
-        this.detachTriggerListeners(this.previousTrigger, showFn, hideFn, toggleFn, showOnClick);
+        this.detachTriggerListeners(this.previousTrigger, showFn, hideFn);
       }
       if (newTrigger !== undefined || newTrigger !== null) {
-        this.attachTriggerListeners(newTrigger, showFn, hideFn, toggleFn, showOnClick);
+        this.attachTriggerListeners(newTrigger, showFn, hideFn);
         this.previousTrigger = newTrigger;
       }
     }
@@ -106,53 +99,29 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       this.cleanupAutoUpdate = undefined;
     }
 
-    attachTriggerListeners(
-      trigger: HTMLElement,
-      showFn: (this: void) => void,
-      hideFn: (this: void) => void,
-      toggleFn: (this: void) => void,
-      showOnClick: boolean,
-    ) {
-      if (showOnClick) {
-        // Solo click, no hover/focus
-        trigger.addEventListener(EVENTS.Click, toggleFn);
-      } else {
-        // Hover/focus listeners
-        trigger.addEventListener(EVENTS.Focus, showFn);
-        trigger.addEventListener(EVENTS.Blur, hideFn);
-      }
+    attachTriggerListeners(trigger: HTMLElement, showFn: (this: void) => void, hideFn: (this: void) => void) {
+      trigger.addEventListener(EVENTS.Focus, showFn);
+      trigger.addEventListener(EVENTS.Blur, hideFn);
     }
 
     componentWillLoad() {
-      super.componentWillLoad(); // inicializa floatingMixin
+      this.toggle = this.toggle.bind(this) as typeof this.toggle;
+      this.show = this.show.bind(this) as typeof this.show;
+      this.hide = this.hide.bind(this) as typeof this.hide;
+
       this.positionEngine = new PositioningEngine();
       this.logger = new Logger();
       this.cleanupAutoUpdate = undefined;
       this.previousTrigger = undefined;
     }
 
-    detachTriggerListeners(
-      trigger: HTMLElement,
-      showFn: (this: void) => void,
-      hideFn: (this: void) => void,
-      toggleFn: (this: void) => void,
-      showOnClick: boolean,
-    ) {
-      if (showOnClick) {
-        trigger.removeEventListener(EVENTS.Click, toggleFn);
-      } else {
-        trigger.removeEventListener(EVENTS.Focus, showFn);
-        trigger.removeEventListener(EVENTS.Blur, hideFn);
-      }
+    detachTriggerListeners(trigger: HTMLElement, showFn: (this: void) => void, hideFn: (this: void) => void) {
+      trigger.removeEventListener(EVENTS.Focus, showFn);
+      trigger.removeEventListener(EVENTS.Blur, hideFn);
     }
-    floatingDisconnect(
-      showFn: (this: void) => void,
-      hideFn: (this: void) => void,
-      toggleFn: (this: void) => void,
-      showOnClick: boolean,
-    ) {
+    floatingDisconnect(showFn: (this: void) => void, hideFn: (this: void) => void) {
       if (this.previousTrigger !== undefined || this.previousTrigger !== null) {
-        this.detachTriggerListeners(this.previousTrigger, showFn, hideFn, toggleFn, showOnClick);
+        this.detachTriggerListeners(this.previousTrigger, showFn, hideFn);
       }
       this.stopAutoUpdate();
     }
@@ -161,8 +130,6 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
         this.floatingDisconnect(
           () => this.show(),
           () => this.hide(),
-          () => this.toggle(),
-          this.floatingOptions.showOnClick ?? false,
         );
       }
       this.stopAutoUpdate();

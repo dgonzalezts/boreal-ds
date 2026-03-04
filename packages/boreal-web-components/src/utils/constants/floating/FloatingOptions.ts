@@ -8,6 +8,5 @@ import { FloatingProp } from '@/services/floating/interfaces/Props';
 export const DEFAULT_FLOATING: FloatingProp = {
   placement: 'bottom',
   offset: 8,
-  showOnClick: false,
   flip: true,
 };

@@ -2,8 +2,8 @@ import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
 import { PositioningResult } from '@/services/floating/interfaces/Positioning';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
-import { ANCHORED_TOOLTIP } from '@/utils/constants/floating/Tooltip.anchored';
-import { FloatingAnchoredProp } from '@/services/floating/interfaces/Props';
+import { ANCHORED_TOOLTIP } from '@/utils/constants/floating/anchored/AnchoredTooltip';
+import { FloatingTooltipProp } from '@/services/floating/interfaces/Props';
 import { FloatingHooks, FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 
 @Component({
@@ -28,7 +28,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    * Override default options for the floating mixin.
    * This can be overridden by passing a different object to the `floatingOptions` prop.
    */
-  @Prop() readonly floatingOptions: FloatingAnchoredProp = {
+  @Prop() readonly floatingOptions: FloatingTooltipProp = {
     ...ANCHORED_TOOLTIP,
   };
 
@@ -88,8 +88,6 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
       e,
       () => this.show(),
       () => this.hide(),
-      () => this.toggle(),
-      this.floatingOptions.showOnClick,
     );
   };
 
