@@ -1,5 +1,3 @@
-@use '../../../styles/theme' as *;
-
 @mixin banner-variant($border-color, $bg-color, $icon-color) {
   border-color: $border-color;
   background-color: $bg-color;
