@@ -1,8 +1,27 @@
 /**
- * Decorator to validate that a property is within a set of valid values.
+ * Decorator to ensure a property value stays within a predefined set of allowed values.
+ * If a value is assigned that does not exist in `validValues`, the property
+ * will automatically revert to the provided `defaultValue`.
  *
- * @param validValues Array of allowed values (T)
- * @param defaultValue Fallback value if validation fails
+ * @template T - The type of the values being validated.
+ * @param {T[]} validValues - An array of permitted values.
+ * @param {T} defaultValue - The fallback value applied when validation fails.
+ *
+ * @example
+ * ```typescript
+ * // Scenario 1: Valid assignment
+ * // 'primary' is in the allowed list, so it is accepted.
+ * @Validate(['default', 'primary', 'secondary'], 'default')
+ * variant = 'primary'; // Result: 'primary'
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Scenario 2: Invalid assignment (Fallback)
+ * // 'danger' is not in the list, so it reverts to 'default'.
+ * @Validate(['default', 'primary', 'secondary'], 'default')
+ * variant = 'danger'; // Result: 'default'
+ * ```
  */
 export function Validate<T>(validValues: T[], defaultValue: T) {
   const instanceValues = new WeakMap<object, T>();
