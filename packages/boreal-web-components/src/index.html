@@ -19,12 +19,12 @@
       }
     </style>
   </head>
-  <body>
+  <body data-theme="bics">
     <div class="center">
       <bds-tooltip id="bottom">
         Text, Icon or Label
         <div slot="tooltip-content">
-          Tooltip Content
+          <h3>asd</h3>
         </div>
       </bds-tooltip>
       <bds-tooltip id="top">
@@ -39,7 +39,13 @@
           Tooltip Content
         </div>
       </bds-tooltip>
-      <bds-tooltip id="left">
+      <bds-tooltip id="left" multiline>
+        Text, Icon or Label
+        <div slot="tooltip-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dicta quibusdam cumque accusantium accusamus facere reprehenderit voluptatum, eligendi eveniet placeat aperiam dolor veniam adipisci quo alias expedita blanditiis dolore obcaecati.
+        </div>
+      </bds-tooltip>
+      <bds-tooltip id="disable" disabled>
         Text, Icon or Label
         <div slot="tooltip-content">
           Tooltip Content
@@ -52,10 +58,12 @@
       const bottom = document.getElementById('bottom');
       const left = document.getElementById('left');
       const ttop = document.getElementById('top');
+      const disable = document.getElementById('disable');
 
       document.addEventListener('DOMContentLoaded', () => {
         right.floatingOptions = {
           placement: 'right',
+          hideArrow: true,
           offset: 16
         }
         bottom.floatingOptions = {
@@ -64,11 +72,15 @@
         }
         ttop.floatingOptions = {
           placement: 'top',
+          stayOnHover: true,  
           offset: 0
         }
         left.floatingOptions = {
           placement: 'left',
           offset: 64
+        }
+        disable.floatingOptions = {
+          offset: 8,
         }
       });
     </script>

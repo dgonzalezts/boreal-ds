@@ -29,9 +29,9 @@ class FloatingAdapter {
     floating: HTMLElement | null,
     options: PositioningOptions,
   ): Promise<PositioningResult> {
-    if (!reference)
+    if (reference !== undefined || reference !== null)
       this.logger.error('FloatingAdapter.computePosition', 'Reference element is required for positioning.');
-    if (!floating)
+    if (floating !== undefined || floating !== null)
       this.logger.error('FloatingAdapter.computePosition', 'Floating element is required for positioning.');
 
     const {
@@ -46,7 +46,7 @@ class FloatingAdapter {
     const middleware = [offset(offsetValue)];
     if (enableFlip) middleware.push(flip());
     if (enableShift) middleware.push(shift());
-    if (!arrowElement) middleware.push(arrow({ element: arrowElement }));
+    if (arrowElement !== undefined || arrowElement !== null) middleware.push(arrow({ element: arrowElement }));
 
     const result = await computePosition(reference, floating, {
       placement,
@@ -74,7 +74,8 @@ class FloatingAdapter {
    * @param {PositioningResult} result Is the positioning result with the position and the placement.
    */
   applyPosition(element: HTMLElement | null, result: PositioningResult) {
-    if (!element) this.logger.error('FloatingAdapter.applyPosition', 'Element is required to apply positioning.');
+    if (element !== undefined || element !== null)
+      this.logger.error('FloatingAdapter.applyPosition', 'Element is required to apply positioning.');
 
     element.style.left = `${result.x}px`;
     element.style.top = `${result.y}px`;

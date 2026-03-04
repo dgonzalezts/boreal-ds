@@ -1,32 +1,39 @@
-import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
-import { floatingMixin, FloatingMixinOptions } from '@/mixins/floating.mixin';
-import { FloatingHooks, FloatingProp, PositioningResult } from '@/services/positioning/interfaces/Positioning';
-import { FLOATING_OPTIONS } from '@/utils/constants/floating/FloatingOptions';
+import { PositioningResult } from '@/services/floating/interfaces/Positioning';
+import { anchoredMixin } from '@/mixins/anchored.mixin';
+import { ANCHORED_TOOLTIP } from '@/utils/constants/floating/Tooltip.anchored';
+import { FloatingAnchoredProp } from '@/services/floating/interfaces/Props';
+import { FloatingHooks, FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 
 @Component({
   tag: 'bds-tooltip',
   styleUrl: 'bds-tooltip.scss',
   shadow: false,
 })
-export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
+export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
   /**
-   * If true, hides the tooltip arrow.
+   * If true, allows multiline content in the tooltip.
    * @default false
    */
-  @Prop({ reflect: true }) readonly hideArrow: boolean = false;
+  @Prop() readonly multiline?: boolean;
+
+  /**
+   * If true, disables the tooltip.
+   * @default false
+   */
+  @Prop() readonly disabled?: boolean = false;
 
   /**
    * Override default options for the floating mixin.
    * This can be overridden by passing a different object to the `floatingOptions` prop.
    */
-  @Prop() readonly floatingOptions: FloatingProp = {
-    ...FLOATING_OPTIONS,
+  @Prop() readonly floatingOptions: FloatingAnchoredProp = {
+    ...ANCHORED_TOOLTIP,
   };
 
   // Refs en Stencil se obtienen con el atributo ref en el render
   private arrowElement!: HTMLElement;
-  @State() isVisible: boolean = false;
 
   @Element() el!: HTMLBdsTooltipElement;
 
@@ -34,7 +41,7 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
     return {
       placement: this.floatingOptions.placement ?? 'bottom',
       offset: this.floatingOptions.offset ?? 8,
-      arrow: this.hideArrow ? undefined : this.arrowElement,
+      arrow: this.floatingOptions.hideArrow ? undefined : this.arrowElement,
       strategy: 'fixed',
     };
   }
@@ -42,7 +49,19 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
   get hooks(): FloatingHooks {
     return {
       onPositionUpdate: result => this.handlePosition(result),
+      onBeforeShow: () => this.validateShow(),
+      onBeforeHide: (target: HTMLElement) => this.validateHide(target),
     };
+  }
+  private validateShow() {
+    return !this.disabled;
+  }
+  private validateHide(target: HTMLElement): boolean {
+    if (this.floatingOptions.stayOnHover && target) {
+      const goingToFloating = this.floatingContent.contains(target) || this.floatingContent === target;
+      if (goingToFloating) return false;
+    }
+    return true;
   }
   private handlePosition(result: PositioningResult) {
     this.floatingContent.setAttribute('data-placement', result.placement);
@@ -77,7 +96,11 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
   // --- Render ---
   render() {
     return (
-      <Host class="tooltip">
+      <Host
+        class="tooltip"
+        onMouseEnter={() => this.show()}
+        onMouseLeave={(e: MouseEvent) => this.hide(e.target as HTMLElement)}
+      >
         <span
           part="tooltip"
           role="button"
@@ -85,7 +108,6 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
           aria-describedby="tooltip-content"
           aria-expanded={this.isVisible ? 'true' : 'false'}
           onMouseEnter={() => this.show()}
-          onMouseLeave={() => this.hide()}
           onKeyDown={() => this.onKeyDown}
           ref={el => (this.triggerSlot = el)}
         >
@@ -99,10 +121,10 @@ export class BdsTooltip extends Mixin(floatingMixin) implements ITooltip {
           aria-hidden={this.isVisible ? 'false' : 'true'}
           data-position={this.floatingOptions.placement}
           data-multiLine={this.multiline}
-          data-hidearrow={this.hideArrow}
+          data-hidearrow={this.floatingOptions.hideArrow}
           ref={el => (this.floatingContent = el as HTMLElement)}
         >
-          {!this.hideArrow && (
+          {!this.floatingOptions.hideArrow && (
             <div class="tooltip-arrow" part="arrow" ref={el => (this.arrowElement = el as HTMLElement)} />
           )}
           <slot name="tooltip-content" />
