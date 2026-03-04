@@ -11,7 +11,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  *
  * @element bds-button
  *
- * @summary A versatile button component that can be customized with different colors, sizes, variants, and states to fit various use cases in the application.
+ * @summary A versatile button component that can be customized with different colors, sizes, variants and states to fit various use cases in the application.
  * @slot - The content of the button, typically text or an icon.
  * @slot icon - Content to show button at the begining of the button
  * @slot badge - Slot to place a badge component
