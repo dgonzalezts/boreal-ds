@@ -15,7 +15,7 @@ describe('emitEvent utility', () => {
       preventDefault: preventDefaultMock,
     } as unknown as Event;
 
-    emitEvent('myEvent', hostElement, {}, originalEvent);
+    emitEvent('myEvent', hostElement, {}, {}, originalEvent);
 
     expect(stopPropagationMock).toHaveBeenCalled();
     expect(preventDefaultMock).toHaveBeenCalled();
@@ -43,6 +43,6 @@ describe('emitEvent utility', () => {
       done();
     });
 
-    emitEvent('custom-options', hostElement, {}, undefined, { bubbles: false });
+    emitEvent('custom-options', hostElement, {}, { bubbles: false }, undefined);
   });
 });
