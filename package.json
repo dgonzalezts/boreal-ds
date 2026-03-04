@@ -17,7 +17,7 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "dev": "turbo run dev",
-    "dev:components": "pnpm --filter @telesign/boreal-web-components run dev",
+    "dev:components": "turbo run dev --filter=@telesign/boreal-web-components",
     "dev:docs": "turbo run dev --filter=@telesign/boreal-docs",
     "clean:wc": "pnpm --filter @telesign/boreal-web-components exec -- rm -rf dist .stencil",
     "generate:component": "pnpm --filter @telesign/boreal-web-components run generate",
