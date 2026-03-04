@@ -5,10 +5,7 @@ import reactOutputTarget from './targets/react-output-target';
 import vueOutputTarget from './targets/vue-output-target';
 import { testingConfig } from './testing.config';
 
-const styleGuidelinesDir = resolve(
-  __dirname,
-  'node_modules/@telesign/boreal-style-guidelines/dist'
-);
+const styleGuidelinesDir = resolve(__dirname, 'node_modules/@telesign/boreal-style-guidelines/dist');
 
 export const config: Config = {
   namespace: 'boreal-web-components',
@@ -60,10 +57,7 @@ export const config: Config = {
       includePaths: ['node_modules'],
       // Injects the stencil SCSS tokens into every component SCSS file so that
       // $boreal-* variables are available without a per-file import.
-      // TODO: Active this when typography tokens are available, remove hardcode tokens
-      injectGlobalPaths: [
-        // 'node_modules/@telesign/boreal-style-guidelines/dist/stencil/_index.scss',
-      ],
+      injectGlobalPaths: [require.resolve('@telesign/boreal-style-guidelines/stencil')],
     }),
   ],
   testing: testingConfig,
