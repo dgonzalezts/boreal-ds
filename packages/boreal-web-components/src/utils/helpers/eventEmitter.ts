@@ -9,8 +9,8 @@
  * @param {string} eventName - The name of the custom event to be dispatched.
  * @param {HTMLElement} hostElement - The DOM element that will trigger the event.
  * @param {Record<string, unknown>} [detail] - Optional data to pass inside the `event.detail` object.
- * @param {CustomEventInit} [options] - Additional CustomEvent options to override defaults (bubbles, cancelable, etc.).
  * @param {T} [event] - An optional existing event to be stopped (calls `stopPropagation` and `preventDefault`).
+ * @param {CustomEventInit} [options] - Additional CustomEvent options to override defaults (bubbles, cancelable, etc.).
  *
  * @example
  * ```typescript
@@ -30,8 +30,8 @@ export function emitEvent<T extends Event = Event>(
   eventName: string,
   hostElement: HTMLElement,
   detail?: Record<string, unknown>,
-  options?: CustomEventInit,
   event: T | undefined = undefined,
+  options?: CustomEventInit,
 ) {
   if (event !== undefined) {
     event.stopPropagation();
