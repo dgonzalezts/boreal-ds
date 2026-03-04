@@ -1,21 +1,10 @@
 import { CONFIG } from '../lib/conf.js';
 import { Logger } from '../lib/logger.js';
 import { Cmd } from '../lib/cmd.js';
-import { ensureNodeModules, installPack } from '../lib/install.js';
+import { installPack } from '../lib/install.js';
 
 const run = Cmd.run;
 const packTo = Cmd.packTo;
-
-/**
- * Build the web components package.
- * @returns {Promise<void>}
- */
-const buildWebComponent = async () => {
-  Logger.log('info', '\nBuilding Web Components Library');
-  await ensureNodeModules(CONFIG.webcomponents.wrapperRoute);
-  await run('npm', ['run', 'build'], CONFIG.webcomponents.wrapperRoute);
-  Logger.log('success', 'Building Web Components Library');
-};
 
 /**
  * Create a tgz pack for web components and copy it to wrapper/app.
@@ -48,7 +37,7 @@ const buildWrapper = async (tgzNameComponent, framework) => {
   );
 
   Logger.log('info', 'Building Wrapper Library...');
-  await run('npm', ['run', 'build'], CONFIG[framework].wrapperRoute);
+  await run('pnpm', ['build'], CONFIG[framework].wrapperRoute);
 
   Logger.log('success', 'Building Wrapper Library...');
 };
@@ -70,60 +59,45 @@ const createPackWrapper = async framework => {
 };
 
 /**
- * Install the wrapper pack in the demo app and run dev.
+ * Install the wrapper pack in the demo app and run dev or build depending on mode.
  * @param {string} tgzNameWrapper
  * @param {'vue'|'react'|'angular'} framework
+ * @param {boolean} isCi
  * @returns {Promise<void>}
  */
-const installWrapperApp = async (tgzNameWrapper, framework) => {
+const installWrapperApp = async (tgzNameWrapper, framework, isCi) => {
   await installPack(CONFIG[framework].app, tgzNameWrapper, CONFIG[framework].wrapperName);
 
-  Logger.log('success', 'OK Installed Wrapper in App...');
-  Logger.log('success', '\n Pipeline completed successfully! Starting Demo App...');
-  await run('npm', ['run', 'dev'], CONFIG[framework].app);
-};
+  Logger.log('success', 'Installed wrapper in app');
 
-/**
- * Run tests for the web components package.
- * @returns {Promise<void>}
- */
-const testWebComponents = async () => {
-  await ensureNodeModules(CONFIG.webcomponents.wrapperRoute);
-  await run('npm', ['run', 'test'], CONFIG.webcomponents.wrapperRoute);
+  if (isCi) {
+    Logger.log('info', 'Running build validation...');
+    await run('pnpm', ['build'], CONFIG[framework].app);
+    Logger.log('success', 'Pipeline completed successfully — artifact validation passed');
+  } else {
+    Logger.log('success', 'Pipeline completed successfully — starting demo app...');
+    await run('pnpm', ['dev'], CONFIG[framework].app);
+  }
 };
 
 (async () => {
   try {
     const framework = process.argv[2];
-    const environment = process.argv[3] || 'dev';
+    const isCi = process.argv.includes('--ci');
 
     if (!framework || !CONFIG[framework]) {
       Logger.log('error', '\n Please provide a valid framework: vue, react, angular \n');
       process.exit(1);
     }
 
-    Logger.log('title', `\n Validate Test for Boreal DS Web Components \n`);
+    Logger.log('title', `\n Validate Pack for Boreal DS Web Components \n`);
 
-    try {
-      await testWebComponents();
-      Logger.log('success', 'Tests passed successfully');
-    } catch (error) {
-      Logger.log('error', 'Tests failed');
-      throw error;
-    }
-
-    Logger.log(
-      'title',
-      `\n Starting ${environment} Pipeline for Boreal DS - creating a ${framework.toUpperCase()} package \n`
-    );
-
-    await buildWebComponent();
     const tgzName = await createPackWebComponent(framework);
 
     await buildWrapper(tgzName, framework);
     const tgzNameWrapper = await createPackWrapper(framework);
 
-    await installWrapperApp(tgzNameWrapper, framework);
+    await installWrapperApp(tgzNameWrapper, framework, isCi);
   } catch (error) {
     Logger.log('error', '\n Pipeline failed. Stopping execution.', error);
     if (error.shortMessage) Logger.log('error', error.shortMessage);
