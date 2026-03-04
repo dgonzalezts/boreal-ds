@@ -1,4 +1,4 @@
-@use '../../../styles/tokens-replacement.scss' as *;
+@use '../../../styles/theme' as *;
 
 .bds-typography {
   box-sizing: border-box;
@@ -6,7 +6,7 @@
   font-weight: $boreal-typography-font-weight-regular;
 
   &__required-indicator {
-    color: $boreal-text-danger;
+    color: $boreal-icon-danger;
     font-weight: $boreal-typography-font-weight-regular;
   }
 
@@ -77,11 +77,11 @@
     font-family: $boreal-typography-font-family-secondary;
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-default;
+    color: $boreal-text-base;
     line-height: $boreal-typography-line-height-md;
     overflow-wrap: break-word;
 
-    background-color: $boreal-ui-base-light;
+    background-color: $boreal-neutral-100;
     padding: $boreal-spacing-3xs $boreal-spacing-xs;
     border-radius: $boreal-radius-xs;
 
@@ -99,7 +99,7 @@
 
   &--display {
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-default;
+    color: $boreal-text-base;
 
     &.bds-typography--size-sm {
       font-size: $boreal-typography-font-size-xl;
@@ -125,7 +125,7 @@
     font-size: $boreal-typography-font-size-lg;
     line-height: $boreal-typography-line-height-lg;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-default;
+    color: $boreal-text-base;
   }
 
   h1.bds-typography--heading {

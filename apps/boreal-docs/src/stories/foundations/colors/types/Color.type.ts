@@ -4,7 +4,3 @@ export type ColorSectionType = {
   values: string[];
   prefix: string;
 };
-
-export type ColorList = {
-  [color: string]: string;
-};

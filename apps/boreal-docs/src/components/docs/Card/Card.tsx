@@ -1,7 +1,7 @@
 import styles from './Card.module.css';
 
 export interface CardProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   variant?: 'default' | 'outlined' | 'elevated';
   size?: 'sm' | 'md' | 'lg';
@@ -43,7 +43,7 @@ export const Card = ({
 
   return (
     <div className={`${styles.card} ${variantClass} ${sizeClass} ${className}`}>
-      <h3 className={styles.title}>{title}</h3>
+      {title && <h3 className={styles.title}>{title}</h3>}
       <div className={styles.content}>{children}</div>
     </div>
   );

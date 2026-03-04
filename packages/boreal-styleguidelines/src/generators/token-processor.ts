@@ -1,4 +1,4 @@
-import type { TokenValue, FlattenedTokens } from '../config/types';
+import type { TokenValue, FlattenedTokens } from "../config/types";
 
 /**
  * Token Processor
@@ -10,7 +10,7 @@ export class TokenProcessor {
 
   constructor(
     private readonly primitives: any,
-    private readonly cssVarPrefix: string
+    private readonly cssVarPrefix: string,
   ) {
     this.processPrimitiveTokens(this.primitives);
   }
@@ -26,9 +26,9 @@ export class TokenProcessor {
       const currentPath = [...path, key];
 
       if (this.isTokenValue(value)) {
-        const tokenPath = currentPath.join('.');
+        const tokenPath = currentPath.join(".");
         this.primitiveTokens.set(tokenPath, String(value.value));
-      } else if (typeof value === 'object' && value !== null) {
+      } else if (typeof value === "object" && value !== null) {
         this.processPrimitiveTokens(value, currentPath);
       }
     }
@@ -37,16 +37,13 @@ export class TokenProcessor {
   /** Check if object is a TokenValue */
   private isTokenValue(obj: any): obj is TokenValue {
     return (
-      obj !== null &&
-      typeof obj === 'object' &&
-      'value' in obj &&
-      'type' in obj
+      obj !== null && typeof obj === "object" && "value" in obj && "type" in obj
     );
   }
 
   /** Resolve token reference for SCSS variables (preserves $var references) */
   private resolveSCSSReference(value: string, currentKey?: string): string {
-    if (typeof value !== 'string') {
+    if (typeof value !== "string") {
       return String(value);
     }
 
@@ -57,11 +54,15 @@ export class TokenProcessor {
 
     const refPath = refMatch[1];
     const sanitizedPath = refPath
-      .split('.')
-      .map(segment => this.sanitizeTokenKey(segment))
-      .join('-');
+      .split(".")
+      .map((segment) => this.sanitizeTokenKey(segment))
+      .join("-");
 
-    if (currentKey && sanitizedPath === currentKey && this.themeTokens.has(sanitizedPath)) {
+    if (
+      currentKey &&
+      sanitizedPath === currentKey &&
+      this.themeTokens.has(sanitizedPath)
+    ) {
       return this.themeTokens.get(sanitizedPath)!;
     }
 
@@ -70,7 +71,7 @@ export class TokenProcessor {
 
   /** Resolve token reference for CSS custom properties (wraps in var()) */
   private resolveCSSReference(value: string, currentKey?: string): string {
-    if (typeof value !== 'string') {
+    if (typeof value !== "string") {
       return String(value);
     }
 
@@ -81,11 +82,15 @@ export class TokenProcessor {
 
     const refPath = refMatch[1];
     const sanitizedPath = refPath
-      .split('.')
-      .map(segment => this.sanitizeTokenKey(segment))
-      .join('-');
+      .split(".")
+      .map((segment) => this.sanitizeTokenKey(segment))
+      .join("-");
 
-    if (currentKey && sanitizedPath === currentKey && this.themeTokens.has(sanitizedPath)) {
+    if (
+      currentKey &&
+      sanitizedPath === currentKey &&
+      this.themeTokens.has(sanitizedPath)
+    ) {
       return this.themeTokens.get(sanitizedPath)!;
     }
 
@@ -96,37 +101,37 @@ export class TokenProcessor {
   /** Sanitize token key for use in variable names */
   private sanitizeTokenKey(key: string): string {
     return key
-      .replace(/\s*\([^)]*\)\s*/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/--+/g, '-')
-      .replace(/^-|-$/g, '')
+      .replace(/\s*\([^)]*\)\s*/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/--+/g, "-")
+      .replace(/^-|-$/g, "")
       .toLowerCase();
   }
 
   /** Convert token path to SCSS variable name */
   private tokenPathToSCSSVar(path: string): string {
-    if (path === 'white') {
-      return `$${this.cssVarPrefix.replace(/^--/, '')}white`;
+    if (path === "white") {
+      return `$${this.cssVarPrefix.replace(/^--/, "")}white`;
     }
 
     const normalized = path
-      .split('.')
-      .map(segment => this.sanitizeTokenKey(segment))
-      .join('-');
+      .split(".")
+      .map((segment) => this.sanitizeTokenKey(segment))
+      .join("-");
 
-    return `$${this.cssVarPrefix.replace(/^--/, '')}${normalized}`;
+    return `$${this.cssVarPrefix.replace(/^--/, "")}${normalized}`;
   }
 
   /** Convert token path to CSS variable name */
   private tokenPathToCSSVar(path: string): string {
-    if (path === 'white') {
+    if (path === "white") {
       return `${this.cssVarPrefix}white`;
     }
 
     const normalized = path
-      .split('.')
-      .map(segment => this.sanitizeTokenKey(segment))
-      .join('-');
+      .split(".")
+      .map((segment) => this.sanitizeTokenKey(segment))
+      .join("-");
 
     return `${this.cssVarPrefix}${normalized}`;
   }
@@ -134,19 +139,24 @@ export class TokenProcessor {
   /** Flatten theme tokens for SCSS (preserves variable references) */
   flattenThemeTokensForSCSS(
     themeTokens: any,
-    parentKey: string = ''
+    parentKey: string = "",
   ): FlattenedTokens {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(themeTokens)) {
       const sanitizedKey = this.sanitizeTokenKey(key);
-      const currentKey = parentKey ? `${parentKey}-${sanitizedKey}` : sanitizedKey;
+      const currentKey = parentKey
+        ? `${parentKey}-${sanitizedKey}`
+        : sanitizedKey;
 
       if (this.isTokenValue(value)) {
-        const resolvedValue = this.resolveSCSSReference(String(value.value), currentKey);
+        const resolvedValue = this.resolveSCSSReference(
+          String(value.value),
+          currentKey,
+        );
         result[currentKey] = resolvedValue;
         this.themeTokens.set(currentKey, resolvedValue);
-      } else if (typeof value === 'object' && value !== null) {
+      } else if (typeof value === "object" && value !== null) {
         const nested = this.flattenThemeTokensForSCSS(value, currentKey);
         Object.assign(result, nested);
       }
@@ -158,19 +168,24 @@ export class TokenProcessor {
   /** Flatten theme tokens for CSS (preserves var() references) */
   flattenThemeTokensForCSS(
     themeTokens: any,
-    parentKey: string = ''
+    parentKey: string = "",
   ): FlattenedTokens {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(themeTokens)) {
       const sanitizedKey = this.sanitizeTokenKey(key);
-      const currentKey = parentKey ? `${parentKey}-${sanitizedKey}` : sanitizedKey;
+      const currentKey = parentKey
+        ? `${parentKey}-${sanitizedKey}`
+        : sanitizedKey;
 
       if (this.isTokenValue(value)) {
-        const resolvedValue = this.resolveCSSReference(String(value.value), currentKey);
+        const resolvedValue = this.resolveCSSReference(
+          String(value.value),
+          currentKey,
+        );
         result[currentKey] = resolvedValue;
         this.themeTokens.set(currentKey, resolvedValue);
-      } else if (typeof value === 'object' && value !== null) {
+      } else if (typeof value === "object" && value !== null) {
         const nested = this.flattenThemeTokensForCSS(value, currentKey);
         Object.assign(result, nested);
       }
@@ -182,17 +197,19 @@ export class TokenProcessor {
   /** Flatten primitive tokens to key-value pairs */
   flattenPrimitiveTokens(
     primitives: any,
-    parentKey: string = ''
+    parentKey: string = "",
   ): FlattenedTokens {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(primitives)) {
       const sanitizedKey = this.sanitizeTokenKey(key);
-      const currentKey = parentKey ? `${parentKey}-${sanitizedKey}` : sanitizedKey;
+      const currentKey = parentKey
+        ? `${parentKey}-${sanitizedKey}`
+        : sanitizedKey;
 
       if (this.isTokenValue(value)) {
         result[currentKey] = String(value.value);
-      } else if (typeof value === 'object' && value !== null) {
+      } else if (typeof value === "object" && value !== null) {
         const nested = this.flattenPrimitiveTokens(value, currentKey);
         Object.assign(result, nested);
       }
@@ -209,17 +226,19 @@ export class TokenProcessor {
         const finalValue = this.addUnitIfNeeded(value, key);
         return `  ${cssVarName}: ${finalValue};`;
       })
-      .join('\n');
+      .join("\n");
   }
 
   /** Add px unit to numeric values when needed */
   private addUnitIfNeeded(value: string, key: string): string {
     if (/^\d+(\.\d+)?$/.test(value)) {
       if (
-        key.includes('spacing') ||
-        key.includes('layout') ||
-        key.includes('icon') ||
-        key.includes('radius')
+        key.includes("spacing") ||
+        key.includes("layout") ||
+        key.includes("icon") ||
+        key.includes("radius") ||
+        key.includes("font-size") ||
+        key.includes("line-height")
       ) {
         return `${value}px`;
       }
@@ -231,21 +250,25 @@ export class TokenProcessor {
   generateSCSSVariables(tokens: FlattenedTokens): string {
     return Object.entries(tokens)
       .map(([key, value]) => {
-        const scssVarName = `$${this.cssVarPrefix.replace(/^--/, '')}${key}`;
-        const finalValue = value.startsWith('$') ? value : this.addUnitIfNeeded(value, key);
+        const scssVarName = `$${this.cssVarPrefix.replace(/^--/, "")}${key}`;
+        const finalValue = value.startsWith("$")
+          ? value
+          : this.addUnitIfNeeded(value, key);
         return `${scssVarName}: ${finalValue};`;
       })
-      .join('\n');
+      .join("\n");
   }
 
   /** Generate SCSS map */
   generateSCSSMap(tokens: FlattenedTokens, mapName: string): string {
     const entries = Object.entries(tokens)
       .map(([key, value]) => {
-        const finalValue = value.startsWith('$') ? value : this.addUnitIfNeeded(value, key);
+        const finalValue = value.startsWith("$")
+          ? value
+          : this.addUnitIfNeeded(value, key);
         return `  '${key}': ${finalValue}`;
       })
-      .join(',\n');
+      .join(",\n");
 
     return `$${mapName}: (\n${entries}\n);`;
   }

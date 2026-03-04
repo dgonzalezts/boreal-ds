@@ -1,4 +1,3 @@
-/* Temporarily obtained from style-guidelines while the system is being developed to connect both projects */
 :root {
   --boreal-color-telesign-onyx-onyx-700: #3d3d57;
   --boreal-color-telesign-onyx-onyx-600: #57576b;
@@ -350,7 +349,32 @@
   --boreal-radius-s: 8px;
   --boreal-radius-xs: 4px;
   --boreal-radius-none: 0px;
+  --boreal-typography-font-size-xs: 12px;
+  --boreal-typography-font-size-sm: 14px;
+  --boreal-typography-font-size-md: 16px;
+  --boreal-typography-font-size-lg: 20px;
+  --boreal-typography-font-size-xl: 28px;
+  --boreal-typography-font-size-2xl: 32px;
+  --boreal-typography-font-size-3xl: 42px;
+  --boreal-typography-font-size-4xl: 54px;
+  --boreal-typography-line-height-xs: 16px;
+  --boreal-typography-line-height-sm: 20px;
+  --boreal-typography-line-height-md: 22px;
+  --boreal-typography-line-height-lg: 28px;
+  --boreal-typography-line-height-xl: 36px;
+  --boreal-typography-line-height-2xl: 40px;
+  --boreal-typography-line-height-3xl: 50px;
+  --boreal-typography-line-height-4xl: 64px;
+  --boreal-typography-font-weight-light: 300;
+  --boreal-typography-font-weight-regular: 400;
+  --boreal-typography-font-weight-semibold: 600;
+  --boreal-typography-font-weight-bold: 700;
+  --boreal-typography-font-family-primary: 'Inter', sans-serif;
+  --boreal-typography-font-family-secondary: 'Courier Prime', monospace;
 }
+
+/* _fonts.scss */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* reset.scss */
 /**
