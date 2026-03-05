@@ -320,9 +320,12 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm generate:story`     | `--filter boreal-docs`                            | Interactive prompt to create a new Storybook story                                            |
 | `pnpm rebuild:styles`     | `--filter boreal-style-guidelines`                | Rebuild design tokens and CSS (after token changes)                                           |
 | `pnpm commit`             | `cz`                                              | Interactive commit prompt (enforces commit convention)                                        |
-| `pnpm changeset`          | `changeset`                                       | Create a new changeset for upcoming release                                                   |
-| `pnpm version-packages`   | `changeset version`                               | Bump versions and generate changelogs                                                         |
-| `pnpm release`            | `turbo build + changeset publish`                 | Build and publish changed packages to npm                                                     |
+| `pnpm validate:pack`      | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them                   |
+| `pnpm release:styles`     | `--filter boreal-style-guidelines run release`    | Release `@telesign/boreal-style-guidelines` via release-it                                    |
+| `pnpm release:wc`         | `--filter boreal-web-components run release`      | Release `@telesign/boreal-web-components` via release-it                                      |
+| `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |
+| `pnpm release:vue`        | `--filter boreal-vue run release`                 | Release `@telesign/boreal-vue` via release-it                                                 |
+| `pnpm release:all`        | `release:styles → release:wc → release:react → release:vue` | Release all packages in dependency order                                              |
 
 To run a script for a single package only:
 
@@ -449,4 +452,4 @@ pnpm --filter @telesign/boreal-web-components run release -- --dry-run
 
 3. Run `pnpm install` from the workspace root to link it into the graph.
 
-4. If the package should **not** be versioned or published, add its name to the `ignore` array in `.changeset/config.json`.
+4. If the package should **not** be published, omit the `release` script from its `package.json` — release-it is invoked per-package explicitly.

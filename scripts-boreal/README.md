@@ -1,55 +1,58 @@
-# Scripts (Boreal DS)
+# scripts-boreal
 
-Utilities to build and package Boreal DS artifacts for local testing.
+Pipeline utilities for packing and validating Boreal DS artifacts before publishing.
+
+Builds each package, packs it as a real `.tgz` artifact, and installs it into the framework wrapper and demo app — bypassing workspace symlinks to validate `exports`, `files`, and `publishConfig` exactly as consumers will see them.
 
 ## Requirements
 
-- Node.js 22.21.1 (see repo `.nvmrc`)
+- Node.js 22.x (see `.node-version` at the repo root)
+- pnpm 10.x
 
-## Install
-
-```bash
-cd scripts-boreal
-npm install
-```
+No separate install step is needed. `scripts-boreal` is a pnpm workspace member and its dependencies are installed automatically when you run `pnpm install` from the repo root.
 
 ## Available commands
 
-From `scripts-boreal/package.json`:
+Run from the **workspace root**:
 
 ```bash
-npm run create:pack-react
-npm run create:pack-vue
-npm run create:pack-angular
+# CI validation — packs artifacts and runs a build against them
+pnpm validate:pack
+
+# Local dev — packs artifacts and starts the demo app
+node scripts-boreal/bin/publish.js react
 ```
 
 ## What the pipeline does
 
-The script `bin/publish.mjs` runs this flow:
+The script `bin/publish.js` runs this flow for a given framework:
 
-1. Build `@boreal-ds/web-components`.
-2. Pack it into a `.tgz` and install into the framework wrapper.
-3. Build the wrapper package.
-4. Pack the wrapper and install into the demo app (if present).
-5. Run `npm run dev` for the demo app.
+1. Pack `@telesign/boreal-web-components` into a `.tgz` and copy it to the wrapper.
+2. Install the `.tgz` into the framework wrapper (e.g. `@telesign/boreal-react`).
+3. Build the wrapper using `pnpm build`.
+4. Pack the wrapper into a `.tgz` and copy it to the demo app.
+5. Install the wrapper `.tgz` into the demo app.
+6. In CI (`--ci` flag): run `pnpm build` in the demo app to validate the artifact.
+   Locally: run `pnpm dev` to start the demo app.
+
+> Turborepo handles the actual build of `@telesign/boreal-web-components` as part of the normal workspace build pipeline. This script only packs already-built artifacts.
 
 ## Usage (manual)
 
 ```bash
-node bin/publish.mjs <framework> [environment]
+node scripts-boreal/bin/publish.js <framework> [--ci]
 ```
 
 Examples:
 
 ```bash
-node publish.mjs react
-node publish.mjs vue dev
+node scripts-boreal/bin/publish.js react
+node scripts-boreal/bin/publish.js react --ci
 ```
 
 Supported frameworks: `vue`, `react`, `angular`.
 
 ## Notes
 
-- npm exec boreal-pack -- react dev whit bin
 - The repo currently includes the React demo app at `examples/react-testapp`.
-- If a demo app path is missing, the script warns and skips demo install/run.
+- Vue and Angular demo apps will be added in a future iteration; the pipeline already supports them via `CONFIG`.
