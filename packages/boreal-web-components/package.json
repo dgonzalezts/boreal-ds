@@ -26,8 +26,14 @@
       "import": "./dist/collection/types/index.js",
       "types": "./dist/types/types/index.d.ts"
     },
+    "./css/*": "./dist/css/*",
+    "./scss/*": "./dist/scss/*",
     "./styles/*": "./dist/boreal-web-components/*",
-    "./dist/*": "./dist/*"
+    "./dist/*": "./dist/*",
+    "./scripts/copy-styles": "./scripts/copy-styles.js"
+  },
+  "bin": {
+    "boreal-copy-styles": "./scripts/copy-styles.js"
   },
   "repository": {
     "type": "git",
@@ -37,7 +43,8 @@
     "dist/",
     "loader/",
     "components-build/",
-    "custom-elements.json"
+    "custom-elements.json",
+    "scripts/copy-styles.js"
   ],
   "scripts": {
     "build": "stencil build",
