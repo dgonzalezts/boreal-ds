@@ -77,7 +77,7 @@ export default defineConfig(
       'stencil/strict-mutable': 'warn', // Allow mutable props but warn about them
       'stencil/strict-boolean-conditions': 'warn', // Allow non-boolean conditions but warn about them
       'react/jsx-no-bind': 'off', // Allow inline functions in JSX for Stencil components
-      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }]
+      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }], // Allow ternary executions functions, exm: this.isVisible ? this.hide() : this.show();
     },
   },
   {
