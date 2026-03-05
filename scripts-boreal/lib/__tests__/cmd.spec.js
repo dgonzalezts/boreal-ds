@@ -62,19 +62,19 @@ describe('Cmd', () => {
       execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz \n' });
       const result = await Cmd.tgzName('/source/dir');
       expect(result).toBe('my-package-1.0.0.tgz');
-      expect(execaMock).toHaveBeenCalledWith('npm', ['pack', '--silent'], {
+      expect(execaMock).toHaveBeenCalledWith('pnpm', ['pack', '--silent'], {
         cwd: '/source/dir',
       });
     });
 
-    it('should throw and log error when npm pack fails', async () => {
-      const error = new Error('npm pack failed');
+    it('should throw and log error when pnpm pack fails', async () => {
+      const error = new Error('pnpm pack failed');
       execaMock.mockRejectedValueOnce(error);
 
-      await expect(Cmd.tgzName('/source/dir')).rejects.toThrow('npm pack failed');
+      await expect(Cmd.tgzName('/source/dir')).rejects.toThrow('pnpm pack failed');
       expect(loggerMock.log).toHaveBeenCalledWith(
         'error',
-        expect.stringContaining('npm pack failed')
+        expect.stringContaining('pnpm pack failed')
       );
     });
   });
