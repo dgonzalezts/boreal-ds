@@ -1,8 +1,14 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { resolve } from 'path';
 import reactOutputTarget from './targets/react-output-target';
 import vueOutputTarget from './targets/vue-output-target';
 import { testingConfig } from './testing.config';
+
+const styleGuidelinesDir = resolve(
+  __dirname,
+  'node_modules/@telesign/boreal-style-guidelines/dist'
+);
 
 export const config: Config = {
   namespace: 'boreal-web-components',
@@ -25,6 +31,16 @@ export const config: Config = {
       esmLoaderPath: '../loader',
       dir: 'dist',
       empty: true,
+      copy: [
+        {
+          src: `${styleGuidelinesDir}/css`,
+          dest: 'css',
+        },
+        {
+          src: `${styleGuidelinesDir}/scss`,
+          dest: 'scss',
+        },
+      ],
     },
     {
       type: 'dist-custom-elements',
@@ -42,6 +58,12 @@ export const config: Config = {
   plugins: [
     sass({
       includePaths: ['node_modules'],
+      // Injects the stencil SCSS tokens into every component SCSS file so that
+      // $boreal-* variables are available without a per-file import.
+      injectGlobalPaths: [
+        require.resolve('@telesign/boreal-style-guidelines/stencil'),
+        require.resolve('@telesign/boreal-style-guidelines'),
+      ],
     }),
   ],
   testing: testingConfig,

@@ -1,5 +1,3 @@
-@use '../../../styles/tokens-replacement.scss' as *;
-
 @mixin banner-variant($border-color, $bg-color, $icon-color) {
   border-color: $border-color;
   background-color: $bg-color;
@@ -76,7 +74,7 @@
     align-self: start;
     font-size: $boreal-typography-font-size-md;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-icon-default-dark;
+    color: $boreal-neutral-400;
     cursor: pointer;
   }
 

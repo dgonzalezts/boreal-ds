@@ -1,4 +1,12 @@
-@use '../../styles/tokens-replacement.scss' as *;
+$boreal-ui-default-lighter: #f7f7f8;
+$boreal-ui-primary-base: #0a5bfc;
+$boreal-ui-success-base: #24a852;
+$boreal-ui-danger-base: #c7242b;
+$boreal-text-primary-base: #0a5bfc;
+$boreal-text-success-base: #24a852;
+$boreal-text-danger-base: #c7242b;
+$boreal-stroke-success-base: #24a852;
+$boreal-stroke-danger-base: #c7242b;
 
 @mixin bds-button-logic(
   $text,
@@ -8,7 +16,7 @@
   $active-bg: null,
   $border: transparent,
   $text-dis: $boreal-text-disabled,
-  $bg-dis: $boreal-ui-components-inverse,
+  $bg-dis: $boreal-ui-inverse,
   $border-dis: transparent,
   $has-inset-shadow: false
 ) {
@@ -29,7 +37,7 @@
     }
 
     box-shadow:
-      0px 0px 0px 1px $boreal-ui-components-inverse,
+      0px 0px 0px 1px $boreal-ui-inverse,
       0px 0px 0px 3px $boreal-stroke-focus;
   }
 
@@ -42,7 +50,7 @@
     }
 
     $shadow:
-      0px 0px 0px 1px $boreal-ui-components-inverse,
+      0px 0px 0px 1px $boreal-ui-inverse,
       0px 0px 0px 3px $boreal-stroke-focus;
 
     @if $has-inset-shadow {
@@ -192,8 +200,8 @@ bds-button {
     &.bds-button--default {
       @include bds-button-logic(
         $boreal-text-default,
-        $boreal-ui-components-inverse,
-        $boreal-ui-components-default-lighter,
+        $boreal-ui-inverse,
+        $boreal-ui-default-lighter,
         $has-inset-shadow: true
       );
     }
@@ -201,11 +209,11 @@ bds-button {
     &.bds-button--primary {
       @include bds-button-logic(
         $boreal-text-inverse,
-        $boreal-ui-components-primary-base,
-        $boreal-ui-components-primary-dark,
-        $focus-bg: $boreal-ui-components-primary-base,
-        $active-bg: $boreal-ui-components-primary-dark,
-        $bg-dis: $boreal-ui-components-primary-light,
+        $boreal-ui-primary-base,
+        $boreal-ui-primary-dark,
+        $focus-bg: $boreal-ui-primary-base,
+        $active-bg: $boreal-ui-primary-dark,
+        $bg-dis: $boreal-ui-primary-light,
         $text-dis: $boreal-text-inverse
       );
     }
@@ -213,11 +221,11 @@ bds-button {
     &.bds-button--success {
       @include bds-button-logic(
         $boreal-text-inverse,
-        $boreal-ui-components-success-base,
-        $boreal-ui-components-success-dark,
-        $focus-bg: $boreal-ui-components-success-base,
-        $active-bg: $boreal-ui-components-success-dark,
-        $bg-dis: $boreal-ui-components-success-light,
+        $boreal-ui-success-base,
+        $boreal-ui-success-dark,
+        $focus-bg: $boreal-ui-success-base,
+        $active-bg: $boreal-ui-success-dark,
+        $bg-dis: $boreal-ui-success-light,
         $text-dis: $boreal-text-inverse
       );
     }
@@ -225,11 +233,11 @@ bds-button {
     &.bds-button--error {
       @include bds-button-logic(
         $boreal-text-inverse,
-        $boreal-ui-components-danger-base,
-        $boreal-ui-components-danger-dark,
-        $focus-bg: $boreal-ui-components-danger-base,
-        $active-bg: $boreal-ui-components-danger-dark,
-        $bg-dis: $boreal-ui-components-danger-light,
+        $boreal-ui-danger-base,
+        $boreal-ui-danger-dark,
+        $focus-bg: $boreal-ui-danger-base,
+        $active-bg: $boreal-ui-danger-dark,
+        $bg-dis: $boreal-ui-danger-light,
         $text-dis: $boreal-text-inverse
       );
     }
@@ -242,7 +250,7 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-default,
         transparent,
-        $boreal-ui-components-default-lighter,
+        $boreal-ui-default-lighter,
         $border: $boreal-stroke-default-light,
         $border-dis: $boreal-stroke-default-light
       );
@@ -252,8 +260,8 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-primary-base,
         transparent,
-        $boreal-ui-components-primary-lighter,
-        $border: $boreal-ui-components-primary-base,
+        $boreal-ui-primary-lighter,
+        $border: $boreal-ui-primary-base,
         $text-dis: $boreal-text-primary-light,
         $bg-dis: transparent,
         $border-dis: $boreal-stroke-primary-light
@@ -264,7 +272,7 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-success-base,
         transparent,
-        $boreal-ui-components-success-lighter,
+        $boreal-ui-success-lighter,
         $border: $boreal-stroke-success-base,
         $text-dis: $boreal-text-success-light,
         $bg-dis: transparent,
@@ -276,7 +284,7 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-danger-base,
         transparent,
-        $boreal-ui-components-danger-lighter,
+        $boreal-ui-danger-lighter,
         $border: $boreal-stroke-danger-base,
         $text-dis: $boreal-text-danger-light,
         $bg-dis: transparent,
@@ -289,19 +297,14 @@ bds-button {
     background-color: transparent;
 
     &.bds-button--default {
-      @include bds-button-logic(
-        $boreal-text-default,
-        transparent,
-        $boreal-ui-components-default-lighter,
-        $has-inset-shadow: true
-      );
+      @include bds-button-logic($boreal-text-default, transparent, $boreal-ui-default-lighter, $has-inset-shadow: true);
     }
 
     &.bds-button--primary {
       @include bds-button-logic(
         $boreal-text-primary-base,
         transparent,
-        $boreal-ui-components-primary-lighter,
+        $boreal-ui-primary-lighter,
         $text-dis: $boreal-text-primary-light,
         $bg-dis: transparent,
         $has-inset-shadow: true
@@ -312,7 +315,7 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-success-base,
         transparent,
-        $boreal-ui-components-success-lighter,
+        $boreal-ui-success-lighter,
         $text-dis: $boreal-text-success-light,
         $bg-dis: transparent,
         $has-inset-shadow: true
@@ -323,7 +326,7 @@ bds-button {
       @include bds-button-logic(
         $boreal-text-danger-base,
         transparent,
-        $boreal-ui-components-danger-lighter,
+        $boreal-ui-danger-lighter,
         $text-dis: $boreal-text-danger-light,
         $bg-dis: transparent,
         $has-inset-shadow: true

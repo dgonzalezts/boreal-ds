@@ -23,7 +23,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @attr {string} color - The color theme of the button, which can be 'default', 'primary', 'success', or 'danger'. Default is 'default'.
  * @attr {string} variant - The visual style of the button, which can be 'default', 'outline', or 'plain'. Default is 'default'.
  * @attr {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
- * @attr {string} status - The state of the button, which can be 'default', 'hover', 'active', 'focus', 'disabled', or 'loading'. Default is 'default'.
+ * @attr {string} currentState - The state of the button, which can be 'default', 'hover', 'active', 'focus', 'disabled', or 'loading'. Default is 'default'.
  * @attr {boolean} isLoading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
  * @attr {boolean} hasDisclosure - Indicates if the button should show a chevron down at the end of the content.
  *
@@ -90,10 +90,10 @@ export class BdsButton implements IButton {
   @Prop() readonly hasDisclosure: IButton['hasDisclosure'] = false;
 
   /** variable to store local HTMLElement */
-  @Element() el: HTMLBdsButtonElement;
+  @Element() el!: HTMLBdsButtonElement;
 
   /** variable to attach internal form if exist */
-  @AttachInternals() internals: ElementInternals;
+  @AttachInternals() internals!: ElementInternals;
   private internalForm!: HTMLFormElement;
 
   /** After component rendered */

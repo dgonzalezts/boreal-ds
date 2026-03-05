@@ -115,6 +115,191 @@ boreal-ds/
 
 ---
 
+## How It Works
+
+Boreal DS is organized in four layers, each building on the previous:
+
+```
+boreal-styleguidelines      →  design tokens (CSS vars + SCSS vars)
+         ↓
+boreal-web-components       →  Stencil components + bundled styles
+         ↓
+boreal-react / boreal-vue   →  framework wrappers
+         ↓
+Your application
+```
+
+### 1. Style Guidelines (`@telesign/boreal-style-guidelines`)
+
+Generates the design token system at build time:
+
+| Output | Description |
+| --- | --- |
+| `dist/css/boreal.css` | Complete CSS bundle: global reset + primitive tokens + all brand themes |
+| `dist/css/theme-{name}.css` | Individual theme CSS — `proximus`, `masiv`, `telesign`, `bics` |
+| `dist/scss/` | SCSS variables and maps for use in any build pipeline |
+| `dist/stencil/` | SCSS variables wrapping CSS custom properties for Stencil component authoring |
+
+### 2. Web Components (`@telesign/boreal-web-components`)
+
+Built with [Stencil.js](https://stenciljs.com). At build time two things happen automatically:
+
+1. **SCSS injection** — `@stencil/sass` prepends the stencil token file to every component `.scss` file via `additionalData`, making all `$boreal-*` SCSS variables available globally without per-file imports.
+2. **Style bundling** — Stencil's `copy` task copies `css/` and `scss/` from `boreal-styleguidelines` into `dist/`, then exposes them through package exports:
+
+```
+@telesign/boreal-web-components/css/boreal.css          → full CSS bundle
+@telesign/boreal-web-components/css/theme-{name}.css   → individual theme
+@telesign/boreal-web-components/scss/variables          → SCSS variables
+@telesign/boreal-web-components/scss/maps               → SCSS maps
+```
+
+This means consumers only need to install `@telesign/boreal-web-components` (or a framework wrapper) and the styles are included — no separate install of `boreal-style-guidelines` required.
+
+### 3. Framework Wrappers (`@telesign/boreal-react`, `@telesign/boreal-vue`)
+
+Thin wrappers that expose each Stencil component as a native React or Vue component. They declare `@telesign/boreal-web-components` as a direct dependency, so styles are available transitively.
+
+---
+
+## Available Themes
+
+Boreal DS currently ships **4 brand themes**. Each theme defines its own set of color tokens, typography, and spacing overrides:
+
+| Theme | `data-theme` value | Individual CSS | Token source |
+| --- | --- | --- | --- |
+| **Telesign** | `telesign` | `theme-telesign.css` | `tokens/theme/telesign.json` |
+| **Proximus** | `proximus` | `theme-proximus.css` | `tokens/theme/proximus.json` |
+| **Masiv** | `masiv` | `theme-masiv.css` | `tokens/theme/masiv.json` |
+| **BICS** | `bics` | `theme-bics.css` | `tokens/theme/bics.json` |
+
+> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-telesign.css`).
+
+---
+
+## Using Boreal DS in Your Project
+
+### Install
+
+```bash
+# React
+npm install @telesign/boreal-react
+
+# Vue
+npm install @telesign/boreal-vue
+
+# Vanilla / Web Components only
+npm install @telesign/boreal-web-components
+```
+
+### Load Styles
+
+Import the stylesheet **once** at the entry point of your application. Each package re-exports the compiled styles from `boreal-web-components`, so use the import path that matches the package you installed:
+
+| Package installed | CSS import path |
+| --- | --- |
+| `@telesign/boreal-react` | `@telesign/boreal-react/css/boreal.css` |
+| `@telesign/boreal-vue` | `@telesign/boreal-vue/css/boreal.css` |
+| `@telesign/boreal-web-components` | `@telesign/boreal-web-components/css/boreal.css` |
+| `@telesign/boreal-style-guidelines` | `@telesign/boreal-style-guidelines` |
+
+> All paths resolve to the same CSS: global reset + primitive tokens + all brand themes.
+> To load only a specific theme replace `boreal.css` with `theme-telesign.css` (or any other theme name).
+
+### React
+
+```tsx
+// main.tsx
+import '@telesign/boreal-react/css/boreal.css';
+
+import { BrButton } from '@telesign/boreal-react';
+
+function App() {
+  return <BrButton variant="primary">Click me</BrButton>;
+}
+```
+
+### Vue
+
+```ts
+// main.ts
+import '@telesign/boreal-vue/css/boreal.css';
+
+import { createApp } from 'vue';
+import App from './App.vue';
+
+createApp(App).mount('#app');
+```
+
+```vue
+<script setup lang="ts">
+import { BrButton } from '@telesign/boreal-vue';
+</script>
+
+<template>
+  <BrButton variant="primary">Click me</BrButton>
+</template>
+```
+
+### Vanilla / Web Components
+
+```js
+// main.js
+import '@telesign/boreal-web-components/css/boreal.css';
+import { defineCustomElements } from '@telesign/boreal-web-components/loader';
+
+defineCustomElements();
+```
+
+```html
+<html data-theme="telesign">
+  <body>
+    <br-button variant="primary">Click me</br-button>
+  </body>
+</html>
+```
+
+### Theme Switching
+
+All themes are included in `boreal.css`. Switch themes at runtime by setting the `data-theme` attribute on any ancestor element (typically `<html>` or `<body>`):
+
+```js
+document.documentElement.setAttribute('data-theme', 'telesign');
+```
+
+| Value | Brand |
+| --- | --- |
+| `telesign` | Telesign |
+| `proximus` | Proximus |
+| `masiv` | Masiv |
+| `bics` | BICS |
+
+### SCSS Variables in Your Own Styles
+
+If your build pipeline supports SCSS you can use Boreal design tokens directly in your stylesheets. Import via either package:
+
+```scss
+// Via the framework wrapper you already have installed
+@use '@telesign/boreal-react/scss/variables' as boreal;
+// or
+@use '@telesign/boreal-vue/scss/variables' as boreal;
+// or
+@use '@telesign/boreal-web-components/scss/variables' as boreal;
+// or
+@use '@telesign/boreal-style-guidelines/scss/variables' as boreal;
+
+.my-card {
+  background: boreal.$boreal-bg-primary;
+  color: boreal.$boreal-text-default;
+  border-radius: boreal.$boreal-radius-m;
+  padding: boreal.$boreal-spacing-m;
+}
+```
+
+> **Note:** SCSS variables resolve to static values at compile time and do not respond to theme switches. For dynamic multi-theme support use CSS custom properties (`var(--boreal-*)`) together with `data-theme`.
+
+---
+
 ## Scripts
 
 All scripts are run from the **workspace root** using Turborepo to orchestrate the task pipeline across packages.

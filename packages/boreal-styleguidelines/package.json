@@ -42,6 +42,7 @@
     "./scss/variables": "./dist/scss/variables/_index.scss",
     "./scss/maps": "./dist/scss/maps/_index.scss",
     "./scss/global": "./dist/scss/global/_index.scss",
+    "./scss/helpers": "./src/styles/helpers/_index.scss",
     "./stencil": "./dist/stencil/_index.scss",
     "./tokens/theme/masiv": "./src/tokens/theme/masiv.json",
     "./tokens/theme/bics": "./src/tokens/theme/bics.json",
