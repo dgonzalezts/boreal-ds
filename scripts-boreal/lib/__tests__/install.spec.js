@@ -28,7 +28,7 @@ describe('install', () => {
         ['remove', '@boreal-ds/web-components'],
         '/test/dir'
       );
-      expect(cmdMock.run).toHaveBeenNthCalledWith(2, 'pnpm', ['add', 'pkg.tgz'], '/test/dir');
+      expect(cmdMock.run).toHaveBeenNthCalledWith(2, 'pnpm', ['add', './pkg.tgz'], '/test/dir');
     });
 
     it('should not remove if uninstallName is not provided', async () => {
@@ -41,7 +41,7 @@ describe('install', () => {
         ['remove', expect.any(String)],
         '/test/dir'
       );
-      expect(cmdMock.run).toHaveBeenCalledWith('pnpm', ['add', 'pkg.tgz'], '/test/dir');
+      expect(cmdMock.run).toHaveBeenCalledWith('pnpm', ['add', './pkg.tgz'], '/test/dir');
     });
 
     it('should log info before removing', async () => {

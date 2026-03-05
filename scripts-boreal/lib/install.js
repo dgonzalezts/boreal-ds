@@ -11,9 +11,13 @@ import { Logger } from './logger.js';
 export const installPack = async (cwd, pack, uninstallName) => {
   if (uninstallName) {
     Logger.log('info', `Removing ${uninstallName}...`);
-    await Cmd.run('pnpm', ['remove', uninstallName], cwd);
+    try {
+      await Cmd.run('pnpm', ['remove', uninstallName], cwd);
+    } catch {
+      Logger.log('info', `${uninstallName} not found, skipping removal.`);
+    }
   }
 
   Logger.log('info', `Installing ${pack}...`);
-  await Cmd.run('pnpm', ['add', pack], cwd);
+  await Cmd.run('pnpm', ['add', `./${pack}`], cwd);
 };
