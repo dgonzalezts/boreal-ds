@@ -1,5 +1,5 @@
 import { Position } from '@/types/position';
-import { Arrow } from '../types/Position';
+import { Arrow } from '../types/Arrow';
 import { FloatingHooks, FloatingMixinOptions } from './Floating';
 
 /**
