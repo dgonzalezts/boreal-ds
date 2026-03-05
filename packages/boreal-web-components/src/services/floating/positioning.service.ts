@@ -10,7 +10,16 @@ import { ILogger, Logger } from '../logger/Logger';
  *
  * If you need add some Floating UI logic you can add a new methods to this class.
  */
-class FloatingAdapter {
+export interface IFloatingAdapter {
+  computePosition(
+    reference: HTMLElement | null,
+    floating: HTMLElement | null,
+    options: PositioningOptions,
+  ): Promise<PositioningResult>;
+  applyPosition(element: HTMLElement, result: PositioningResult): void;
+}
+
+class FloatingAdapter implements IFloatingAdapter {
   /**
    * Constructor of the adapter.
    * @param logger Inject the logger service to normalize the error messages.

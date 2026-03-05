@@ -1,7 +1,7 @@
 import { MiddlewareData, Placement, Strategy } from '@floating-ui/dom';
 
 /**
- * Interface to define the possible options as props for the positioning engine.
+ * Define the possible options to communicate with Floating UI library.
  */
 export interface PositioningOptions {
   placement?: Placement;
@@ -13,7 +13,7 @@ export interface PositioningOptions {
 }
 
 /**
- * Interface to define the result of the positioning engine. Have the position and the placement.
+ * Define the result of the positioning engine. Have the position and the placemen and additional data to define it behavior.
  */
 export interface PositioningResult {
   x: number;

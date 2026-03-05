@@ -1,5 +1,6 @@
 import { Placement, Strategy } from '@floating-ui/dom';
 import { PositioningResult } from './Positioning';
+import { FloatingAnchoredProp } from './Props';
 
 /**
  * Add methods to the `onBeforeShow`, `onAfterShow`, `onBeforeHide`, and `onAfterHide` to add custom logic.
@@ -14,6 +15,11 @@ export interface FloatingHooks {
   unmounted?: (el?: HTMLElement) => void;
   onPositionUpdate?: (result: PositioningResult) => void;
 }
+
+/**
+ * Define the possible options for comunication with the Floating UI library.
+ * Could define how the floating element and arrow will be positioned.
+ */
 export interface FloatingMixinOptions {
   offset?: number;
   placement?: Placement;
@@ -21,4 +27,15 @@ export interface FloatingMixinOptions {
   shift?: boolean;
   arrow?: HTMLElement;
   strategy?: Strategy;
+}
+
+/**
+ * Implements the hooks and expose the options and hooks to the mixin.
+ * The mixin could provide a getter to able the developer override values.
+ */
+export interface IFloatingMixin extends FloatingHooks {
+  floatingOptions: FloatingAnchoredProp;
+
+  get options(): FloatingMixinOptions;
+  get hooks(): FloatingHooks;
 }
