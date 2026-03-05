@@ -10,9 +10,9 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
-    "create:pack-vue": "node ./bin/publish.js vue dev",
-    "create:pack-react": "node ./bin/publish.js react dev",
-    "create:pack-angular": "node ./bin/publish.js angular dev"
+    "create:pack-vue": "node ./bin/publish.js vue",
+    "create:pack-react": "node ./bin/publish.js react",
+    "create:pack-angular": "node ./bin/publish.js angular"
   },
   "author": "",
   "license": "ISC",
