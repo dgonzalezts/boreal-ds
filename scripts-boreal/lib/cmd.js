@@ -31,7 +31,7 @@ export class Cmd {
    */
   static async tgzName(sourceDir) {
     try {
-      const { stdout } = await execa('npm', ['pack', '--silent'], { cwd: sourceDir });
+      const { stdout } = await execa('pnpm', ['pack', '--silent'], { cwd: sourceDir });
       const tgzName = stdout.trim();
       return tgzName;
     } catch (error) {
