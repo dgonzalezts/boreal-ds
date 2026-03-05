@@ -3,17 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Boreal DS — Component Playground</title>
+    <!-- Design tokens: CSS custom properties, reset, fonts, typography utilities -->
+    <link rel="stylesheet" href="/css/boreal.css" />
+    <!-- Icon font -->
     <link rel="stylesheet" href="/build/boreal-web-components.css" />
-
+    <!-- Web components registry -->
     <script type="module" src="/build/boreal-web-components.esm.js"></script>
-    <script nomodule src="/build/boreal-web-components.js"></script>
   </head>
-  <body>
+  <body data-theme="telesign">
     <!--
-      Dev playground — run `pnpm dev:components` to start the Stencil dev server.
-      Add component examples below for manual testing during local development.
-      Changes here are not shipped; this file is excluded from the build output.
+      Playground — add components below to test them during development.
+      Run: pnpm dev:components (from the root of the monorepo) to start the development server and open this page in the browser.
+
+      Available themes for data-theme: telesign | proximus | masiv | bics
     -->
   </body>
 </html>

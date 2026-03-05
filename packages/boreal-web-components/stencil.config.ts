@@ -22,6 +22,12 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null,
+      copy: [
+        {
+          src: `${styleGuidelinesDir}/css`,
+          dest: 'css',
+        },
+      ],
     },
     {
       type: 'dist',
