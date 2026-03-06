@@ -1,6 +1,6 @@
 # Boreal Design System - Style Guidelines
 
-Multi-brand design token system for Proximus, Masiv, Telesign, and BICS projects.
+Multi-brand design token system for Proximus, Engage, Protect, and Connect projects.
 
 ## 🎨 Features
 
@@ -17,6 +17,10 @@ Multi-brand design token system for Proximus, Masiv, Telesign, and BICS projects
 - **Global Generator**: Automatically compiles global SCSS files (reset, grid, etc.)
 - **Fixed Variable References**: SCSS and CSS outputs now preserve variable references instead of resolving to values
 - **New Package Exports**: Added `./stencil`, `./scss`, and `./scss/global` entry points
+- **DTCG Token Format**: Supports the Design Token Community Group format (`$type`/`$value`), `$extensions` are automatically ignored
+- **Updated Theme Names**: Replaced `masiv` → `engage`, `telesign` → `protect`, `bics` → `connect`
+- **Token Key Sanitization**: Underscores in token keys (e.g. `font_size`) are automatically converted to hyphens (`font-size`)
+- **@import Ordering**: `@import` statements are placed at the top of generated CSS files
 
 See [CHANGELOG.md](./CHANGELOG.md) for complete details.
 
@@ -81,19 +85,19 @@ This command generates:
 ### Switch Themes Dynamically
 
 ```javascript
-// Switch to Masiv theme
-document.documentElement.setAttribute("data-theme", "masiv");
+// Switch to Engage theme
+document.documentElement.setAttribute("data-theme", "engage");
 
-// Switch to Telesign theme
-document.documentElement.setAttribute("data-theme", "telesign");
+// Switch to Protect theme
+document.documentElement.setAttribute("data-theme", "protect");
 ```
 
 ## 🎯 Available Themes
 
 - `proximus`
-- `masiv`
-- `telesign`
-- `bics`
+- `engage`
+- `protect`
+- `connect`
 
 ## 🔧 Stencil Integration
 
@@ -318,6 +322,8 @@ Examples:
 - `"ui (components)"` → `"ui"`
 - `"bg (layout)"` → `"bg"`
 - `"base-alt-(text)"` → `"base-alt"`
+- `"font_size"` → `"font-size"`
+- `"line_height"` → `"line-height"`
 
 ## 🎨 Semantic vs Primitive Tokens
 
@@ -335,16 +341,16 @@ Tokens that reference primitives and change based on theme:
 
 ## 📝 Adding a New Theme
 
-1. Create `src/tokens/theme/new-theme.json`
+1. Create `src/tokens/theme/new-theme.json` using the DTCG format (`$type`/`$value`)
 2. Define theme tokens following existing format
 3. Add theme to `src/config/constants.ts`:
 
 ```typescript
 export const THEMES = {
   PROXIMUS: "proximus",
-  MASIV: "masiv",
-  TELESIGN: "telesign",
-  BICS: "bics",
+  ENGAGE: "engage",
+  PROTECT: "protect",
+  CONNECT: "connect",
   NEW_THEME: "new-theme", // ← Add here
 } as const;
 ```
@@ -403,9 +409,3 @@ Example output:
 ### Icons
 
 `s`, `m`, `l`, `xl`
-
-## 🤝 Contributing
-
-1. Modify tokens in `src/tokens/` download from figma
-2. Run `pnpm build`
-3. Verify generated files in `dist/`
