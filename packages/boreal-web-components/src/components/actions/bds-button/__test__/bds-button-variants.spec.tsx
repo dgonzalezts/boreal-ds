@@ -4,13 +4,6 @@ ValidateDecoratorMock();
 
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsButton } from '../bds-button';
-import ElementInternals from '@/utils/__test__/mocks/ElementInternals';
-
-declare global {
-  interface Window {
-    ElementInternals: any;
-  }
-}
 
 describe('bds-button variants', () => {
   const configurations = [
@@ -25,20 +18,6 @@ describe('bds-button variants', () => {
     { attr: 'size', value: 'large', expected: 'bds-button--size-large' },
     { attr: 'size', value: 'medium', expected: 'bds-button--size-medium' },
   ];
-
-  beforeAll(() => {
-    const MockElementInternals = ElementInternals;
-
-    if (typeof window.ElementInternals === 'undefined') {
-      window.ElementInternals = MockElementInternals;
-    }
-
-    if (HTMLElement.prototype.attachInternals === undefined) {
-      HTMLElement.prototype.attachInternals = function () {
-        return new MockElementInternals() as any;
-      };
-    }
-  });
 
   configurations.forEach(({ attr, value, expected }) => {
     it(`should render with ${attr}=${value}`, async () => {

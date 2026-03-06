@@ -141,7 +141,13 @@ export class BdsButton implements IButton {
       return;
     }
     const events: Record<string, () => void> = {
-      [BUTTON_TYPES.SUBMIT]: () => this.internalForm.requestSubmit(),
+      [BUTTON_TYPES.SUBMIT]: () => {
+        if (typeof this.internalForm.requestSubmit === 'function') {
+          this.internalForm.requestSubmit();
+        } else {
+          this.internalForm.submit();
+        }
+      },
       [BUTTON_TYPES.RESET]: () => this.internalForm.reset(),
     };
     const action = events[this.type];
@@ -182,7 +188,7 @@ export class BdsButton implements IButton {
         onKeyUp={this.handleKeyUp}
       >
         <div class="bds-button__content">
-          <span class="bds-button__content-icon">
+          <span class="bds-button__content-icon bds-button__content-icon--start">
             <slot name="icon"></slot>
           </span>
           <slot></slot>
@@ -190,7 +196,7 @@ export class BdsButton implements IButton {
             <slot name="badge"></slot>
           </span>
           {this.hasDisclosure && (
-            <span class="bds-button__content-icon">
+            <span class="bds-button__content-icon bds-button__content-icon--end">
               <i class="bds-icon-chevron-down"></i>
             </span>
           )}

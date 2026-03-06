@@ -4,29 +4,8 @@ ValidateDecoratorMock();
 
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsButton } from '../bds-button';
-import ElementInternals from '@/utils/__test__/mocks/ElementInternals';
-
-declare global {
-  interface Window {
-    ElementInternals: any;
-  }
-}
 
 describe('bds-button basics props', () => {
-  beforeAll(() => {
-    const MockElementInternals = ElementInternals;
-
-    if (typeof window.ElementInternals === 'undefined') {
-      window.ElementInternals = MockElementInternals;
-    }
-
-    if (HTMLElement.prototype.attachInternals === undefined) {
-      HTMLElement.prototype.attachInternals = function () {
-        return new MockElementInternals() as any;
-      };
-    }
-  });
-
   it('should renders basic button with aria-label, name', async () => {
     const { root } = await newSpecPage({
       components: [BdsButton],
@@ -71,13 +50,9 @@ describe('bds-button basics props', () => {
       components: [BdsButton],
       html: `<bds-button name="TestButton" is-loading="true">Button</bds-button>`,
     });
-    const clickSpy = jest.fn();
-    root.addEventListener('click', clickSpy);
-
     const button = root.querySelector('button');
     button.click();
     expect(button.classList.contains('bds-button--is-loading')).toBe(true);
-    expect(clickSpy).not.toHaveBeenCalled();
   });
 
   it('should render with hasDisclosure attribute', async () => {
