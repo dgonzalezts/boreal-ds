@@ -44,10 +44,11 @@
     "loader/",
     "components-build/",
     "custom-elements.json",
-    "scripts/copy-styles.js"
+    "scripts/copy-styles.js",
+    "scripts/postbuild.js"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "stencil build && node scripts/postbuild.js",
     "dev": "stencil build --dev --watch --serve",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",
@@ -64,10 +65,10 @@
     "format:check": "prettier --check 'src/**/*.{ts,tsx,css,scss,json}'"
   },
   "dependencies": {
-    "@telesign/boreal-style-guidelines": "workspace:*",
     "@braintree/sanitize-url": "^7.1.2"
   },
   "devDependencies": {
+    "@telesign/boreal-style-guidelines": "workspace:*",
     "@eslint/js": "^9.39.2",
     "@stencil/core": "^4.27.1",
     "@stencil/eslint-plugin": "^1.1.0",
