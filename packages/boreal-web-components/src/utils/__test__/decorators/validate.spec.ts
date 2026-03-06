@@ -1,3 +1,6 @@
+// Unmock decorator just for this test file, to test the actual implementation of the @Validate decorator
+jest.unmock('../../decorators/validate.decorate');
+
 import { Validate } from '../../decorators/validate.decorate';
 
 describe('Validate Decorator', () => {
