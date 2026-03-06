@@ -1,31 +1,22 @@
-import { useState } from 'react';
-import { MyComponent } from '@telesign/boreal-react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+/**
+ * Playground — add components below to test them during development.
+ *
+ * Import from '@telesign/boreal-react' and render components here.
+ * Run: pnpm dev:pack (from the root of the monorepo) to start the pipeline
+ * and open this page in the browser.
+ *
+ * Available themes for data-theme: telesign | proximus | masiv | bics
+ * Set the theme on <body> in index.html.
+ */
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <MyComponent first="Hello" middle="Team" last="Boreal"></MyComponent>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
+    <main>
+      <h1>Boreal DS — React Playground</h1>
+
+      {/* Add components below */}
+    </main>
   );
 }
 
