@@ -27,6 +27,7 @@ describe('bds-button slots', () => {
     expect(iconContainer.contains(icon)).toBe(true);
   });
 
+  // TODO: This test should be reviewed when the bds-badge component is created
   it('should render badge slot content', async () => {
     const { root } = await newSpecPage({
       components: [BdsButton],
