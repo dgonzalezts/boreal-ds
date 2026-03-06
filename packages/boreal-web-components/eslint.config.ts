@@ -3,6 +3,7 @@ import { configs } from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import stencil from '@stencil/eslint-plugin';
+import jsdoc from 'eslint-plugin-jsdoc';
 
 export default defineConfig(
   configs.recommended,
@@ -37,7 +38,40 @@ export default defineConfig(
     },
   },
   {
+    plugins: { jsdoc },
+    settings: {
+      jsdoc: {
+        tagNamePreference: {
+          internal: false,
+          ignore: false,
+          function: 'method',
+          template: 'typeParam',
+        },
+      },
+    },
     rules: {
+      'jsdoc/check-tag-names': [
+        'error',
+        {
+          definedTags: [
+            'slot',
+            'csspart',
+            'cssprop',
+            'cssproperty',
+            'cssState',
+            'summary',
+            'attr',
+            'attribute',
+            'fires',
+            'event',
+            'tag',
+            'tagname',
+            'default',
+            'typeParam',
+          ],
+        },
+      ],
+
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
