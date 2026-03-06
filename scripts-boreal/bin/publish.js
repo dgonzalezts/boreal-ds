@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { execa } from 'execa';
+import { spawnSync } from 'node:child_process';
 import { CONFIG } from '../lib/conf.js';
 import { Logger } from '../lib/logger.js';
 import { Cmd } from '../lib/cmd.js';
@@ -10,13 +10,13 @@ const run = Cmd.run;
 const packTo = Cmd.packTo;
 
 /**
- * Restore git-tracked files to their committed state and remove generated tgz artifacts.
+ * Remove generated tgz artifacts and restore committed package files via git checkout.
+ * Uses synchronous operations so it is safe to call from a SIGINT handler.
  * @param {string[]} tgzPaths - Absolute paths to tgz files created during the pipeline run.
- * @param {string[]} dirtyFiles - Workspace-relative paths of files mutated by pnpm (package.json, pnpm-lock.yaml).
- * @param {string} root - Absolute path to the workspace root.
- * @returns {Promise<void>}
+ * @param {string[]} restorePaths - Absolute paths of files to restore via `git checkout HEAD`.
+ * @param {string} root - Absolute path to the repository root.
  */
-const cleanup = async (tgzPaths, dirtyFiles, root) => {
+const cleanup = (tgzPaths, restorePaths, root) => {
   Logger.log('info', '\nCleaning up pipeline artifacts...');
 
   for (const tgzPath of tgzPaths) {
@@ -26,14 +26,9 @@ const cleanup = async (tgzPaths, dirtyFiles, root) => {
     }
   }
 
-  if (dirtyFiles.length > 0) {
-    try {
-      await execa('git', ['checkout', 'HEAD', '--', ...dirtyFiles], { cwd: root, stdio: 'inherit' });
-      Logger.log('success', 'Restored package.json and pnpm-lock.yaml to committed state');
-    } catch {
-      Logger.log('error', 'Could not restore git-tracked files — please run: git checkout HEAD -- ' + dirtyFiles.join(' '));
-    }
-  }
+  const relPaths = restorePaths.map(f => path.relative(root, f));
+  spawnSync('git', ['checkout', 'HEAD', '--', ...relPaths], { cwd: root, stdio: 'pipe' });
+  Logger.log('success', 'Restored package.json and pnpm-lock.yaml to committed state');
 };
 
 /**
@@ -121,19 +116,26 @@ const installWrapperApp = async (tgzNameWrapper, framework, isCi) => {
 
   const ROOT = path.resolve(import.meta.dirname, '../../');
   const artifactPaths = [];
-  const dirtyFiles = [
-    path.relative(ROOT, path.join(CONFIG[framework].wrapperRoute, 'package.json')),
-    path.relative(ROOT, path.join(CONFIG[framework].app, 'package.json')),
-    'pnpm-lock.yaml',
-  ];
 
-  await execa('git', ['checkout', 'HEAD', '--', ...dirtyFiles], { cwd: ROOT, stdio: 'inherit' }).catch(() => {});
+  const restorePaths = [
+    path.join(CONFIG[framework].wrapperRoute, 'package.json'),
+    path.join(CONFIG[framework].app, 'package.json'),
+    path.join(ROOT, 'pnpm-lock.yaml'),
+  ];
 
   const viteCache = path.join(CONFIG[framework].app, 'node_modules', '.vite');
   if (fs.existsSync(viteCache)) {
     fs.rmSync(viteCache, { recursive: true, force: true });
     Logger.log('info', 'Cleared Vite dep cache');
   }
+
+  const handleSignal = () => {
+    cleanup(artifactPaths, restorePaths, ROOT);
+    process.exit(0);
+  };
+
+  process.once('SIGINT', handleSignal);
+  process.once('SIGTERM', handleSignal);
 
   try {
     Logger.log('title', `\n Validate Pack for Boreal DS Web Components \n`);
@@ -150,9 +152,9 @@ const installWrapperApp = async (tgzNameWrapper, framework, isCi) => {
   } catch (error) {
     Logger.log('error', '\n Pipeline failed. Stopping execution.', error);
     if (error.shortMessage) Logger.log('error', error.shortMessage);
-    await cleanup(artifactPaths, dirtyFiles, ROOT);
+    cleanup(artifactPaths, restorePaths, ROOT);
     process.exit(1);
   }
 
-  await cleanup(artifactPaths, dirtyFiles, ROOT);
+  cleanup(artifactPaths, restorePaths, ROOT);
 })();
