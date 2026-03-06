@@ -3,6 +3,7 @@ import { installPack } from '../install.js';
 
 vi.mock('../cmd.js', () => ({ Cmd: { run: vi.fn() } }));
 vi.mock('../logger.js', () => ({ Logger: { log: vi.fn() } }));
+vi.mock('node:fs', () => ({ default: { existsSync: vi.fn(() => false), rmSync: vi.fn() } }));
 
 describe('install', () => {
   let cmdMock;
@@ -17,8 +18,16 @@ describe('install', () => {
   });
 
   describe('installPack', () => {
+    let fsMock;
+
+    beforeEach(async () => {
+      const fsModule = await import('node:fs');
+      fsMock = fsModule.default;
+    });
+
     it('should remove package first if uninstallName is provided', async () => {
       cmdMock.run.mockResolvedValue();
+      fsMock.existsSync.mockReturnValue(false);
 
       await installPack('/test/dir', 'pkg.tgz', '@boreal-ds/web-components');
 
@@ -28,7 +37,28 @@ describe('install', () => {
         ['remove', '@boreal-ds/web-components'],
         '/test/dir'
       );
-      expect(cmdMock.run).toHaveBeenNthCalledWith(2, 'pnpm', ['add', './pkg.tgz'], '/test/dir');
+      expect(cmdMock.run).toHaveBeenNthCalledWith(2, 'pnpm', ['add', './pkg.tgz', '--force'], '/test/dir');
+    });
+
+    it('should rmSync node_modules package dir if it still exists after remove', async () => {
+      cmdMock.run.mockResolvedValue();
+      fsMock.existsSync.mockReturnValue(true);
+
+      await installPack('/test/dir', 'pkg.tgz', '@telesign/boreal-react');
+
+      expect(fsMock.rmSync).toHaveBeenCalledWith(
+        expect.stringContaining('@telesign/boreal-react'),
+        { recursive: true, force: true }
+      );
+    });
+
+    it('should not rmSync if node_modules package dir does not exist', async () => {
+      cmdMock.run.mockResolvedValue();
+      fsMock.existsSync.mockReturnValue(false);
+
+      await installPack('/test/dir', 'pkg.tgz', '@telesign/boreal-react');
+
+      expect(fsMock.rmSync).not.toHaveBeenCalled();
     });
 
     it('should not remove if uninstallName is not provided', async () => {
@@ -41,7 +71,7 @@ describe('install', () => {
         ['remove', expect.any(String)],
         '/test/dir'
       );
-      expect(cmdMock.run).toHaveBeenCalledWith('pnpm', ['add', './pkg.tgz'], '/test/dir');
+      expect(cmdMock.run).toHaveBeenCalledWith('pnpm', ['add', './pkg.tgz', '--force'], '/test/dir');
     });
 
     it('should log info before removing', async () => {
