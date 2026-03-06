@@ -4,7 +4,7 @@
   font-weight: $boreal-typography-font-weight-regular;
 
   &__required-indicator {
-    color: $boreal-icon-danger;
+    color: $boreal-icon-danger-base;
     font-weight: $boreal-typography-font-weight-regular;
   }
 
@@ -50,14 +50,14 @@
     font-size: $boreal-typography-font-size-sm;
     font-weight: $boreal-typography-font-weight-regular;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-text-primary;
+    color: $boreal-text-primary-base;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
     }
     &:visited {
-      color: $boreal-text-primary;
+      color: $boreal-text-primary-base;
     }
     &:active {
       color: $boreal-text-primary-dark;
@@ -72,14 +72,14 @@
   }
 
   &--code {
-    font-family: $boreal-typography-font-family-secondary;
+    font-family: $boreal-typography-font-family-secundary;
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
     color: $boreal-text-default;
     line-height: $boreal-typography-line-height-md;
     overflow-wrap: break-word;
 
-    background-color: $boreal-neutral-100;
+    background-color: $boreal-bg-neutral;
     padding: $boreal-spacing-3xs $boreal-spacing-xs;
     border-radius: $boreal-radius-xs;
 
@@ -177,7 +177,7 @@
   }
 
   &--error {
-    color: $boreal-text-danger;
+    color: $boreal-text-danger-base;
   }
 
   &--disabled {
