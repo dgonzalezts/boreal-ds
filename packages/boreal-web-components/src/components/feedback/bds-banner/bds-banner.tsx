@@ -8,8 +8,6 @@ import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
 /**
  * Banner component used to display important messages with different status variants.
  *
- * @element bds-banner
- *
  * @summary Displays a dismissible banner with an icon, title, body content, and optional actions.
  *
  * @slot title - Slot for the banner title text.
@@ -28,8 +26,6 @@ import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
  *
  * @method closeBanner - Programmatic method to close the banner and emit the `close` event.
  *
- * @internal isClosing - Internal state tracking the banner's closing animation.
- * @internal isOpen - Whether the banner is open or close.
  */
 @Component({
   tag: 'bds-banner',
@@ -55,7 +51,7 @@ export class BdsBanner implements IBanner {
   /**
    * Unique identifier for the banner element.
    */
-  @Prop({ mutable: true }) idComponent: string = '';
+  @Prop() readonly idComponent: string = '';
 
   /**
    * Visual style variant: 'info', 'success', 'warning', or 'danger'.
