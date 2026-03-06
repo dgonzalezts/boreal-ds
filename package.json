@@ -30,6 +30,7 @@
     "release:all": "pnpm run release:styles && pnpm run release:wc && pnpm run release:react && pnpm run release:vue",
     "prepare": "husky",
     "commit": "cz",
+    "dev:pack": "node scripts-boreal/bin/publish.js react",
     "validate:pack": "node scripts-boreal/bin/publish.js react --ci"
   },
   "devDependencies": {

@@ -320,7 +320,8 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm generate:story`     | `--filter boreal-docs`                            | Interactive prompt to create a new Storybook story                                            |
 | `pnpm rebuild:styles`     | `--filter boreal-style-guidelines`                | Rebuild design tokens and CSS (after token changes)                                           |
 | `pnpm commit`             | `cz`                                              | Interactive commit prompt (enforces commit convention)                                        |
-| `pnpm validate:pack`      | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them                   |
+| `pnpm dev:pack`           | `node scripts-boreal/bin/publish.js react`        | Pack artifacts and start the React demo app against them (Ctrl+C to stop and clean up)       |
+| `pnpm validate:pack`      | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them (CI mode)         |
 | `pnpm release:styles`     | `--filter boreal-style-guidelines run release`    | Release `@telesign/boreal-style-guidelines` via release-it                                    |
 | `pnpm release:wc`         | `--filter boreal-web-components run release`      | Release `@telesign/boreal-web-components` via release-it                                      |
 | `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |

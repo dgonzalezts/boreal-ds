@@ -20,8 +20,18 @@ Run from the **workspace root**:
 pnpm validate:pack
 
 # Local dev — packs artifacts and starts the demo app
-node scripts-boreal/bin/publish.js react
+pnpm dev:pack
 ```
+
+Press **Ctrl+C** to stop the dev server. The pipeline handles cleanup automatically (removes `.tgz` files, restores `package.json` and `pnpm-lock.yaml` via `git checkout HEAD`).
+
+### Alternative: workspace dev (no artifact packing)
+
+```bash
+turbo run dev --filter=react-testapp
+```
+
+Starts the demo app directly against workspace symlinks — no tgz packing, no `package.json` mutation. Use this for fast day-to-day iteration on component code. It does **not** validate what a real npm consumer receives; use `pnpm validate:pack` for release validation.
 
 ## What the pipeline does
 
@@ -56,3 +66,4 @@ Supported frameworks: `vue`, `react`, `angular`.
 
 - The repo currently includes the React demo app at `examples/react-testapp`.
 - Vue and Angular demo apps will be added in a future iteration; the pipeline already supports them via `CONFIG`.
+- On pipeline exit (success, error, or Ctrl+C / SIGTERM), `package.json` and `pnpm-lock.yaml` are automatically restored via `git checkout HEAD`. The only case where files are left dirty is a force kill (`kill -9`); in that case run `pnpm install` from the workspace root to resync `node_modules`.
