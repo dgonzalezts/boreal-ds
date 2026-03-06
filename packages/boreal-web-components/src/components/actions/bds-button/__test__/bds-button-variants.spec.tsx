@@ -1,9 +1,6 @@
-// We should call the mock before importing the component to avoid issues with the decorator during tests
-import ValidateDecoratorMock from '@/utils/__test__/mocks/ValidateDecoratorMock';
-ValidateDecoratorMock();
-
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsButton } from '../bds-button';
+import { assertExists } from '@/utils/__test__/helpers';
 
 describe('bds-button variants', () => {
   const configurations = [
@@ -21,11 +18,14 @@ describe('bds-button variants', () => {
 
   configurations.forEach(({ attr, value, expected }) => {
     it(`should render with ${attr}=${value}`, async () => {
-      const { root } = await newSpecPage({
+      const page = await newSpecPage({
         components: [BdsButton],
         html: `<bds-button ${attr}="${value}">Button</bds-button>`,
       });
+      const root = page.root as HTMLElement;
       const button = root.querySelector('button');
+      assertExists(button, 'Button element should exist');
+
       expect(button.classList.contains(expected)).toBe(true);
     });
   });

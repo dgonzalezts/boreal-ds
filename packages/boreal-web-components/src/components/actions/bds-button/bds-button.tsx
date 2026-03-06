@@ -92,7 +92,7 @@ export class BdsButton implements IButton {
 
   /** variable to attach internal form if exist */
   @AttachInternals() internals!: ElementInternals;
-  private internalForm!: HTMLFormElement;
+  private internalForm!: HTMLFormElement | undefined;
 
   /** After component rendered */
   componentDidLoad() {
@@ -142,13 +142,13 @@ export class BdsButton implements IButton {
     }
     const events: Record<string, () => void> = {
       [BUTTON_TYPES.SUBMIT]: () => {
-        if (typeof this.internalForm.requestSubmit === 'function') {
+        if (typeof this.internalForm?.requestSubmit === 'function') {
           this.internalForm.requestSubmit();
         } else {
-          this.internalForm.submit();
+          this.internalForm?.submit();
         }
       },
-      [BUTTON_TYPES.RESET]: () => this.internalForm.reset(),
+      [BUTTON_TYPES.RESET]: () => this.internalForm?.reset(),
     };
     const action = events[this.type];
 
