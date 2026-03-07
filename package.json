@@ -27,7 +27,7 @@
     "release:wc": "pnpm --filter @telesign/boreal-web-components run release",
     "release:react": "pnpm --filter @telesign/boreal-react run release",
     "release:vue": "pnpm --filter @telesign/boreal-vue run release",
-    "release:all": "pnpm run release:styles && pnpm run release:wc && pnpm run release:react && pnpm run release:vue",
+    "release:all": "pnpm run release:styles && pnpm run release:wc && pnpm run validate:pack && pnpm run release:react && pnpm run release:vue",
     "prepare": "husky",
     "commit": "cz",
     "dev:pack": "node scripts-boreal/bin/publish.js react",
