@@ -185,13 +185,18 @@ export class BdsTypography implements ITypography {
     return (
       <Host class="bds-typography">
         <TagName class={classes} style={{ webkitLineClamp: this.maxLines }} {...attributes}>
-          <slot></slot>
+          <slot data-tooltip-trigger></slot>
           {this.isRequired && isRequired && (
             <em class="bds-typography__required-indicator" aria-hidden="true">
               *
             </em>
           )}
-          {this.tooltipText && canUseTooltip && <em class="bds-typography__info-icon bds-icon-info-circle"></em>}
+          {this.tooltipText && canUseTooltip && (
+            <span>
+              <em class="bds-typography__info-icon bds-icon-info-circle" aria-label={this.tooltipText}></em>
+              <bds-tooltip>{this.tooltipText}</bds-tooltip>
+            </span>
+          )}
         </TagName>
       </Host>
     );

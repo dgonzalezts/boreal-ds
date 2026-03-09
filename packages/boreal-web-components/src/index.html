@@ -8,12 +8,84 @@
 
     <script type="module" src="/build/boreal-web-components.esm.js"></script>
     <script nomodule src="/build/boreal-web-components.js"></script>
+
+    <style>
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        gap: 2rem;
+      }
+    </style>
   </head>
-  <body>
+  <body data-theme="bics">
     <!--
       Dev playground — run `pnpm dev:components` to start the Stencil dev server.
       Add component examples below for manual testing during local development.
       Changes here are not shipped; this file is excluded from the build output.
     -->
+    <div class="center">
+      <span>
+        <button>Trigger Text</button>
+        <bds-tooltip id="left">
+          Text content
+        </bds-tooltip>
+      </span>
+      <span>
+        <button>Trigger Text</button>
+        <bds-tooltip id="bottom">
+          Text content
+        </bds-tooltip>
+      </span>
+      <span>
+        <button>Trigger Text</button>
+        <bds-tooltip id="right">
+          Text content
+        </bds-tooltip>
+      </span>
+      <span>
+        <button>Trigger Text</button>
+        <bds-tooltip id="ttop">
+          Text content
+        </bds-tooltip>
+      </span>
+      <span>
+        Trigger Text
+        <bds-tooltip id="disabled" disabled>
+          Text content
+        </bds-tooltip>
+      </span>
+      <span>
+        Trigger Text
+        <bds-tooltip id="multiline" multiline>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, accusamus aliquam. Neque corrupti consequuntur, fuga, necessitatibus esse aliquam at eveniet odit deleniti itaque delectus optio alias expedita non aliquid! Rem?
+        </bds-tooltip>
+      </span>
+      <bds-typography variant="label" tooltip-text="This is a tooltip">
+        Some text here
+      </bds-typography>
+      <span>
+        <bds-typography variant="heading">Load from default slot</bds-typography>
+        <bds-tooltip id="with-typography">
+          Some text here
+        </bds-tooltip>
+      </span>
+    </div>
+
+    <script>
+      const left = document.getElementById('left');
+      left.floatingOptions = { placement: 'left', offset: 64 };
+      const right = document.getElementById('right');
+      right.floatingOptions = { placement: 'right' };
+      const ttop = document.getElementById('ttop');
+      ttop.floatingOptions = { placement: 'top', hideArrow: true };
+      const bottom = document.getElementById('bottom');
+      bottom.floatingOptions = { placement: 'bottom', offset: 0, stayOnHover: true };
+      const disabled = document.getElementById('disabled');
+      disabled.floatingOptions = { placement: 'bottom' };
+      const withTypography = document.getElementById('with-typography');
+      withTypography.floatingOptions = { placement: 'bottom', stayOnHover: true };
+    </script>
   </body>
 </html>
