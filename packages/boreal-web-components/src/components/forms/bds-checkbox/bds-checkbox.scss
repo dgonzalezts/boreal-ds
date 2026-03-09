@@ -1,0 +1,146 @@
+// ---------------------------------------------------------------------------
+// bds-checkbox styles
+// ---------------------------------------------------------------------------
+
+$checkbox-size: 16px;
+
+// ---------------------------------------------------------------------------
+// Host / wrapper
+// ---------------------------------------------------------------------------
+
+:host {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: $boreal-spacing-2xs;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ---------------------------------------------------------------------------
+// Box (the visual square)
+// ---------------------------------------------------------------------------
+
+.bds-checkbox__box {
+  position: relative;
+  flex-shrink: 0;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  border: 2px solid $boreal-stroke-default-dark;
+  border-radius: $boreal-radius-xs;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  color: transparent;
+}
+
+// ---------------------------------------------------------------------------
+// Icon (checkmark / minus)
+// ---------------------------------------------------------------------------
+
+.bds-checkbox__icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// ---------------------------------------------------------------------------
+// Label
+// ---------------------------------------------------------------------------
+
+.bds-checkbox__label {
+  font-size: $boreal-typography-font-size-sm;
+  line-height: $boreal-typography-line-height-sm;
+  color: $boreal-text-base;
+}
+
+// ---------------------------------------------------------------------------
+// Interactive states – Default (unchecked)
+// ---------------------------------------------------------------------------
+
+:host(:hover) .bds-checkbox__box {
+  border-color: $boreal-stroke-default-ink;
+}
+
+:host(:focus-visible) .bds-checkbox__box {
+  border-color: $boreal-stroke-focus;
+  outline: 2px solid $boreal-stroke-focus;
+  outline-offset: 1px;
+}
+
+:host(:active) .bds-checkbox__box {
+  border-color: $boreal-stroke-default-ink;
+  background: $boreal-bg-neutral;
+}
+
+// ---------------------------------------------------------------------------
+// Checked
+// ---------------------------------------------------------------------------
+
+:host(.bds-checkbox--checked) .bds-checkbox__box,
+:host(.bds-checkbox--indeterminate) .bds-checkbox__box {
+  border-color: $boreal-ui-primary-base;
+  background: $boreal-ui-primary-base;
+  color: #fff;
+}
+
+:host(.bds-checkbox--checked:hover) .bds-checkbox__box,
+:host(.bds-checkbox--indeterminate:hover) .bds-checkbox__box {
+  border-color: $boreal-ui-primary-dark;
+  background: $boreal-ui-primary-dark;
+}
+
+:host(.bds-checkbox--checked:focus-visible) .bds-checkbox__box,
+:host(.bds-checkbox--indeterminate:focus-visible) .bds-checkbox__box {
+  border-color: $boreal-ui-primary-base;
+  background: $boreal-ui-primary-base;
+  outline: 2px solid $boreal-stroke-focus;
+  outline-offset: 1px;
+}
+
+:host(.bds-checkbox--checked:active) .bds-checkbox__box,
+:host(.bds-checkbox--indeterminate:active) .bds-checkbox__box {
+  border-color: $boreal-ui-primary-dark;
+  background: $boreal-ui-primary-dark;
+}
+
+// ---------------------------------------------------------------------------
+// Error
+// ---------------------------------------------------------------------------
+
+:host(.bds-checkbox--error) .bds-checkbox__box {
+  border-color: $boreal-stroke-danger-base;
+}
+
+:host(.bds-checkbox--error.bds-checkbox--checked) .bds-checkbox__box,
+:host(.bds-checkbox--error.bds-checkbox--indeterminate) .bds-checkbox__box {
+  border-color: $boreal-stroke-danger-base;
+  background: $boreal-stroke-danger-base;
+}
+
+// ---------------------------------------------------------------------------
+// Disabled
+// ---------------------------------------------------------------------------
+
+:host(.bds-checkbox--disabled) .bds-checkbox__box {
+  border-color: $boreal-stroke-default-light;
+  background: $boreal-bg-neutral;
+}
+
+:host(.bds-checkbox--disabled) .bds-checkbox__label {
+  color: $boreal-text-disabled;
+}
+
+:host(.bds-checkbox--disabled.bds-checkbox--checked) .bds-checkbox__box,
+:host(.bds-checkbox--disabled.bds-checkbox--indeterminate) .bds-checkbox__box {
+  border-color: $boreal-ui-primary-light;
+  background: $boreal-ui-primary-light;
+  color: #fff;
+}
