@@ -58,7 +58,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
     return !this.disabled;
   }
   private validateHide(target: HTMLElement): boolean {
-    if (this.floatingOptions.stayOnHover && target) {
+    if (this.floatingOptions.stayOnHover && target.isConnected) {
       const goingToFloating = this.floatingContent.contains(target) || this.floatingContent === target;
       if (goingToFloating) return false;
     }
@@ -69,7 +69,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
     this.setArrowPosition(result);
   }
   private setArrowPosition(result: PositioningResult) {
-    if (result.middlewareData?.arrow && this.arrowElement) {
+    if (result.middlewareData?.arrow && this.arrowElement.isConnected) {
       const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
       Object.assign(this.arrowElement.style, {
         left: arrowX != null ? `${arrowX}px` : '',

@@ -323,7 +323,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       const parent = this.el.parentElement;
       const trigger = parent.querySelector('slot[name="tooltip-trigger"], slot:not([name])') || parent;
 
-      if (trigger) {
+      if (trigger.isConnected) {
         this.triggerSlot = trigger as HTMLElement;
         this.subscribeToTrigger(trigger);
       }
