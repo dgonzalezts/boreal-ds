@@ -168,12 +168,12 @@ Boreal DS currently ships **4 brand themes**. Each theme defines its own set of 
 
 | Theme | `data-theme` value | Individual CSS | Token source |
 | --- | --- | --- | --- |
-| **Telesign** | `telesign` | `theme-telesign.css` | `tokens/theme/telesign.json` |
 | **Proximus** | `proximus` | `theme-proximus.css` | `tokens/theme/proximus.json` |
-| **Masiv** | `masiv` | `theme-masiv.css` | `tokens/theme/masiv.json` |
-| **BICS** | `bics` | `theme-bics.css` | `tokens/theme/bics.json` |
+| **Connect** | `connect` | `theme-connect.css` | `tokens/theme/connect.json` |
+| **Engage** | `engage` | `theme-engage.css` | `tokens/theme/engage.json` |
+| **Protect** | `protect` | `theme-protect.css` | `tokens/theme/protect.json` |
 
-> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-telesign.css`).
+> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-proximus.css`).
 
 ---
 
@@ -204,7 +204,7 @@ Import the stylesheet **once** at the entry point of your application. Each pack
 | `@telesign/boreal-style-guidelines` | `@telesign/boreal-style-guidelines` |
 
 > All paths resolve to the same CSS: global reset + primitive tokens + all brand themes.
-> To load only a specific theme replace `boreal.css` with `theme-telesign.css` (or any other theme name).
+> To load only a specific theme replace `boreal.css` with `theme-proximus.css` (or any other theme name).
 
 ### React
 
@@ -252,7 +252,7 @@ defineCustomElements();
 ```
 
 ```html
-<html data-theme="telesign">
+<html data-theme="proximus">
   <body>
     <br-button variant="primary">Click me</br-button>
   </body>
@@ -264,15 +264,15 @@ defineCustomElements();
 All themes are included in `boreal.css`. Switch themes at runtime by setting the `data-theme` attribute on any ancestor element (typically `<html>` or `<body>`):
 
 ```js
-document.documentElement.setAttribute('data-theme', 'telesign');
+document.documentElement.setAttribute('data-theme', 'proximus');
 ```
 
 | Value | Brand |
 | --- | --- |
-| `telesign` | Telesign |
 | `proximus` | Proximus |
-| `masiv` | Masiv |
-| `bics` | BICS |
+| `connect` | Connect |
+| `engage` | Engage |
+| `protect` | Protect |
 
 ### SCSS Variables in Your Own Styles
 

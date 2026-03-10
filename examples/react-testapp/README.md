@@ -43,7 +43,7 @@ CSS and theming are configured in two files:
 **[`index.html`](index.html)** — icon font and theme:
 ```html
 <link rel="stylesheet" href="https://resources-borealds.s3.us-east-1.amazonaws.com/icons/current/boreal-styles.css" />
-<body data-theme="telesign">
+<body data-theme="proximus">
 ```
 
 **[`src/main.tsx`](src/main.tsx)** — design tokens, reset, fonts, typography:
@@ -51,7 +51,7 @@ CSS and theming are configured in two files:
 import '@telesign/boreal-react/css/boreal.css';
 ```
 
-Available themes for `data-theme`: `telesign` | `proximus` | `masiv` | `bics`
+Available themes for `data-theme`: `proximus` | `connect` | `engage` | `protect`
 
 ---
 
