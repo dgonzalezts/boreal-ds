@@ -24,7 +24,7 @@ import type { IFormValidator } from '@/types/form';
  * ```
  */
 export function setFormValue(internals: ElementInternals, value: FormDataEntryValue | null): void {
-  internals.setFormValue(value);
+  internals.setFormValue?.(value);
 }
 
 /**
@@ -78,6 +78,6 @@ export function runValidators(internals: ElementInternals, validators: IFormVali
   }
 
   const valid = Object.keys(flags).length === 0;
-  internals.setValidity(valid ? {} : flags, firstMessage);
+  internals.setValidity?.(valid ? {} : flags, firstMessage);
   return valid;
 }

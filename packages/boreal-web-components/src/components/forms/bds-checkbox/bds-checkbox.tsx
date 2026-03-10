@@ -38,6 +38,20 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
   @AttachInternals() internals!: ElementInternals;
 
   // ---------------------------------------------------------------------------
+  // Props (from formAssociatedMixin — redeclared here because Stencil's spec-
+  // test compiler only sees @Prop decorators that are statically on the class)
+  // ---------------------------------------------------------------------------
+
+  /** Name of the form control, submitted as a key in the form data. */
+  @Prop({ reflect: true }) readonly name!: string;
+
+  /** Disables the control. */
+  @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+
+  /** Marks the control as required for form submission. */
+  @Prop({ reflect: true }) readonly required: boolean = false;
+
+  // ---------------------------------------------------------------------------
   // Props
   // ---------------------------------------------------------------------------
 

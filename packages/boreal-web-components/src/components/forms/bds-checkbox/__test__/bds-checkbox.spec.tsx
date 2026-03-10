@@ -1,6 +1,26 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsCheckbox } from '../bds-checkbox';
 
+// JSDOM doesn't implement the Form-Associated Custom Elements API.
+// Stub the minimum surface so form-associated components can render in spec tests.
+beforeAll(() => {
+  if (!HTMLElement.prototype.attachInternals) {
+    HTMLElement.prototype.attachInternals = function () {
+      return {
+        setFormValue: () => {},
+        setValidity: () => {},
+        form: null,
+        labels: [] as unknown as NodeList,
+        validationMessage: '',
+        validity: {} as ValidityState,
+        willValidate: false,
+        checkValidity: () => true,
+        reportValidity: () => true,
+      } as unknown as ElementInternals;
+    };
+  }
+});
+
 describe('bds-checkbox', () => {
   it('should render the checkbox element', async () => {
     const page = await newSpecPage({
@@ -106,30 +126,36 @@ describe('bds-checkbox', () => {
     it('should apply disabled class and aria attribute', async () => {
       const page = await newSpecPage({
         components: [BdsCheckbox],
-        html: `<bds-checkbox disabled></bds-checkbox>`,
+        html: `<bds-checkbox></bds-checkbox>`,
       });
 
-      const root = page.root as HTMLElement;
-      expect(root.classList.contains('bds-checkbox--disabled')).toBe(true);
-      expect(root.getAttribute('aria-disabled')).toBe('true');
-      expect(root.getAttribute('tabindex')).toBe('-1');
+      const checkbox = page.root as HTMLBdsCheckboxElement;
+      checkbox.disabled = true;
+      await page.waitForChanges();
+
+      expect(checkbox.classList.contains('bds-checkbox--disabled')).toBe(true);
+      expect(checkbox.getAttribute('aria-disabled')).toBe('true');
+      expect(checkbox.getAttribute('tabindex')).toBe('-1');
     });
 
     it('should not toggle when disabled', async () => {
       const page = await newSpecPage({
         components: [BdsCheckbox],
-        html: `<bds-checkbox disabled></bds-checkbox>`,
+        html: `<bds-checkbox></bds-checkbox>`,
       });
+
+      const checkbox = page.root as HTMLBdsCheckboxElement;
+      checkbox.disabled = true;
+      await page.waitForChanges();
 
       const spy = jest.fn();
       page.doc.addEventListener('bdsChange', spy);
 
-      const checkbox = page.body.querySelector('bds-checkbox');
-      checkbox?.click();
+      checkbox.click();
       await page.waitForChanges();
 
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(page.root?.getAttribute('aria-checked')).toBe('false');
+      expect(checkbox.getAttribute('aria-checked')).toBe('false');
     });
   });
 
