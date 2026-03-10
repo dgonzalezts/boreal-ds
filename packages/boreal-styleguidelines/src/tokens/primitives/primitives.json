@@ -2995,7 +2995,7 @@
         "$type": "text",
         "$value": "Inter"
       },
-      "Secundary": {
+      "Secondary": {
         "$extensions": {
           "com.figma.scopes": [
             "ALL_SCOPES"
