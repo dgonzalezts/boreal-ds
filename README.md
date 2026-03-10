@@ -168,12 +168,12 @@ Boreal DS currently ships **4 brand themes**. Each theme defines its own set of 
 
 | Theme | `data-theme` value | Individual CSS | Token source |
 | --- | --- | --- | --- |
-| **Telesign** | `telesign` | `theme-telesign.css` | `tokens/theme/telesign.json` |
 | **Proximus** | `proximus` | `theme-proximus.css` | `tokens/theme/proximus.json` |
-| **Masiv** | `masiv` | `theme-masiv.css` | `tokens/theme/masiv.json` |
-| **BICS** | `bics` | `theme-bics.css` | `tokens/theme/bics.json` |
+| **Connect** | `connect` | `theme-connect.css` | `tokens/theme/connect.json` |
+| **Engage** | `engage` | `theme-engage.css` | `tokens/theme/engage.json` |
+| **Protect** | `protect` | `theme-protect.css` | `tokens/theme/protect.json` |
 
-> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-telesign.css`).
+> All four themes are bundled together in `boreal.css`. To load only a single theme, import the individual CSS file instead (e.g. `@telesign/boreal-web-components/css/theme-proximus.css`).
 
 ---
 
@@ -204,7 +204,7 @@ Import the stylesheet **once** at the entry point of your application. Each pack
 | `@telesign/boreal-style-guidelines` | `@telesign/boreal-style-guidelines` |
 
 > All paths resolve to the same CSS: global reset + primitive tokens + all brand themes.
-> To load only a specific theme replace `boreal.css` with `theme-telesign.css` (or any other theme name).
+> To load only a specific theme replace `boreal.css` with `theme-proximus.css` (or any other theme name).
 
 ### React
 
@@ -252,7 +252,7 @@ defineCustomElements();
 ```
 
 ```html
-<html data-theme="telesign">
+<html data-theme="proximus">
   <body>
     <br-button variant="primary">Click me</br-button>
   </body>
@@ -264,15 +264,15 @@ defineCustomElements();
 All themes are included in `boreal.css`. Switch themes at runtime by setting the `data-theme` attribute on any ancestor element (typically `<html>` or `<body>`):
 
 ```js
-document.documentElement.setAttribute('data-theme', 'telesign');
+document.documentElement.setAttribute('data-theme', 'proximus');
 ```
 
 | Value | Brand |
 | --- | --- |
-| `telesign` | Telesign |
 | `proximus` | Proximus |
-| `masiv` | Masiv |
-| `bics` | BICS |
+| `connect` | Connect |
+| `engage` | Engage |
+| `protect` | Protect |
 
 ### SCSS Variables in Your Own Styles
 
@@ -320,9 +320,16 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm generate:story`     | `--filter boreal-docs`                            | Interactive prompt to create a new Storybook story                                            |
 | `pnpm rebuild:styles`     | `--filter boreal-style-guidelines`                | Rebuild design tokens and CSS (after token changes)                                           |
 | `pnpm commit`             | `cz`                                              | Interactive commit prompt (enforces commit convention)                                        |
-| `pnpm changeset`          | `changeset`                                       | Create a new changeset for upcoming release                                                   |
-| `pnpm version-packages`   | `changeset version`                               | Bump versions and generate changelogs                                                         |
-| `pnpm release`            | `turbo build + changeset publish`                 | Build and publish changed packages to npm                                                     |
+| `pnpm dev:pack:react`         | `node scripts-boreal/bin/publish.js react`        | Pack artifacts and start the React demo app against them (Ctrl+C to stop and clean up)       |
+| `pnpm validate:pack:react`    | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them (CI mode)         |
+| `pnpm validate:pack:vue`      | `node scripts-boreal/bin/publish.js vue --ci`     | Pack artifacts and validate the Vue wrapper builds correctly against them (CI mode)           |
+| `pnpm validate:pack:angular`  | `node scripts-boreal/bin/publish.js angular --ci` | Pack artifacts and validate the Angular wrapper builds correctly against them (CI mode)       |
+| `pnpm validate:all`           | `validate:pack:react`                             | Validate all framework wrappers in CI mode (expand as new frameworks land)                    |
+| `pnpm release:styles`     | `--filter boreal-style-guidelines run release`    | Release `@telesign/boreal-style-guidelines` via release-it                                    |
+| `pnpm release:wc`         | `--filter boreal-web-components run release`      | Release `@telesign/boreal-web-components` via release-it                                      |
+| `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |
+| `pnpm release:vue`        | `--filter boreal-vue run release`                 | Release `@telesign/boreal-vue` via release-it                                                 |
+| `pnpm release:all`        | `release:styles → release:wc → validate:all → release:react → release:vue` | Release all packages in dependency order                                 |
 
 To run a script for a single package only:
 
@@ -449,4 +456,4 @@ pnpm --filter @telesign/boreal-web-components run release -- --dry-run
 
 3. Run `pnpm install` from the workspace root to link it into the graph.
 
-4. If the package should **not** be versioned or published, add its name to the `ignore` array in `.changeset/config.json`.
+4. If the package should **not** be published, omit the `release` script from its `package.json` — release-it is invoked per-package explicitly.

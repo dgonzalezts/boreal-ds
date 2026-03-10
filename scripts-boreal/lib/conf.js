@@ -17,21 +17,21 @@ const ROOT = path.resolve(__dirname, '../../');
 export const CONFIG = {
   webcomponents: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-web-components'),
-    wrapperName: '@boreal-ds/web-components',
+    wrapperName: '@telesign/boreal-web-components',
   },
   vue: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-vue'),
-    wrapperName: '@boreal-ds/vue',
+    wrapperName: '@telesign/boreal-vue',
     app: path.resolve(ROOT, 'examples/app-vue-vite'),
   },
   react: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-react'),
-    wrapperName: '@boreal-ds/react',
+    wrapperName: '@telesign/boreal-react',
     app: path.resolve(ROOT, 'examples/react-testapp'),
   },
   angular: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-angular'),
-    wrapperName: '@boreal-ds/angular',
+    wrapperName: '@telesign/boreal-angular',
     app: path.resolve(ROOT, 'examples/app-angular'),
   },
 };

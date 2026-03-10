@@ -3,7 +3,7 @@
  * If a value is assigned that does not exist in `validValues`, the property
  * will automatically revert to the provided `defaultValue`.
  *
- * @template T - The type of the values being validated.
+ * @typeParam T - The type of the values being validated.
  * @param {T[]} validValues - An array of permitted values.
  * @param {T} defaultValue - The fallback value applied when validation fails.
  *

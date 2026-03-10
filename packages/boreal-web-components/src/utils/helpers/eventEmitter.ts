@@ -5,7 +5,7 @@
  * default behavior if provided.
  * Additionally can send data through detail param.
  *
- * @template T - The type of the original event being intercepted.
+ * @typeParam T - The type of the original event being intercepted.
  * @param {string} eventName - The name of the custom event to be dispatched.
  * @param {HTMLElement} hostElement - The DOM element that will trigger the event.
  * @param {Record<string, unknown>} [detail] - Optional data to pass inside the `event.detail` object.

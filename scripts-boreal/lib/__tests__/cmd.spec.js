@@ -58,23 +58,23 @@ describe('Cmd', () => {
   });
 
   describe('tgzName', () => {
-    it('should return trimmed tgz filename from npm pack', async () => {
-      execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz \n' });
+    it('should return tgz filename parsed from pnpm pack --json output', async () => {
+      execaMock.mockResolvedValueOnce({ stdout: JSON.stringify({ filename: 'my-package-1.0.0.tgz' }) });
       const result = await Cmd.tgzName('/source/dir');
       expect(result).toBe('my-package-1.0.0.tgz');
-      expect(execaMock).toHaveBeenCalledWith('npm', ['pack', '--silent'], {
+      expect(execaMock).toHaveBeenCalledWith('pnpm', ['pack', '--json'], {
         cwd: '/source/dir',
       });
     });
 
-    it('should throw and log error when npm pack fails', async () => {
-      const error = new Error('npm pack failed');
+    it('should throw and log error when pnpm pack fails', async () => {
+      const error = new Error('pnpm pack failed');
       execaMock.mockRejectedValueOnce(error);
 
-      await expect(Cmd.tgzName('/source/dir')).rejects.toThrow('npm pack failed');
+      await expect(Cmd.tgzName('/source/dir')).rejects.toThrow('pnpm pack failed');
       expect(loggerMock.log).toHaveBeenCalledWith(
         'error',
-        expect.stringContaining('npm pack failed')
+        expect.stringContaining('pnpm pack failed')
       );
     });
   });
@@ -97,7 +97,7 @@ describe('Cmd', () => {
     });
 
     it('should pack and move tgz to target directory', async () => {
-      execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz' });
+      execaMock.mockResolvedValueOnce({ stdout: JSON.stringify({ filename: 'my-package-1.0.0.tgz' }) });
       existsSyncSpy.mockReturnValueOnce(true);
 
       const result = await Cmd.packTo('/source', '/target');
@@ -111,7 +111,7 @@ describe('Cmd', () => {
     });
 
     it('should remove existing tgz before moving', async () => {
-      execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz' });
+      execaMock.mockResolvedValueOnce({ stdout: JSON.stringify({ filename: 'my-package-1.0.0.tgz' }) });
       existsSyncSpy.mockReturnValueOnce(true);
 
       await Cmd.packTo('/source', '/target');
@@ -120,7 +120,7 @@ describe('Cmd', () => {
     });
 
     it('should not remove tgz if it does not exist', async () => {
-      execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz' });
+      execaMock.mockResolvedValueOnce({ stdout: JSON.stringify({ filename: 'my-package-1.0.0.tgz' }) });
       existsSyncSpy.mockReturnValueOnce(false);
 
       await Cmd.packTo('/source', '/target');
@@ -129,7 +129,7 @@ describe('Cmd', () => {
     });
 
     it('should log success message after packing and moving', async () => {
-      execaMock.mockResolvedValueOnce({ stdout: 'my-package-1.0.0.tgz' });
+      execaMock.mockResolvedValueOnce({ stdout: JSON.stringify({ filename: 'my-package-1.0.0.tgz' }) });
       existsSyncSpy.mockReturnValueOnce(false);
 
       await Cmd.packTo('/source', '/target');

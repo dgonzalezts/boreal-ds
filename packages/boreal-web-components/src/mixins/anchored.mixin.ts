@@ -98,13 +98,13 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * Adapter that wraps Floating UI to compute and apply positions.
      * Initialized in `componentWillLoad`.
      */
-    positionEngine: IFloatingAdapter;
+    positionEngine!: IFloatingAdapter;
 
     /**
      * Logger instance for error reporting.
      * Initialized in `componentWillLoad`.
      */
-    logger: Logger;
+    logger!: Logger;
 
     /**
      * Default positioning options.
@@ -175,10 +175,10 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
     handleSlotChange(e: Event, showFn: (this: void) => void, hideFn: (this: void) => void) {
       const newTrigger = e.target as HTMLElement;
 
-      if (this.previousTrigger !== undefined || this.previousTrigger !== null) {
+      if (this.previousTrigger !== undefined && this.previousTrigger !== null) {
         this.detachTriggerListeners(this.previousTrigger, showFn, hideFn);
       }
-      if (newTrigger !== undefined || newTrigger !== null) {
+      if (newTrigger !== undefined && newTrigger !== null) {
         this.attachTriggerListeners(newTrigger, showFn, hideFn);
         this.previousTrigger = newTrigger;
       }
@@ -291,7 +291,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * @param hideFn - Bound hide function to remove
      */
     floatingDisconnect(showFn: (this: void) => void, hideFn: (this: void) => void) {
-      if (this.previousTrigger !== undefined || this.previousTrigger !== null) {
+      if (this.previousTrigger !== undefined && this.previousTrigger !== null) {
         this.detachTriggerListeners(this.previousTrigger, showFn, hideFn);
       }
       this.stopAutoUpdate();
@@ -301,7 +301,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * Initializes the positioning engine, logger, and binds lifecycle methods
      * so they can be safely passed as event listener callbacks.
      *
-     * @note `show`, `hide`, and `toggle` are bound here — not in `floatingMixin` —
+     * @remarks `show`, `hide`, and `toggle` are bound here — not in `floatingMixin` —
      * to ensure they resolve to the `anchoredMixin` overrides at call time.
      */
     componentWillLoad() {
@@ -320,7 +320,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * when the component is removed from the DOM.
      */
     disconnectedCallback() {
-      if (this.previousTrigger !== undefined || this.previousTrigger !== null) {
+      if (this.previousTrigger !== undefined && this.previousTrigger !== null) {
         this.floatingDisconnect(
           () => this.show(),
           () => this.hide(),
