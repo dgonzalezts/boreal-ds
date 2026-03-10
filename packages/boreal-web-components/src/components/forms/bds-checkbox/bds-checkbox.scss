@@ -86,8 +86,8 @@ $checkbox-size: 16px;
 
 :host(.bds-checkbox--checked) .bds-checkbox__box,
 :host(.bds-checkbox--indeterminate) .bds-checkbox__box {
-  border-color: $boreal-ui-primary-base;
-  background: $boreal-ui-primary-base;
+  border-color: $boreal-ui-primary;
+  background: $boreal-ui-primary;
   color: #fff;
 }
 
