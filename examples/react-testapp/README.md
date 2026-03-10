@@ -18,7 +18,7 @@ This app is started via the `scripts-boreal` pipeline, which packs the component
 From the **workspace root** (dependencies are already installed via `pnpm install`):
 
 ```bash
-node scripts-boreal/bin/publish.js react
+pnpm dev:pack:react
 ```
 
 This command:
@@ -31,7 +31,7 @@ This command:
 For CI validation (build instead of dev server):
 
 ```bash
-pnpm validate:pack
+pnpm validate:pack:react
 ```
 
 ---

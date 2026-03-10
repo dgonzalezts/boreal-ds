@@ -320,13 +320,16 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm generate:story`     | `--filter boreal-docs`                            | Interactive prompt to create a new Storybook story                                            |
 | `pnpm rebuild:styles`     | `--filter boreal-style-guidelines`                | Rebuild design tokens and CSS (after token changes)                                           |
 | `pnpm commit`             | `cz`                                              | Interactive commit prompt (enforces commit convention)                                        |
-| `pnpm dev:pack`           | `node scripts-boreal/bin/publish.js react`        | Pack artifacts and start the React demo app against them (Ctrl+C to stop and clean up)       |
-| `pnpm validate:pack`      | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them (CI mode)         |
+| `pnpm dev:pack:react`         | `node scripts-boreal/bin/publish.js react`        | Pack artifacts and start the React demo app against them (Ctrl+C to stop and clean up)       |
+| `pnpm validate:pack:react`    | `node scripts-boreal/bin/publish.js react --ci`   | Pack artifacts and validate the React wrapper builds correctly against them (CI mode)         |
+| `pnpm validate:pack:vue`      | `node scripts-boreal/bin/publish.js vue --ci`     | Pack artifacts and validate the Vue wrapper builds correctly against them (CI mode)           |
+| `pnpm validate:pack:angular`  | `node scripts-boreal/bin/publish.js angular --ci` | Pack artifacts and validate the Angular wrapper builds correctly against them (CI mode)       |
+| `pnpm validate:all`           | `validate:pack:react`                             | Validate all framework wrappers in CI mode (expand as new frameworks land)                    |
 | `pnpm release:styles`     | `--filter boreal-style-guidelines run release`    | Release `@telesign/boreal-style-guidelines` via release-it                                    |
 | `pnpm release:wc`         | `--filter boreal-web-components run release`      | Release `@telesign/boreal-web-components` via release-it                                      |
 | `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |
 | `pnpm release:vue`        | `--filter boreal-vue run release`                 | Release `@telesign/boreal-vue` via release-it                                                 |
-| `pnpm release:all`        | `release:styles → release:wc → release:react → release:vue` | Release all packages in dependency order                                              |
+| `pnpm release:all`        | `release:styles → release:wc → validate:all → release:react → release:vue` | Release all packages in dependency order                                 |
 
 To run a script for a single package only:
 

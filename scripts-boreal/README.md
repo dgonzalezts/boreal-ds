@@ -16,11 +16,22 @@ No separate install step is needed. `scripts-boreal` is a pnpm workspace member 
 Run from the **workspace root**:
 
 ```bash
-# CI validation — packs artifacts and runs a build against them
-pnpm validate:pack
+pnpm install
+```
 
-# Local dev — packs artifacts and starts the demo app
-pnpm dev:pack
+Then:
+
+```bash
+# CI validation — packs artifacts and validates all framework wrappers
+pnpm validate:all
+
+# CI validation — validate a specific framework
+pnpm validate:pack:react
+pnpm validate:pack:vue
+pnpm validate:pack:angular
+
+# Local dev — packs artifacts and starts the React demo app
+pnpm dev:pack:react
 ```
 
 Press **Ctrl+C** to stop the dev server. The pipeline handles cleanup automatically (removes `.tgz` files, restores `package.json` and `pnpm-lock.yaml` via `git checkout HEAD`).
@@ -31,7 +42,7 @@ Press **Ctrl+C** to stop the dev server. The pipeline handles cleanup automatica
 turbo run dev --filter=react-testapp
 ```
 
-Starts the demo app directly against workspace symlinks — no tgz packing, no `package.json` mutation. Use this for fast day-to-day iteration on component code. It does **not** validate what a real npm consumer receives; use `pnpm validate:pack` for release validation.
+Starts the demo app directly against workspace symlinks — no tgz packing, no `package.json` mutation. Use this for fast day-to-day iteration on component code. It does **not** validate what a real npm consumer receives; use `pnpm validate:all` for release validation.
 
 ## What the pipeline does
 
