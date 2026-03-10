@@ -75,7 +75,7 @@
     font-family: $boreal-typography-font-family-secondary;
     font-size: $boreal-typography-font-size-xs;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-base;
+    color: $boreal-text-default;
     line-height: $boreal-typography-line-height-md;
     overflow-wrap: break-word;
 
@@ -97,7 +97,7 @@
 
   &--display {
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-base;
+    color: $boreal-text-default;
 
     &.bds-typography--size-sm {
       font-size: $boreal-typography-font-size-xl;
@@ -123,7 +123,7 @@
     font-size: $boreal-typography-font-size-lg;
     line-height: $boreal-typography-line-height-lg;
     font-weight: $boreal-typography-font-weight-regular;
-    color: $boreal-text-base;
+    color: $boreal-text-default;
   }
 
   h1.bds-typography--heading {
