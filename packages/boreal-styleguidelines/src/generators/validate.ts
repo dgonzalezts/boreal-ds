@@ -97,9 +97,9 @@ async function main() {
     'css/global.css',
     'css/boreal.css',
     'css/theme-proximus.css',
-    'css/theme-masiv.css',
-    'css/theme-telesign.css',
-    'css/theme-bics.css',
+    'css/theme-engage.css',
+    'css/theme-protect.css',
+    'css/theme-connect.css',
   ];
 
   for (const file of cssFiles) {
@@ -122,9 +122,9 @@ async function main() {
   const scssFiles = [
     'scss/variables/_primitives.scss',
     'scss/variables/_theme-proximus.scss',
-    'scss/variables/_theme-masiv.scss',
-    'scss/variables/_theme-telesign.scss',
-    'scss/variables/_theme-bics.scss',
+    'scss/variables/_theme-engage.scss',
+    'scss/variables/_theme-protect.scss',
+    'scss/variables/_theme-connect.scss',
   ];
 
   for (const file of scssFiles) {

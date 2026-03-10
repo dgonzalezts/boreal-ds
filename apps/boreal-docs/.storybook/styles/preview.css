@@ -7,57 +7,49 @@
  * Reference: https://storybook.js.org/docs/api/main-config/main-config-preview-head
  */
 
-.sbdocs-content blockquote,
-.sbdocs-content h1,
-.sbdocs-content h2,
-.sbdocs-content h3,
-.sbdocs-content h4,
-.sbdocs-content li,
-.sbdocs-content ol,
-.sbdocs-content p,
-.sbdocs-content table,
-.sbdocs-content td,
-.sbdocs-content th,
-.sbdocs-content tr,
-.sbdocs-content ul {
+.sbdocs-content
+  :is(blockquote, h1, h2, h3, h4, li, ol, p, table, td, th, tr, ul):not(
+    [class^='bds-'],
+    [class*=' bds-']
+  ) {
   font-family: var(--boreal-typography-font-family-primary);
   color: black;
 }
 
-.sbdocs-content ul {
+.sbdocs-content ul :not([class^='bds-'], [class*=' bds-']) {
   padding-left: 30px;
   list-style: disc;
 }
 
-.sbdocs-content li {
+.sbdocs-content li :not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-s);
 }
 
-.sbdocs-content a {
+.sbdocs-content a :not([class^='bds-'], [class*=' bds-']) {
   color: var(--boreal-theme-primary-base);
   font-size: inherit;
 }
 
-.sbdocs-content h1 {
+.sbdocs-content h1 :not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-4xl);
   line-height: 48px;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.sbdocs-content h2 {
+.sbdocs-content h2 :not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-3xl);
   line-height: 40px;
   font-weight: bold;
 }
 
-.sbdocs-content h3 {
+.sbdocs-content h3 :not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-2xl);
   line-height: 36px;
   font-weight: 600;
 }
 
-.sbdocs-content h4 {
+.sbdocs-content h4 :not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-xl);
   line-height: 32px;
   font-weight: 600;

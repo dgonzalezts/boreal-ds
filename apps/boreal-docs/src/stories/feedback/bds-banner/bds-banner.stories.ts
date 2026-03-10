@@ -120,6 +120,7 @@ export default meta;
  * @param args - The story arguments containing component props
  * @returns An HTML template for the Banner component
  */
+
 const renderBanner: Story['render'] = args => html`
   <style>
     ${styles}
@@ -140,7 +141,9 @@ const renderBanner: Story['render'] = args => html`
 `;
 
 /**
- * Default story variant
+ *
+ * * It's expected for the Actions slot to use bds-button but you can use your own implementation or the div and button HTML tags.
+ * * It's not mandatory to have Title, Content or Actions. In the further examples you will see how the Banner looks without one or more of these slots.
  */
 export const Default: Story = {
   args: {
@@ -152,7 +155,8 @@ export const Default: Story = {
 };
 
 /**
- * SlotContent story variant
+ *
+ * The banner's content will fit even if there is no Title or Actions slots
  */
 export const OnlyContent: Story = {
   args: {
@@ -162,7 +166,7 @@ export const OnlyContent: Story = {
 };
 
 /**
- * SlotActions story variant
+ * On the snippet you will find the Actions slot using the `div` and `button` HTML tags with the correct styling and alignment even if you decide not to use bds-button.
  */
 export const WithContentActions: Story = {
   args: {
@@ -173,18 +177,41 @@ export const WithContentActions: Story = {
 };
 
 /**
- * SlotTitle story variant
+ * Title and content slots
+ * Even if the parent component has smaller dimensions, the banner will fit and align its content accordinally.
  */
 export const WithContentTitle: Story = {
   args: {
     title: 'Banner with Title',
     body: 'This banner includes a title and action buttons.',
+    showActions: true,
   },
-  render: renderBanner,
+  render: args => html`
+    <div style="width: 30%">
+      <bds-banner
+        variant="${args.variant}"
+        ?enable-close="${args.enableClose}"
+        ${args?.idComponent ? `idComponent=${args.idComponent}` : null}
+      >
+        <div slot="title">${args.title}</div>
+        <div>${args.body}</div>
+        ${args.showActions &&
+        html` <div slot="actions">
+          <button class="bds-banner__action-button">Button 1</button>
+          <button class="bds-banner__action-button">Button 2</button>
+        </div>`}
+      </bds-banner>
+    </div>
+  `,
 };
 
 /**
- * SlotTitle story variant
+ * Enable closing by setting the property enable-close.
+ * To close the banner there are 3 ways to do it:
+
+  * * The click action on the close button dispatch the close event.
+  * * If the close button [ x ] is focused, pressing the Enter or Space keys will dispatch the close event.
+  * * If the component is focused, pressing Escape key will dispatch the close event.
  */
 export const EnableClose: Story = {
   args: {

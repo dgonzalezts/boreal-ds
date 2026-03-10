@@ -1,0 +1,156 @@
+@use "../../../dist/stencil/index" as *;
+
+.heading-4xl {
+  font-weight: $boreal-typography-font-weight-light;
+  font-size: $boreal-typography-font-size-4xl;
+  line-height: $boreal-typography-line-height-4xl;
+}
+.heading-3xl {
+  font-weight: $boreal-typography-font-weight-light;
+  font-size: $boreal-typography-font-size-3xl;
+  line-height: $boreal-typography-line-height-3xl;
+}
+.heading-2xl {
+  font-weight: $boreal-typography-font-weight-regular;
+  font-size: $boreal-typography-font-size-2xl;
+  line-height: $boreal-typography-line-height-2xl;
+}
+.heading-xl {
+  font-weight: $boreal-typography-font-weight-regular;
+  font-size: $boreal-typography-font-size-xl;
+  line-height: $boreal-typography-line-height-xl;
+}
+.heading-lg {
+  font-weight: $boreal-typography-font-weight-regular;
+  font-size: $boreal-typography-font-size-lg;
+  line-height: $boreal-typography-line-height-lg;
+}
+.heading-md {
+  font-weight: $boreal-typography-font-weight-semibold;
+  font-size: $boreal-typography-font-size-md;
+  line-height: $boreal-typography-line-height-md;
+}
+.heading-sm {
+  font-weight: $boreal-typography-font-weight-semibold;
+  font-size: $boreal-typography-font-size-sm;
+  line-height: $boreal-typography-line-height-sm;
+}
+
+.display-sm {
+  font-size: $boreal-typography-font-size-xl;
+  line-height: $boreal-typography-line-height-xl;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+.display-md {
+  font-size: $boreal-typography-font-size-2xl;
+  line-height: $boreal-typography-line-height-2xl;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+.display-lg {
+  font-size: $boreal-typography-font-size-3xl;
+  line-height: $boreal-typography-line-height-3xl;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+.display-xl {
+  font-size: $boreal-typography-font-size-4xl;
+  line-height: $boreal-typography-line-height-4xl;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+.display-xs {
+  font-size: $boreal-typography-font-size-xs;
+  line-height: $boreal-typography-line-height-xs;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+
+.label-lg {
+  font-size: $boreal-typography-font-size-lg;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-md;
+  color: $boreal-text-default-darker;
+}
+.label-md {
+  font-size: $boreal-typography-font-size-md;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-md;
+  color: $boreal-text-default-darker;
+}
+.label-sm {
+  font-size: $boreal-typography-font-size-sm;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-sm;
+  color: $boreal-text-default-darker;
+}
+.label-xs {
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-xs;
+  color: $boreal-text-default-darker;
+}
+
+.support-text {
+  font-size: $boreal-typography-font-size-sm;
+  line-height: $boreal-typography-line-height-xs;
+  font-weight: $boreal-typography-font-weight-regular;
+}
+.code {
+  font-family: $boreal-typography-font-family-secondary;
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-regular;
+  color: $boreal-text-default;
+  line-height: $boreal-typography-line-height-md;
+  overflow-wrap: break-word;
+
+  background-color: $boreal-ui-base-light;
+  padding: $boreal-spacing-3xs $boreal-spacing-xs;
+  border-radius: $boreal-radius-xs;
+
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.caption {
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-regular;
+  line-height: $boreal-typography-line-height-md;
+  color: $boreal-text-default-light;
+}
+.helper-text {
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-regular;
+  line-height: $boreal-typography-line-height-sm;
+  color: $boreal-text-default-light;
+}
+
+.link {
+  font-size: $boreal-typography-font-size-sm;
+  font-weight: $boreal-typography-font-weight-regular;
+  line-height: $boreal-typography-line-height-md;
+  color: $boreal-text-primary-base;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    color: $boreal-text-primary-base;
+  }
+  &:active {
+    color: $boreal-text-primary-dark;
+  }
+
+  &-md {
+    @extend .link;
+    font-size: $boreal-typography-font-size-md;
+    line-height: $boreal-typography-line-height-md;
+  }
+  &-sm {
+    @extend .link;
+    font-size: $boreal-typography-font-size-sm;
+    line-height: $boreal-typography-line-height-sm;
+  }
+  &-xs {
+    @extend .link;
+    font-size: $boreal-typography-font-size-xs;
+    line-height: $boreal-typography-line-height-xs;
+  }
+}

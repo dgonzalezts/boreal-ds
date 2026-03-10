@@ -14,7 +14,7 @@
 .bds-banner {
   position: relative;
   display: flex;
-  border: $boreal-spacing-4xs solid $boreal-stroke-info;
+  border: $boreal-spacing-4xs solid $boreal-stroke-info-base;
   border-radius: $boreal-radius-xs;
   border-left: 0;
   font-family: $boreal-typography-font-family-primary;
@@ -27,7 +27,7 @@
     border-top-left-radius: $boreal-radius-xs;
     border-bottom-left-radius: $boreal-radius-xs;
 
-    background-color: $boreal-stroke-info;
+    background-color: $boreal-stroke-info-base;
   }
 
   &__container {
@@ -74,16 +74,16 @@
     align-self: start;
     font-size: $boreal-typography-font-size-md;
     line-height: $boreal-typography-line-height-md;
-    color: $boreal-neutral-400;
+    color: $boreal-neutral-base;
     cursor: pointer;
   }
 
   &--info {
-    @include banner-variant($boreal-stroke-info, $boreal-ui-info-lighter, $boreal-stroke-info);
+    @include banner-variant($boreal-stroke-info-base, $boreal-ui-info-lighter, $boreal-stroke-info-base);
   }
 
   &--success {
-    @include banner-variant($boreal-stroke-success, $boreal-ui-success-lighter, $boreal-stroke-success);
+    @include banner-variant($boreal-stroke-success-base, $boreal-ui-success-lighter, $boreal-stroke-success-base);
   }
 
   &--warning {
@@ -91,7 +91,7 @@
   }
 
   &--danger {
-    @include banner-variant($boreal-stroke-danger, $boreal-ui-danger-lighter, $boreal-stroke-danger);
+    @include banner-variant($boreal-stroke-danger-base, $boreal-ui-danger-lighter, $boreal-stroke-danger-base);
   }
 
   &--closing {
