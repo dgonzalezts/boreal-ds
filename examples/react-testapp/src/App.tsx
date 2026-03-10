@@ -5,7 +5,7 @@
  * Run: pnpm dev:pack (from the root of the monorepo) to start the pipeline
  * and open this page in the browser.
  *
- * Available themes for data-theme: telesign | proximus | masiv | bics
+ * Available themes for data-theme: connect | engage | protect | proximus
  * Set the theme on <body> in index.html.
  */
 import './App.css';
