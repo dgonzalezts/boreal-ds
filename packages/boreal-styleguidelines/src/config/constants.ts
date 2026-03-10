@@ -13,9 +13,9 @@ export const CSS_VAR_PREFIX = '--boreal-';
  */
 export const THEMES = {
   PROXIMUS: 'proximus',
-  MASIV: 'masiv',
-  TELESIGN: 'telesign',
-  BICS: 'bics',
+  ENGAGE: 'engage',
+  PROTECT: 'protect',
+  CONNECT: 'connect',
 } as const;
 
 /**

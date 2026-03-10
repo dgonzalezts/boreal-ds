@@ -2,7 +2,7 @@
  * Type definitions for Boreal Design System
  */
 
-export type ThemeName = 'proximus' | 'masiv' | 'telesign' | 'bics';
+export type ThemeName = 'proximus' | 'engage' | 'protect' | 'connect';
 
 export interface TokenValue {
   value: string | number;
@@ -16,9 +16,9 @@ export interface TokenObject {
 
 export interface PrimitiveTokens {
   color: {
-    telesign: TokenObject;
-    masiv: TokenObject;
-    bics: TokenObject;
+    protect: TokenObject;
+    engage: TokenObject;
+    connect: TokenObject;
     proximus: TokenObject;
     white: TokenValue;
   };
