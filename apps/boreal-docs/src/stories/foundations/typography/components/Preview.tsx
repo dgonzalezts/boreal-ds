@@ -7,7 +7,7 @@ export const Preview = ({ typography }: PreviewType) => {
   return (
     <>
       <div
-        className="typography-preview"
+        className={`typography-preview ${typography}`}
         style={{ fontFamily: `var(${buildVariable(typography)})` }}
       >
         <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>

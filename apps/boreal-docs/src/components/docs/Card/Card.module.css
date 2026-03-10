@@ -51,11 +51,11 @@
 }
 
 .sm .title {
-  font-size: var(--boreal-typography-font-size-m, 1rem);
+  font-size: var(--boreal-typography-font-size-md, 1rem);
 }
 
 .sm .content {
-  font-size: var(--boreal-typography-font-size-s, 0.875rem);
+  font-size: var(--boreal-typography-font-size-sm, 0.875rem);
 }
 
 .md {
@@ -63,11 +63,11 @@
 }
 
 .md .title {
-  font-size: var(--boreal-typography-font-size-l, 1.125rem);
+  font-size: var(--boreal-typography-font-size-lg, 1.125rem);
 }
 
 .md .content {
-  font-size: var(--boreal-typography-font-size-m, 1rem);
+  font-size: var(--boreal-typography-font-size-md, 1rem);
 }
 
 .lg {

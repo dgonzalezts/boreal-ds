@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
  * @see https://storybook.js.org/docs/addons/addons-api#useglobals
  *
  * @returns {string} The current theme name from the body's `data-theme` attribute,
- *                   or 'telesign' if no theme is set
+ *                   or 'proximus' if no theme is set
  *
  * @example
  * ```tsx
@@ -49,7 +49,7 @@ import { useState, useEffect } from 'react';
  * ```
  */
 export const useStorybookTheme = (): string => {
-  const [currentTheme, setCurrentTheme] = useState('telesign');
+  const [currentTheme, setCurrentTheme] = useState('proximus');
 
   useEffect(() => {
     /**
@@ -57,7 +57,7 @@ export const useStorybookTheme = (): string => {
      */
     const updateTheme = () => {
       const body = document.querySelector('body');
-      const theme = body?.getAttribute('data-theme') || 'telesign';
+      const theme = body?.getAttribute('data-theme') || 'proximus';
       setCurrentTheme(theme);
     };
 

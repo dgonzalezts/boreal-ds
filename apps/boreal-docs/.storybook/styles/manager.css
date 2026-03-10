@@ -12,12 +12,11 @@
  * Reference: https://storybook.js.org/docs/api/main-config/main-config-manager-head
  */
 
-/* TODO: Replace with design system font variable when available */
 .sidebar-item,
 .sidebar-item a {
-  font-family: inherit; /* 'Segoe UI', sans-serif */
+  font-family: var(--boreal-typography-font-family-primary);
 }
 
 .sidebar-subheading > button {
-  font-family: inherit; /* 'Segoe UI', sans-serif */
+  font-family: var(--boreal-typography-font-family-primary);
 }

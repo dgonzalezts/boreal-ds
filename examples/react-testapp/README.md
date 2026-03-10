@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# Boreal DS — React Test App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal React + Vite sandbox for testing Boreal Design System components end-to-end using packed `.tgz` artifacts.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## React Compiler
+- [Node.js](https://nodejs.org) 22.x (see `.nvmrc` at the repo root)
+- [pnpm](https://pnpm.io)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## Running the app
 
-## Expanding the ESLint configuration
+This app is started via the `scripts-boreal` pipeline, which packs the component library as a real `.tgz` artifact and installs it before launching the dev server.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+From the **workspace root** (dependencies are already installed via `pnpm install`):
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm dev:pack:react
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This command:
+1. Packs `@telesign/boreal-web-components` into a `.tgz`
+2. Installs it into `@telesign/boreal-react`
+3. Builds `@telesign/boreal-react`
+4. Packs it into a `.tgz` and installs it into this app
+5. Starts this app with `pnpm dev`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+For CI validation (build instead of dev server):
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm validate:pack:react
+```
+
+---
+
+## How it works
+
+CSS and theming are configured in two files:
+
+**[`index.html`](index.html)** — icon font and theme:
+```html
+<link rel="stylesheet" href="https://resources-borealds.s3.us-east-1.amazonaws.com/icons/current/boreal-styles.css" />
+<body data-theme="proximus">
+```
+
+**[`src/main.tsx`](src/main.tsx)** — design tokens, reset, fonts, typography:
+```ts
+import '@telesign/boreal-react/css/boreal.css';
+```
+
+Available themes for `data-theme`: `proximus` | `connect` | `engage` | `protect`
+
+---
+
+## Adding components
+
+Import any component from `@telesign/boreal-react` and use it in [`src/App.tsx`](src/App.tsx):
+
+```tsx
+import { BdsTypography } from '@telesign/boreal-react';
+
+function App() {
+  return <BdsTypography variant="heading" element="h1">Hello Boreal</BdsTypography>;
+}
 ```

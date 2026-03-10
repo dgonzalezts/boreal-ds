@@ -11,9 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const require = createRequire(import.meta.url);
 
-// Resolve the boreal CSS directory using Node module resolution.
-// The default export resolves to dist/css/boreal.css — dirname gives us dist/css/
-const borealCssDir = dirname(require.resolve('@telesign/boreal-style-guidelines'));
+const wcCssDir = dirname(require.resolve('@telesign/boreal-style-guidelines'));
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
@@ -34,12 +32,13 @@ const config: StorybookConfig = {
     },
   ],
   framework: '@storybook/web-components-vite',
-  staticDirs: ['./static', './styles'],
+  staticDirs: ['./static', './styles', { from: wcCssDir, to: '/boreal-tokens' }],
   docs: {
     defaultName: 'Overview',
   },
   managerHead: head => `
     ${head}
+    <link rel="stylesheet" type="text/css" href="/boreal-tokens/boreal.css" />
     <link rel="stylesheet" type="text/css" href="manager.css" />
   `,
   previewHead: head => `
@@ -51,7 +50,6 @@ const config: StorybookConfig = {
   `,
   async viteFinal(config) {
     const { mergeConfig, createLogger } = await import('vite');
-    // Suppress warnings about dynamic imports of ESM modules in Storybook's Vite setup during development
     const logger = createLogger(config.logLevel);
     const originalWarn = logger.warn.bind(logger);
     logger.warn = (msg, options) => {
@@ -65,17 +63,14 @@ const config: StorybookConfig = {
         alias: [
           { find: '@', replacement: resolve(__dirname, '../src') },
           { find: '@root', replacement: resolve(__dirname, '..') },
-          // Resolve @telesign/boreal-web-components/css/* to the actual CSS directory.
-          // Falls back to boreal-style-guidelines when dist/css has not been built yet.
           {
             find: /^@telesign\/boreal-web-components\/css\/(.+)$/,
-            replacement: `${borealCssDir}/$1`,
+            replacement: `${wcCssDir}/$1`,
           },
         ],
       },
       build: {
         rollupOptions: {
-          // Suppress warnings about dynamic imports of ESM modules in Storybook's Vite setup during production builds
           onwarn: ((warning, warn) => {
             if (warning.plugin === 'vite:import-analysis' && warning.id?.includes('esm-es5')) {
               return;

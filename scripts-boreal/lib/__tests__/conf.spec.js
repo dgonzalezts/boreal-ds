@@ -11,14 +11,14 @@ describe('CONFIG', () => {
   it('should have webcomponnents configuration', () => {
     expect(CONFIG.webcomponents).toBeDefined();
     expect(typeof CONFIG.webcomponents).toBe('object');
-    expect(CONFIG.webcomponents.wrapperName).toBe('@boreal-ds/web-components');
+    expect(CONFIG.webcomponents.wrapperName).toBe('@telesign/boreal-web-components');
     expect(CONFIG.webcomponents.wrapperRoute).toBeDefined();
   });
 
   it('should have vue configuration', () => {
     expect(CONFIG.vue).toBeDefined();
     expect(typeof CONFIG.vue).toBe('object');
-    expect(CONFIG.vue.wrapperName).toBe('@boreal-ds/vue');
+    expect(CONFIG.vue.wrapperName).toBe('@telesign/boreal-vue');
     expect(CONFIG.vue.wrapperRoute).toBeDefined();
     expect(CONFIG.vue.app).toBeDefined();
   });
@@ -26,7 +26,7 @@ describe('CONFIG', () => {
   it('should have react configuration', () => {
     expect(CONFIG.react).toBeDefined();
     expect(typeof CONFIG.react).toBe('object');
-    expect(CONFIG.react.wrapperName).toBe('@boreal-ds/react');
+    expect(CONFIG.react.wrapperName).toBe('@telesign/boreal-react');
     expect(CONFIG.react.wrapperRoute).toBeDefined();
     expect(CONFIG.react.app).toBeDefined();
   });
@@ -34,7 +34,7 @@ describe('CONFIG', () => {
   it('should have angular configuration', () => {
     expect(CONFIG.angular).toBeDefined();
     expect(typeof CONFIG.angular).toBe('object');
-    expect(CONFIG.angular.wrapperName).toBe('@boreal-ds/angular');
+    expect(CONFIG.angular.wrapperName).toBe('@telesign/boreal-angular');
     expect(CONFIG.angular.wrapperRoute).toBeDefined();
     expect(CONFIG.angular.app).toBeDefined();
   });

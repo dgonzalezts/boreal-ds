@@ -391,7 +391,7 @@ export const MyDocComponent = () => {
 };
 ```
 
-**Returns:** `string` - Current theme name (default: `'telesign'`)
+**Returns:** `string` - Current theme name (default: `'proximus'`)
 
 **Why not use Storybook's `useGlobals`?**
 
@@ -716,7 +716,7 @@ Applies `data-theme` attribute based on global theme selection.
 ```typescript
 decorators: [
   (story, context) => {
-    const theme = context.globals.theme || 'telesign';
+    const theme = context.globals.theme || 'proximus';
     document.body.setAttribute('data-theme', theme);
     return story();
   },
@@ -731,7 +731,7 @@ Applies story-specific styles from `__sb` parameters.
 
 Themes are applied via `data-theme` attribute on `<body>`.
 
-**Current theme:** `telesign` (default)
+**Current theme:** `proximus` (default)
 
 **Adding a new theme:**
 
@@ -741,7 +741,7 @@ Themes are applied via `data-theme` attribute on `<body>`.
 globalTypes: {
   theme: {
     toolbar: {
-      items: ['telesign', 'new-theme'],
+      items: ['proximus', 'new-theme'],
     },
   },
 }
