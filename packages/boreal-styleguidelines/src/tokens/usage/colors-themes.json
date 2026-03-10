@@ -1,640 +1,1667 @@
 {
   "bg (layout)": {
     "overlay": {
-      "value": "{neutral-900}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-contrast}"
     },
     "inverse": {
-      "value": "{white}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{white}"
     },
     "primary-darker": {
-      "value": "{primary-darker}",
-      "type": "color"
-    },
-    "default": {
-      "value": "{neutral-25-(bg)}",
-      "type": "color"
-    },
-    "primary": {
-      "value": "{primary-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-darker}"
     },
     "neutral": {
-      "value": "{neutral-700}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral}"
+    },
+    "primary-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-base}"
+    },
+    "neutral-ink": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ink}"
+    },
+    "primary-lighter": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-lighter}"
+    },
+    "primary-light": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-light}"
+    },
+    "neutral-light": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-light}"
+    },
+    "neutral-paper": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-paper}"
+    },
+    "nuetral-dark": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
+    },
+    "neutral-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-base}"
+    },
+    "neutral-darker": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-darker}"
+    },
+    "neutral-deep": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-deep}"
     }
   },
   "text": {
-    "success": {
-      "value": "{success-base}",
-      "type": "color"
+    "success-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-base}"
     },
-    "danger": {
-      "value": "{danger-base}",
-      "type": "color"
+    "danger-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-base}"
     },
     "default-darker": {
-      "value": "{neutral-900}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-contrast}"
     },
-    "information": {
-      "value": "{information-base}",
-      "type": "color"
+    "information-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-base}"
     },
     "accent": {
-      "value": "{accent-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{accent-base}"
     },
     "default": {
-      "value": "{neutral-700}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ink}"
     },
     "default-light": {
-      "value": "{neutral-400}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-base}"
     },
     "inverse": {
-      "value": "{white}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{white}"
     },
-    "warning": {
-      "value": "{warning-base}",
-      "type": "color"
+    "warning-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-base}"
     },
     "disabled": {
-      "value": "{neutral-300}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
     },
-    "primary": {
-      "value": "{primary-base}",
-      "type": "color"
+    "primary-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-base}"
     },
     "danger-dark": {
-      "value": "{danger-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-dark}"
     },
     "success-dark": {
-      "value": "{success-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-dark}"
     },
     "information-dark": {
-      "value": "{information-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-darker}"
     },
     "warning-light": {
-      "value": "{warning-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-light}"
     },
     "danger-light": {
-      "value": "{danger-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-light}"
     },
     "success-light": {
-      "value": "{success-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-light}"
     },
     "information-light": {
-      "value": "{information-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-light}"
     },
     "warning-dark": {
-      "value": "{warning-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-darker}"
     },
     "base": {
-      "value": "{base-alt-(text)}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-alt-(text)}"
     },
     "primary-light": {
-      "value": "{primary-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-light}"
     },
     "primary-dark": {
-      "value": "{primary-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-dark}"
+    },
+    "default-dark": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
+    },
+    "deafult-darker": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-darker}"
+    },
+    "default-deep": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-deep}"
+    },
+    "default-ink": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ink}"
     }
   },
   "ui (components)": {
-    "default": {
-      "value": "{white}",
-      "type": "color"
+    "default-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral}"
     },
     "inverse": {
-      "value": "{white}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{white}"
     },
     "accent": {
-      "value": "{accent-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{accent-base}"
     },
     "black-light": {
-      "value": "{neutral-500}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-darker}"
     },
     "base": {
-      "value": "{base-alt-(text)}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-alt-(text)}"
     },
     "base-light": {
-      "value": "{base-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-light}"
     },
     "disabled": {
-      "value": "{neutral-50}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ligther}"
     },
     "info-light": {
-      "value": "{information-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-light}"
     },
     "success-light": {
-      "value": "{success-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-light}"
     },
-    "success": {
-      "value": "{success-base}",
-      "type": "color"
+    "success-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-base}"
     },
     "black": {
-      "value": "{neutral-900}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-contrast}"
     },
     "danger-light": {
-      "value": "{danger-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-light}"
     },
     "primary-lighter": {
-      "value": "{primary-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-lighter}"
     },
-    "danger": {
-      "value": "{danger-base}",
-      "type": "color"
+    "danger-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-base}"
     },
-    "info": {
-      "value": "{information-base}",
-      "type": "color"
+    "info-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-base}"
     },
-    "primary": {
-      "value": "{primary-base}",
-      "type": "color"
+    "primary-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-base}"
     },
     "primary-light": {
-      "value": "{primary-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-light}"
     },
     "primary-dark": {
-      "value": "{primary-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-dark}"
     },
-    "warning": {
-      "value": "{warning-base}",
-      "type": "color"
+    "warning-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-base}"
     },
     "success-lighter": {
-      "value": "{success-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-lighter}"
     },
     "danger-lighter": {
-      "value": "{danger-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-lighter}"
     },
     "info-lighter": {
-      "value": "{information-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-lighter}"
     },
     "warning-light": {
-      "value": "{warning-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-light}"
     },
     "warning-lighter": {
-      "value": "{warning-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-lighter}"
     },
     "base-lighter": {
-      "value": "{base-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-lighter}"
     },
-    "default-dark": {
-      "value": "{base-dark}",
-      "type": "color"
+    "default-lighter": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ligther}"
     },
     "success-dark": {
-      "value": "{success-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-dark}"
     },
     "danger-dark": {
-      "value": "{danger-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-dark}"
     },
     "info-dark": {
-      "value": "{information-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-dark}"
     },
     "warning-dark": {
-      "value": "{warning-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-dark}"
     },
     "default-light": {
-      "value": "{base-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-light}"
+    },
+    "default-paper": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-paper}"
+    },
+    "default-dark": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
+    },
+    "default-darker": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-darker}"
+    },
+    "default-deep": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-deep}"
+    },
+    "default-ink": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ink}"
     }
   },
   "icon": {
     "info-dark": {
-      "value": "{information-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-darker}"
     },
     "default-lighter": {
-      "value": "{neutral-200}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-paper}"
     },
     "default-light": {
-      "value": "{neutral-300}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
     },
-    "default": {
-      "value": "{neutral-700}",
-      "type": "color"
+    "default-dark": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-base}"
     },
-    "success": {
-      "value": "{success-base}",
-      "type": "color"
+    "success-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-base}"
     },
     "inverse": {
-      "value": "{white}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{white}"
     },
-    "warning": {
-      "value": "{warning-base}",
-      "type": "color"
+    "warning-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-base}"
     },
-    "accent": {
-      "value": "{accent-base}",
-      "type": "color"
+    "accent-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{accent-base}"
     },
-    "danger": {
-      "value": "{danger-base}",
-      "type": "color"
+    "danger-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-base}"
     },
     "base": {
-      "value": "{base-alt-(text)}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-alt-(text)}"
     },
-    "primary": {
-      "value": "{primary-base}",
-      "type": "color"
+    "primary-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-base}"
     },
     "success-dark": {
-      "value": "{success-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-dark}"
     },
     "warning-dark": {
-      "value": "{warning-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-darker}"
     },
     "danger-dark": {
-      "value": "{danger-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-dark}"
     },
-    "info": {
-      "value": "{information-base}",
-      "type": "color"
+    "info-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-base}"
     },
     "info-light": {
-      "value": "{information-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-light}"
     },
     "success-light": {
-      "value": "{success-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-light}"
     },
     "warning-light": {
-      "value": "{warning-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-light}"
     },
     "danger-light": {
-      "value": "{danger-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-light}"
     },
     "disabled": {
-      "value": "{neutral-300}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-dark}"
     },
     "primary-light": {
-      "value": "{primary-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-light}"
     },
     "primary-dark": {
-      "value": "{primary-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-dark}"
     },
     "user": {
-      "value": "{user-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{user-base}"
+    },
+    "default-ink": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{neutral-ink}"
     }
   },
   "alpha": {
     "black-50": {
-      "value": "#272a2f80",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#272a2f80"
     },
     "black-25": {
-      "value": "#272a2f40",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#272a2f40"
     },
     "white-50": {
-      "value": "#ffffff80",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffff80"
     },
     "white-25": {
-      "value": "#ffffff40",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffff40"
     },
     "white-10": {
-      "value": "#ffffff1a",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffff1a"
     },
     "white-75": {
-      "value": "#ffffffbf",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffffbf"
     },
     "white-85": {
-      "value": "#ffffffd9",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffffd9"
     },
     "white-90": {
-      "value": "#ffffffe6",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffffe6"
     },
     "white-95": {
-      "value": "#ffffffe6",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffffe6"
     },
     "white-80": {
-      "value": "#ffffffcc",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffffcc"
     },
     "white-55": {
-      "value": "#ffffff8c",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#ffffff8c"
     },
     "black-5": {
-      "value": "#272a2f0d",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#272a2f0d"
     },
     "black-10": {
-      "value": "#272a2f1a",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_FILLS",
+          "STROKE_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "#272a2f1a"
     }
   },
   "extended": {
     "purple-darker": {
-      "value": "{extended.purple-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.purple-darker}"
     },
     "purple-base": {
-      "value": "{extended.purple-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.purple-base}"
     },
     "teal-lighter": {
-      "value": "{extended.teal-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.teal-lighter}"
     },
     "orange-darker": {
-      "value": "{extended.orange-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.orange-darker}"
     },
     "tael-darker": {
-      "value": "{extended.teal-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.teal-darker}"
     },
     "teal-base": {
-      "value": "{extended.teal-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.teal-base}"
     },
     "orange-lighter": {
-      "value": "{extended.orange-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.orange-lighter}"
     },
     "purple-dark": {
-      "value": "{extended.purple-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.purple-dark}"
     },
     "orange-light": {
-      "value": "{extended.orange-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.orange-light}"
     },
     "teal-dark": {
-      "value": "{extended.teal-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.teal-dark}"
     },
     "orange-base": {
-      "value": "{extended.orange-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.orange-base}"
     },
     "purple-light": {
-      "value": "{extended.purple-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.purple-light}"
     },
     "orange-dark": {
-      "value": "{extended.orange-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.orange-dark}"
     },
     "teal-light": {
-      "value": "{extended.teal-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.teal-light}"
     },
     "purple-lighter": {
-      "value": "{extended.purple-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.purple-lighter}"
     },
     "cyan-lighter": {
-      "value": "{extended.cyan-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cyan-lighter}"
     },
     "cyan-light": {
-      "value": "{extended.cyan-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cyan-light}"
     },
     "cyan-base": {
-      "value": "{extended.cyan-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cyan-base}"
     },
     "cyan-dark": {
-      "value": "{extended.cyan-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cyan-dark}"
     },
     "cyan-darker": {
-      "value": "{extended.cyan-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cyan-darker}"
     },
     "rose-darker": {
-      "value": "{extended.rose-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.rose-darker}"
     },
     "rose-base": {
-      "value": "{extended.rose-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.rose-base}"
     },
     "rose-dark": {
-      "value": "{extended.rose-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.rose-dark}"
     },
     "rose-light": {
-      "value": "{extended.rose-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.rose-light}"
     },
     "rose-lighter": {
-      "value": "{extended.rose-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.rose-lighter}"
     },
     "lime-darker": {
-      "value": "{extended.lime-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.lime-darker}"
     },
     "lime-dark": {
-      "value": "{extended.lime-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.lime-dark}"
     },
     "lime-light": {
-      "value": "{extended.lime-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.lime-light}"
     },
     "lime-base": {
-      "value": "{extended.lime-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.lime-base}"
     },
     "lime-lighter": {
-      "value": "{extended.lime-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.lime-lighter}"
     },
     "onyx-darker": {
-      "value": "{extended.onyx-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.onyx-darker}"
     },
     "onyx-dark": {
-      "value": "{extended.onyx-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.onyx-dark}"
     },
     "onyx-base": {
-      "value": "{extended.onyx-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.onyx-base}"
     },
     "onyx-light": {
-      "value": "{extended.onyx-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.onyx-light}"
     },
     "onyx-lighter": {
-      "value": "{extended.onyx-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.onyx-lighter}"
     },
     "cobalt-lighter": {
-      "value": "{extended.cobalt-lighter}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cobalt-lighter}"
     },
     "cobalt-light": {
-      "value": "{extended.cobalt-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cobalt-light}"
     },
     "cobalt-base": {
-      "value": "{extended.cobalt-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cobalt-base}"
     },
     "cobalt-dark": {
-      "value": "{extended.cobalt-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cobalt-dark}"
     },
     "cobalt-darker": {
-      "value": "{extended.cobalt-darker}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      },
+      "$type": "color",
+      "$value": "{extended.cobalt-darker}"
     }
   },
   "stroke": {
     "warning": {
-      "value": "{warning-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-base}"
     },
     "inverse": {
-      "value": "{white}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{white}"
     },
-    "info": {
-      "value": "{information-base}",
-      "type": "color"
+    "info-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-base}"
     },
-    "success": {
-      "value": "{success-base}",
-      "type": "color"
+    "success-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-base}"
     },
     "default-dark": {
-      "value": "{base-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-dark}"
     },
     "default-light": {
-      "value": "{base-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-light}"
     },
-    "default": {
-      "value": "{base-alt-(text)}",
-      "type": "color"
+    "default-ink": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-alt-(text)}"
     },
     "focus": {
-      "value": "{focus}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{focus}"
     },
-    "danger": {
-      "value": "{danger-base}",
-      "type": "color"
+    "danger-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-base}"
     },
     "accent": {
-      "value": "{accent-base}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{accent-base}"
     },
-    "primary": {
-      "value": "{primary-base}",
-      "type": "color"
+    "primary-base": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-base}"
     },
     "primary-light": {
-      "value": "{primary-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-light}"
     },
     "primary-dark": {
-      "value": "{primary-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{primary-dark}"
     },
     "info-light": {
-      "value": "{information-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-light}"
     },
     "info-dark": {
-      "value": "{information-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{information-dark}"
     },
     "success-light": {
-      "value": "{success-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-light}"
     },
     "success-dark": {
-      "value": "{success-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{success-dark}"
     },
     "warning-light": {
-      "value": "{warning-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-light}"
     },
     "warning-dark": {
-      "value": "{warning-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{warning-dark}"
     },
     "danger-light": {
-      "value": "{danger-light}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-light}"
     },
     "danger-dark": {
-      "value": "{danger-dark}",
-      "type": "color"
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{danger-dark}"
+    },
+    "default-lighter": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "STROKE_COLOR",
+          "EFFECT_COLOR"
+        ]
+      },
+      "$type": "color",
+      "$value": "{base-lighter}"
     }
   }
 }

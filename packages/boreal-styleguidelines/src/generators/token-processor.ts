@@ -23,25 +23,27 @@ export class TokenProcessor {
   /** Process primitive tokens and store for reference resolution */
   private processPrimitiveTokens(obj: any, path: string[] = []): void {
     for (const [key, value] of Object.entries(obj)) {
+      if (key.startsWith('$')) continue;
       const currentPath = [...path, key];
 
       if (this.isTokenValue(value)) {
         const tokenPath = currentPath.join(".");
-        this.primitiveTokens.set(tokenPath, String(value.value));
+        this.primitiveTokens.set(tokenPath, String(this.getTokenValue(value)));
       } else if (typeof value === "object" && value !== null) {
         this.processPrimitiveTokens(value, currentPath);
       }
     }
   }
 
-  /** Check if object is a TokenValue */
   private isTokenValue(obj: any): obj is TokenValue {
-    return (
-      obj !== null && typeof obj === "object" && "value" in obj && "type" in obj
-    );
+    if (obj === null || typeof obj !== "object") return false;
+    return "$value" in obj && "$type" in obj;
   }
 
-  /** Resolve token reference for SCSS variables (preserves $var references) */
+  private getTokenValue(token: any): string | number {
+    return token.$value;
+  }
+
   private resolveSCSSReference(value: string, currentKey?: string): string {
     if (typeof value !== "string") {
       return String(value);
@@ -102,7 +104,7 @@ export class TokenProcessor {
   private sanitizeTokenKey(key: string): string {
     return key
       .replace(/\s*\([^)]*\)\s*/g, "")
-      .replace(/\s+/g, "-")
+      .replace(/[_\s]+/g, "-")
       .replace(/--+/g, "-")
       .replace(/^-|-$/g, "")
       .toLowerCase();
@@ -144,6 +146,7 @@ export class TokenProcessor {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(themeTokens)) {
+      if (key.startsWith('$')) continue;
       const sanitizedKey = this.sanitizeTokenKey(key);
       const currentKey = parentKey
         ? `${parentKey}-${sanitizedKey}`
@@ -151,7 +154,7 @@ export class TokenProcessor {
 
       if (this.isTokenValue(value)) {
         const resolvedValue = this.resolveSCSSReference(
-          String(value.value),
+          String(this.getTokenValue(value)),
           currentKey,
         );
         result[currentKey] = resolvedValue;
@@ -173,6 +176,7 @@ export class TokenProcessor {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(themeTokens)) {
+      if (key.startsWith('$')) continue;
       const sanitizedKey = this.sanitizeTokenKey(key);
       const currentKey = parentKey
         ? `${parentKey}-${sanitizedKey}`
@@ -180,7 +184,7 @@ export class TokenProcessor {
 
       if (this.isTokenValue(value)) {
         const resolvedValue = this.resolveCSSReference(
-          String(value.value),
+          String(this.getTokenValue(value)),
           currentKey,
         );
         result[currentKey] = resolvedValue;
@@ -202,13 +206,14 @@ export class TokenProcessor {
     const result: FlattenedTokens = {};
 
     for (const [key, value] of Object.entries(primitives)) {
+      if (key.startsWith('$')) continue;
       const sanitizedKey = this.sanitizeTokenKey(key);
       const currentKey = parentKey
         ? `${parentKey}-${sanitizedKey}`
         : sanitizedKey;
 
       if (this.isTokenValue(value)) {
-        result[currentKey] = String(value.value);
+        result[currentKey] = String(this.getTokenValue(value));
       } else if (typeof value === "object" && value !== null) {
         const nested = this.flattenPrimitiveTokens(value, currentKey);
         Object.assign(result, nested);
