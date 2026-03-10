@@ -1,8 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsCheckbox } from '../bds-checkbox';
 
-// JSDOM doesn't implement the Form-Associated Custom Elements API.
-// Stub the minimum surface so form-associated components can render in spec tests.
 beforeAll(() => {
   if (!HTMLElement.prototype.attachInternals) {
     HTMLElement.prototype.attachInternals = function () {
