@@ -26,10 +26,12 @@ export class CSSGenerator {
   async generateGlobalCSS(additionalStyles?: string): Promise<void> {
     const flattenedPrimitives = this.processor.flattenPrimitiveTokens(this.primitiveTokens);
     const cssProperties = this.processor.generateCSSProperties(flattenedPrimitives);
-    let css = `:root {\n${cssProperties}\n}`;
+    const rootBlock = `:root {\n${cssProperties}\n}`;
 
+    let css = rootBlock;
     if (additionalStyles) {
-      css += `\n\n${additionalStyles}`;
+      const { imports, rest } = this.splitImports(additionalStyles);
+      css = [imports, rootBlock, rest].filter(Boolean).join('\n\n');
     }
 
     await this.writeFile(join(this.options.outputDir, 'css', 'global.css'), css);
@@ -57,10 +59,15 @@ export class CSSGenerator {
   /** Generate complete CSS bundle with all themes */
   async generateCSSBundle(themes: { name: ThemeName; tokens: any; usage?: any }[], additionalStyles?: string): Promise<void> {
     const primitives = this.processor.flattenPrimitiveTokens(this.primitiveTokens);
-    let globalCSS = `:root {\n${this.processor.generateCSSProperties(primitives)}\n}`;
+    const rootBlock = `:root {\n${this.processor.generateCSSProperties(primitives)}\n}`;
 
+    // Split @import from other global styles so imports go first
+    let imports = '';
+    let globalUtilityStyles = '';
     if (additionalStyles) {
-      globalCSS += `\n\n${additionalStyles}`;
+      const split = this.splitImports(additionalStyles);
+      imports = split.imports;
+      globalUtilityStyles = split.rest;
     }
 
     const themesCSS = themes
@@ -73,9 +80,32 @@ export class CSSGenerator {
       })
       .join('\n\n');
 
-    const bundleCSS = `${globalCSS}\n\n${themesCSS}`;
+    // Order: @imports → :root → [data-theme] → global utility styles
+    const bundleCSS = [imports, rootBlock, themesCSS, globalUtilityStyles]
+      .filter(Boolean)
+      .join('\n\n');
     await this.writeFile(join(this.options.outputDir, 'css', 'boreal.css'), bundleCSS);
     console.log('✓ Generated boreal.css (complete bundle)');
+  }
+
+  /** Split @import statements from other CSS to ensure correct ordering */
+  private splitImports(css: string): { imports: string; rest: string } {
+    const lines = css.split('\n');
+    const importLines: string[] = [];
+    const otherLines: string[] = [];
+
+    for (const line of lines) {
+      if (line.trimStart().startsWith('@import ')) {
+        importLines.push(line);
+      } else {
+        otherLines.push(line);
+      }
+    }
+
+    return {
+      imports: importLines.join('\n'),
+      rest: otherLines.join('\n').trim(),
+    };
   }
 
   private async writeFile(filePath: string, content: string): Promise<void> {

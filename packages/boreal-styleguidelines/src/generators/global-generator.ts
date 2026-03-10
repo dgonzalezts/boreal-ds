@@ -1,6 +1,6 @@
 import { readFile, readdir, writeFile, mkdir } from "fs/promises";
 import { join, extname, basename } from "path";
-import { compileString } from "sass-embedded";
+import { compile } from "sass-embedded";
 
 /**
  * Global Generator
@@ -33,19 +33,22 @@ export class GlobalGenerator {
 
       for (const file of scssFiles) {
         const filePath = join(process.cwd(), this.globalStylesPath, file);
-        const scssContent = await readFile(filePath, "utf-8");
 
-        const result = compileString(scssContent, {
-          loadPaths: [join(process.cwd(), this.globalStylesPath)],
-        });
+        try {
+          const result = compile(filePath, {
+            loadPaths: [join(process.cwd(), this.globalStylesPath)],
+          });
 
-        compiledStyles.push(`/* ${file} */\n${result.css}`);
-        console.log(`✓ Compiled ${file}`);
+          compiledStyles.push(`/* ${file} */\n${result.css}`);
+          console.log(`✓ Compiled ${file}`);
+        } catch (error) {
+          console.error(`⚠ Failed to compile ${file}:`, error instanceof Error ? error.message : error);
+        }
       }
 
       return compiledStyles.join("\n\n");
     } catch (error) {
-      // If directory doesn't exist or other errors, return empty string
+      console.error('⚠ Failed to read global styles directory:', error instanceof Error ? error.message : error);
       return "";
     }
   }
@@ -84,6 +87,7 @@ export class GlobalGenerator {
 
       return generatedFiles;
     } catch (error) {
+      console.error('⚠ Failed to generate SCSS global files:', error instanceof Error ? error.message : error);
       return [];
     }
   }

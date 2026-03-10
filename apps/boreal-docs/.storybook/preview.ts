@@ -19,7 +19,7 @@ import '@telesign/boreal-web-components/css/boreal.css';
 
 const DATA_THEME_ATTRIBUTE = 'data-theme';
 const BODY_SELECTOR = 'body.sb-show-main';
-const DEFAULT_THEME = 'telesign';
+const DEFAULT_THEME = 'proximus';
 
 hljs.registerLanguage('js', jsLang);
 hljs.registerLanguage('html', htmlLang);
@@ -151,7 +151,7 @@ const preview: Preview = {
       toolbar: {
         icon: 'globe',
         //TODO: add other themes when available
-        items: [{ value: 'telesign', title: 'Theme: Telesign' }],
+        items: [{ value: 'proximus', title: 'Theme: Proximus' }],
         dynamicTitle: true,
       },
     },

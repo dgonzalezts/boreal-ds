@@ -1,15 +1,15 @@
 {
   "accent-dark": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-700}"
+    "$value": "{color.engage.rose.rose-70}"
   },
   "black": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-900}"
+    "$value": "{color.engage.ink.ink-90}"
   },
   "accent-light": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-200}"
+    "$value": "{color.engage.rose.rose-20}"
   },
   "white": {
     "$type": "color",
@@ -17,7 +17,7 @@
   },
   "accent-base": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-400}"
+    "$value": "{color.engage.rose.rose-50}"
   },
   "extended": {
     "teal-light": {
@@ -383,182 +383,182 @@
   },
   "neutral-deep": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-600}"
+    "$value": "{color.engage.ink.ink-60}"
   },
   "information-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-5}"
+    "$value": "{color.engage.blue.blue-5}"
   },
   "information-light": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-200}"
+    "$value": "{color.engage.blue.blue-20}"
   },
   "success-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-5}"
+    "$value": "{color.engage.green.green-5}"
   },
   "information-base": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-500}"
+    "$value": "{color.engage.blue.blue-50}"
   },
   "neutral-contrast": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-900}"
+    "$value": "{color.engage.ink.ink-90}"
   },
   "information-dark": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-700}"
+    "$value": "{color.engage.blue.blue-70}"
   },
   "neutral-base": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-400}"
+    "$value": "{color.engage.ink.ink-40}"
   },
   "warning-base": {
     "$type": "color",
-    "$value": "{color.proximus.amber.amber-400}"
+    "$value": "{color.engage.yellow.yellow-30}"
   },
   "neutral-ink": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-700}"
+    "$value": "{color.engage.ink.ink-70}"
   },
   "warning-dark": {
     "$type": "color",
-    "$value": "{color.proximus.amber.amber-700}"
+    "$value": "{color.engage.yellow.yellow-70}"
   },
   "warning-darker": {
     "$type": "color",
-    "$value": "{color.proximus.amber.amber-900}"
+    "$value": "{color.engage.yellow.yellow-90}"
   },
   "warning-light": {
     "$type": "color",
-    "$value": "{color.proximus.amber.amber-200}"
+    "$value": "{color.engage.yellow.yellow-20}"
   },
   "focus": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-200}"
+    "$value": "{color.engage.blue.blue-20}"
   },
   "success-light": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-200}"
+    "$value": "{color.engage.green.green-20}"
   },
   "neutral-ligther": {
     "$type": "color",
-    "$value": "{color.proximus.neutral.neutral-200}"
+    "$value": "{color.engage.ink.ink-5}"
   },
   "success-base": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-600}"
+    "$value": "{color.engage.green.green-40}"
   },
   "primary-dark": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-700}"
+    "$value": "{color.engage.blue.blue-70}"
   },
   "danger-darker": {
     "$type": "color",
-    "$value": "{color.proximus.red.red-900}"
+    "$value": "{color.engage.red.red-90}"
   },
   "primary-darker": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-900}"
+    "$value": "{color.engage.blue.blue-90}"
   },
   "danger-dark": {
     "$type": "color",
-    "$value": "{color.proximus.red.red-800}"
+    "$value": "{color.engage.red.red-70}"
   },
   "base-alt-(text)": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-900}"
+    "$value": "{color.engage.ink.ink-70}"
   },
   "neutral-dark": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-100}"
+    "$value": "{color.engage.ink.ink-30}"
   },
   "danger-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.red.red-50}"
+    "$value": "{color.engage.red.red-5}"
   },
   "base-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.neutral.neutral-300}"
+    "$value": "{color.engage.ink.ink-5}"
   },
   "danger-light": {
     "$type": "color",
-    "$value": "{color.proximus.red.red-200}"
+    "$value": "{color.engage.red.red-20}"
   },
   "accent-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-5}"
+    "$value": "{color.engage.rose.rose-5}"
   },
   "success-dark": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-700}"
+    "$value": "{color.engage.green.green-70}"
   },
   "neutral": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-50}"
+    "$value": "{color.engage.ink.ink-5}"
   },
   "accent-darker": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-900}"
+    "$value": "{color.engage.rose.rose-90}"
   },
   "neutral-paper": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-200}"
+    "$value": "{color.engage.ink.ink-20}"
   },
   "warning-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.amber.amber-50}"
+    "$value": "{color.engage.yellow.yellow-5}"
   },
   "success-darker": {
     "$type": "color",
-    "$value": "{color.proximus.mint.mint-900}"
+    "$value": "{color.engage.green.green-90}"
   },
   "primary-base": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-500}"
+    "$value": "{color.engage.blue.blue-50}"
   },
   "information-darker": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-900}"
+    "$value": "{color.engage.blue.blue-90}"
   },
   "neutral-darker": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-500}"
+    "$value": "{color.engage.ink.ink-50}"
   },
   "neutral-light": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-100}"
+    "$value": "{color.engage.ink.ink-10}"
   },
   "danger-base": {
     "$type": "color",
-    "$value": "{color.proximus.red.red-500}"
+    "$value": "{color.engage.red.red-50}"
   },
   "neutral-deeper": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-800}"
+    "$value": "{color.engage.ink.ink-80}"
   },
   "base-light": {
     "$type": "color",
-    "$value": "{color.proximus.neutral.neutral-300}"
+    "$value": "{color.engage.ink.ink-10}"
   },
   "primary-light": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-200}"
+    "$value": "{color.engage.blue.blue-20}"
   },
   "primary-lighter": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-5}"
+    "$value": "{color.engage.blue.blue-5}"
   },
   "base-dark": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-100}"
+    "$value": "{color.engage.ink.ink-20}"
   },
   "base-darker": {
     "$type": "color",
-    "$value": "{color.proximus.onyx.onyx-200}"
+    "$value": "{color.engage.ink.ink-30}"
   },
   "user-base": {
     "$type": "color",
-    "$value": "{color.proximus.cobalt.cobalt-5}"
+    "$value": "{color.engage.green.green-40}"
   }
 }
