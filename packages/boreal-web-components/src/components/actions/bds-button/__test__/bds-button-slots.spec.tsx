@@ -19,7 +19,7 @@ describe('bds-button slots', () => {
     });
 
     const root = page.root as HTMLElement;
-    const icon = root.querySelector('i[slot="icon"]') ?? null;
+    const icon = root.querySelector('i[slot="icon"]');
     const iconContainer = root.querySelector('.bds-button__content-icon--start');
 
     assertExists(icon, 'Icon element not found');

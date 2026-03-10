@@ -3,22 +3,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
-  },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "tsx"
-  ],
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

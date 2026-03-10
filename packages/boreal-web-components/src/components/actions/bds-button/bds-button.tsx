@@ -103,6 +103,8 @@ export class BdsButton implements IButton {
   private handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       this.currentState = STATES.ACTIVE;
+      event.preventDefault();
+      this.el.click();
     }
   };
 

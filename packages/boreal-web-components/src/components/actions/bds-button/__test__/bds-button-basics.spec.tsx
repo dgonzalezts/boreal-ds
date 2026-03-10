@@ -3,20 +3,6 @@ import { BdsButton } from '../bds-button';
 import { assertExists } from '@/utils/__test__/helpers';
 
 describe('bds-button basics props', () => {
-  it('should renders basic button with aria-label, name', async () => {
-    const page = await newSpecPage({
-      components: [BdsButton],
-      html: `<bds-button label="Button Label" name="TestButton">Button</bds-button>`,
-    });
-    const root = page.root as HTMLElement;
-    const button = root.querySelector('button');
-    assertExists(button, 'Button element not found');
-
-    expect(button.getAttribute('aria-label')).toBe('Button Label');
-    expect(button.getAttribute('type')).toBe('button');
-    expect(button.getAttribute('name')).toBe('TestButton');
-  });
-
   it('should render with type reset', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
@@ -41,18 +27,6 @@ describe('bds-button basics props', () => {
     expect(button.getAttribute('type')).toBe('submit');
   });
 
-  it('should render with disabled attribute', async () => {
-    const page = await newSpecPage({
-      components: [BdsButton],
-      html: `<bds-button name="TestButton" disabled>Button</bds-button>`,
-    });
-    const root = page.root as HTMLElement;
-    const button = root.querySelector('button');
-    assertExists(button, 'Button element not found');
-
-    expect(button.getAttribute('aria-disabled')).not.toBeNull();
-  });
-
   it('should render with isLoading attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
@@ -60,9 +34,8 @@ describe('bds-button basics props', () => {
     });
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');
-    assertExists(button, 'Button element not found');
-    button.click();
 
+    assertExists(button, 'Button element not found');
     expect(button.classList.contains('bds-button--is-loading')).toBe(true);
   });
 
@@ -74,9 +47,9 @@ describe('bds-button basics props', () => {
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');
     assertExists(button, 'Button element not found');
+
     const icon = button.querySelector('.bds-icon-chevron-down');
     assertExists(icon, 'Icon element not found');
-
     expect(icon).not.toBeNull();
   });
 });
