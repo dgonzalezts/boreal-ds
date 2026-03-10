@@ -35,13 +35,8 @@ async function main() {
     await cssGenerator.ensureDirectories();
     await scssGenerator.ensureDirectories();
 
-    // Compile global SCSS files
-    console.log('🔨 Compiling global SCSS files...');
-    const globalStyles = await globalGenerator.compileGlobalStyles();
-
-    // Generate primitive/global styles
-    console.log('📦 Generating global styles...');
-    await cssGenerator.generateGlobalCSS(globalStyles);
+    // Generate primitive SCSS/CSS tokens first
+    console.log('📦 Generating primitive token styles...');
     await scssGenerator.generateSCSSVariables('primitives', primitives);
     await scssGenerator.generateSCSSMap('primitives', primitives, 'boreal-primitives');
     await scssGenerator.generateStencilPrimitives(primitives);
@@ -87,15 +82,25 @@ async function main() {
       }
     }
 
-    console.log('\n📦 Generating complete CSS bundle...');
-    await cssGenerator.generateCSSBundle(themeConfigs, globalStyles);
-
+    // Generate Stencil SCSS index — must happen BEFORE global SCSS compilation
+    // because _typography.scss uses @use "../../../dist/stencil/index"
     console.log('\n📝 Generating SCSS index files...');
     await scssGenerator.generateStencilIndex();
 
-    // Generate SCSS global files
+    // Generate SCSS global files (copy to dist/scss/global)
     const globalScssFiles = await globalGenerator.generateSCSSGlobalFiles();
     await globalGenerator.generateGlobalSCSSIndex(globalScssFiles);
+
+    // Compile global SCSS files (now that dist/stencil tokens exist)
+    console.log('\n🔨 Compiling global SCSS files...');
+    const globalStyles = await globalGenerator.compileGlobalStyles();
+
+    // Generate CSS output with global styles included
+    console.log('\n📦 Generating CSS output...');
+    await cssGenerator.generateGlobalCSS(globalStyles);
+
+    console.log('\n📦 Generating complete CSS bundle...');
+    await cssGenerator.generateCSSBundle(themeConfigs, globalStyles);
 
     console.log('\n✅ Generation completed successfully!');
     console.log('\n📁 Output files:');

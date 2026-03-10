@@ -1,11 +1,11 @@
-import masiv from '@telesign/boreal-style-guidelines/tokens/theme/masiv';
-import bics from '@telesign/boreal-style-guidelines/tokens/theme/bics';
+import connect from '@telesign/boreal-style-guidelines/tokens/theme/connect';
+import engage from '@telesign/boreal-style-guidelines/tokens/theme/engage';
 import proximus from '@telesign/boreal-style-guidelines/tokens/theme/proximus';
-import telesign from '@telesign/boreal-style-guidelines/tokens/theme/telesign';
+import protect from '@telesign/boreal-style-guidelines/tokens/theme/protect';
 
 export default {
-  masiv,
-  bics,
+  connect,
+  engage,
   proximus,
-  telesign,
+  protect,
 };
