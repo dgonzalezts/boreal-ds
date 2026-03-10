@@ -147,7 +147,7 @@ const preview: Preview = {
     theme: {
       name: 'Theme',
       description: 'Theme for Boreal components',
-      defaultValue: 'telesign',
+      defaultValue: 'proximus',
       toolbar: {
         icon: 'globe',
         //TODO: add other themes when available

@@ -21,7 +21,12 @@ function extractKeys(obj: Record<string, unknown>, prefix: string = ''): string[
   for (const [key, value] of Object.entries(obj)) {
     const fullKey = prefix ? `${prefix}-${key}` : key;
 
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
+    if (
+      value &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      !('$type' in (value as object))
+    ) {
       keys.push(...extractKeys(value as Record<string, unknown>, fullKey));
     } else {
       keys.push(fullKey);
@@ -56,10 +61,8 @@ function extractCategoryKeys(
 function extractThemeColorNames(filter?: (key: string) => boolean): string[] {
   const colorNames = new Set<string>();
 
-  // Extract color names from all themes
   Object.values(themes).forEach(theme => {
-    Object.keys(theme).forEach(key => {
-      // Skip font definitions
+    extractKeys(theme as Record<string, unknown>).forEach(key => {
       if (!key.includes('font')) {
         colorNames.add(key);
       }
@@ -89,8 +92,8 @@ function createPrefixFilter(...prefixes: string[]): (key: string) => boolean {
 }
 
 // Theme color extractors (from themes, not tokens)
-const defaultTheme = themes.telesign || {};
-const themeKeys = Object.keys(defaultTheme);
+const defaultTheme = themes.connect || {};
+const themeKeys = extractKeys(defaultTheme as Record<string, unknown>);
 const isFontToken = (key: string) => key.includes('font');
 
 // Precise color filters using regex patterns and prefix matching

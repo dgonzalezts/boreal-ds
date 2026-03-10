@@ -23,36 +23,36 @@ The typography system defines the core text elements used throughout our product
 
 <Unstyled>
   <h3>Size</h3>
-  
+
   The tokens for font size are organized into a clear scale that provides a range of options for different text elements, from large headings to small captions. Each token is named according to its intended use and size, making it easy to select the appropriate font size for any given context while maintaining visual harmony across the interface.
-  
+
   <FontStyleSection values={TYPOGRAPHY_SIZE} prefix="typography-font-size" name="font size"/>
 
   <FontStyleSection values={TYPOGRAPHY_WEIGHT} prefix="typography-font-weight" name="font weight"/>
 
   <FontStyleSection values={TYPOGRAPHY_LINE_HEIGHT} prefix="typography-line-height" name="line height"/>
-  
+
   <h3>Font Family</h3>
 
   <h4>Inter</h4>
-  
+
   As its primary font family, a versatile and modern typeface that provides excellent readability across devices and screen sizes.
-  
+
   <Card variant='elevated' className='typography-preview__card'>
     <Preview typography="primary"/>
   </Card>
   <h4>Courier Prime</h4>
-  
+
   As its monospace font family, optimized for code blocks, terminal output, and technical content.
-  
+
   <Card variant='elevated' className='typography-preview__card'>
-    <Preview typography="secondary"  />
-  </Card>  
+    <Preview typography="secondary"/>
+  </Card>
 </Unstyled>
 
 
 <Subtitle>Typography Styles</Subtitle>
-  
+
   Boreal defines a set of typography styles that combine font size, weight, and line height to create a consistent type system across all interfaces. These styles are organized into three main categories: Heading, Body, and Supporting text.
 
   <h3>How to use it?</h3>
@@ -76,9 +76,9 @@ The typography system defines the core text elements used throughout our product
 
 <Unstyled>
   <h3>Headings</h3>
-  
+
   Heading styles are used for titles, subtitles, and section headers. They establish the information hierarchy and help users scan and navigate content. Headings should be used in descending order (H1 to H6) to maintain proper document structure.
-  
+
   <HelperStyle name="heading-4xl" description="heading-4xl is our most prominent heading style, designed for page titles and major section headers. It features a substantial font size and bold weight, creating a strong visual anchor and clear hierarchy. This style is ideal for drawing attention to the most important content and establishing a sense of structure at the top level of the page." />
   <HelperStyle name="heading-3xl" description="heading-3xl is used for primary section titles beneath the main page heading. It balances impact and readability, offering a large font size and robust weight that ensures visibility while maintaining harmony with other heading levels. This style is suitable for organizing major content areas and guiding users through the interface." />
   <HelperStyle name="heading-2xl" description="heading-2xl serves as a versatile heading for subsections, providing clear structure without overwhelming the page. Its moderate size and weight make it effective for breaking down content into digestible segments, supporting both hierarchy and accessibility." />
@@ -88,9 +88,9 @@ The typography system defines the core text elements used throughout our product
   <HelperStyle name="heading-sm" description="heading-sm is the smallest heading style, perfect for captions or supporting titles where space is limited. It maintains clarity and hierarchy even at reduced sizes, ensuring that all text elements are accessible and visually distinct." />
 
   <h3>Body</h3>
-  
+
   Body styles are used for the main content of a page. They are designed for optimal readability in different contexts, from paragraphs to lists, captions, and labels. The paragraph `(<p>)` element is the recommended semantic tag for body text, combined with our utility classes to apply the appropriate size.
-  
+
   <HelperStyle name="display-xl" description="display-xl is an extra-large body text style, ideal for hero content, introductory paragraphs, or key messaging. Its generous size enhances readability and creates visual impact, making it suitable for areas where you want to capture user attention and convey important information." />
   <HelperStyle name="display-lg" description="display-lg is a large body style for main content areas, providing a comfortable reading experience. It is well-suited for primary paragraphs, lists, and content blocks, ensuring clarity and accessibility across devices." />
   <HelperStyle name="display-md" description="display-md is the standard body text size, optimized for paragraphs and lists throughout the interface. Its balanced proportions support extended reading and maintain legibility in both dense and spacious layouts." />
@@ -98,26 +98,26 @@ The typography system defines the core text elements used throughout our product
   <HelperStyle name="display-xs" description="display-xs is an extra-small body style for dense information, labels, or compact UI elements. It is designed to fit within tight spaces without sacrificing clarity, supporting microcopy and auxiliary text." />
 
   <h3>Label</h3>
-  
+
   Label styles are used for form labels, buttons, and other UI elements that require concise text. They are designed to be clear and legible at smaller sizes while maintaining a strong visual presence.
-  
+
   <HelperStyle name="label-lg" description="label-lg is a large label style for prominent form fields, buttons, or navigation elements. Its increased size and weight ensure visibility and clarity, making it ideal for actions that require user attention and quick identification." />
   <HelperStyle name="label-md" description="label-md is the standard size for form labels, providing good visibility while integrating harmoniously with surrounding content. The semibold weight ensures emphasis without dominating the interface. This versatile size works well across most contexts and maintains readability on various screen sizes." />
   <HelperStyle name="label-sm" description="label-sm is a small label style for compact forms or UI elements. It maintains legibility at reduced sizes, supporting efficient use of space and clear communication in dense layouts." />
   <HelperStyle name="label-xs" description="label-xs is an extra-small label style for minimal UI, such as microcopy, helper text, or secondary actions. It is designed to be unobtrusive yet readable, supporting subtle guidance and context." />
-  
+
   <h3>Supporting</h3>
-  
+
   Supporting text styles are used for auxiliary content such as helper text, labels, code snippets, and underlined text. These styles provide additional context or emphasis while maintaining clear visual hierarchy through size, weight, and decoration variations.
-  
+
   <HelperStyle name="support-text" description="support-text is a supporting text style for helper messages, hints, or contextual information. It is designed for subtle emphasis, using a lighter weight and smaller size to provide guidance without distracting from primary content." />
   <HelperStyle name="caption" description="caption is a caption style for image descriptions, charts, or supplementary content. It delivers clear, concise information in a compact format, supporting accessibility and context for visual elements." />
   <HelperStyle name="helper" description="helper is a helper text style for form fields or instructions. It ensures users understand context and actions, using a gentle tone and size to support usability and reduce confusion." />
-  
+
   <h3>Link</h3>
-  
+
   Link styles are used for interactive text elements that navigate users to different pages or sections. They are designed to be visually distinct and easily identifiable as clickable elements, often through color and underline decoration.
-  
+
   <HelperStyle name="link" description="link is the standard link style for navigation and interactive text. It is visually distinct and accessible, using color and underline decoration to signal interactivity and ensure users can easily identify clickable elements." />
   <HelperStyle name="link-md" description="link-md is a medium link style for prominent clickable elements. It balances visibility and subtlety, making it suitable for primary actions or navigation within content blocks." />
   <HelperStyle name="link-sm" description="link-sm is a small link style for secondary actions or compact UI. It maintains clarity and clickability even at reduced sizes, supporting efficient navigation in dense layouts." />

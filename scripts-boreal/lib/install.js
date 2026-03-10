@@ -4,47 +4,27 @@ import { Cmd } from './cmd.js';
 import { Logger } from './logger.js';
 
 /**
- * Resolve the node_modules path for a given directory.
- * @param {string} cwd
- * @returns {string}
- */
-const nodeModulesPath = cwd => path.join(cwd, 'node_modules');
-
-/**
- * Check whether node_modules exists in a directory.
- * @param {string} cwd
- * @returns {boolean}
- */
-export const hasNodeModules = cwd => fs.existsSync(nodeModulesPath(cwd));
-
-/**
- * Ensure dependencies are installed for a directory.
- * @param {string} cwd
- * @returns {Promise<void>}
- */
-export const ensureNodeModules = async cwd => {
-  if (hasNodeModules(cwd)) return;
-
-  Logger.log('info', `Installing dependencies in ${path.basename(cwd)}...`);
-  await Cmd.run('npm', ['install'], cwd);
-  Logger.log('success', `Dependencies installed in ${path.basename(cwd)}`);
-};
-
-/**
- * Install a local pack into a directory, optionally uninstalling a package name first.
+ * Install a local pack into a directory, optionally removing a package name first.
  * @param {string} cwd
  * @param {string} pack
  * @param {string} [uninstallName]
  * @returns {Promise<void>}
  */
 export const installPack = async (cwd, pack, uninstallName) => {
-  if (!hasNodeModules(cwd)) {
-    await ensureNodeModules(cwd);
-  } else if (uninstallName) {
-    Logger.log('info', `Uninstall pack ${uninstallName}...`);
-    await Cmd.run('npm', ['uninstall', uninstallName], cwd);
+  if (uninstallName) {
+    Logger.log('info', `Removing ${uninstallName}...`);
+    try {
+      await Cmd.run('pnpm', ['remove', uninstallName], cwd);
+    } catch {
+      Logger.log('info', `${uninstallName} not found, skipping removal.`);
+    }
+    const packageDir = path.join(cwd, 'node_modules', uninstallName);
+    if (fs.existsSync(packageDir)) {
+      fs.rmSync(packageDir, { recursive: true, force: true });
+      Logger.log('info', `Cleared ${uninstallName} from node_modules`);
+    }
   }
 
-  Logger.log('info', `Install pack ${pack}...`);
-  await Cmd.run('npm', ['install', pack], cwd);
+  Logger.log('info', `Installing ${pack}...`);
+  await Cmd.run('pnpm', ['add', `./${pack}`, '--force'], cwd);
 };
