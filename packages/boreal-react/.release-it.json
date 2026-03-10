@@ -13,6 +13,7 @@
     "publishPath": ".",
     "tag": "alpha"
   },
+  "preRelease": "alpha",
   "github": {
     "release": false
   },
