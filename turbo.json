@@ -4,7 +4,13 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "loader/**", "components-build/**", ".stencil/**", "custom-elements.json"],
+      "outputs": [
+        "dist/**",
+        "loader/**",
+        "components-build/**",
+        ".stencil/**",
+        "custom-elements.json"
+      ],
       "cache": true
     },
     "test": {
@@ -38,6 +44,18 @@
     "dev": {
       "dependsOn": ["^build"],
       "persistent": true,
+      "cache": false
+    },
+    "validate:pack:react": {
+      "dependsOn": ["@telesign/boreal-web-components#build"],
+      "cache": false
+    },
+    "validate:pack:vue": {
+      "dependsOn": ["@telesign/boreal-web-components#build"],
+      "cache": false
+    },
+    "validate:pack:angular": {
+      "dependsOn": ["@telesign/boreal-web-components#build"],
       "cache": false
     }
   }

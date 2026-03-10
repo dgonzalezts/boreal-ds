@@ -48,7 +48,8 @@
     "scripts/postbuild.js"
   ],
   "scripts": {
-    "build": "stencil build && node scripts/postbuild.js",
+    "build": "stencil build",
+    "postbuild": "node scripts/postbuild.js",
     "dev": "stencil build --dev --watch --serve",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",
