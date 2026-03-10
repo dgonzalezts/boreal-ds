@@ -61,10 +61,13 @@ export class CSSGenerator {
     const primitives = this.processor.flattenPrimitiveTokens(this.primitiveTokens);
     const rootBlock = `:root {\n${this.processor.generateCSSProperties(primitives)}\n}`;
 
-    let globalCSS = rootBlock;
+    // Split @import from other global styles so imports go first
+    let imports = '';
+    let globalUtilityStyles = '';
     if (additionalStyles) {
-      const { imports, rest } = this.splitImports(additionalStyles);
-      globalCSS = [imports, rootBlock, rest].filter(Boolean).join('\n\n');
+      const split = this.splitImports(additionalStyles);
+      imports = split.imports;
+      globalUtilityStyles = split.rest;
     }
 
     const themesCSS = themes
@@ -77,7 +80,10 @@ export class CSSGenerator {
       })
       .join('\n\n');
 
-    const bundleCSS = `${globalCSS}\n\n${themesCSS}`;
+    // Order: @imports → :root → [data-theme] → global utility styles
+    const bundleCSS = [imports, rootBlock, themesCSS, globalUtilityStyles]
+      .filter(Boolean)
+      .join('\n\n');
     await this.writeFile(join(this.options.outputDir, 'css', 'boreal.css'), bundleCSS);
     console.log('✓ Generated boreal.css (complete bundle)');
   }
