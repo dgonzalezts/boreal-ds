@@ -9,8 +9,6 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
 /**
  *  Button component for user interactions, form submissions, supporting various styles, sizes, and states.
  *
- * @element bds-button
- *
  * @summary A versatile button component that can be customized with different colors, sizes, variants and states to fit various use cases in the application.
  * @slot - The content of the button, typically text or an icon.
  * @slot icon - Content to show button at the begining of the button
