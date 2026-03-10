@@ -426,7 +426,8 @@ export const HelperWithError: Story = {
 };
 
 /**
- * The Link variant is used to create interactive text elements that navigate to new content. For semantic HTML, it is recommended to set the `element` attribute to `a`.
+ * The Link variant is used to create interactive text elements that navigate to new content.\
+ * For semantic HTML, the `element` attribute is always set to `a`.
  */
 export const Link: Story = {
   args: {
