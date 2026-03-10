@@ -1,5 +1,5 @@
 <!doctype html>
-<html dir="ltr" lang="en" data-theme="telesign">
+<html dir="ltr" lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -17,47 +17,6 @@
       Add component examples below for manual testing during local development.
       Changes here are not shipped; this file is excluded from the build output.
     -->
-  <bds-button label="Button component" is-loading>Default</bds-button>
-  <bds-button label="Button component" color="success" variant="outline" is-loading>
-    <i class="bds-icon-someone-comes-in" slot="icon"></i>
-  </bds-button>
-  <bds-button label="Button component" color="primary">Primary</bds-button>
-  <bds-button label="Button component" has-disclosure></bds-button>
-  <bds-button label="Button component" color="primary">
-    Primary
-    <span slot="badge">0</span>
-  </bds-button>
-  <bds-button label="Button component" color="primary">
-    <i class="bds-icon-someone-comes-in" slot="icon"></i>
-  </bds-button>
-  <bds-button color="success" name="submit" label="Submit component" has-disclosure>
-    <i class="bds-icon-someone-comes-in" slot="icon"></i>
-    Success
-    <span slot="badge">0</span>
-  </bds-button>
-
-  <bds-button color="error" name="submit" label="Submit component">Errror</bds-button>
-
-  <form id="test-form">
-    <input type="text" name="name" required />
-    <input type="email" name="email" required />
-    <bds-button type="submit" name="submit" label="Submit component">Submit</bds-button>
-
-    <bds-button color="primary" label="Button component" id="button-clickable">Button</bds-button>
-    <bds-button color="success" type="reset" label="Reset Form">reset</bds-button>
-  </form>
-  <script>
-    document.getElementById('button-clickable')?.addEventListener('click', (event) => {
-      console.log('Custom click event received:', event);
-    });
-    document.getElementById('test-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      console.log('Form submitted with custom event:', name, email);
-    });
-  </script>
 </body>
 
 </html>

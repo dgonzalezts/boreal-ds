@@ -62,7 +62,10 @@ export const config: Config = {
       // $boreal-* variables are available without a per-file import.
       injectGlobalPaths: [
         require.resolve('@telesign/boreal-style-guidelines/stencil'),
-        require.resolve('@telesign/boreal-style-guidelines'),
+        // Only resolve css variables in development since they are not needed for production builds
+        process.env.NODE_ENV !== 'production'
+          ? require.resolve('@telesign/boreal-style-guidelines')
+          : '',
       ],
     }),
   ],
