@@ -12,7 +12,8 @@
     "publish": true,
     "publishPath": ".",
     "tag": "alpha",
-    "publishCommand": "pnpm publish --no-git-checks"
+    "publishPackageManager": "pnpm",
+    "publishArgs": ["--no-git-checks"]
   },
   "preRelease": "alpha",
   "github": {
