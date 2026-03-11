@@ -30,7 +30,7 @@ describe('bds-button basics props', () => {
   it('should render with isLoading attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
-      html: `<bds-button name="TestButton" is-loading="true">Button</bds-button>`,
+      html: `<bds-button name="TestButton" loading="true">Button</bds-button>`,
     });
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');
@@ -42,7 +42,7 @@ describe('bds-button basics props', () => {
   it('should render with hasDisclosure attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
-      html: `<bds-button name="TestButton" has-disclosure="true">Button</bds-button>`,
+      html: `<bds-button name="TestButton" disclosure="true">Button</bds-button>`,
     });
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');

@@ -39,7 +39,7 @@ describe('bds-button events', () => {
   it('should not click loading button', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
-      html: `<bds-button name="TestButton" is-loading="true">Button</bds-button>`,
+      html: `<bds-button name="TestButton" loading="true">Button</bds-button>`,
     });
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');
