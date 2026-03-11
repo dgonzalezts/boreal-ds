@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.0-alpha.2](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/compare/@telesign/boreal-react@0.1.0-alpha.1...@telesign/boreal-react@0.1.0-alpha.2) (2026-03-11)
+
+### Bug Fixes
+
+* **release:** use publishPackageManager pnpm to replace workspace protocol ([b0d47e0](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/b0d47e04e6df8809361c4d73ac3251b7c130b374))
+
 ## [0.1.0-alpha.1](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/compare/@telesign/boreal-react@0.1.0-alpha.0...@telesign/boreal-react@0.1.0-alpha.1) (2026-03-10)
 
 ### Bug Fixes
