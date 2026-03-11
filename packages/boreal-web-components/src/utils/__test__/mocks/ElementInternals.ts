@@ -1,5 +1,5 @@
 /**
- * @fileoverview Mock implementation of ElementInternals for testing purposes.
+ * @file Mock implementation of ElementInternals for testing purposes.
  * simulates the behavior of ElementInternals in a testing environment, allowing components
  * that rely on form association and validation to be tested without a real browser environment.
  */
