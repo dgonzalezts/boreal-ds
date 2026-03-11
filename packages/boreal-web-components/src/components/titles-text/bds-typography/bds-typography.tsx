@@ -183,7 +183,7 @@ export class BdsTypography implements ITypography {
     return (
       <Host class="bds-typography">
         <TagName class={classes} style={{ webkitLineClamp: this.maxLines }} {...attributes}>
-          <slot data-tooltip-trigger></slot>
+          <slot></slot>
           {this.isRequired && isRequired && (
             <em class="bds-typography__required-indicator" aria-hidden="true">
               *
