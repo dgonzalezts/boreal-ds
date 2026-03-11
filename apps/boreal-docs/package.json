@@ -10,6 +10,7 @@
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,json,css,md,mdx}\"",
+    "chromatic": "chromatic --exit-zero-on-changes --storybook-build-dir=storybook-static",
     "generate:story": "plop story",
     "generate": "plop"
   },
@@ -30,6 +31,7 @@
     "@types/react": "^19.2.7",
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
+    "chromatic": "^15.2.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-storybook": "^10.1.11",
