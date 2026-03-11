@@ -1,6 +1,4 @@
-@import url('../../../../../boreal-styleguidelines/dist/css/boreal.css');
-
-bds-tooltip {
+:root {
   --tooltip-arrow-size: var(--boreal-spacing-s);
   --tooltip-width: 320px;
 }

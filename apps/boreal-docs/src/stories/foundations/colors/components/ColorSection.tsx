@@ -10,7 +10,11 @@ export const ColorSection = ({ name, description, values, prefix = '' }: ColorSe
   return (
     <div className="color-item">
       <h5 className="color-item__title">{capitalize(name)}</h5>
-      {description && <div className="color-item__description">{description}</div>}
+      {description && (
+        <div className="color-item__description">
+          <p>{description}</p>
+        </div>
+      )}
       <div className="color-item__container">
         {values.map((colorName: string) => {
           const isAlphaColor = typeof prefix === 'string' && prefix.includes('alpha');

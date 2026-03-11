@@ -10,9 +10,12 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
-    "create:pack-vue": "node ./bin/publish.js vue dev",
-    "create:pack-react": "node ./bin/publish.js react dev",
-    "create:pack-angular": "node ./bin/publish.js angular dev"
+    "validate:pack:react": "node ./bin/publish.js react --ci",
+    "validate:pack:vue": "node ./bin/publish.js vue --ci",
+    "validate:pack:angular": "node ./bin/publish.js angular --ci",
+    "dev:pack:react": "node ./bin/publish.js react",
+    "dev:pack:vue": "node ./bin/publish.js vue",
+    "dev:pack:angular": "node ./bin/publish.js angular"
   },
   "author": "",
   "license": "ISC",

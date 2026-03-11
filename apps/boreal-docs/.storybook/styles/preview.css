@@ -16,40 +16,40 @@
   color: black;
 }
 
-.sbdocs-content ul :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content ul:not([class^='bds-'], [class*=' bds-']) {
   padding-left: 30px;
   list-style: disc;
 }
 
-.sbdocs-content li :not([class^='bds-'], [class*=' bds-']) {
-  font-size: var(--boreal-typography-font-size-s);
+.sbdocs-content li:not([class^='bds-'], [class*=' bds-']) {
+  font-size: var(--boreal-typography-font-size-sm);
 }
 
-.sbdocs-content a :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content a:not([class^='bds-'], [class*=' bds-']) {
   color: var(--boreal-theme-primary-base);
   font-size: inherit;
 }
 
-.sbdocs-content h1 :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content h1:not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-4xl);
   line-height: 48px;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.sbdocs-content h2 :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content h2:not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-3xl);
   line-height: 40px;
   font-weight: bold;
 }
 
-.sbdocs-content h3 :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content h3:not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-2xl);
   line-height: 36px;
   font-weight: 600;
 }
 
-.sbdocs-content h4 :not([class^='bds-'], [class*=' bds-']) {
+.sbdocs-content h4:not([class^='bds-'], [class*=' bds-']) {
   font-size: var(--boreal-typography-font-size-xl);
   line-height: 32px;
   font-weight: 600;
@@ -82,7 +82,6 @@
 
 /*
  * Preview styles for color token items
- * Reference: https://telesign.github.io/colibri-docs/?path=/docs/foundation-colors--overview
 */
 
 div.token-item,
@@ -103,8 +102,9 @@ div.color-item {
 .color-item__title {
   display: block;
   margin-bottom: 0.5rem;
-  font-size: var(--boreal-typography-font-size-l);
+  font-size: var(--boreal-typography-font-size-xl);
   font-family: var(--boreal-typography-font-family-primary);
+  font-weight: var(--boreal-typography-font-weight-semibold);
 }
 
 .color-item__description {
@@ -132,7 +132,7 @@ div.color-item {
   display: flex;
   width: 100%;
   height: 3.5rem;
-  border: 1px solid var(--boreal-neutral-200);
+  border: 1px solid var(--boreal-color-proximus-neutral-neutral-400, #ccc);
   margin-bottom: 0.25rem;
   border-radius: 4px;
 }
@@ -156,7 +156,7 @@ div.spacing-item__variable-name {
 
 .color-item__color-value {
   font-size: 0.75rem;
-  color: var(--boreal-color-text-secondary, #666);
+  color: var(--boreal-text-default-light, #666);
   margin: 0;
   text-transform: uppercase;
 }
@@ -164,10 +164,10 @@ div.spacing-item__variable-name {
 .checkerboard {
   position: relative;
   background-image:
-    linear-gradient(45deg, var(--boreal-neutral-300) 25%, transparent 25%),
-    linear-gradient(-45deg, var(--boreal-neutral-300) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--boreal-neutral-300) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--boreal-neutral-300) 75%);
+    linear-gradient(45deg, var(--boreal-base-light) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--boreal-base-light) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--boreal-base-light) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--boreal-base-light) 75%);
   background-size: 16px 16px;
   background-position:
     0 0,
@@ -191,6 +191,10 @@ div.spacing-item__variable-name {
   font-size: 1rem;
 }
 
+.typography-preview.secondary p {
+  font-family: inherit;
+}
+
 .typography-preview p {
   margin: 0.35rem 0;
   font-family: inherit;
@@ -210,7 +214,7 @@ div.spacing-item__variable-name {
 }
 
 .character-item__title {
-  font-size: var(--boreal-typography-font-size-l);
+  font-size: var(--boreal-typography-font-size-lg);
   font-family: var(--boreal-typography-font-family-primary);
   margin: var(--boreal-spacing-l) 0;
 }

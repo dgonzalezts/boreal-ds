@@ -13,8 +13,6 @@ import { FILENAME, getAttributesByTag, VARIANT_CONFIG } from './utils/bds-typogr
 /**
  * Typography component for displaying text with various styles, sizes, and interactive features.
  *
- * @element bds-typography
- *
  * @summary A comprehensive typography component that supports multiple text variants, sizes, alignments, states, and link functionality.
  *
  * @slot - The text displayed in the typography.
@@ -125,14 +123,14 @@ export class BdsTypography implements ITypography {
 
   @Watch('href')
   async updateSanitizedHref() {
-    if (this.getTagName === 'a' && this.href) {
+    if (this.getTagName === 'a' && this.href !== null) {
       const { sanitizeUrl } = await import('@braintree/sanitize-url');
       this.sanitizedHref = sanitizeUrl(this.href);
     } else this.sanitizedHref = '';
   }
 
   async componentWillLoad() {
-    if (this.getTagName === TAG_ELEMENT.A && this.href) await this.updateSanitizedHref();
+    if (this.getTagName === TAG_ELEMENT.A && this.href !== null) await this.updateSanitizedHref();
 
     this.inheritedAttributes = {
       ...inheritAriaAttributes(this.el),
@@ -167,7 +165,7 @@ export class BdsTypography implements ITypography {
       'bds-typography--required': !!(config?.isRequired && this.isRequired),
       'bds-typography--ellipsis': this.ellipsis && this.maxLines <= 1,
       'bds-typography--ellipsis-multiline': this.ellipsis && this.maxLines > 1,
-      [this.customClass]: !!this.customClass,
+      [this.customClass]: this.customClass !== '',
     };
   }
 

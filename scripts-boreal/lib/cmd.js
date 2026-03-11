@@ -31,9 +31,9 @@ export class Cmd {
    */
   static async tgzName(sourceDir) {
     try {
-      const { stdout } = await execa('npm', ['pack', '--silent'], { cwd: sourceDir });
-      const tgzName = stdout.trim();
-      return tgzName;
+      const { stdout } = await execa('pnpm', ['pack', '--json'], { cwd: sourceDir });
+      const { filename } = JSON.parse(stdout);
+      return filename;
     } catch (error) {
       Logger.log('error', `Failed to pack ${path.basename(sourceDir)}: ${error.message}`);
       throw error;
