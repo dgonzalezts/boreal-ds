@@ -21,8 +21,8 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @attr {string} color - The color theme of the button, which can be 'default', 'primary', 'success', or 'danger'. Default is 'default'.
  * @attr {string} variant - The visual style of the button, which can be 'default', 'outline', or 'plain'. Default is 'default'.
  * @attr {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
- * @attr {boolean} isLoading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
- * @attr {boolean} hasDisclosure - Indicates if the button should show a chevron down at the end of the content.
+ * @attr {boolean} loading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
+ * @attr {boolean} disclosure - Indicates if the button should show a chevron down at the end of the content.
  *
  * @property {string} label - The accessible name for the button, used for screen readers. It should be provided by the user for accessibility purposes.
  * @property {boolean} disabled - Disables the button when true, preventing user interaction and applying disabled styles.
@@ -31,8 +31,8 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @property {string} color - The color theme of the button, which can be 'default', 'primary', 'success', or 'danger'. Default is 'default'.
  * @property {string} variant - The visual style of the button, which can be 'default', 'outline', or 'plain'. Default is 'default'.
  * @property {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
- * @property {boolean} isLoading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
- * @property {boolean} hasDisclosure - Indicates if the button should show a chevron down at the end of the content.
+ * @property {boolean} loading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
+ * @property {boolean} disclosure - Indicates if the button should show a chevron down at the end of the content.
  *
  * @default 'button' - Default type value
  * @default 'default' - Default color value
@@ -42,8 +42,8 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  * @default false - Default disabled value
  * @default '' - Default label value
  * @default '' - Default name value
- * @default false - Default isLoading value
- * @default false - Default hasDisclosure value
+ * @default false - Default loading value
+ * @default false - Default disclosure value
  */
 @Component({
   tag: 'bds-button',
@@ -79,11 +79,11 @@ export class BdsButton implements IButton {
   @Prop() @Validate(Object.values(BUTTON_SIZES), BUTTON_SIZES.MEDIUM) readonly size: IButton['size'] =
     BUTTON_SIZES.MEDIUM;
 
-  /** isLoading is a boolean attribute. Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false. */
-  @Prop() readonly isLoading: IButton['isLoading'] = false;
+  /** loading is a boolean attribute. Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false. */
+  @Prop() readonly loading: IButton['loading'] = false;
 
-  /** hasDisclosure is a boolean attribute. Used to show a chevron down at the of the content */
-  @Prop() readonly hasDisclosure: IButton['hasDisclosure'] = false;
+  /** disclosure is a boolean attribute. Used to show a chevron down at the of the content */
+  @Prop() readonly disclosure: IButton['disclosure'] = false;
 
   /** variable to store local HTMLElement */
   @Element() el!: HTMLBdsButtonElement;
@@ -121,7 +121,7 @@ export class BdsButton implements IButton {
     event.preventDefault();
     event.stopPropagation();
 
-    if (this.disabled || this.isLoading) return;
+    if (this.disabled || this.loading) return;
 
     if (this.type === BUTTON_TYPES.SUBMIT || this.type === BUTTON_TYPES.RESET) {
       this.proccessFormClick();
@@ -155,7 +155,7 @@ export class BdsButton implements IButton {
     return {
       'bds-button': true,
       'bds-button--is-disabled': this.disabled,
-      'bds-button--is-loading': this.isLoading,
+      'bds-button--is-loading': this.loading,
       [`bds-button--state-${this.currentState}`]: true,
       [`bds-button--${this.color}`]: true,
       [`bds-button--var-${this.variant}`]: true,
@@ -187,7 +187,7 @@ export class BdsButton implements IButton {
           <span class="bds-button__content-badge">
             <slot name="badge"></slot>
           </span>
-          {this.hasDisclosure && (
+          {this.disclosure && (
             <span class="bds-button__content-icon">
               <i class="bds-icon-chevron-down"></i>
             </span>
