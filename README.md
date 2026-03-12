@@ -330,6 +330,7 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |
 | `pnpm release:vue`        | `--filter boreal-vue run release`                 | Release `@telesign/boreal-vue` via release-it                                                 |
 | `pnpm release:all`        | `release:styles → release:wc → validate:all → release:react → release:vue` | Release all packages in dependency order                                 |
+| `pnpm deploy:docs`        | `turbo build --filter=@telesign/boreal-docs... && chromatic`                | Build Storybook via Turborepo and publish to Chromatic (requires `.env`) |
 
 To run a script for a single package only:
 

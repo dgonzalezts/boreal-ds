@@ -14,6 +14,7 @@ Storybook-based documentation system for the Boreal Component Library by Proximu
 - [Type System](#type-system)
 - [Utilities](#utilities)
 - [Development](#development-1)
+- [Deployment](#deployment)
 - [Best Practices](#best-practices)
 - [Contributing](#contributing)
 
@@ -81,6 +82,9 @@ pnpm format
 
 # Check code formatting
 pnpm format:check
+
+# Publish to Chromatic (requires CHROMATIC_PROJECT_TOKEN in .env)
+pnpm chromatic
 ```
 
 ### Your First Story
@@ -770,13 +774,46 @@ Generates static site in `storybook-static/`:
 - Asset fingerprinting
 - Ready for deployment
 
-**Deployment targets:**
+**Deployment target:** [Chromatic](https://www.chromatic.com) — see [Deployment](#deployment) below.
 
-- GitHub Pages
-- Netlify
-- Vercel
-- AWS S3
-- Any static hosting
+## Deployment
+
+Storybook is published to **[Chromatic](https://www.chromatic.com)** — a Storybook-native hosting and visual testing service. Turborepo owns the build step; Chromatic receives the pre-built `storybook-static/` output and handles upload and hosting.
+
+### Setup
+
+1. Create a `.env` file at the **monorepo root** (never inside `apps/boreal-docs/`):
+
+```bash
+# .env — gitignored, never commit this file
+CHROMATIC_PROJECT_TOKEN=your-token-here
+```
+
+To retrieve your project token: log in to [chromatic.com](https://www.chromatic.com) → **Manage → Configure** → copy the token under the **Project** section.
+
+### Deploy
+
+From the **monorepo root**:
+
+```bash
+pnpm deploy:docs
+```
+
+This runs in two steps:
+
+1. `turbo run build --filter=@telesign/boreal-docs...` — builds `boreal-style-guidelines → boreal-web-components → boreal-docs` in dependency order via Turborepo
+2. `chromatic --storybook-build-dir=storybook-static` — uploads the pre-built output to Chromatic
+
+Chromatic outputs:
+
+- A **build URL** unique to this commit (permanent link)
+- A **branch URL** that always points to the latest build on the current branch
+
+### Why not `pnpm chromatic` directly?
+
+Running `pnpm chromatic` from inside `apps/boreal-docs/` bypasses Turborepo and may fail if `boreal-web-components` has not been built first. Always use `pnpm deploy:docs` from the monorepo root.
+
+---
 
 ## Best Practices
 
