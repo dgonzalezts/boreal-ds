@@ -27,7 +27,7 @@ describe('bds-button basics props', () => {
     expect(button.getAttribute('type')).toBe('submit');
   });
 
-  it('should render with isLoading attribute', async () => {
+  it('should render with loading attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
       html: `<bds-button name="TestButton" loading="true">Button</bds-button>`,
@@ -39,7 +39,7 @@ describe('bds-button basics props', () => {
     expect(button.classList.contains('bds-button--is-loading')).toBe(true);
   });
 
-  it('should render with hasDisclosure attribute', async () => {
+  it('should render with disclosure attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
       html: `<bds-button name="TestButton" disclosure="true">Button</bds-button>`,

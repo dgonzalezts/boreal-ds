@@ -20,11 +20,12 @@ describe('bds-button a11y', () => {
   it('should render with disabled attribute', async () => {
     const page = await newSpecPage({
       components: [BdsButton],
-      html: `<bds-button name="TestButton" disabled>Button</bds-button>`,
+      html: `<bds-button name="TestButton" disabled="true">Button</bds-button>`,
     });
     const root = page.root as HTMLElement;
     const button = root.querySelector('button');
     assertExists(button, 'Button element not found');
+    expect(button.hasAttribute('disabled')).toBe(true);
     expect(button.getAttribute('aria-disabled')).not.toBeNull();
   });
 
