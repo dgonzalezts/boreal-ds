@@ -35,7 +35,7 @@
     "validate:pack:vue": "turbo run validate:pack:vue --filter=scripts-boreal",
     "validate:pack:angular": "turbo run validate:pack:angular --filter=scripts-boreal",
     "validate:all": "pnpm run validate:pack:react",
-    "deploy:docs": "turbo run build --filter=@telesign/boreal-docs... && pnpm --filter @telesign/boreal-docs run chromatic"
+    "deploy:docs": "turbo run build --filter=@telesign/boreal-docs... && dotenv -- pnpm --filter @telesign/boreal-docs run chromatic"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.4.1",
@@ -44,6 +44,7 @@
     "@release-it/conventional-changelog": "^10.0.5",
     "@wc-toolkit/changelog": "^1.0.2",
     "commitizen": "^4.3.1",
+    "dotenv-cli": "^11.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "release-it": "^19.2.4",
