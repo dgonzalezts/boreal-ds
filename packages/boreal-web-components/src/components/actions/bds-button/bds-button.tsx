@@ -11,7 +11,7 @@ import { emitEvent } from '@/utils/helpers/eventEmitter';
  *
  * @summary A versatile button component that can be customized with different colors, sizes, variants and states to fit various use cases in the application.
  * @slot - The content of the button, typically text or an icon.
- * @slot icon - Content to show button at the begining of the button
+ * @slot icon - Content to show an icon at the begining of the button
  * @slot badge - Slot to place a badge component
  *
  * @attr {string} label - The accessible name for the button, used for screen readers. It should be provided by the user for accessibility purposes.
