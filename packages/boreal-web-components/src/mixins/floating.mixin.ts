@@ -155,6 +155,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
       if (this.isVisible) return;
 
       if (!this.onBeforeShow(target)) return;
+
       this.showElement();
       this.onAfterShow(target);
     }

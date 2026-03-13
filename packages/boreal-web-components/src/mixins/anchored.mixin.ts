@@ -127,7 +127,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
 
     get hooks(): AnchoredHooks {
       return {
-        ...this.hooks,
+        ...super.hooks,
       };
     }
 
@@ -307,14 +307,10 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
     }
 
     subscribeToTrigger(trigger: Element) {
-      const part = document.createAttribute('part');
-      const ariaExpanded = document.createAttribute('aria-expanded');
-      const ariaDescribedBy = document.createAttribute('aria-describedby');
-      ariaExpanded.value = 'false';
-      part.value = 'tooltip-trigger';
-      ariaDescribedBy.value = 'tooltip-content';
-      trigger.setAttributeNode(part);
-      trigger.setAttributeNode(ariaExpanded);
+      trigger.setAttribute('part', 'tooltip-trigger');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
+
       trigger.addEventListener('mouseenter', () => this.show());
       trigger.addEventListener('mouseleave', (e: MouseEvent) => this.hide(e.target as HTMLElement));
     }
