@@ -32,10 +32,11 @@
     "prepare": "husky",
     "commit": "cz",
     "dev:pack:react": "turbo run build --filter=...@telesign/boreal-web-components && pnpm --filter scripts-boreal run dev:pack:react",
+    "dev:pack:vue": "turbo run build --filter=...@telesign/boreal-web-components && pnpm --filter scripts-boreal run dev:pack:vue",
     "validate:pack:react": "turbo run validate:pack:react --filter=scripts-boreal",
     "validate:pack:vue": "turbo run validate:pack:vue --filter=scripts-boreal",
     "validate:pack:angular": "turbo run validate:pack:angular --filter=scripts-boreal",
-    "validate:all": "pnpm run validate:pack:react",
+    "validate:all": "pnpm run validate:pack:react && pnpm run validate:pack:vue",
     "deploy:docs": "turbo run build --filter=@telesign/boreal-docs... && dotenv -- pnpm --filter @telesign/boreal-docs run chromatic"
   },
   "devDependencies": {
