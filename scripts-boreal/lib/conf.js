@@ -22,7 +22,7 @@ export const CONFIG = {
   vue: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-vue'),
     wrapperName: '@telesign/boreal-vue',
-    app: path.resolve(ROOT, 'examples/app-vue-vite'),
+    app: path.resolve(ROOT, 'examples/vue-testapp'),
   },
   react: {
     wrapperRoute: path.resolve(ROOT, 'packages/boreal-react'),
