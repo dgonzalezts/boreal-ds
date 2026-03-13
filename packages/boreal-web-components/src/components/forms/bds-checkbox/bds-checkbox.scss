@@ -66,7 +66,7 @@ $checkbox-size: 16px;
 // ---------------------------------------------------------------------------
 
 :host(:hover) .bds-checkbox__box {
-  border-color: $boreal-stroke-default;
+  border-color: $boreal-stroke-default-ink;
 }
 
 :host(:focus-visible) .bds-checkbox__box {
@@ -76,7 +76,7 @@ $checkbox-size: 16px;
 }
 
 :host(:active) .bds-checkbox__box {
-  border-color: $boreal-stroke-default;
+  border-color: $boreal-stroke-default-ink;
   background: $boreal-bg-neutral;
 }
 
