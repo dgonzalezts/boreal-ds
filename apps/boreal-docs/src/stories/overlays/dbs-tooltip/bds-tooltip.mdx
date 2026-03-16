@@ -1,0 +1,79 @@
+import * as BdsTooltipStories from './bds-tooltip.stories';
+import { Subtitle, Title, Meta, ArgTypes, Stories } from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta of={BdsTooltipStories} />
+Tooltips display additional information upon hover, focus, or optionally click. The information included should be contextual, helpful, and nonessential while providing that extra ability to communicate and give clarity to a user.
+
+<Title of={BdsTooltipStories} />
+
+<Subtitle>How to use it</Subtitle>
+
+1. Import the component into your project.
+
+```ts
+import { BdsTooltip } from '@telesign/boreal-web-components';
+```
+
+2. Use the `<bds-tooltip>` tag to display the component in your HTML. The tooltip will be subscribed to the father element. You must use a wrapper element to display the tooltip, it one gonna be the trigger on mouse hover.
+```html
+<span>
+    Some content
+    <bds-tooltip
+        multiline
+        id="withTypography"
+    >
+        Some text here
+    </bds-tooltip>
+</span>
+
+<script>
+    const withTypography = document.getElementById('withTypography');
+    withTypography.floatingOptions = {
+        placement: 'bottom',
+        stayOnHover: true,
+        hideArrow: true
+    } // Other floatingOptions values;
+</script>
+```
+
+<Subtitle>When to use it</Subtitle>
+
+The `bds-tooltip` component is a small pop-up window that provides additional information about an element when the user hovers over it or touches it. Tooltips are useful for providing explanations, definitions or details without cluttering the main interface. Here are some common use cases for the Tooltip component:
+
+- **Icon Labels:** 
+    - **Icon Descriptions** When icons are used instead of text for buttons or options, a tooltip can provide the icon description to improve accessibility and user understanding.
+**Keyboard Shortcuts:** Show available keyboard shortcuts for actions that can be performed via icons.
+- **Form Field Explanations**
+    - **Input Fields:** Provide additional information or examples about what is expected in a specific input field.
+    - **Error Messages:** Explain why an input field is invalid when the user hovers over the field after an error message is displayed.
+- **Product Information**
+    - **Specifics:** On an e-commerce site, provide additional details or product specifications when hovering over the product name or image.
+    - **Special Offers:** Show additional offers or discounts available for a specific product.
+- **Navigation and Menus**
+    - **Menu Items:** Explain menu items that are not self-explanatory by providing a brief description or the purpose of the menu.
+    - **Submenus:** Indicate that a menu item has additional options or submenus available.
+- **Charts and Data Visualisations**
+    - **Data Details:** In interactive graphs, display specific details of the data point, such as exact values, percentages, or descriptions.
+    - **Axis Explanations:** Provide descriptions or units of measure for the axes of a chart.
+- **Interactive Elements**
+    - **Buttons and Controls:** Provide information about what a specific button or control does, especially if the action is not obvious.
+    - **Progress Indicators:** Explain the current status or purpose of a progress indicator.
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the Banner component.
+
+<Stories />
+
+<Subtitle>Accessibility</Subtitle>
+
+The Tooltip component is built with accessibility at its core. It uses the `popover` attribute to ensure proper stacking context and visibility management, while ARIA attributes keep assistive technologies informed at every lifecycle step.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsTooltipStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsTooltipStories.default} story="default">Default</LinkTo> section.

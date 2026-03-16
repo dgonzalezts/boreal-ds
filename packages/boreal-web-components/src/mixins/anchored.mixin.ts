@@ -308,7 +308,6 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
 
     subscribeToTrigger(trigger: Element) {
       trigger.setAttribute('part', 'tooltip-trigger');
-      trigger.setAttribute('aria-expanded', 'false');
       trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
 
       trigger.addEventListener('mouseenter', () => this.show());
