@@ -11,9 +11,6 @@ import scssLang from 'highlight.js/lib/languages/scss';
 import { toKebabCase } from '@/utils/formatters';
 import type { StylesOptions, DocsContainerPropsWithStore } from './types/config';
 
-import { defineCustomElements } from '@telesign/boreal-web-components/loader';
-defineCustomElements();
-
 import 'highlight.js/styles/atom-one-dark.css';
 import '@telesign/boreal-web-components/css/boreal.css';
 

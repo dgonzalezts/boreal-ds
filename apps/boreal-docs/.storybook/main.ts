@@ -3,15 +3,16 @@ import type { BuildOptions } from 'vite';
 import remarkGfm from 'remark-gfm';
 
 type RollupOnWarn = NonNullable<NonNullable<BuildOptions['rollupOptions']>['onwarn']>;
-import { createRequire } from 'module';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const require = createRequire(import.meta.url);
 
-const wcCssDir = dirname(require.resolve('@telesign/boreal-style-guidelines'));
+const packageDir = (id: string) => dirname(fileURLToPath(import.meta.resolve(id)));
+
+const wcCssDir = packageDir('@telesign/boreal-style-guidelines');
+const wcStencilDistDir = packageDir('@telesign/boreal-web-components');
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
@@ -32,7 +33,12 @@ const config: StorybookConfig = {
     },
   ],
   framework: '@storybook/web-components-vite',
-  staticDirs: ['./static', './styles', { from: wcCssDir, to: '/boreal-tokens' }],
+  staticDirs: [
+    './static',
+    './styles',
+    { from: wcCssDir, to: '/boreal-tokens' },
+    { from: wcStencilDistDir, to: '/boreal-wc' },
+  ],
   docs: {
     defaultName: 'Overview',
   },
@@ -44,6 +50,7 @@ const config: StorybookConfig = {
   previewHead: head => `
     ${head}
     <link rel="stylesheet" type="text/css" href="preview.css" />
+    <script type="module" src="boreal-wc/boreal-web-components.esm.js"></script>
     <script type="text/javascript">
       window.global = window;
     </script>

@@ -186,23 +186,7 @@ export const WithContentTitle: Story = {
     body: 'This banner includes a title and action buttons.',
     showActions: true,
   },
-  render: args => html`
-    <div style="width: 30%">
-      <bds-banner
-        variant="${args.variant}"
-        ?enable-close="${args.enableClose}"
-        ${args?.idComponent ? `idComponent=${args.idComponent}` : null}
-      >
-        <div slot="title">${args.title}</div>
-        <div>${args.body}</div>
-        ${args.showActions &&
-        html` <div slot="actions">
-          <button class="bds-banner__action-button">Button 1</button>
-          <button class="bds-banner__action-button">Button 2</button>
-        </div>`}
-      </bds-banner>
-    </div>
-  `,
+  render: renderBanner,
 };
 
 /**
