@@ -17,5 +17,25 @@
 
       Available themes for data-theme: connect | engage | protect | proximus
     -->
+      <bds-button label="Primary button" variant="outline" color="primary" id="boreal-bds">
+        Button
+      </bds-button>
+
+      <script>
+        // Example of dynamically changing themes
+        const themes = ['connect', 'engage', 'protect', 'proximus'];
+        let currentThemeIndex = 0;
+
+        setInterval(() => {
+          currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+          document.body.setAttribute('data-theme', themes[currentThemeIndex]);
+        }, 3000); // Change theme every 3 seconds
+
+        var button = document.getElementById('boreal-bds');
+        button.addEventListener('bdsButtonClick', function(event) {
+          console.log('Button clicked!', event);
+        });
+
+      </script>
   </body>
 </html>

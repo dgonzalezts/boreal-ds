@@ -16,7 +16,7 @@
 
   &:hover {
     background-color: $hover-bg;
-    box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15);
+    box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15); // TODO: Change to depth tokens, these aren't in the style guidelines
   }
 
   &:focus {
@@ -28,7 +28,8 @@
 
     box-shadow:
       0px 0px 0px 1px $boreal-ui-inverse,
-      0px 0px 0px 3px $boreal-stroke-focus;
+      // TODO: Change to depth tokens, these aren't in the style guidelines
+      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
   }
 
   &:active,
@@ -41,12 +42,13 @@
 
     $shadow:
       0px 0px 0px 1px $boreal-ui-inverse,
-      0px 0px 0px 3px $boreal-stroke-focus;
+      // TODO: Change to depth tokens, these aren't in the style guidelines
+      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
 
     @if $has-inset-shadow {
       $shadow:
         #{$shadow},
-        0 1px 2px 0 rgba(19, 19, 22, 0.15) inset;
+        0 1px 2px 0 rgba(19, 19, 22, 0.15) inset; // TODO: Change to depth tokens, these aren't in the style guidelines
     }
 
     box-shadow: $shadow;
@@ -89,7 +91,7 @@
       }
     }
 
-    /* TODO: Adjust badge styles when badge componentet are created */
+    /* TODO: Adjust badge styles when badge component is created */
     &-badge {
       &:empty {
         display: none;
@@ -105,7 +107,6 @@ bds-button {
 }
 
 .bds-button {
-  font-family: 'Inter', sans-serif !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +115,10 @@ bds-button {
   appearance: none;
   border: 1px solid transparent;
   height: fit-content;
-  transition: 0.3s all ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
   margin: $boreal-spacing-2xs $boreal-spacing-3xs;
   outline: none;
   font-weight: $boreal-typography-font-weight-semibold;
@@ -126,7 +130,7 @@ bds-button {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: $boreal-spacing-2xs;
   }
 
   &--is-loading {
@@ -158,7 +162,7 @@ bds-button {
       $boreal-spacing-3xs $boreal-spacing-2xs,
       $boreal-typography-line-height-xs,
       $boreal-typography-font-size-sm,
-      26px
+      26px // TODO: Ask if there is height tokes
     );
 
     .bds-button__content-badge {
@@ -172,7 +176,7 @@ bds-button {
       $boreal-spacing-2xs $boreal-spacing-1xs,
       $boreal-typography-line-height-sm,
       $boreal-typography-font-size-md,
-      32px
+      32px // TODO: Ask if there is height tokes
     );
   }
 
@@ -182,7 +186,7 @@ bds-button {
       $boreal-spacing-xs,
       $boreal-typography-line-height-md,
       $boreal-typography-font-size-lg,
-      44px
+      44px // TODO: Ask if there is height tokes
     );
   }
 
