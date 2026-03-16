@@ -1,6 +1,6 @@
 import type { Alignment } from '@/types/alignment';
 import type { TagElement, Variant } from './types';
-import type { State } from '@/types/states';
+import type { ComponentState } from '@/types/states';
 import type { Size } from '@/types/size';
 
 export interface ITypography {
@@ -12,7 +12,7 @@ export interface ITypography {
   tooltipText: string;
 
   // Applies to some variants
-  state: State;
+  state: ComponentState;
   size: Size;
 
   // Label

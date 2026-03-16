@@ -1,0 +1,342 @@
+@mixin bds-button-logic(
+  $text,
+  $bg,
+  $hover-bg,
+  $focus-bg: null,
+  $active-bg: null,
+  $border: transparent,
+  $text-dis: $boreal-text-disabled,
+  $bg-dis: $boreal-ui-inverse,
+  $border-dis: transparent,
+  $has-inset-shadow: false
+) {
+  color: $text;
+  background-color: $bg;
+  border-color: $border;
+
+  &:hover {
+    background-color: $hover-bg;
+    box-shadow: 0 1px 2px 0 rgba(19, 19, 22, 0.15); // TODO: Change to depth tokens, these aren't in the style guidelines
+  }
+
+  &:focus {
+    @if $focus-bg {
+      background-color: $focus-bg;
+    } @else {
+      background-color: $hover-bg;
+    }
+
+    box-shadow:
+      0px 0px 0px 1px $boreal-ui-inverse,
+      // TODO: Change to depth tokens, these aren't in the style guidelines
+      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
+  }
+
+  &:active,
+  &.bds-button--state-active {
+    @if $active-bg {
+      background-color: $active-bg;
+    } @else {
+      background-color: $hover-bg;
+    }
+
+    $shadow:
+      0px 0px 0px 1px $boreal-ui-inverse,
+      // TODO: Change to depth tokens, these aren't in the style guidelines
+      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
+
+    @if $has-inset-shadow {
+      $shadow:
+        #{$shadow},
+        0 1px 2px 0 rgba(19, 19, 22, 0.15) inset; // TODO: Change to depth tokens, these aren't in the style guidelines
+    }
+
+    box-shadow: $shadow;
+  }
+
+  &.bds-button--is-disabled,
+  &.bds-button--is-loading {
+    cursor: not-allowed;
+    color: $text-dis;
+    background-color: $bg-dis;
+    border-color: $border-dis;
+    box-shadow: none;
+  }
+
+  &.bds-button--is-loading {
+    &::after {
+      border-left-color: $text-dis;
+      border-bottom-color: $text-dis;
+    }
+  }
+}
+
+@mixin bds-button-size($font-size, $padding, $line-height, $icon-size, $height) {
+  border-radius: $boreal-radius-xs;
+  font-size: $font-size;
+  padding: $padding;
+  line-height: $line-height;
+  height: $height;
+
+  .bds-button__content {
+    padding: $boreal-spacing-3xs $boreal-spacing-2xs;
+
+    &-icon {
+      display: flex;
+      font-size: $icon-size;
+      line-height: $line-height;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    /* TODO: Adjust badge styles when badge component is created */
+    &-badge {
+      &:empty {
+        display: none;
+      }
+    }
+  }
+}
+
+bds-button {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.bds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid transparent;
+  height: fit-content;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  margin: $boreal-spacing-2xs $boreal-spacing-3xs;
+  outline: none;
+  font-weight: $boreal-typography-font-weight-semibold;
+  width: fit-content;
+  vertical-align: middle;
+
+  .bds-button__content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    gap: $boreal-spacing-2xs;
+  }
+
+  &--is-loading {
+    pointer-events: none;
+    position: relative;
+    color: transparent !important;
+
+    &::after {
+      position: absolute;
+      content: ' ';
+      box-sizing: inherit;
+      animation: rotateSpinner 0.5s linear infinite;
+      border-radius: 9999px;
+      display: block;
+      height: 1em;
+      width: 1em;
+      rotate: 45deg;
+      left: calc(50% - 0.5em);
+      top: calc(50% - 0.5em);
+      border: 3px solid;
+      border-right-color: transparent;
+      border-top-color: transparent;
+    }
+  }
+
+  &--size-small {
+    @include bds-button-size(
+      $boreal-typography-font-size-xs,
+      $boreal-spacing-3xs $boreal-spacing-2xs,
+      $boreal-typography-line-height-xs,
+      $boreal-typography-font-size-sm,
+      26px // TODO: Ask if there is height tokes
+    );
+
+    .bds-button__content-badge {
+      display: none;
+    }
+  }
+
+  &--size-medium {
+    @include bds-button-size(
+      $boreal-typography-font-size-sm,
+      $boreal-spacing-2xs $boreal-spacing-1xs,
+      $boreal-typography-line-height-sm,
+      $boreal-typography-font-size-md,
+      32px // TODO: Ask if there is height tokes
+    );
+  }
+
+  &--size-large {
+    @include bds-button-size(
+      $boreal-typography-font-size-md,
+      $boreal-spacing-xs,
+      $boreal-typography-line-height-md,
+      $boreal-typography-font-size-lg,
+      44px // TODO: Ask if there is height tokes
+    );
+  }
+
+  &.bds-button--var-default {
+    &.bds-button--default {
+      @include bds-button-logic(
+        $boreal-text-default,
+        $boreal-ui-inverse,
+        $boreal-ui-default-lighter,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--primary {
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-primary-base,
+        $boreal-ui-primary-dark,
+        $focus-bg: $boreal-ui-primary-base,
+        $active-bg: $boreal-ui-primary-dark,
+        $bg-dis: $boreal-ui-primary-light,
+        $text-dis: $boreal-text-inverse
+      );
+    }
+
+    &.bds-button--success {
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-success-base,
+        $boreal-ui-success-dark,
+        $focus-bg: $boreal-ui-success-base,
+        $active-bg: $boreal-ui-success-dark,
+        $bg-dis: $boreal-ui-success-light,
+        $text-dis: $boreal-text-inverse
+      );
+    }
+
+    &.bds-button--error {
+      @include bds-button-logic(
+        $boreal-text-inverse,
+        $boreal-ui-danger-base,
+        $boreal-ui-danger-dark,
+        $focus-bg: $boreal-ui-danger-base,
+        $active-bg: $boreal-ui-danger-dark,
+        $bg-dis: $boreal-ui-danger-light,
+        $text-dis: $boreal-text-inverse
+      );
+    }
+  }
+
+  &.bds-button--var-outline {
+    background-color: transparent;
+
+    &.bds-button--default {
+      @include bds-button-logic(
+        $boreal-text-default,
+        transparent,
+        $boreal-ui-default-lighter,
+        $border: $boreal-stroke-default-light,
+        $border-dis: $boreal-stroke-default-light
+      );
+    }
+
+    &.bds-button--primary {
+      @include bds-button-logic(
+        $boreal-text-primary-base,
+        transparent,
+        $boreal-ui-primary-lighter,
+        $border: $boreal-ui-primary-base,
+        $text-dis: $boreal-text-primary-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-primary-light
+      );
+    }
+
+    &.bds-button--success {
+      @include bds-button-logic(
+        $boreal-text-success-base,
+        transparent,
+        $boreal-ui-success-lighter,
+        $border: $boreal-stroke-success-base,
+        $text-dis: $boreal-text-success-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-success-light
+      );
+    }
+
+    &.bds-button--error {
+      @include bds-button-logic(
+        $boreal-text-danger-base,
+        transparent,
+        $boreal-ui-danger-lighter,
+        $border: $boreal-stroke-danger-base,
+        $text-dis: $boreal-text-danger-light,
+        $bg-dis: transparent,
+        $border-dis: $boreal-stroke-danger-light
+      );
+    }
+  }
+
+  &.bds-button--var-plain {
+    background-color: transparent;
+
+    &.bds-button--default {
+      @include bds-button-logic($boreal-text-default, transparent, $boreal-ui-default-lighter, $has-inset-shadow: true);
+    }
+
+    &.bds-button--primary {
+      @include bds-button-logic(
+        $boreal-text-primary-base,
+        transparent,
+        $boreal-ui-primary-lighter,
+        $text-dis: $boreal-text-primary-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--success {
+      @include bds-button-logic(
+        $boreal-text-success-base,
+        transparent,
+        $boreal-ui-success-lighter,
+        $text-dis: $boreal-text-success-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
+    }
+
+    &.bds-button--error {
+      @include bds-button-logic(
+        $boreal-text-danger-base,
+        transparent,
+        $boreal-ui-danger-lighter,
+        $text-dis: $boreal-text-danger-light,
+        $bg-dis: transparent,
+        $has-inset-shadow: true
+      );
+    }
+  }
+}
+
+@keyframes rotateSpinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

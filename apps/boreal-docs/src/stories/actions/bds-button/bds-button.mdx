@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Stories,
+  ArgTypes,
+  Title,
+  Subtitle,
+} from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { StoryName, Callout } from '@/components/docs';
+import * as BdsButtonStories from './bds-button.stories';
+
+<Meta of={BdsButtonStories} />
+
+<Title of={BdsButtonStories} />
+
+Buttons are clickable items used to trigger actions. They communicate calls to action to the user and allow users to interact with the pages in various ways.
+
+<Subtitle>How to use it</Subtitle>
+
+1. Import the component into your project.
+
+```ts
+import { BdsButton } from '@telesign/boreal-web-components';
+```
+
+2. Use the `<bds-button>` tag to display the component in your HTML.
+
+```html
+<bds-button label="Button component" color="success" variant="outline" loading>
+  <em class="bds-icon-someone-comes-in" slot="icon"></em>
+</bds-button>
+```
+
+<Subtitle>When to use it</Subtitle>
+
+The "button" component is a fundamental element of the user interface that allows users to perform actions within an application by simply clicking or tapping. Here is a summary of its main features:
+
+  * **Action triggering**: Buttons allow users to initiate specific actions, such as submitting forms, navigating to another screen, confirming a selection or making a purchase.
+  * **Visibility and prominence**: Buttons are visible and prominent in the user interface so that users can easily identify the available actions.
+  * **Visual feedback**: When a button is clicked or tapped, users receive visual feedback, such as a color change, animation or tapping effect, to indicate that the action has been successfully initiated.
+  * **Clear labeling**: Buttons are often labeled with descriptive text or icons indicating the action to be performed when clicked, which helps users understand their purpose.
+  * **Varied styles and sizes**: Buttons can have different styles and sizes to suit the design and visual hierarchy of the application.
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the Button component.
+
+<Callout variant="tip" icon="💡">
+  You can click on the **Show code** button in the bottom-right section of the following code
+  snippets to see how to use the component.
+</Callout>
+
+<Stories />
+
+<Subtitle>Accessibility</Subtitle>
+
+The Button component is designed with accessibility in mind. It includes appropriate ARIA attributes and keyboard navigation support to ensure that all users can interact with it effectively.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsButtonStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsButtonStories.default.title} story="default">Default</LinkTo> section.
