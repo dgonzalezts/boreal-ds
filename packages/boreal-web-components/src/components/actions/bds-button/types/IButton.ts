@@ -1,7 +1,7 @@
 import { CoreColors } from '@/types/coreColors';
 import { ButtonSizes, ButtonTypes, ButtonVariant } from './types';
 
-export default interface IButton {
+export interface IButton {
   label: string;
   disabled: boolean;
   name: string;
