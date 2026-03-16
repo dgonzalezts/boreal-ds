@@ -30,5 +30,5 @@ export const testingConfig: TestingConfig = {
   browserHeadless: 'shell',
   browserSlowMo: 200,
   /* Setup before running the tests */
-  setupFilesAfterEnv: ['<rootDir>/src/utils/__test__/mocks/setupMocks.ts'],
+  // setupFilesAfterEnv: ['<rootDir>/src/testing/e2e-setup.ts'],
 };

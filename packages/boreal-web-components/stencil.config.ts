@@ -63,9 +63,7 @@ export const config: Config = {
       includePaths: ['node_modules'],
       // Injects the stencil SCSS tokens into every component SCSS file so that
       // $boreal-* variables are available without a per-file import.
-      injectGlobalPaths: [
-        require.resolve('@telesign/boreal-style-guidelines/stencil')
-      ],
+      injectGlobalPaths: [require.resolve('@telesign/boreal-style-guidelines/stencil')],
     }),
   ],
   testing: testingConfig,
