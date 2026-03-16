@@ -17,7 +17,7 @@ describe('bds-button events', () => {
     const clickSpy = jest.fn();
     const button = root.querySelector('button');
     assertExists(button, 'Button element not found');
-    root.addEventListener('click', clickSpy);
+    root.addEventListener('bdsClick', clickSpy);
     button.click();
     expect(clickSpy).toHaveBeenCalled();
   });
@@ -31,7 +31,7 @@ describe('bds-button events', () => {
     const button = root.querySelector('button');
     assertExists(button, 'Button element not found');
     const clickSpy = jest.fn();
-    root.addEventListener('click', clickSpy);
+    root.addEventListener('bdsClick', clickSpy);
     button.click();
     expect(clickSpy).not.toHaveBeenCalled();
   });
@@ -45,7 +45,7 @@ describe('bds-button events', () => {
     const button = root.querySelector('button');
     assertExists(button, 'Button element not found');
     const clickSpy = jest.fn();
-    root.addEventListener('click', clickSpy);
+    root.addEventListener('bdsClick', clickSpy);
     button.click();
     expect(clickSpy).not.toHaveBeenCalled();
   });

@@ -1,6 +1,5 @@
 import { CoreColors } from '@/types/coreColors';
 import { ButtonSizes, ButtonTypes, ButtonVariant } from './types';
-import { State } from '@/types';
 
 export default interface IButton {
   label: string;
@@ -10,7 +9,6 @@ export default interface IButton {
   color: CoreColors;
   variant: ButtonVariant;
   size: ButtonSizes;
-  currentState: State;
   loading: boolean;
   disclosure: boolean;
 }

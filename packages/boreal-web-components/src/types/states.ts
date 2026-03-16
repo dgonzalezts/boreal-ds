@@ -1,4 +1,4 @@
-export const STATES = {
+export const COMPONENT_STATES = {
   DEFAULT: 'default',
   ERROR: 'error',
   DISABLED: 'disabled',
@@ -8,7 +8,7 @@ export const STATES = {
   VISITED: 'visited',
 } as const;
 
-export type State = (typeof STATES)[keyof typeof STATES];
+export type ComponentState = (typeof COMPONENT_STATES)[keyof typeof COMPONENT_STATES];
 
 export const PROCESS_STATUS = {
   NEUTRAL: 'neutral',

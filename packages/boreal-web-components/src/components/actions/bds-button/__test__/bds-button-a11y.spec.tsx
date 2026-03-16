@@ -39,7 +39,7 @@ describe('bds-button a11y', () => {
     assertExists(button, 'Button element not found');
 
     const clickSpy = jest.fn();
-    root.addEventListener('click', clickSpy);
+    root.addEventListener('bdsClick', clickSpy);
 
     button.focus();
     button.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));

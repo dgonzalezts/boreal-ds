@@ -1,4 +1,4 @@
-import { type State, STATES } from '@/types/states';
+import { type ComponentState, COMPONENT_STATES } from '@/types/states';
 import { type Size, SIZES } from '@/types/size';
 import type { Variant } from '../types/types';
 import type { ITypography } from '../types/ITypography';
@@ -13,7 +13,7 @@ export const FILENAME = 'download';
  */
 
 type VariantSettings = {
-  readonly states?: State[];
+  readonly states?: ComponentState[];
   readonly isRequired?: boolean;
   readonly size?: Size[];
   readonly canUseTooltip?: boolean;
@@ -24,17 +24,17 @@ type VariantSettings = {
  */
 export const VARIANT_CONFIG: Partial<Record<Variant, VariantSettings>> = {
   link: {
-    states: [STATES.DISABLED /* STATES.VISITED, STATES.HOVER, STATES.ACTIVE, STATES.FOCUS */],
+    states: [COMPONENT_STATES.DISABLED /* STATES.VISITED, STATES.HOVER, STATES.ACTIVE, STATES.FOCUS */],
     size: [SIZES.S, SIZES.M],
   },
   label: {
-    states: [STATES.DISABLED],
+    states: [COMPONENT_STATES.DISABLED],
     isRequired: true,
     canUseTooltip: true,
   },
   heading: { canUseTooltip: true },
   subheading: { canUseTooltip: true },
-  helper: { states: [STATES.ERROR] },
+  helper: { states: [COMPONENT_STATES.ERROR] },
   display: { size: [SIZES.XS, SIZES.S, SIZES.M, SIZES.L, SIZES.XL] },
 } as const;
 
@@ -45,7 +45,7 @@ export const VARIANT_CONFIG: Partial<Record<Variant, VariantSettings>> = {
 export const getAttributesByTag = (comp: ITypography, tagName: string): Record<string, unknown> => {
   const ATTR_MAP: Record<string, Record<string, unknown>> = {
     a: {
-      href: comp.state !== STATES.DISABLED ? comp.sanitizedHref : null,
+      href: comp.state !== COMPONENT_STATES.DISABLED ? comp.sanitizedHref : null,
       target: comp.target,
       download: comp.isDownloadable ? comp.filename : null,
       rel: comp.target === '_blank' ? 'noopener noreferrer' : undefined,
