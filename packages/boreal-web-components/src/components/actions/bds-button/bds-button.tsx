@@ -19,7 +19,7 @@ import { ButtonSizes, ButtonTypes, ButtonVariant } from './types/types';
  * @attr {boolean} disabled - Disables the button when true, preventing user interaction and applying disabled styles.
  * @attr {string} name - The name attribute for the button, useful for form submissions.
  * @attr {string} type - The type of the button, which can be 'button', 'submit', or 'reset'. Default is 'button'.
- * @attr {string} color - The color theme of the button, which can be 'default', 'primary', 'success', or 'danger'. Default is 'default'.
+ * @attr {string} color - The color theme of the button, which can be 'default', 'primary', 'success', or 'error'. Default is 'default'.
  * @attr {string} variant - The visual style of the button, which can be 'default', 'outline', or 'plain'. Default is 'default'.
  * @attr {string} size - The size of the button, which can be 'small', 'medium', or 'large'. Default is 'medium'.
  * @attr {boolean} loading - Indicates whether the button is in a loading state, which can be used to show a loading spinner and disable the button. Default is false.
@@ -67,7 +67,7 @@ export class BdsButton implements IButton {
   /** type is a string attribute. The type of the button, which can be 'button', 'submit', or 'reset'. Default is 'button'. */
   @Prop() readonly type: IButton['type'] = BUTTON_TYPES.BUTTON;
 
-  /** color is a string attribute. The color theme of the button, which can be 'default', 'primary', 'success', or 'danger'. Default is 'default'. */
+  /** color is a string attribute. The color theme of the button, which can be 'default', 'primary', 'success', or 'error'. Default is 'default'. */
   @Prop() readonly color: IButton['color'] = CORE_COLORS.DEFAULT;
 
   /** variant is a string attribute. The visual style of the button, which can be 'default', 'outline', or 'plain'. Default is 'default'.*/
