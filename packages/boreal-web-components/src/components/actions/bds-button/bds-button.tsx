@@ -86,7 +86,7 @@ export class BdsButton implements IButton {
   @Element() el!: HTMLBdsButtonElement;
 
   /** emit event to click */
-  @Event({ eventName: 'bdsButtonClick', bubbles: true, composed: true }) bdsButtonClick!: EventEmitter<MouseEvent>;
+  @Event({ eventName: 'bdsClick', bubbles: true, composed: true }) bdsClick!: EventEmitter<MouseEvent>;
 
   /** variable to attach internal form if exist */
   @AttachInternals() internals!: ElementInternals;
@@ -158,7 +158,7 @@ export class BdsButton implements IButton {
     if (this.type === BUTTON_TYPES.SUBMIT || this.type === BUTTON_TYPES.RESET) {
       this.processFormClick();
     } else {
-      this.bdsButtonClick.emit(event);
+      this.bdsClick.emit(event);
     }
   };
 
