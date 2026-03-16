@@ -19,8 +19,9 @@
       "require": "./loader/index.cjs",
       "types": "./loader/index.d.ts"
     },
-    "./components/*": {
-      "import": "./components-build/*"
+    "./components/*.js": {
+      "import": "./components-build/*.js",
+      "types": "./components-build/*.d.ts"
     },
     "./types": {
       "import": "./dist/collection/types/index.js",

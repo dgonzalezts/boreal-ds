@@ -1,5 +1,5 @@
 import { AttachInternals, Component, Element, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
-import IButton from './types/IButton';
+import { IButton } from './types/IButton';
 import { COMPONENT_STATES, ComponentState, StyleModifiers } from '@/types';
 import { BUTTON_SIZES, BUTTON_TYPES, BUTTON_VARIANTS } from './types/enum';
 import { CORE_COLORS, CoreColors } from '@/types/coreColors';

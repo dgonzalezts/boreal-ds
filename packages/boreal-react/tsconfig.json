@@ -9,8 +9,7 @@
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "declarationDir": "./dist/types"
+    "allowSyntheticDefaultImports": true
   },
   "include": ["lib"],
   "exclude": ["node_modules"]
