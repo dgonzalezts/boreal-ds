@@ -86,7 +86,7 @@ export class BdsButton implements IButton {
   @Element() el!: HTMLBdsButtonElement;
 
   /** emit event to click */
-  @Event({ eventName: 'bdsClick', bubbles: true, composed: true }) bdsClick!: EventEmitter<MouseEvent>;
+  @Event({ eventName: 'bdsClick', bubbles: true, composed: true }) bdsClick!: EventEmitter<UIEvent>;
 
   /** variable to attach internal form if exist */
   @AttachInternals() internals!: ElementInternals;
@@ -133,6 +133,8 @@ export class BdsButton implements IButton {
   private handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       this.currentState = COMPONENT_STATES.ACTIVE;
+      event.preventDefault();
+      this.bdsClick.emit(event);
     }
   };
 
@@ -171,7 +173,13 @@ export class BdsButton implements IButton {
       return;
     }
     const events: Record<string, () => void> = {
-      [BUTTON_TYPES.SUBMIT]: () => this.internalForm?.requestSubmit(),
+      [BUTTON_TYPES.SUBMIT]: () => {
+        if (typeof this.internalForm?.requestSubmit === 'function') {
+          this.internalForm.requestSubmit();
+        } else {
+          this.internalForm?.submit();
+        }
+      },
       [BUTTON_TYPES.RESET]: () => this.internalForm?.reset(),
     };
     const action = events[this.type];
@@ -210,7 +218,7 @@ export class BdsButton implements IButton {
         onKeyUp={this.handleKeyUp}
       >
         <div class="bds-button__content">
-          <span class="bds-button__content-icon">
+          <span class="bds-button__content-icon bds-button__content-icon--start">
             <slot name="icon"></slot>
           </span>
           <slot></slot>
