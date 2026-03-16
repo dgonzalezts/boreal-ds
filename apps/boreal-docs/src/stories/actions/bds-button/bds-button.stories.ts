@@ -22,7 +22,7 @@ type StoryArgs = {
   slotDefault: string;
   slotIcon: boolean;
   slotBadge: boolean;
-  onClick: () => void;
+  onBdsClick: () => void;
 };
 type Story = BorealStory<StoryArgs>;
 
@@ -157,8 +157,8 @@ const meta = {
         defaultValue: { summary: '' },
       },
     },
-    onClick: {
-      action: 'clicked',
+    onBdsClick: {
+      action: 'clicked: bdsClick emitted',
       description: 'Callback function that is called when the button is clicked.',
       table: {
         category: 'Events',
@@ -213,7 +213,7 @@ const renderButton: Story['render'] = args => html`
     ?disabled=${args.disabled}
     ?loading=${args.loading}
     ?disclosure=${args.disclosure}
-    @click=${args.onClick}
+    @bdsClick=${args.onBdsClick}
   >
     ${args.slotIcon &&
     html`<span slot="icon">
