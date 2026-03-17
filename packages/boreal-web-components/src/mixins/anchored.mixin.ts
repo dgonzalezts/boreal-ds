@@ -126,9 +126,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
     @Element() el!: HTMLElement;
 
     get hooks(): AnchoredHooks {
-      return {
-        ...super.hooks,
-      };
+      return {};
     }
 
     /**
