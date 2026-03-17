@@ -138,23 +138,25 @@ const renderTooltip: Story['render'] = args => {
     <style>
       ${style}
     </style>
-    <span>
-      Trigger content
-      <bds-tooltip
-        ${ref}
-        placement="${args.placement}"
-        multiline="${args.multiline}"
-        disabled="${args.disabled}"
-        .floatingOptions=${{
-          placement: args.placement as FloatingPopoverProp['placement'],
-          offset: args.offset,
-          hideArrow: args.hideArrow,
-          stayOnHover: args.stayOnHover,
-        }}
-      >
-        ${args.content}
-      </bds-tooltip>
-    </span>
+    <div class="center">
+      <span>
+        Trigger content
+        <bds-tooltip
+          ${ref}
+          placement="${args.placement}"
+          multiline="${args.multiline}"
+          disabled="${args.disabled}"
+          .floatingOptions=${{
+            placement: args.placement as FloatingPopoverProp['placement'],
+            offset: args.offset,
+            hideArrow: args.hideArrow,
+            stayOnHover: args.stayOnHover,
+          }}
+        >
+          ${args.content}
+        </bds-tooltip>
+      </span>
+    </div>
   `;
 };
 
