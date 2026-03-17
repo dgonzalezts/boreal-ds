@@ -1,3 +1,4 @@
+import { FloatingTooltipProp } from '@/components';
 import { IFloatingMixin } from '@/services/floating/interfaces/Floating';
 
 /**
@@ -6,4 +7,5 @@ import { IFloatingMixin } from '@/services/floating/interfaces/Floating';
 export interface ITooltip extends IFloatingMixin {
   disabled?: boolean;
   multiline?: boolean;
+  floatingOptions?: Partial<FloatingTooltipProp>;
 }

@@ -4,7 +4,6 @@ import { PositioningResult } from '@/services/floating/interfaces/Positioning';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { FloatingTooltipProp } from '@/services/floating/interfaces/Props';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
-import { ANCHORED_TOOLTIP } from '@/utils/constants/floating/anchored/AnchoredTooltip';
 import { AnchoredHooks } from '@/services/floating/interfaces/Anchored';
 
 /**
@@ -55,9 +54,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    * Override default options for the floating mixin.
    * This can be overridden by passing a different object to the `floatingOptions` prop.
    */
-  @Prop() readonly floatingOptions: FloatingTooltipProp = {
-    ...ANCHORED_TOOLTIP,
-  };
+  @Prop() readonly floatingOptions: Partial<FloatingTooltipProp> = {};
 
   // Refs en Stencil se obtienen con el atributo ref en el render
   private arrowElement!: HTMLElement;
@@ -150,7 +147,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    * with the computed `x` and `y` offsets for the arrow element.
    */
   private setArrowPosition(result: PositioningResult) {
-    if (result.middlewareData?.arrow && this.arrowElement.isConnected) {
+    if (result.middlewareData?.arrow && this.arrowElement?.isConnected) {
       const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
       Object.assign(this.arrowElement.style, {
         left: arrowX != null ? `${arrowX}px` : '',
@@ -163,6 +160,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
     return (
       <Host class="tooltip">
         <div
+          id="tooltip-content"
           part="tooltip-content"
           class="tooltip-content"
           popover="manual"
