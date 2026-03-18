@@ -191,23 +191,24 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   }
 
   @Watch('type')
-  onTypeChange(): void {
+  @Watch('variant')
+  checkPropValues(): void {
     validatePropValue(
       Object.values(TEXT_FIELD_TYPES) as TextFieldType[],
       TEXT_FIELD_TYPES.TEXT,
       this.el as HTMLElement,
       'type',
     );
-  }
-
-  @Watch('variant')
-  onVariantChange(): void {
     validatePropValue(
       Object.values(TEXT_FIELD_VARIANTS) as TextFieldVariant[],
       TEXT_FIELD_VARIANTS.OUTLINE,
       this.el as HTMLElement,
       'variant',
     );
+  }
+
+  componentWillLoad(): void {
+    this.checkPropValues();
   }
 
   @Watch('customValidators')
