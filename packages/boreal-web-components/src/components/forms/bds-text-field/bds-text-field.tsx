@@ -155,6 +155,23 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Tracks focus state to drive the `bds-text-field--focused` CSS modifier. */
   @State() private focused: boolean = false;
 
+  /** Controls whether the password input renders as plain text. */
+  @State() private showPassword: boolean = false;
+
+  /** `true` after the user has blurred the input at least once. */
+  @State() private touched: boolean = false;
+
+  /** `true` once the value has been modified by the user. */
+  @State() private dirty: boolean = false;
+
+  /** Live character count of the current value. */
+  @State() private currentCharCount: number = 0;
+
+  /** Resolved element ID — derived from `idComponent` prop or auto-generated. */
+  @State() private _id: string = '';
+
+  private _valueAtFocus: string = '';
+
   /** Emitted whenever the value changes. Used by framework wrappers for 2-way binding. */
   @Event() valueChange!: EventEmitter<string>;
 
@@ -216,6 +233,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   componentWillLoad(): void {
     this.checkPropValues();
+    this._id = this.idComponent !== '' ? this.idComponent : `bds-${Math.random().toString(36).substring(2, 11)}`;
+    this.currentCharCount = this.value.length;
   }
 
   @Watch('customValidators')
@@ -226,6 +245,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   @Watch('value')
   onValueChange(next: string): void {
     setFormValue(this.internals, next);
+    this.currentCharCount = next.length;
     this.updateValidity();
     this.valueChange.emit(next);
   }
@@ -237,6 +257,9 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   formResetCallback(): void {
     this.value = '';
+    this.touched = false;
+    this.dirty = false;
+    this.currentCharCount = 0;
     setFormValue(this.internals, null);
     this.updateValidity();
   }
@@ -254,11 +277,79 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
         isValid: () => !this.required || this.value !== '',
         message: 'This field is required. Please fill it out.',
       },
+      {
+        key: 'tooShort',
+        isValid: () => this.minLength === 0 || this.value.length >= this.minLength,
+        message: `Please enter at least ${this.minLength} characters.`,
+      },
     ];
   }
 
-  private updateValidity(): void {
-    runValidators(this.internals, this.validators, this.el as HTMLElement);
+  private updateValidity(emitEvent = false): void {
+    const valid = runValidators(this.internals, [...this.validators, ...this.customValidators], this.el as HTMLElement);
+    if (emitEvent) {
+      this.bdsValidationChange.emit({
+        valid,
+        validity: this.internals.validity,
+        value: this.value,
+        touched: this.touched,
+        dirty: this.dirty,
+      });
+    }
+  }
+
+  private handleInput(e: InputEvent): void {
+    this.value = (e.target as HTMLInputElement).value;
+    this.dirty = true;
+    this.bdsInput.emit({ value: this.value, event: e });
+    if (this.validationTiming === TEXT_FIELD_VALIDATION_TIMING.INPUT) {
+      this.updateValidity(true);
+    }
+  }
+
+  private handleChange(e: Event): void {
+    this.bdsChange.emit({ value: this.value, event: e });
+    if (this.validationTiming === TEXT_FIELD_VALIDATION_TIMING.CHANGE) {
+      this.updateValidity(true);
+    }
+  }
+
+  private handleFocus(e: FocusEvent): void {
+    this.focused = true;
+    this._valueAtFocus = this.value;
+    this.bdsFocus.emit({ event: e });
+  }
+
+  private handleBlur(e: FocusEvent): void {
+    this.focused = false;
+    this.touched = true;
+    this.bdsBlur.emit({ event: e });
+    if (this.validationTiming === TEXT_FIELD_VALIDATION_TIMING.BLUR) {
+      this.updateValidity(true);
+    } else if (this.validationTiming === TEXT_FIELD_VALIDATION_TIMING.CHANGE && this.value !== this._valueAtFocus) {
+      this.updateValidity(true);
+    }
+  }
+
+  private handleShowPassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  private handleClear(): void {
+    this.value = '';
+    this.dirty = true;
+    this.bdsClear.emit();
+    (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus();
+  }
+
+  private handleDisclosure(): void {
+    this.bdsDisclosure.emit();
+  }
+
+  private get effectiveMaxLength(): number | undefined {
+    if (this.maxLength !== 0) return this.maxLength;
+    if (this.counter && this.charCount > 0) return this.charCount;
+    return undefined;
   }
 
   private getClassMap(): StyleModifiers {
@@ -293,6 +384,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   }
 
   render() {
+    const showClear = (this.clearable || this.clearOnHover) && this.value !== '';
+
     return (
       <Host
         class={this.getClassMap()}
@@ -301,13 +394,42 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
         onFocus={() => (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
         <input
+          id={this._id}
           class="bds-text-field__control"
+          type={this.type === TEXT_FIELD_TYPES.PASSWORD && this.showPassword ? TEXT_FIELD_TYPES.TEXT : this.type}
           value={this.value}
           disabled={this.isDisabled}
-          onInput={(e: Event) => {
-            this.value = (e.target as HTMLInputElement).value;
-          }}
+          readOnly={this.readOnly}
+          placeholder={this.placeholder}
+          autocomplete={this.autocomplete}
+          pattern={this.pattern !== '' ? this.pattern : undefined}
+          minLength={this.minLength !== 0 ? this.minLength : undefined}
+          maxLength={this.effectiveMaxLength}
+          onInput={(e: InputEvent) => this.handleInput(e)}
+          onChange={(e: Event) => this.handleChange(e)}
+          onFocus={(e: FocusEvent) => this.handleFocus(e)}
+          onBlur={(e: FocusEvent) => this.handleBlur(e)}
         />
+        {showClear && (
+          <button type="button" onClick={() => this.handleClear()}>
+            clear
+          </button>
+        )}
+        {this.type === TEXT_FIELD_TYPES.PASSWORD && (
+          <button type="button" onClick={() => this.handleShowPassword()}>
+            {this.showPassword ? 'hide' : 'show'}
+          </button>
+        )}
+        {this.disclosure && (
+          <button type="button" onClick={() => this.handleDisclosure()}>
+            disclosure
+          </button>
+        )}
+        {this.counter && this.charCount > 0 && (
+          <span>
+            {this.currentCharCount}/{this.charCount}
+          </span>
+        )}
       </Host>
     );
   }
