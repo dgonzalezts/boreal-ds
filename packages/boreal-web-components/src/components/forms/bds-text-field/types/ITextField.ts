@@ -1,5 +1,5 @@
-import type { IFormValidator, ValidationTiming } from '@/types/form';
-import type { TextFieldType, TextFieldVariant } from './types';
+import type { IFormValidator } from '@/types/form';
+import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from './types';
 
 export interface ITextField {
   name: string;
@@ -24,7 +24,7 @@ export interface ITextField {
   clearable: boolean;
   clearOnHover: boolean;
   disclosure: boolean;
-  validationTiming: ValidationTiming;
+  validationTiming: TextFieldValidationTiming;
   charCount: number;
   counter: boolean;
   customWidth: string;
