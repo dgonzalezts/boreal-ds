@@ -12,12 +12,12 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { formAssociatedMixin, type IFormControl } from '@/mixins/form-associated.mixin';
-import type { IFormValidator, StyleModifiers, ValidationTiming } from '@/types';
+import { formAssociatedMixin, type IFormControl } from '@/mixins';
+import type { IFormValidator, StyleModifiers } from '@/types';
 import { runValidators, setFormValue, validatePropValue } from '@/utils';
-import { TEXT_FIELD_TYPES, TEXT_FIELD_VARIANTS } from './types/enum';
+import { TEXT_FIELD_TYPES, TEXT_FIELD_VARIANTS, TEXT_FIELD_VALIDATION_TIMING } from './types/enum';
 import type { ITextField } from './types/ITextField';
-import type { TextFieldType, TextFieldVariant } from './types/types';
+import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from './types/types';
 
 /**
  * Text field component for user input with validation and form integration.
@@ -42,7 +42,7 @@ import type { TextFieldType, TextFieldVariant } from './types/types';
  * @property {string} errorMessage - Error message shown below the input when `error` is `true`.
  * @property {boolean} clearable - Shows a clear button when the input has a value.
  * @property {boolean} disclosure - Shows a disclosure icon in the right-action area.
- * @property {"blur"|"input"|"submit"} validationTiming - When built-in validation runs.
+ * @property {"blur"|"input"|"submit"|"change"} validationTiming - When built-in validation runs.
  * @property {string} idComponent - Unique identifier for the component element.
  * @property {string} customWidth - Sets a custom width via the `--bds-text-field-width` CSS custom property.
  *
@@ -92,8 +92,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Additional validators merged with the built-in ones. */
   @Prop() readonly customValidators: IFormValidator[] = [];
 
-  /** Controls when built-in validation runs: `'blur'` | `'input'` | `'submit'`. */
-  @Prop() readonly validationTiming: ValidationTiming = 'blur';
+  /** Controls when built-in validation runs: `'blur'` | `'input'` | `'submit'` | `'change'`. */
+  @Prop() readonly validationTiming: TextFieldValidationTiming = TEXT_FIELD_VALIDATION_TIMING.BLUR;
 
   /** The input type. Use `'password'` to enable the visibility toggle. */
   @Prop({ reflect: true }) readonly type: TextFieldType = TEXT_FIELD_TYPES.TEXT;
@@ -192,6 +192,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   @Watch('type')
   @Watch('variant')
+  @Watch('validationTiming')
   checkPropValues(): void {
     validatePropValue(
       Object.values(TEXT_FIELD_TYPES) as TextFieldType[],
@@ -204,6 +205,12 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       TEXT_FIELD_VARIANTS.OUTLINE,
       this.el as HTMLElement,
       'variant',
+    );
+    validatePropValue(
+      Object.values(TEXT_FIELD_VALIDATION_TIMING),
+      TEXT_FIELD_VALIDATION_TIMING.BLUR,
+      this.el as HTMLElement,
+      'validationTiming',
     );
   }
 
