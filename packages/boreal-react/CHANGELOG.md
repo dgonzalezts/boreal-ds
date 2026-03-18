@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.1.0-alpha.4](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/compare/@telesign/boreal-react@0.1.0-alpha.3...@telesign/boreal-react@0.1.0-alpha.4) (2026-03-18)
+
+### Features
+
+* **web-components:** Added basic structure for button component ([97271ce](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/97271ce738b4925426529e8ef93c5597cebf1a8b))
+* **web-components:** Added default variatn with primary, default and error styles ([bb1fb98](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/bb1fb989bcb60a98d2176e66608091a63a3dddca))
+* **web-components:** Added icon slot, badge slot, disclosure and loading state ([40789c2](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/40789c2426cccddc9eea341dc581e2afcb9e45d9))
+* **web-components:** Added styles, form internal, click events logic ([5b36305](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/5b3630525900cce6f27ff574af3dc713919dd780))
+* **web-components:** Added styling for all variants, sizes and colors ([80825de](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/80825de7c285ec0b8ecad06998994590ae6b173d))
+* **web-components:** Fix basic test and solve accidentally changed file ([e8dd1c8](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/e8dd1c85507c2fadb44704064723b0033bf0dded))
+
+### Bug Fixes
+
+* **react:** update type definitions and exports ([ee52ee5](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/ee52ee563582028df2ef39c9eadcf6928f282a24))
+* **web-components:** update component exports to include types on build ([57682f0](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/57682f0377674d97d72823d92227fecdf974f419))
+* **web-components:** update styling and type import in 'bds-button' component ([de58265](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/de582652e825f4d6f3a4ffb8d0bca2b4c38242e9))
+
+### Reverts
+
+* **web-components:** Deleted additional files to config ([616b0fd](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/commit/616b0fdb750f8d3a9b75005b68ab4d46771a6672))
+
 ## [0.1.0-alpha.3](https://bitbucket.c11.telesign.com/7999/dev/boreal-ds/compare/@telesign/boreal-react@0.1.0-alpha.2...@telesign/boreal-react@0.1.0-alpha.3) (2026-03-16)
 
 ### Features
