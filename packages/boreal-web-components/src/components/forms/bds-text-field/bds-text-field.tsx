@@ -36,6 +36,25 @@ import type { TextFieldType, TextFieldVariant } from './types/types';
  * @attr {"text"|"password"} type - Input type.
  * @attr {"outline"|"plain"} variant - Visual style of the container.
  *
+ * @property {string} label - Label text rendered above the input.
+ * @property {string} placeholder - Native placeholder forwarded to the inner input.
+ * @property {string} helperText - Assistive text shown below the input when there is no error.
+ * @property {string} errorMessage - Error message shown below the input when `error` is `true`.
+ * @property {boolean} clearable - Shows a clear button when the input has a value.
+ * @property {boolean} disclosure - Shows a disclosure icon in the right-action area.
+ * @property {"blur"|"input"|"submit"} validationTiming - When built-in validation runs.
+ * @property {string} idComponent - Unique identifier for the component element.
+ * @property {string} customWidth - Sets a custom width via the `--bds-text-field-width` CSS custom property.
+ *
+ * @fires valueChange - Emitted on every value change; used for framework 2-way binding.
+ * @fires bdsInput - Emitted on every keystroke with `{ value, event }`.
+ * @fires bdsChange - Emitted when focus leaves after the value changed, with `{ value, event }`.
+ * @fires bdsFocus - Emitted when the input gains focus, with `{ event }`.
+ * @fires bdsBlur - Emitted when the input loses focus, with `{ event }`.
+ * @fires bdsClear - Emitted when the user activates the clear button.
+ * @fires bdsDisclosure - Emitted when the user clicks the disclosure icon.
+ * @fires bdsValidationChange - Emitted after each validation run with `{ valid, validity, value, touched, dirty }`.
+ *
  * @cssprop --bds-text-field-width - Sets a custom width for the component.
  */
 @Component({
@@ -133,6 +152,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Unique element ID. Auto-generated in `componentWillLoad` if not provided. */
   @Prop() readonly idComponent: string = '';
 
+  /** Tracks focus state to drive the `bds-text-field--focused` CSS modifier. */
   @State() private focused: boolean = false;
 
   /** Emitted whenever the value changes. Used by framework wrappers for 2-way binding. */
