@@ -13,14 +13,14 @@ import {
   h,
 } from '@stencil/core';
 import { formAssociatedMixin, type IFormControl } from '@/mixins/form-associated.mixin';
-import type { IFormValidator, ValidationTiming } from '@/types';
+import type { IFormValidator, StyleModifiers, ValidationTiming } from '@/types';
 import { runValidators, setFormValue, validatePropValue } from '@/utils';
 import { TEXT_FIELD_TYPES, TEXT_FIELD_VARIANTS } from './types/enum';
 import type { ITextField } from './types/ITextField';
 import type { TextFieldType, TextFieldVariant } from './types/types';
 
 /**
- * A form-associated text input component.
+ * Text field component for user input with validation and form integration.
  *
  * @summary Single-line text input with label, validation, password toggle, and clear action.
  *
@@ -253,6 +253,19 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     runValidators(this.internals, this.validators, this.el as HTMLElement);
   }
 
+  private getClassMap(): StyleModifiers {
+    return {
+      'bds-text-field': true,
+      'bds-text-field--error': this.error,
+      'bds-text-field--disabled': this.isDisabled,
+      'bds-text-field--focused': this.focused,
+    };
+  }
+
+  private getHostStyle(): Record<string, string> | undefined {
+    return this.customWidth !== '' ? { '--bds-text-field-width': this.customWidth } : undefined;
+  }
+
   /**
    * Returns `true` if the element's value passes all constraints; `false` otherwise.
    * Also fires an `invalid` event if constraints are violated.
@@ -274,17 +287,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   render() {
     return (
       <Host
-        class={{
-          'bds-text-field': true,
-          'bds-text-field--error': this.error,
-          'bds-text-field--disabled': this.isDisabled,
-          'bds-text-field--focused': this.focused,
-        }}
-        style={
-          this.customWidth !== ''
-            ? ({ '--bds-text-field-width': this.customWidth } as Record<string, string>)
-            : undefined
-        }
+        class={this.getClassMap()}
+        style={this.getHostStyle()}
         tabIndex={this.isDisabled ? -1 : 0}
         onFocus={() => (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
