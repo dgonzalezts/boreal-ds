@@ -98,4 +98,8 @@
     opacity: 0;
     height: 0;
   }
+
+  &--hidden {
+    display: none;
+  }
 }

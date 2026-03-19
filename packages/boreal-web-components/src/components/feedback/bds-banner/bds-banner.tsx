@@ -1,8 +1,8 @@
-import { Component, Element, Event, EventEmitter, Host, JSX, Method, Prop, State, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Fragment, Host, JSX, Method, Prop, State, h } from '@stencil/core';
 
 import type { IBanner } from './types/IBanner';
 import { STATUS_VARIANT } from '@/types';
-import { Attributes, inheritAriaAttributes } from '@/utils/a11y/attributes';
+import { Attributes, inheritAriaAttributes, inheritAttributes } from '@/utils/a11y/attributes';
 import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
 
 /**
@@ -18,11 +18,11 @@ import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
  * @attr {boolean} enable-close - When true, renders a close button that triggers the close event.
  * @attr {string} idComponent - Unique identifier for the banner element.
  *
- * @property {string} idComponent - Unique identifier for the banner element.
  * @property {"info"|"success"|"warning"|"danger"} variant - Visual style variant: 'info', 'success', 'warning', or 'danger'. Defaults to "info".
  * @property {boolean} enableClose - Shows a close button that allows users to dismiss the banner. Defaults to false.
+ * @property {boolean} closeButtonLabel - Aria label for the close button when visible.
  *
- * @fires close - Emitted when the banner is closed via the close button or `closeBanner` method.
+ * @fires bdsClose - Emitted when the banner is closed via the close button or `closeBanner` method.
  *
  * @method closeBanner - Programmatic method to close the banner and emit the `close` event.
  *
@@ -49,11 +49,6 @@ export class BdsBanner implements IBanner {
   @State() isOpen: boolean = true;
 
   /**
-   * Unique identifier for the banner element.
-   */
-  @Prop() readonly idComponent: string = '';
-
-  /**
    * Visual style variant: 'info', 'success', 'warning', or 'danger'.
    * @default "info"
    */
@@ -66,13 +61,25 @@ export class BdsBanner implements IBanner {
   @Prop() readonly enableClose: IBanner['enableClose'] = false;
 
   /**
+   * The aria label for the close button.
+   * @default ""
+   */
+  @Prop() readonly closeButtonLabel: IBanner['closeButtonLabel'] = '';
+
+  /**
+   * Unique identifier for the checkbox element.
+   */
+  @Prop() readonly idComponent: string = '';
+
+  /**
    * Emitted when the banner is closed via the close button or handleClose method.
    */
-  @Event() close!: EventEmitter<void>;
+  @Event() bdsClose!: EventEmitter<void>;
 
   componentWillLoad() {
     this.inheritedAttributes = {
       ...inheritAriaAttributes(this.el),
+      ...inheritAttributes(this.el),
       ...getBaseAttributes(this),
     };
   }
@@ -88,7 +95,7 @@ export class BdsBanner implements IBanner {
   private handleCloseBanner(e?: Event) {
     if (e !== undefined) e.preventDefault();
     this.isClosing = true;
-    this.close.emit();
+    this.bdsClose.emit();
   }
 
   private handleEscapeKeyClose(e: KeyboardEvent) {
@@ -132,16 +139,16 @@ export class BdsBanner implements IBanner {
       'bds-banner': true,
       [`bds-banner--${this.variant}`]: true,
       'bds-banner--closing': this.isClosing,
+      'bds-banner--hidden': !this.isOpen,
     };
   }
 
   private renderCloseIcon(): JSX.Element {
     return (
-      // TODO how to pass this inner aria attr from outside?
       <button
         role="close-button"
         class="bds-banner__close-icon"
-        aria-label="Alert close button"
+        aria-label={this.closeButtonLabel}
         onClick={e => this.handleCloseBanner(e)}
       >
         <em class="bds-icon-close"></em>
@@ -150,7 +157,6 @@ export class BdsBanner implements IBanner {
   }
 
   render() {
-    if (!this.isOpen) return;
     const closeIcon = this.renderCloseIcon();
 
     const classes = this.getStyles();
@@ -163,24 +169,33 @@ export class BdsBanner implements IBanner {
         onTransitionEnd={this.handleAnimationEnd}
         onKeyDown={(e: KeyboardEvent) => this.handleEscapeKeyClose(e)}
       >
-        <div class="bds-banner__vertical-line"></div>
-        <div class="bds-banner__container">
-          <div class="bds-banner__status-icon" role="status" aria-live="polite" aria-label={`status ${this.variant}`}>
-            <em aria-hidden="true" class={iconName}></em>
-          </div>
-          <div class="bds-banner__content">
-            <div class="bds-banner__title">
-              <slot name="title"></slot>
+        {this.isOpen && (
+          <Fragment>
+            <div class="bds-banner__vertical-line"></div>
+            <div class="bds-banner__container">
+              <div
+                class="bds-banner__status-icon"
+                role="status"
+                aria-live="polite"
+                aria-label={`status ${this.variant}`}
+              >
+                <em aria-hidden="true" class={iconName}></em>
+              </div>
+              <div id="bds-banner__content" class="bds-banner__content">
+                <div class="bds-banner__title">
+                  <slot name="title"></slot>
+                </div>
+                <div class="bds-banner__body">
+                  <slot></slot>
+                </div>
+                <div class="bds-banner__actions">
+                  <slot name="actions"></slot>
+                </div>
+              </div>
+              {this.enableClose && closeIcon}
             </div>
-            <div class="bds-banner__body">
-              <slot></slot>
-            </div>
-            <div class="bds-banner__actions">
-              <slot name="actions"></slot>
-            </div>
-          </div>
-          {this.enableClose && closeIcon}
-        </div>
+          </Fragment>
+        )}
       </Host>
     );
   }
