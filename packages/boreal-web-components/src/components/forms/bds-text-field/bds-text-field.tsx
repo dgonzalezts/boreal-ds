@@ -24,7 +24,7 @@ import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from 
  *
  * @summary Single-line text input with label, validation, password toggle, and clear action.
  *
- * @slot prefix - Content rendered before the input (e.g. icon or status indicator).
+ * @slot prefix - Inline content rendered before the input (e.g. icon or status indicator). Intended for single-line elements only; multi-line content will be clipped.
  *
  * @attr {string} name - The name submitted with the form.
  * @attr {string} value - The current value of the input.
@@ -58,7 +58,6 @@ import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from 
   tag: 'bds-text-field',
   styleUrl: 'bds-text-field.scss',
   formAssociated: true,
-  scoped: true,
 })
 export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextField, IFormControl<string> {
   @Element() el!: HTMLBdsTextFieldElement;
@@ -134,7 +133,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Shows a clear button when the input has a value. */
   @Prop() readonly clearable: boolean = false;
 
-  /** Clear button is only visible on hover. Implies `clearable`. */
+  /** Shows a clear button that is hidden at rest and revealed when the user hovers over the field. */
   @Prop() readonly clearOnHover: boolean = false;
 
   /** Maximum character count shown in the footer counter (e.g. `120` → `"45/120"`). Requires `counter`. */
@@ -342,7 +341,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     return undefined;
   }
 
-  private getClassMap(): StyleModifiers {
+  private get classMap(): StyleModifiers {
     return {
       'bds-text-field': true,
       'bds-text-field--error': this.error,
@@ -350,13 +349,20 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       'bds-text-field--focused': this.focused,
       'bds-text-field--readonly': this.readOnly,
       'bds-text-field--plain': this.variant === TEXT_FIELD_VARIANTS.PLAIN,
-      'bds-text-field--clearable': this.clearable,
       'bds-text-field--clear-on-hover': this.clearOnHover,
     };
   }
 
-  private getHostStyle(): Record<string, string> | undefined {
+  private get hostStyle(): Record<string, string> | undefined {
     return this.customWidth !== '' ? { '--bds-text-field-width': this.customWidth } : undefined;
+  }
+
+  private get iconClear(): string {
+    return this.clearable || this.clearOnHover ? 'bds-icon-close' : '';
+  }
+
+  private get showPasswordIcon(): string {
+    return this.showPassword ? 'bds-icon-sight-on' : 'bds-icon-sight-off';
   }
 
   /**
@@ -387,26 +393,23 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
     return (
       <Host
-        class={this.getClassMap()}
-        style={this.getHostStyle()}
+        class={this.classMap}
+        style={this.hostStyle}
         tabIndex={this.isDisabled ? -1 : 0}
         onFocus={() => (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
         {this.label !== '' && (
-          <div class="bds-text-field__label-row">
-            <bds-typography
-              id={labelId}
-              variant="label"
-              htmlFor={this._id}
-              isRequired={this.required}
-              tooltipText={this.info !== '' ? this.info : undefined}
-              state={typographyState}
-            >
-              {this.label}
-            </bds-typography>
-          </div>
+          <bds-typography
+            id={labelId}
+            variant="label"
+            htmlFor={this._id}
+            isRequired={this.required}
+            tooltipText={this.info !== '' ? this.info : undefined}
+            state={typographyState}
+          >
+            {this.label}
+          </bds-typography>
         )}
-
         <div class="bds-text-field__container">
           {(this.icon !== '' || this.sublabel !== '') && (
             <span class="bds-text-field__sublabel">
@@ -414,9 +417,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
               {this.sublabel}
             </span>
           )}
-
           <slot name="prefix" />
-
           <input
             id={this._id}
             class="bds-text-field__control"
@@ -438,29 +439,31 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
             onFocus={(e: FocusEvent) => this.handleFocus(e)}
             onBlur={(e: FocusEvent) => this.handleBlur(e)}
           />
-
-          <div class="bds-text-field__actions">
-            {showClear && (
-              <button
-                class="bds-text-field__action bds-text-field__action--clear"
-                type="button"
-                onClick={() => this.handleClear()}
-              >
-                clear
-              </button>
-            )}
-            {this.type === TEXT_FIELD_TYPES.PASSWORD && (
-              <button
-                class="bds-text-field__action bds-text-field__action--password"
-                type="button"
-                onClick={() => this.handleShowPassword()}
-              >
-                {this.showPassword ? 'hide' : 'show'}
-              </button>
-            )}
-          </div>
+          {(showClear || this.type === TEXT_FIELD_TYPES.PASSWORD) && (
+            <div class="bds-text-field__actions">
+              {showClear && (
+                <button
+                  class="bds-text-field__action bds-text-field__action--clear"
+                  type="button"
+                  aria-label="Clear"
+                  onClick={() => this.handleClear()}
+                >
+                  <em class={this.iconClear}></em>
+                </button>
+              )}
+              {this.type === TEXT_FIELD_TYPES.PASSWORD && (
+                <button
+                  class="bds-text-field__action bds-text-field__action--password"
+                  type="button"
+                  aria-label={this.showPassword ? 'Hide password' : 'Show password'}
+                  onClick={() => this.handleShowPassword()}
+                >
+                  <em class={this.showPasswordIcon}></em>
+                </button>
+              )}
+            </div>
+          )}
         </div>
-
         {showFooter && (
           <div class="bds-text-field__footer">
             {helperContent !== '' && (
