@@ -21,9 +21,9 @@ export interface ITextField {
   sublabel: string;
   helperText: string;
   info: string;
+  icon: string;
   clearable: boolean;
   clearOnHover: boolean;
-  disclosure: boolean;
   validationTiming: TextFieldValidationTiming;
   charCount: number;
   counter: boolean;

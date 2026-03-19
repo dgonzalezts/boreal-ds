@@ -24,9 +24,7 @@ import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from 
  *
  * @summary Single-line text input with label, validation, password toggle, and clear action.
  *
- * @slot prefix - Content rendered before the input (e.g. icon or currency symbol).
- * @slot suffix - Content rendered after the input (e.g. icon or unit label).
- * @slot label - Rich label content. Overrides the `label` prop when provided.
+ * @slot prefix - Content rendered before the input (e.g. icon or status indicator).
  *
  * @attr {string} name - The name submitted with the form.
  * @attr {string} value - The current value of the input.
@@ -40,8 +38,8 @@ import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from 
  * @property {string} placeholder - Native placeholder forwarded to the inner input.
  * @property {string} helperText - Assistive text shown below the input when there is no error.
  * @property {string} errorMessage - Error message shown below the input when `error` is `true`.
+ * @property {string} icon - Icon font class rendered inside the container alongside the sublabel (e.g. `bds-icon-settings`).
  * @property {boolean} clearable - Shows a clear button when the input has a value.
- * @property {boolean} disclosure - Shows a disclosure icon in the right-action area.
  * @property {"blur"|"input"|"submit"|"change"} validationTiming - When built-in validation runs.
  * @property {string} idComponent - Unique identifier for the component element.
  * @property {string} customWidth - Sets a custom width via the `--bds-text-field-width` CSS custom property.
@@ -52,7 +50,6 @@ import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from 
  * @fires bdsFocus - Emitted when the input gains focus, with `{ event }`.
  * @fires bdsBlur - Emitted when the input loses focus, with `{ event }`.
  * @fires bdsClear - Emitted when the user activates the clear button.
- * @fires bdsDisclosure - Emitted when the user clicks the disclosure icon.
  * @fires bdsValidationChange - Emitted after each validation run with `{ valid, validity, value, touched, dirty }`.
  *
  * @cssprop --bds-text-field-width - Sets a custom width for the component.
@@ -125,6 +122,9 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Sublabel rendered inside the input container, before the text area. */
   @Prop() readonly sublabel: string = '';
 
+  /** Icon font class rendered beside the sublabel inside the container (e.g. `bds-icon-settings`). */
+  @Prop() readonly icon: string = '';
+
   /** Helper text shown below the input when there is no error. */
   @Prop() readonly helperText: string = '';
 
@@ -136,9 +136,6 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   /** Clear button is only visible on hover. Implies `clearable`. */
   @Prop() readonly clearOnHover: boolean = false;
-
-  /** Shows a disclosure icon in the right-action area and emits `bdsDisclosure` on click. */
-  @Prop() readonly disclosure: boolean = false;
 
   /** Maximum character count shown in the footer counter (e.g. `120` → `"45/120"`). Requires `counter`. */
   @Prop() readonly charCount: number = 0;
@@ -189,9 +186,6 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   /** Emitted when the user activates the clear button. */
   @Event() bdsClear!: EventEmitter<void>;
-
-  /** Emitted when the user clicks the disclosure icon. */
-  @Event() bdsDisclosure!: EventEmitter<void>;
 
   /** Emitted after each validation run with the full validity snapshot. */
   @Event() bdsValidationChange!: EventEmitter<{
@@ -342,10 +336,6 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus();
   }
 
-  private handleDisclosure(): void {
-    this.bdsDisclosure.emit();
-  }
-
   private get effectiveMaxLength(): number | undefined {
     if (this.maxLength !== 0) return this.maxLength;
     if (this.counter && this.charCount > 0) return this.charCount;
@@ -358,6 +348,10 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       'bds-text-field--error': this.error,
       'bds-text-field--disabled': this.isDisabled,
       'bds-text-field--focused': this.focused,
+      'bds-text-field--readonly': this.readOnly,
+      'bds-text-field--plain': this.variant === TEXT_FIELD_VARIANTS.PLAIN,
+      'bds-text-field--clearable': this.clearable,
+      'bds-text-field--clear-on-hover': this.clearOnHover,
     };
   }
 
@@ -384,7 +378,12 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   }
 
   render() {
-    const showClear = (this.clearable || this.clearOnHover) && this.value !== '';
+    const labelId = `${this._id}-label`;
+    const helperId = `${this._id}-helper`;
+    const showClear = (this.clearable || this.clearOnHover) && this.value !== '' && !this.isDisabled && !this.readOnly;
+    const helperContent = this.error && this.errorMessage !== '' ? this.errorMessage : this.helperText;
+    const showFooter = helperContent !== '' || (this.counter && this.charCount > 0);
+    const typographyState = this.isDisabled ? 'disabled' : this.error ? 'error' : 'default';
 
     return (
       <Host
@@ -393,42 +392,88 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
         tabIndex={this.isDisabled ? -1 : 0}
         onFocus={() => (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
-        <input
-          id={this._id}
-          class="bds-text-field__control"
-          type={this.type === TEXT_FIELD_TYPES.PASSWORD && this.showPassword ? TEXT_FIELD_TYPES.TEXT : this.type}
-          value={this.value}
-          disabled={this.isDisabled}
-          readOnly={this.readOnly}
-          placeholder={this.placeholder}
-          autocomplete={this.autocomplete}
-          pattern={this.pattern !== '' ? this.pattern : undefined}
-          minLength={this.minLength !== 0 ? this.minLength : undefined}
-          maxLength={this.effectiveMaxLength}
-          onInput={(e: InputEvent) => this.handleInput(e)}
-          onChange={(e: Event) => this.handleChange(e)}
-          onFocus={(e: FocusEvent) => this.handleFocus(e)}
-          onBlur={(e: FocusEvent) => this.handleBlur(e)}
-        />
-        {showClear && (
-          <button type="button" onClick={() => this.handleClear()}>
-            clear
-          </button>
+        {this.label !== '' && (
+          <div class="bds-text-field__label-row">
+            <bds-typography
+              id={labelId}
+              variant="label"
+              htmlFor={this._id}
+              isRequired={this.required}
+              tooltipText={this.info !== '' ? this.info : undefined}
+              state={typographyState}
+            >
+              {this.label}
+            </bds-typography>
+          </div>
         )}
-        {this.type === TEXT_FIELD_TYPES.PASSWORD && (
-          <button type="button" onClick={() => this.handleShowPassword()}>
-            {this.showPassword ? 'hide' : 'show'}
-          </button>
-        )}
-        {this.disclosure && (
-          <button type="button" onClick={() => this.handleDisclosure()}>
-            disclosure
-          </button>
-        )}
-        {this.counter && this.charCount > 0 && (
-          <span>
-            {this.currentCharCount}/{this.charCount}
-          </span>
+
+        <div class="bds-text-field__container">
+          {(this.icon !== '' || this.sublabel !== '') && (
+            <span class="bds-text-field__sublabel">
+              {this.icon !== '' && <em class={this.icon}></em>}
+              {this.sublabel}
+            </span>
+          )}
+
+          <slot name="prefix" />
+
+          <input
+            id={this._id}
+            class="bds-text-field__control"
+            aria-labelledby={this.label !== '' ? labelId : undefined}
+            aria-describedby={showFooter && helperContent !== '' ? helperId : undefined}
+            aria-invalid={this.error ? 'true' : undefined}
+            aria-required={this.required ? 'true' : undefined}
+            type={this.type === TEXT_FIELD_TYPES.PASSWORD && this.showPassword ? TEXT_FIELD_TYPES.TEXT : this.type}
+            value={this.value}
+            disabled={this.isDisabled}
+            readOnly={this.readOnly}
+            placeholder={this.placeholder}
+            autocomplete={this.autocomplete}
+            pattern={this.pattern !== '' ? this.pattern : undefined}
+            minLength={this.minLength !== 0 ? this.minLength : undefined}
+            maxLength={this.effectiveMaxLength}
+            onInput={(e: InputEvent) => this.handleInput(e)}
+            onChange={(e: Event) => this.handleChange(e)}
+            onFocus={(e: FocusEvent) => this.handleFocus(e)}
+            onBlur={(e: FocusEvent) => this.handleBlur(e)}
+          />
+
+          <div class="bds-text-field__actions">
+            {showClear && (
+              <button
+                class="bds-text-field__action bds-text-field__action--clear"
+                type="button"
+                onClick={() => this.handleClear()}
+              >
+                clear
+              </button>
+            )}
+            {this.type === TEXT_FIELD_TYPES.PASSWORD && (
+              <button
+                class="bds-text-field__action bds-text-field__action--password"
+                type="button"
+                onClick={() => this.handleShowPassword()}
+              >
+                {this.showPassword ? 'hide' : 'show'}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {showFooter && (
+          <div class="bds-text-field__footer">
+            {helperContent !== '' && (
+              <bds-typography id={helperId} variant="helper" state={typographyState}>
+                {helperContent}
+              </bds-typography>
+            )}
+            {this.counter && this.charCount > 0 && (
+              <span class="bds-text-field__char-count">
+                {this.currentCharCount}/{this.charCount}
+              </span>
+            )}
+          </div>
         )}
       </Host>
     );
