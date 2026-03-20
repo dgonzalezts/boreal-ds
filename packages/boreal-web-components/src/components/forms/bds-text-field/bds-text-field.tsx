@@ -15,9 +15,15 @@ import {
 import { formAssociatedMixin, type IFormControl } from '@/mixins';
 import type { IFormValidator, StyleModifiers } from '@/types';
 import { runValidators, setFormValue, validatePropValue } from '@/utils';
-import { TEXT_FIELD_TYPES, TEXT_FIELD_VARIANTS, TEXT_FIELD_VALIDATION_TIMING } from './types/enum';
-import type { ITextField } from './types/ITextField';
-import type { TextFieldType, TextFieldVariant, TextFieldValidationTiming } from './types/types';
+import {
+  TEXT_FIELD_TYPES,
+  TEXT_FIELD_VARIANTS,
+  TEXT_FIELD_VALIDATION_TIMING,
+  ITextField,
+  TextFieldType,
+  TextFieldVariant,
+  TextFieldValidationTiming,
+} from './types';
 
 /**
  * Text field component for user input with validation and form integration.
