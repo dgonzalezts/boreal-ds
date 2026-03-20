@@ -59,6 +59,7 @@ import {
  * @property {number} charCount - Maximum character count shown in the footer counter (e.g. `120` → `"45/120"`). Requires `counter`.
  * @property {IFormValidator[]} customValidators - Additional validators merged with the built-in ones.
  * @property {"blur"|"input"|"submit"|"change"} validationTiming - When built-in validation runs.
+ * @property {string} pattern - Regex the value must match to pass `patternMismatch` validation. Also forwarded as the native `pattern` attribute to the inner `<input>`. Empty string disables pattern validation.
  * @property {string} idComponent - Unique identifier for the component element.
  * @property {string} customWidth - Sets a custom width via the `--bds-text-field-width` CSS custom property.
  *
@@ -124,7 +125,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Native `autocomplete` attribute forwarded to the inner `<input>`. */
   @Prop() readonly autocomplete: string = 'off';
 
-  /** Native `pattern` attribute forwarded to the inner `<input>`. */
+  /** Regex the value must match to pass `patternMismatch` validation. Also forwarded as the native `pattern` attribute to the inner `<input>`. Empty string disables pattern validation. */
   @Prop() readonly pattern: string = '';
 
   /** Minimum character count. `0` means no minimum. */
@@ -181,10 +182,14 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   /** Live character count of the current value. */
   @State() private currentCharCount: number = 0;
 
+  /** `true` when the last triggered validation run returned invalid. Drives the error visual state. */
+  @State() private validationError: boolean = false;
+
+  /** Error message from the last failed validator. Shown in the footer when `validationError` is `true`. */
+  @State() private validationMessage: string = '';
+
   /** Resolved element ID — derived from `idComponent` prop or auto-generated. */
   @State() private _id: string = '';
-
-  private _valueAtFocus: string = '';
 
   /** Emitted whenever the value changes. Used by framework wrappers for 2-way binding. */
   @Event() valueChange!: EventEmitter<string>;
@@ -212,6 +217,26 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     touched: boolean;
     dirty: boolean;
   }>;
+
+  /**
+   * Returns `true` if the element's value passes all constraints; `false` otherwise.
+   * Also fires an `invalid` event if constraints are violated.
+   */
+  @Method()
+  async checkValidity(): Promise<boolean> {
+    return this.internals.checkValidity();
+  }
+
+  /**
+   * Returns `true` if the element's value passes all constraints; `false` otherwise.
+   * Shows the browser's native validation UI when constraints are violated.
+   */
+  @Method()
+  async reportValidity(): Promise<boolean> {
+    return this.internals.reportValidity();
+  }
+
+  private _valueAtFocus: string = '';
 
   @Watch('disabled')
   onDisabledChange(next: boolean): void {
@@ -244,8 +269,17 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
 
   componentWillLoad(): void {
     this.checkPropValues();
+    this.isDisabled = this.disabled;
     this._id = this.idComponent !== '' ? this.idComponent : `bds-${Math.random().toString(36).substring(2, 11)}`;
     this.currentCharCount = this.value.length;
+  }
+
+  componentDidLoad(): void {
+    this.el.addEventListener('invalid', this.invalidHandler);
+  }
+
+  disconnectedCallback(): void {
+    this.el.removeEventListener('invalid', this.invalidHandler);
   }
 
   @Watch('customValidators')
@@ -271,6 +305,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     this.touched = false;
     this.dirty = false;
     this.currentCharCount = 0;
+    this.validationError = false;
+    this.validationMessage = '';
     setFormValue(this.internals, null);
     this.updateValidity();
   }
@@ -281,24 +317,11 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     this.updateValidity();
   }
 
-  private get validators(): IFormValidator[] {
-    return [
-      {
-        key: 'valueMissing',
-        isValid: () => !this.required || this.value !== '',
-        message: 'This field is required. Please fill it out.',
-      },
-      {
-        key: 'tooShort',
-        isValid: () => this.minLength === 0 || this.value.length >= this.minLength,
-        message: `Please enter at least ${this.minLength} characters.`,
-      },
-    ];
-  }
-
   private updateValidity(emitEvent = false): void {
     const valid = runValidators(this.internals, [...this.validators, ...this.customValidators], this.el as HTMLElement);
     if (emitEvent) {
+      this.validationError = !valid;
+      this.validationMessage = valid ? '' : this.internals.validationMessage;
       this.bdsValidationChange.emit({
         valid,
         validity: this.internals.validity,
@@ -308,6 +331,19 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       });
     }
   }
+
+  private invalidHandler = (e: Event): void => {
+    e.preventDefault();
+    this.validationError = true;
+    this.validationMessage = this.internals.validationMessage;
+    this.bdsValidationChange.emit({
+      valid: false,
+      validity: this.internals.validity,
+      value: this.value,
+      touched: this.touched,
+      dirty: this.dirty,
+    });
+  };
 
   private handleInput(e: InputEvent): void {
     this.value = (e.target as HTMLInputElement).value;
@@ -349,6 +385,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   private handleClear(): void {
     this.value = '';
     this.dirty = true;
+    this.validationError = false;
+    this.validationMessage = '';
     this.bdsClear.emit();
     (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus();
   }
@@ -357,6 +395,33 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     if (this.readOnly) {
       e.preventDefault();
     }
+  }
+
+  private get validators(): IFormValidator[] {
+    return [
+      {
+        key: 'valueMissing',
+        isValid: () => !this.required || this.value !== '',
+        message: 'This field is required. Please fill it out.',
+      },
+      {
+        key: 'tooShort',
+        isValid: () => this.minLength === 0 || this.value.length >= this.minLength,
+        message: `Please enter at least ${this.minLength} characters.`,
+      },
+      {
+        key: 'patternMismatch',
+        isValid: () => {
+          if (this.pattern === '' || this.value === '') return true;
+          try {
+            return new RegExp(this.pattern).test(this.value);
+          } catch {
+            return true;
+          }
+        },
+        message: 'Please match the requested format.',
+      },
+    ];
   }
 
   private get effectiveMaxLength(): number | undefined {
@@ -368,7 +433,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   private get classMap(): StyleModifiers {
     return {
       'bds-text-field': true,
-      'bds-text-field--error': this.error,
+      'bds-text-field--error': this.error || this.validationError,
       'bds-text-field--disabled': this.isDisabled,
       'bds-text-field--focused': this.focused,
       'bds-text-field--readonly': this.readOnly,
@@ -389,31 +454,19 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     return this.showPassword ? 'bds-icon-sight-on' : 'bds-icon-sight-off';
   }
 
-  /**
-   * Returns `true` if the element's value passes all constraints; `false` otherwise.
-   * Also fires an `invalid` event if constraints are violated.
-   */
-  @Method()
-  async checkValidity(): Promise<boolean> {
-    return this.internals.checkValidity();
-  }
-
-  /**
-   * Returns `true` if the element's value passes all constraints; `false` otherwise.
-   * Shows the browser's native validation UI when constraints are violated.
-   */
-  @Method()
-  async reportValidity(): Promise<boolean> {
-    return this.internals.reportValidity();
-  }
-
   render() {
     const labelId = `${this._id}-label`;
     const helperId = `${this._id}-helper`;
     const showClear = (this.clearable || this.clearOnHover) && this.value !== '' && !this.isDisabled && !this.readOnly;
-    const helperContent = this.error && this.errorMessage !== '' ? this.errorMessage : this.helperText;
+    const effectiveError = this.error || this.validationError;
+    const helperContent =
+      this.error && this.errorMessage !== ''
+        ? this.errorMessage
+        : this.validationError && this.validationMessage !== ''
+          ? this.validationMessage
+          : this.helperText;
     const showFooter = helperContent !== '' || (this.counter && this.charCount > 0);
-    const typographyState = this.isDisabled ? 'disabled' : this.error ? 'error' : 'default';
+    const typographyState = this.isDisabled ? 'disabled' : effectiveError ? 'error' : 'default';
 
     return (
       <Host
@@ -447,7 +500,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
             class="bds-text-field__control"
             aria-labelledby={this.label !== '' ? labelId : undefined}
             aria-describedby={showFooter && helperContent !== '' ? helperId : undefined}
-            aria-invalid={this.error ? 'true' : undefined}
+            aria-invalid={this.error || this.validationError ? 'true' : undefined}
             aria-required={this.required ? 'true' : undefined}
             type={this.type === TEXT_FIELD_TYPES.PASSWORD && this.showPassword ? TEXT_FIELD_TYPES.TEXT : this.type}
             value={this.value}
