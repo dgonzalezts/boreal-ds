@@ -1,6 +1,18 @@
-import { AttachInternals, Component, Element, Event, EventEmitter, Host, Mixin, Prop, Watch, h } from '@stencil/core';
+import {
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Mixin,
+  Prop,
+  State,
+  Watch,
+  h,
+} from '@stencil/core';
 
-import type { ICheckbox } from './types/ICheckbox';
+import type { ICheckbox, CheckboxChangeDetail } from './types/ICheckbox';
 import { formAssociatedMixin, type IFormControl } from '@/mixins/form-associated.mixin';
 import { setFormValue } from '@/utils/form';
 import { Attributes, inheritAriaAttributes } from '@/utils/a11y/attributes';
@@ -8,8 +20,6 @@ import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
 
 /**
  * Checkbox component for boolean selection with three visual states.
- *
- * @element bds-checkbox
  *
  * @summary A checkbox form control with default, selected, and indeterminate states.
  *
@@ -33,6 +43,9 @@ import { getBaseAttributes } from '@/utils/helpers/common/BaseAttributes';
 export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox, IFormControl<boolean> {
   private inheritedAttributes: Attributes = {};
 
+  /** Internal mirror of the `disabled` prop, kept in sync via `@Watch` and `formDisabledCallback`. */
+  @State() private isDisabled: boolean = false;
+
   @Element() el!: HTMLBdsCheckboxElement;
 
   @AttachInternals() internals!: ElementInternals;
@@ -46,7 +59,7 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
   @Prop({ reflect: true }) readonly name!: string;
 
   /** Disables the control. */
-  @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+  @Prop({ reflect: true }) readonly disabled: boolean = false;
 
   /** Marks the control as required for form submission. */
   @Prop({ reflect: true }) readonly required: boolean = false;
@@ -81,13 +94,14 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
   @Event() valueChange!: EventEmitter<boolean>;
 
   /** Emitted when the user toggles the checkbox. */
-  @Event() bdsChange!: EventEmitter<{ checked: boolean; value: string }>;
+  @Event() bdsChange!: EventEmitter<CheckboxChangeDetail>;
 
   // ---------------------------------------------------------------------------
   // Lifecycle
   // ---------------------------------------------------------------------------
 
   componentWillLoad() {
+    this.isDisabled = this.disabled;
     this.inheritedAttributes = {
       ...inheritAriaAttributes(this.el),
       ...getBaseAttributes(this),
@@ -102,6 +116,11 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
   @Watch('checked')
   onCheckedChange() {
     this.syncFormValue();
+  }
+
+  @Watch('disabled')
+  onDisabledChange(next: boolean) {
+    this.isDisabled = next;
   }
 
   // ---------------------------------------------------------------------------
@@ -123,6 +142,10 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
     this.syncFormValue();
   }
 
+  override formDisabledCallback(disabled: boolean) {
+    this.isDisabled = disabled;
+  }
+
   // ---------------------------------------------------------------------------
   // Private helpers
   // ---------------------------------------------------------------------------
@@ -132,7 +155,7 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
   }
 
   private toggle() {
-    if (this.disabled) return;
+    if (this.isDisabled) return;
 
     this.indeterminate = false;
     this.checked = !this.checked;
@@ -197,7 +220,7 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
       'bds-checkbox--checked': this.checked,
       'bds-checkbox--indeterminate': this.indeterminate,
       'bds-checkbox--error': this.error,
-      'bds-checkbox--disabled': this.disabled,
+      'bds-checkbox--disabled': this.isDisabled,
     };
 
     return (
@@ -206,8 +229,8 @@ export class BdsCheckbox extends Mixin(formAssociatedMixin) implements ICheckbox
         {...this.inheritedAttributes}
         role="checkbox"
         aria-checked={this.getAriaChecked()}
-        aria-disabled={this.disabled ? 'true' : null}
-        tabindex={this.disabled ? -1 : 0}
+        aria-disabled={this.isDisabled ? 'true' : null}
+        tabindex={this.isDisabled ? -1 : 0}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
       >

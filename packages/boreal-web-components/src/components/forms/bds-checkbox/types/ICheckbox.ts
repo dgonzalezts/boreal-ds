@@ -1,5 +1,24 @@
 import type { EventEmitter } from '@stencil/core/internal';
 
+/**
+ * Payload emitted by the `bdsChange` event when the user toggles the checkbox.
+ *
+ * Exported so consumers can type their event handlers:
+ * ```typescript
+ * import type { CheckboxChangeDetail } from '@telesign/boreal-web-components';
+ *
+ * checkbox.addEventListener('bdsChange', (e: CustomEvent<CheckboxChangeDetail>) => {
+ *   console.log(e.detail.checked, e.detail.value);
+ * });
+ * ```
+ */
+export interface CheckboxChangeDetail {
+  /** Whether the checkbox is now checked. */
+  checked: boolean;
+  /** The value associated with the checkbox. */
+  value: string;
+}
+
 export interface ICheckbox {
   /** Current checked state. */
   checked: boolean;
@@ -20,5 +39,5 @@ export interface ICheckbox {
   valueChange: EventEmitter<boolean>;
 
   /** Emitted when the user toggles the checkbox. */
-  bdsChange: EventEmitter<{ checked: boolean; value: string }>;
+  bdsChange: EventEmitter<CheckboxChangeDetail>;
 }
