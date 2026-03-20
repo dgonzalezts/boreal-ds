@@ -1,8 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsTooltip } from '../bds-tooltip';
 import { getInner } from '@/utils/__test__/helpers';
-import { setupPopoverMocks } from './utils/popover-mock';
 import { FloatingTooltipProp } from '@/components';
+import { setupPopoverMocks } from '@/utils/__test__';
 
 setupPopoverMocks();
 

@@ -1,6 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { BdsTooltip } from '../bds-tooltip';
-import { setupPopoverMocks } from './utils/popover-mock';
+import { setupPopoverMocks } from '@/utils/__test__';
 
 setupPopoverMocks();
 
