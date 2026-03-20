@@ -149,4 +149,35 @@ describe('bds-text-field a11y', () => {
     assertExists(input, 'input not found');
     expect(input.hasAttribute('disabled')).toBe(true);
   });
+
+  it('aria-invalid="true" when internal validationError is true after required field is blurred empty', async () => {
+    const page = await newSpecPage({
+      components: [BdsTextField, BdsTypography],
+      html: '<bds-text-field required="true" validation-timing="blur"></bds-text-field>',
+    });
+    const root = page.root as HTMLElement;
+    const input = root.querySelector('input') as HTMLInputElement;
+
+    input.dispatchEvent(new Event('blur', { bubbles: true }));
+    await page.waitForChanges();
+
+    assertExists(input, 'input not found');
+    expect(input.getAttribute('aria-invalid')).toBe('true');
+  });
+
+  it('aria-invalid absent after internal validation passes on blur', async () => {
+    const page = await newSpecPage({
+      components: [BdsTextField, BdsTypography],
+      html: '<bds-text-field required="true" validation-timing="blur"></bds-text-field>',
+    });
+    const root = page.root as HTMLElement;
+    const input = root.querySelector('input') as HTMLInputElement;
+
+    input.value = 'filled';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('blur', { bubbles: true }));
+    await page.waitForChanges();
+
+    expect(input.getAttribute('aria-invalid')).toBeNull();
+  });
 });
