@@ -1,7 +1,7 @@
 import { html, nothing } from 'lit';
 import { formatHtmlSource } from '@/utils/formatters';
 import type { BorealStory, BorealStoryMeta } from '@/types/stories';
-import type { Size, State } from '@telesign/boreal-web-components/types';
+import type { ComponentState, Size } from '@telesign/boreal-web-components/types';
 
 type StoryArgs = {
   element: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'div' | 'a' | 'label' | '';
@@ -21,7 +21,7 @@ type StoryArgs = {
   tooltipText: string;
 
   // Applies to some variants
-  state: State | '';
+  state: ComponentState | '';
   size: Size | '';
 
   // Label

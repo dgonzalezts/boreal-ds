@@ -111,7 +111,7 @@ export default defineConfig(
       'stencil/strict-mutable': 'warn', // Allow mutable props but warn about them
       'stencil/strict-boolean-conditions': 'warn', // Allow non-boolean conditions but warn about them
       'react/jsx-no-bind': 'off', // Allow inline functions in JSX for Stencil components
-      "@typescript-eslint/no-unused-expressions": ["warn", { "allowTernary": true }], // Allow ternary executions functions, exm: this.isVisible ? this.hide() : this.show();
+      '@typescript-eslint/no-unused-expressions': ['warn', { allowTernary: true }], // Allow ternary executions functions, exm: this.isVisible ? this.hide() : this.show();
     },
   },
   {
@@ -128,6 +128,20 @@ export default defineConfig(
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       'stencil/strict-boolean-conditions': 'off',
+    },
+  },
+  {
+    // Component type files - enforce no default exports for Stencil's declaration generator compatibility
+    files: ['src/**/types/*.ts'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'ExportDefaultDeclaration',
+          message:
+            "Default exports are forbidden in component type files. Use named exports (export interface / export type) so Stencil's declaration generator can resolve them in components.d.ts.",
+        },
+      ],
     },
   },
 );

@@ -9,9 +9,15 @@
         "loader/**",
         "components-build/**",
         ".stencil/**",
-        "custom-elements.json"
+        "custom-elements.json",
+        "storybook-static/**"
       ],
       "cache": true
+    },
+    "release": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "outputs": []
     },
     "test": {
       "dependsOn": ["build"],

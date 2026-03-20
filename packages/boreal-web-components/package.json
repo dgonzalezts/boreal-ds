@@ -1,6 +1,6 @@
 {
   "name": "@telesign/boreal-web-components",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.2",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -19,8 +19,9 @@
       "require": "./loader/index.cjs",
       "types": "./loader/index.d.ts"
     },
-    "./components/*": {
-      "import": "./components-build/*"
+    "./components/*.js": {
+      "import": "./components-build/*.js",
+      "types": "./components-build/*.d.ts"
     },
     "./types": {
       "import": "./dist/collection/types/index.js",

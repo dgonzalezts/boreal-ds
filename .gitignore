@@ -5,3 +5,5 @@
 **/node_modules/
 .idea/*
 .turbo/
+.env
+.env.local

@@ -1,6 +1,6 @@
 {
   "name": "@telesign/boreal-react",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.4",
   "description": "Wrapper for React BorealDS",
   "keywords": [
     "Boreal",
@@ -19,11 +19,11 @@
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./css/*": "./dist/css/*",
     "./scss/*": "./dist/scss/*"
@@ -34,9 +34,9 @@
     "build": "pnpm run tsc && boreal-copy-styles",
     "tsc": "tsc -p . --outDir ./dist"
   },
+  "sideEffects": false,
   "files": [
-    "dist",
-    "./lib/*"
+    "dist"
   ],
   "devDependencies": {
     "@types/react": "^19.2.7",
