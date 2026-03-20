@@ -386,4 +386,220 @@ describe('bds-text-field validation', () => {
     const detail = (validationSpy.mock.calls[0][0] as CustomEvent).detail;
     expect(detail.dirty).toBe(true);
   });
+
+  describe('patternMismatch validator', () => {
+    it('value matching pattern: setValidity called with empty flags', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[a-z]+$" validation-timing="input"></bds-text-field>',
+      });
+      const internals = (page.rootInstance as any).internals;
+      internals.setValidity.mockClear();
+      const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+      typeInInput(input, 'abc');
+      await page.waitForChanges();
+
+      expect(internals.setValidity).toHaveBeenLastCalledWith({}, '');
+    });
+
+    it('value not matching pattern: setValidity called with patternMismatch flag', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[0-9]+$" validation-timing="input"></bds-text-field>',
+      });
+      const internals = (page.rootInstance as any).internals;
+      internals.setValidity.mockClear();
+      const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+      typeInInput(input, 'abc');
+      await page.waitForChanges();
+
+      expect(internals.setValidity).toHaveBeenLastCalledWith({ patternMismatch: true }, expect.any(String));
+    });
+
+    it('empty value is always valid regardless of pattern', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[0-9]+$" validation-timing="blur"></bds-text-field>',
+      });
+      const internals = (page.rootInstance as any).internals;
+      internals.setValidity.mockClear();
+      const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+      blurInput(input);
+      await page.waitForChanges();
+
+      expect(internals.setValidity).toHaveBeenLastCalledWith({}, '');
+    });
+
+    it('empty pattern string always passes patternMismatch validation', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field validation-timing="input"></bds-text-field>',
+      });
+      const internals = (page.rootInstance as any).internals;
+      internals.setValidity.mockClear();
+      const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+      typeInInput(input, 'anything goes');
+      await page.waitForChanges();
+
+      expect(internals.setValidity).not.toHaveBeenCalledWith(
+        expect.objectContaining({ patternMismatch: true }),
+        expect.any(String),
+      );
+    });
+
+    it('malformed regex pattern does not throw and is treated as valid', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="[invalid" validation-timing="input"></bds-text-field>',
+      });
+      const internals = (page.rootInstance as any).internals;
+      internals.setValidity.mockClear();
+      const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+      expect(() => typeInInput(input, 'abc')).not.toThrow();
+      await page.waitForChanges();
+
+      expect(internals.setValidity).not.toHaveBeenCalledWith(
+        expect.objectContaining({ patternMismatch: true }),
+        expect.any(String),
+      );
+    });
+
+    it('bdsValidationChange emits valid=false when value does not match pattern on blur', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[0-9]+$" validation-timing="blur"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const input = root.querySelector('input') as HTMLInputElement;
+      const validationSpy = jest.fn();
+      root.addEventListener('bdsValidationChange', validationSpy);
+
+      focusInput(input);
+      typeInInput(input, 'abc');
+      blurInput(input);
+      await page.waitForChanges();
+
+      expect(validationSpy).toHaveBeenCalledTimes(1);
+      const detail = (validationSpy.mock.calls[0][0] as CustomEvent).detail;
+      expect(detail.valid).toBe(false);
+    });
+
+    it('bdsValidationChange emits valid=true when value matches pattern on blur', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[0-9]+$" validation-timing="blur"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const input = root.querySelector('input') as HTMLInputElement;
+      const validationSpy = jest.fn();
+      root.addEventListener('bdsValidationChange', validationSpy);
+
+      focusInput(input);
+      typeInInput(input, '123');
+      blurInput(input);
+      await page.waitForChanges();
+
+      const detail = (validationSpy.mock.calls[0][0] as CustomEvent).detail;
+      expect(detail.valid).toBe(true);
+    });
+  });
+
+  describe('internal validation visual state', () => {
+    it('bds-text-field--error class applied after failed validation on blur', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field required="true" validation-timing="blur"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const input = root.querySelector('input') as HTMLInputElement;
+
+      blurInput(input);
+      await page.waitForChanges();
+
+      expect(root.classList.contains('bds-text-field--error')).toBe(true);
+    });
+
+    it('internal validationMessage rendered in footer when validationError state is true', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const instance = page.rootInstance as any;
+
+      instance.validationError = true;
+      instance.validationMessage = 'Custom validation error text';
+      await page.waitForChanges();
+
+      const helperEl = root.querySelector('.bds-text-field__footer bds-typography[variant="helper"]');
+      expect(helperEl).not.toBeNull();
+      expect(helperEl!.textContent).toContain('Custom validation error text');
+    });
+
+    it('bds-text-field--error class cleared after formResetCallback', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field required="true" validation-timing="blur"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const input = root.querySelector('input') as HTMLInputElement;
+
+      blurInput(input);
+      await page.waitForChanges();
+      expect(root.classList.contains('bds-text-field--error')).toBe(true);
+
+      (page.rootInstance as any).formResetCallback();
+      await page.waitForChanges();
+
+      expect(root.classList.contains('bds-text-field--error')).toBe(false);
+    });
+
+    it('handleClear clears validationError state removing the error visual', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field pattern="^[0-9]+$" clearable="true" validation-timing="blur"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const input = root.querySelector('input') as HTMLInputElement;
+
+      focusInput(input);
+      typeInInput(input, 'abc');
+      blurInput(input);
+      await page.waitForChanges();
+      expect(root.classList.contains('bds-text-field--error')).toBe(true);
+
+      const clearBtn = root.querySelector('.bds-text-field__action--clear') as HTMLElement;
+      clearBtn.click();
+      await page.waitForChanges();
+
+      expect(root.classList.contains('bds-text-field--error')).toBe(false);
+    });
+
+    it('invalid event on host: defaultPrevented, validationError set, bdsValidationChange emitted', async () => {
+      const page = await newSpecPage({
+        components: [BdsTextField, BdsTypography],
+        html: '<bds-text-field required="true"></bds-text-field>',
+      });
+      const root = page.root as HTMLElement;
+      const instance = page.rootInstance as any;
+      const validationSpy = jest.fn();
+      root.addEventListener('bdsValidationChange', validationSpy);
+      instance.internals.validationMessage = 'This field is required. Please fill it out.';
+
+      const invalidEvent = new Event('invalid', { cancelable: true, bubbles: false });
+      root.dispatchEvent(invalidEvent);
+      await page.waitForChanges();
+
+      expect(invalidEvent.defaultPrevented).toBe(true);
+      expect(instance.validationError).toBe(true);
+      expect(validationSpy).toHaveBeenCalledTimes(1);
+      const detail = (validationSpy.mock.calls[0][0] as CustomEvent).detail;
+      expect(detail.valid).toBe(false);
+    });
+  });
 });

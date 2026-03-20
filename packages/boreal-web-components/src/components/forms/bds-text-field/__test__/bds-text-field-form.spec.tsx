@@ -136,4 +136,35 @@ describe('bds-text-field form integration', () => {
 
     expect((page.root as any).value).toBe('restored value');
   });
+
+  it('isDisabled seeded from disabled prop on first render — no prop change required', async () => {
+    const page = await newSpecPage({
+      components: [BdsTextField, BdsTypography],
+      html: '<bds-text-field disabled="true"></bds-text-field>',
+    });
+    const root = page.root as HTMLElement;
+    const input = root.querySelector('input');
+    assertExists(input, 'input not found');
+    expect(input.hasAttribute('disabled')).toBe(true);
+    expect(root.classList.contains('bds-text-field--disabled')).toBe(true);
+  });
+
+  it('formResetCallback clears validationError and validationMessage states', async () => {
+    const page = await newSpecPage({
+      components: [BdsTextField, BdsTypography],
+      html: '<bds-text-field required="true" validation-timing="blur"></bds-text-field>',
+    });
+    const instance = page.rootInstance as any;
+    const input = (page.root as HTMLElement).querySelector('input') as HTMLInputElement;
+
+    input.dispatchEvent(new Event('blur', { bubbles: true }));
+    await page.waitForChanges();
+    expect(instance.validationError).toBe(true);
+
+    instance.formResetCallback();
+    await page.waitForChanges();
+
+    expect(instance.validationError).toBe(false);
+    expect(instance.validationMessage).toBe('');
+  });
 });
