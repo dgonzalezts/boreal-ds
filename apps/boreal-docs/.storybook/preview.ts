@@ -147,8 +147,12 @@ const preview: Preview = {
       defaultValue: 'proximus',
       toolbar: {
         icon: 'globe',
-        //TODO: add other themes when available
-        items: [{ value: 'proximus', title: 'Theme: Proximus' }],
+        items: [
+          { value: 'proximus', title: 'Theme: Proximus' },
+          { value: 'connect', title: 'Theme: Connect' },
+          { value: 'protect', title: 'Theme: Protect' },
+          { value: 'engage', title: 'Theme: Engage' },
+        ],
         dynamicTitle: true,
       },
     },
