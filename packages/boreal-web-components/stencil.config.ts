@@ -14,6 +14,9 @@ export const config: Config = {
   sourceMap: false,
   buildEs5: 'prod',
   globalStyle: 'src/styles/main.scss',
+  devServer: {
+    reloadStrategy: 'pageReload',
+  },
   extras: {
     experimentalSlotFixes: true,
     experimentalScopedSlotChanges: true,
