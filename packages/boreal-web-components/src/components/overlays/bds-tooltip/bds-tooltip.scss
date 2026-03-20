@@ -18,7 +18,7 @@
   border: $boreal-spacing-2xs solid $boreal-ui-black;
   font-weight: $boreal-typography-font-weight-regular;
 
-  &[data-multiline] {
+  &--multiline {
     white-space: normal;
     max-width: var(--tooltip-width, 320px);
     word-break: break-word;

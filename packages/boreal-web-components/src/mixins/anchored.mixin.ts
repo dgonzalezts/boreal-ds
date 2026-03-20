@@ -3,10 +3,9 @@ import { ComponentInterface, Element, MixedInCtor } from '@stencil/core';
 import { floatingMixin } from './floating.mixin';
 import { Logger } from '@/services/logger/Logger';
 import { autoUpdate } from '@floating-ui/dom';
-import { KEYBOARD } from '@/utils/constants/common/Keys';
-import { EVENTS } from '@/utils/constants/common/Events';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 import { AnchoredHooks } from '@/services/floating/interfaces/Anchored';
+import { EVENTS, KEYBOARD } from '@/utils/constants';
 
 /**
  * Positioning and trigger mixin for anchor-based floating elements.

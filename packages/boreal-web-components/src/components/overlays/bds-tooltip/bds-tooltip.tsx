@@ -1,10 +1,8 @@
 import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
-import { PositioningResult } from '@/services/floating/interfaces/Positioning';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
-import { FloatingTooltipProp } from '@/services/floating/interfaces/Props';
-import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
-import { AnchoredHooks } from '@/services/floating/interfaces/Anchored';
+import { StyleModifiers } from '@/types';
+import { AnchoredHooks, FloatingMixinOptions, FloatingTooltipProp, PositioningResult } from '@/services';
 
 /**
  * Tooltip component used to display contextual information on hover or focus.
@@ -156,13 +154,22 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
     }
   }
 
+  get tooltipStyles(): StyleModifiers {
+    return {
+      'tooltip-content': true,
+      'tooltip-content--multiline': this.multiline,
+    };
+  }
+
   render() {
+    const classes = this.tooltipStyles;
+
     return (
       <Host class="tooltip">
         <div
           id="tooltip-content"
           part="tooltip-content"
-          class="tooltip-content"
+          class={classes}
           popover="manual"
           role="tooltip"
           aria-hidden={this.isVisible ? 'false' : 'true'}
