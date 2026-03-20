@@ -1,6 +1,6 @@
 import { Placement, Strategy } from '@floating-ui/dom';
 import { PositioningResult } from './Positioning';
-import { FloatingAnchoredProp } from './Props';
+import { FloatingProp } from './Props';
 
 /**
  * Add methods to the `onBeforeShow`, `onAfterShow`, `onBeforeHide`, and `onAfterHide` to add custom logic.
@@ -34,7 +34,7 @@ export interface FloatingMixinOptions {
  * The mixin could provide a getter to able the developer override values.
  */
 export interface IFloatingMixin extends FloatingHooks {
-  floatingOptions: FloatingAnchoredProp;
+  floatingOptions?: FloatingProp;
 
   get options(): FloatingMixinOptions;
   get hooks(): FloatingHooks;

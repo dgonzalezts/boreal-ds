@@ -1,11 +1,11 @@
 import { IFloatingAdapter, PositioningEngine } from '@/services/floating/positioning.service';
-import { MixedInCtor } from '@stencil/core';
+import { ComponentInterface, Element, MixedInCtor } from '@stencil/core';
 import { floatingMixin } from './floating.mixin';
 import { Logger } from '@/services/logger/Logger';
 import { autoUpdate } from '@floating-ui/dom';
-import { KEYBOARD } from '@/utils/constants/common/Keys';
-import { EVENTS } from '@/utils/constants/common/Events';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
+import { AnchoredHooks } from '@/services/floating/interfaces/Anchored';
+import { EVENTS, KEYBOARD } from '@/utils/constants';
 
 /**
  * Positioning and trigger mixin for anchor-based floating elements.
@@ -81,7 +81,7 @@ import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
  * @see FloatingHooks - lifecycle hook interface, includes `onPositionUpdate`
  */
 export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
-  class Anchored extends floatingMixin(Base) {
+  class Anchored extends floatingMixin(Base) implements ComponentInterface, AnchoredHooks {
     /**
      * The previously registered trigger element.
      * Used to detach listeners when the trigger changes.
@@ -121,6 +121,12 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * either via slot change handler or `componentDidLoad`.
      */
     triggerSlot!: HTMLElement;
+
+    @Element() el!: HTMLElement;
+
+    get hooks(): AnchoredHooks {
+      return {};
+    }
 
     /**
      * Shows the floating element using the Popover API
@@ -295,6 +301,29 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
         this.detachTriggerListeners(this.previousTrigger, showFn, hideFn);
       }
       this.stopAutoUpdate();
+    }
+
+    subscribeToTrigger(trigger: Element) {
+      trigger.setAttribute('part', 'tooltip-trigger');
+      trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
+
+      trigger.addEventListener('mouseenter', () => this.show());
+      trigger.addEventListener('mouseleave', (e: MouseEvent) => this.hide(e.target as HTMLElement));
+    }
+
+    onBeforeLoad() {
+      const parent = this.el.parentElement;
+      const trigger = parent.querySelector('[bds-tooltip]') || parent;
+
+      if (trigger.isConnected) {
+        this.triggerSlot = trigger as HTMLElement;
+        this.subscribeToTrigger(trigger);
+      }
+    }
+
+    componentDidLoad() {
+      this.onBeforeLoad();
+      this.hooks.onBeforeLoad?.(this.el);
     }
 
     /**
