@@ -107,7 +107,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   @Prop() readonly placeholder: string = '';
 
   /** Makes the input read-only. The value is still submitted with the form. */
-  @Prop() readonly readOnly: boolean = false;
+  @Prop({ attribute: 'readonly' }) readonly readOnly: boolean = false;
 
   /** Native `autocomplete` attribute forwarded to the inner `<input>`. */
   @Prop() readonly autocomplete: string = 'off';
@@ -341,6 +341,12 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
     (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus();
   }
 
+  private handleMouseDown(e: MouseEvent): void {
+    if (this.readOnly) {
+      e.preventDefault();
+    }
+  }
+
   private get effectiveMaxLength(): number | undefined {
     if (this.maxLength !== 0) return this.maxLength;
     if (this.counter && this.charCount > 0) return this.charCount;
@@ -401,8 +407,8 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       <Host
         class={this.classMap}
         style={this.hostStyle}
-        tabIndex={this.isDisabled ? -1 : 0}
-        onFocus={() => (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
+        tabIndex={this.isDisabled || this.readOnly ? -1 : 0}
+        onFocus={() => !this.readOnly && (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
         {this.label !== '' && (
           <bds-typography
@@ -435,11 +441,13 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
             value={this.value}
             disabled={this.isDisabled}
             readOnly={this.readOnly}
+            tabIndex={this.readOnly ? -1 : undefined}
             placeholder={this.placeholder}
             autocomplete={this.autocomplete}
             pattern={this.pattern !== '' ? this.pattern : undefined}
             minLength={this.minLength !== 0 ? this.minLength : undefined}
             maxLength={this.effectiveMaxLength}
+            onMouseDown={(e: MouseEvent) => this.handleMouseDown(e)}
             onInput={(e: InputEvent) => this.handleInput(e)}
             onChange={(e: Event) => this.handleChange(e)}
             onFocus={(e: FocusEvent) => this.handleFocus(e)}
