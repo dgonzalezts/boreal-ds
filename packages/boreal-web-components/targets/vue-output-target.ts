@@ -7,5 +7,12 @@ export default () => {
     includeImportCustomElements: true,
     includePolyfills: false,
     includeDefineCustomElements: false,
+    componentModels: [
+      {
+        elements: ['bds-text-field'],
+        event: 'valueChange',
+        targetAttr: 'value',
+      },
+    ],
   });
 };
