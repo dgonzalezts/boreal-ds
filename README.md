@@ -330,6 +330,8 @@ All scripts are run from the **workspace root** using Turborepo to orchestrate t
 | `pnpm release:react`      | `--filter boreal-react run release`               | Release `@telesign/boreal-react` via release-it                                               |
 | `pnpm release:vue`        | `--filter boreal-vue run release`                 | Release `@telesign/boreal-vue` via release-it                                                 |
 | `pnpm release:all`        | `release:styles → release:wc → validate:all → release:react → release:vue` | Release all packages in dependency order                                 |
+| `pnpm release:publish`    | `release:all` → `deploy:docs`                                               | Release all packages then publish Storybook to Chromatic (requires `.env`) |
+| `pnpm deploy:docs`        | `turbo build --filter=@telesign/boreal-docs... && chromatic`                | Build Storybook via Turborepo and publish to Chromatic (requires `.env`) |
 
 To run a script for a single package only:
 
@@ -431,6 +433,16 @@ pnpm release:vue      # @telesign/boreal-vue
 ```bash
 pnpm release:all
 ```
+
+### Release all packages and publish docs
+
+```bash
+pnpm release:publish
+```
+
+Publishes all four npm packages in dependency order, then builds and deploys the Storybook to Chromatic. Requires a `.env` file at the workspace root containing `CHROMATIC_PROJECT_TOKEN` (see `apps/boreal-docs/README.md` for setup instructions). Must be run from the `release/current` branch.
+
+If Chromatic deployment fails after packages are published, retry with `pnpm deploy:docs` — no need to re-release packages.
 
 ### Dry run (preview without writing)
 

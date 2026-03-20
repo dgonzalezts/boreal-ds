@@ -4,11 +4,9 @@ import type { EventEmitter } from '@stencil/core/internal';
 export interface IBanner {
   variant: StatusVariant;
   enableClose: boolean;
-
-  /* State */
-  isOpen: boolean;
-  isClosing: boolean;
+  closeButtonLabel: string;
+  idComponent: string;
 
   /* Events */
-  close: EventEmitter<void>;
+  bdsClose: EventEmitter<void>;
 }

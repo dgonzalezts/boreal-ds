@@ -3,7 +3,7 @@ import { Component, Element, Host, Prop, State, Watch, h } from '@stencil/core';
 import type { StyleModifiers } from '@/types/stylesMap';
 import { ALIGNMENT } from '@/types/alignment';
 import { SIZES } from '@/types/size';
-import { STATES } from '@/types/states';
+import { COMPONENT_STATES } from '@/types/states';
 import { Attributes, inheritAriaAttributes } from '@/utils/a11y';
 
 import type { ITypography } from './types/ITypography';
@@ -80,7 +80,7 @@ export class BdsTypography implements ITypography {
   @Prop({ reflect: true }) readonly size: ITypography['size'] = SIZES.M;
 
   /** Visual state (if supported by variant). */
-  @Prop({ reflect: true }) readonly state: ITypography['state'] = STATES.DEFAULT;
+  @Prop({ reflect: true }) readonly state: ITypography['state'] = COMPONENT_STATES.DEFAULT;
 
   /** Additional custom CSS class. */
   @Prop() readonly customClass: string = '';
@@ -151,7 +151,7 @@ export class BdsTypography implements ITypography {
     const isInteractiveTag = ['a', 'label'].includes(this.getTagName);
     return {
       'aria-required': this.isRequired && isRequired,
-      'aria-disabled': this.state === STATES.DISABLED && isInteractiveTag,
+      'aria-disabled': this.state === COMPONENT_STATES.DISABLED && isInteractiveTag,
     };
   }
 
