@@ -1,0 +1,215 @@
+@mixin bds-icon($size, $font-size) {
+  & em[class^='bds-icon-'],
+  & em[class*=' bds-icon-'] {
+    width: $size;
+    height: $size;
+    font-size: $font-size;
+    line-height: 1;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+}
+
+%field-inline-label {
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-xs;
+}
+
+.bds-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: $boreal-spacing-2xs;
+  width: var(--bds-text-field-width, 100%);
+  font-family: $boreal-typography-font-family-primary;
+  color: $boreal-text-default;
+
+  &__container {
+    @extend %flex-center;
+
+    padding: $boreal-spacing-1xs;
+    padding-left: 0;
+    height: $boreal-layout-l;
+    border: 1px solid $boreal-stroke-default-light;
+    border-radius: $boreal-radius-xs;
+    background-color: $boreal-ui-inverse;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+    overflow: hidden;
+  }
+
+  &__sublabel {
+    @extend %flex-center;
+    @extend %field-inline-label;
+
+    gap: $boreal-spacing-3xs;
+    padding-left: $boreal-spacing-xs;
+    white-space: nowrap;
+
+    @include bds-icon($boreal-icons-m, $boreal-typography-font-size-md);
+  }
+
+  [slot='prefix'] {
+    @extend %field-inline-label;
+
+    padding-left: $boreal-spacing-xs;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__control {
+    min-width: 0;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    padding-left: $boreal-spacing-xs;
+    font-size: $boreal-typography-font-size-sm;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-sm;
+
+    &::placeholder {
+      color: $boreal-text-default-light;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__actions {
+    @extend %flex-center;
+
+    padding-left: $boreal-spacing-xs;
+    gap: $boreal-spacing-3xs;
+  }
+
+  &__action {
+    @extend %flex-center;
+
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: $boreal-spacing-3xs;
+    cursor: pointer;
+    color: $boreal-icon-default-light;
+    line-height: 1;
+    transition:
+      color 0.2s ease,
+      opacity 0.2s ease;
+
+    &--clear {
+      @include bds-icon($boreal-icons-s, $boreal-typography-font-size-xs);
+    }
+
+    &--password {
+      @include bds-icon($boreal-icons-l, $boreal-typography-font-size-lg);
+    }
+
+    &:hover {
+      color: $boreal-icon-default-dark;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $boreal-stroke-focus;
+      outline-offset: 1px;
+    }
+  }
+
+  &__footer {
+    @extend %flex-center;
+
+    justify-content: space-between;
+  }
+
+  &__char-count {
+    flex-shrink: 0;
+    font-size: $boreal-typography-font-size-xs;
+    font-weight: $boreal-typography-font-weight-regular;
+    line-height: $boreal-typography-line-height-xs;
+    color: $boreal-text-default-light;
+  }
+
+  &--focused {
+    .bds-text-field__container {
+      border-color: $boreal-stroke-focus;
+      box-shadow:
+        0 0 0 1px $boreal-ui-inverse,
+        0 0 0 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
+    }
+  }
+
+  &--error {
+    .bds-text-field__container {
+      border-color: $boreal-stroke-danger-base;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .bds-text-field__container {
+      background-color: $boreal-ui-default-lighter;
+      border-color: $boreal-stroke-default-light;
+    }
+
+    .bds-text-field__sublabel {
+      color: $boreal-text-disabled;
+
+      & em[class^='bds-icon-'],
+      & em[class*=' bds-icon-'] {
+        color: $boreal-icon-disabled;
+      }
+    }
+
+    .bds-text-field__control {
+      color: $boreal-icon-disabled;
+    }
+  }
+
+  &--readonly {
+    .bds-text-field__container {
+      background-color: transparent;
+      border: none;
+    }
+
+    .bds-text-field__control {
+      &::placeholder {
+        color: $boreal-text-default-darker;
+      }
+    }
+  }
+
+  &--plain {
+    .bds-text-field__container {
+      border-color: transparent;
+    }
+
+    &.bds-text-field--focused .bds-text-field__container {
+      border-color: $boreal-stroke-focus;
+    }
+  }
+
+  &--clear-on-hover {
+    .bds-text-field__action--clear {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:hover .bds-text-field__action--clear {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
