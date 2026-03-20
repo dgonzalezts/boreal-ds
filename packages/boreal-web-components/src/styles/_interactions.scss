@@ -1,3 +1,8 @@
+/**
+ * This file contains mixins and functions for common interactions styles such as focus rings and transitions.
+ * These are used across multiple components to ensure consistency in interaction feedback.
+ */
+
 @function bds-focus-ring-value($outer-color, $inner-color) {
   // TODO: Refactor to use design tokens for shadow depth once available in boreal-styleguidelines
   @return 0 0 0 1px $inner-color, 0 0 0 3px $outer-color;
