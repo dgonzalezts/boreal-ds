@@ -1,4 +1,4 @@
-import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
 import { ITooltip } from './types/IBdsTooltip';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { StyleModifiers } from '@/types';
@@ -54,6 +54,8 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    */
   @Prop() readonly floatingOptions: Partial<FloatingTooltipProp> = {};
 
+  @State() isVisible: boolean = false;
+
   // Refs en Stencil se obtienen con el atributo ref en el render
   private arrowElement!: HTMLElement;
 
@@ -97,6 +99,13 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
       onBeforeShow: () => this.validateShow(),
       onBeforeHide: (target: HTMLElement) => this.validateHide(target),
     };
+  }
+
+  get canShowArrow(): boolean {
+    return !this.floatingOptions.hideArrow || false;
+  }
+  get getPlacement(): string {
+    return this.floatingOptions.placement || 'bottom';
   }
 
   /**
@@ -145,7 +154,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    * with the computed `x` and `y` offsets for the arrow element.
    */
   private setArrowPosition(result: PositioningResult) {
-    if (result.middlewareData?.arrow && this.arrowElement?.isConnected) {
+    if (result.middlewareData?.arrow && !this.disabled && this.arrowElement?.isConnected) {
       const { x: arrowX, y: arrowY } = result.middlewareData.arrow;
       Object.assign(this.arrowElement.style, {
         left: arrowX != null ? `${arrowX}px` : '',
@@ -173,12 +182,12 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
           popover="manual"
           role="tooltip"
           aria-hidden={this.isVisible ? 'false' : 'true'}
-          data-placement={this.floatingOptions.placement}
+          data-placement={this.getPlacement}
           data-multiline={this.multiline}
-          data-hidearrow={this.floatingOptions.hideArrow}
+          data-hidearrow={this.canShowArrow}
           ref={el => (this.floatingContent = el as HTMLElement)}
         >
-          {!this.floatingOptions.hideArrow && (
+          {this.canShowArrow && (
             <div class="tooltip-arrow" part="arrow" ref={el => (this.arrowElement = el as HTMLElement)} />
           )}
           <slot />
