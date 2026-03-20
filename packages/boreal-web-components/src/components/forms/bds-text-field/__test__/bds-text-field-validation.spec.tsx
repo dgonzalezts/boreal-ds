@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
+import { attachInternals } from '@/utils';
 import { BdsTextField } from '../bds-text-field';
 import { BdsTypography } from '../../../titles-text/bds-typography/bds-typography';
-import { attachInternals } from '@/utils/__test__/mocks/ElementInternals';
 
 function typeInInput(input: HTMLInputElement, value: string) {
   input.value = value;
