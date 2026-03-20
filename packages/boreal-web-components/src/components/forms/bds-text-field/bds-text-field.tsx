@@ -39,13 +39,25 @@ import {
  * @attr {boolean} error - Applies the error visual state.
  * @attr {"text"|"password"} type - Input type.
  * @attr {"outline"|"plain"} variant - Visual style of the container.
+ * @attr {boolean} readonly - Makes the input read-only. The value is still submitted with the form.
  *
  * @property {string} label - Label text rendered above the input.
- * @property {string} placeholder - Native placeholder forwarded to the inner input.
+ * @property {string} sublabel - Sublabel rendered inside the input container, before the text area.
+ * @property {string} placeholder - Native placeholder forwarded to the inner `<input>`.
  * @property {string} helperText - Assistive text shown below the input when there is no error.
- * @property {string} errorMessage - Error message shown below the input when `error` is `true`.
- * @property {string} icon - Icon font class rendered inside the container alongside the sublabel (e.g. `bds-icon-settings`).
+ * @property {string} errorMessage - Error message shown below the input when `error` is `true`. Replaces `helperText`.
+ * @property {string} info - Tooltip content attached to the label.
+ * @property {string} icon - Icon font class rendered beside the sublabel inside the container (e.g. `bds-icon-settings`).
  * @property {boolean} clearable - Shows a clear button when the input has a value.
+ * @property {boolean} clearOnHover - Shows a clear button that is hidden at rest and revealed on hover.
+ * @property {boolean} readOnly - Makes the input readonly. The value is still submitted with the form.
+ * @property {string} autocomplete - Native `autocomplete` attribute forwarded to the inner `<input>`.
+ * @property {string} pattern - Native `pattern` attribute forwarded to the inner `<input>`.
+ * @property {number} minLength - Minimum character count. `0` means no minimum.
+ * @property {number} maxLength - Maximum character count. `0` means no maximum.
+ * @property {boolean} counter - Enables the character counter in the footer. Requires `charCount`.
+ * @property {number} charCount - Maximum character count shown in the footer counter (e.g. `120` → `"45/120"`). Requires `counter`.
+ * @property {IFormValidator[]} customValidators - Additional validators merged with the built-in ones.
  * @property {"blur"|"input"|"submit"|"change"} validationTiming - When built-in validation runs.
  * @property {string} idComponent - Unique identifier for the component element.
  * @property {string} customWidth - Sets a custom width via the `--bds-text-field-width` CSS custom property.
