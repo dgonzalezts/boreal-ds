@@ -1,6 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { attachInternals } from '@/utils/__test__/mocks/ElementInternals';
 import { BdsCheckbox } from '../bds-checkbox';
+import { assertExists } from '@/utils/__test__/helpers';
 
 describe('bds-checkbox events', () => {
   beforeAll(() => {
@@ -17,11 +18,13 @@ describe('bds-checkbox events', () => {
     page.doc.addEventListener('bdsChange', spy);
 
     const checkbox = page.body.querySelector('bds-checkbox');
-    checkbox?.click();
+    const root = page.root as HTMLElement;
+    assertExists(checkbox, 'Element not found');
+    checkbox.click();
     await page.waitForChanges();
 
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(page.root?.getAttribute('aria-checked')).toBe('true');
+    expect(root.getAttribute('aria-checked')).toBe('true');
   });
 
   it('should not toggle when disabled', async () => {
@@ -52,8 +55,9 @@ describe('bds-checkbox events', () => {
     page.doc.addEventListener('bdsChange', spy);
 
     const checkbox = page.body.querySelector('bds-checkbox');
+    assertExists(checkbox, 'Element not found');
     const ev = new KeyboardEvent('keydown', { key: ' ', bubbles: true });
-    checkbox?.dispatchEvent(ev);
+    checkbox.dispatchEvent(ev);
     await page.waitForChanges();
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -70,7 +74,8 @@ describe('bds-checkbox events', () => {
 
     const checkbox = page.body.querySelector('bds-checkbox');
     const ev = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
-    checkbox?.dispatchEvent(ev);
+    assertExists(checkbox, 'Element not found');
+    checkbox.dispatchEvent(ev);
     await page.waitForChanges();
 
     expect(spy).toHaveBeenCalledTimes(0);
@@ -83,10 +88,12 @@ describe('bds-checkbox events', () => {
     });
 
     const checkbox = page.body.querySelector('bds-checkbox');
-    checkbox?.click();
+    assertExists(checkbox, 'Element not found');
+    checkbox.click();
     await page.waitForChanges();
+    const root = page.root as HTMLElement;
 
-    expect(page.root?.classList.contains('bds-checkbox--indeterminate')).toBe(false);
-    expect(page.root?.getAttribute('aria-checked')).toBe('true');
+    expect(root.classList.contains('bds-checkbox--indeterminate')).toBe(false);
+    expect(root.getAttribute('aria-checked')).toBe('true');
   });
 });
