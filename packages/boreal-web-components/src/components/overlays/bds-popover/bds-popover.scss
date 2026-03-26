@@ -1,0 +1,110 @@
+:root {
+  --popover-arrow-size: var(--boreal-spacing-s);
+  --popover-width: 320px;
+}
+
+.popover {
+  position: fixed;
+  margin: 0;
+  border: 0;
+  overflow: visible;
+  border-radius: $boreal-radius-xs2;
+  font-size: $boreal-typography-font-size-xs;
+  line-height: $boreal-typography-line-height-xs;
+  font-family: $boreal-typography-font-family-primary;
+  border: $boreal-spacing-2xs solid $boreal-ui-black;
+  font-weight: $boreal-typography-font-weight-regular;
+  background: $boreal-ui-inverse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border: transparent;
+  cursor: auto;
+
+  &-content {
+    position: relative;
+    padding: $boreal-spacing-s;
+  }
+
+  &[popover]:not(:popover-open) {
+    display: none;
+  }
+
+  &-header {
+    border-bottom: $boreal-stroke-default-light solid 1px;
+    padding: $boreal-spacing-m $boreal-spacing-xs $boreal-spacing-m $boreal-spacing-s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__content {
+      display: flex;
+      align-items: center;
+    }
+    &__title {
+      font-size: $boreal-typography-font-size-sm;
+      font-weight: $boreal-typography-font-weight-semibold;
+      line-height: $boreal-typography-line-height-sm;
+    }
+    &__icon {
+      font-size: $boreal-typography-font-size-md;
+      margin-right: $boreal-spacing-3xs;
+    }
+    &__close {
+      margin-left: $boreal-spacing-s;
+    }
+  }
+  &-footer {
+    border-top: $boreal-stroke-default-light solid 1px;
+    padding: $boreal-spacing-s $boreal-spacing-xs $boreal-spacing-s $boreal-spacing-s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .popover-arrow {
+    position: absolute;
+    width: var(--popover-arrow-size);
+    height: var(--popover-arrow-size);
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: var(--popover-arrow-size);
+      height: var(--popover-arrow-size);
+      background: $boreal-ui-inverse;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.popover[data-placement^='top'] .popover-arrow {
+  bottom: calc(var(--popover-arrow-size) / -2);
+  &::before {
+    top: 0;
+    clip-path: inset(0 0 50% 0);
+  }
+}
+
+.popover[data-placement^='bottom'] .popover-arrow {
+  top: calc(var(--popover-arrow-size) / -2);
+  &::before {
+    top: 0;
+    clip-path: inset(50% 0 0 0);
+  }
+}
+
+.popover[data-placement^='left'] .popover-arrow {
+  right: calc(var(--popover-arrow-size) / -2);
+  &::before {
+    left: 0;
+  }
+}
+
+.popover[data-placement^='right'] .popover-arrow {
+  left: calc(var(--popover-arrow-size) / -2);
+  &::before {
+    left: 0;
+  }
+}

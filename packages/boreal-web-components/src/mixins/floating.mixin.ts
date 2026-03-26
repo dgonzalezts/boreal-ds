@@ -182,7 +182,6 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
       if (!this.onBeforeHide(target)) return;
 
       this.hideElement();
-
       this.onAfterHide(target);
     }
 

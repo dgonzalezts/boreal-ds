@@ -1,4 +1,4 @@
-import { Position } from '@/types/position';
+import { PopoverPosition, Position } from '@/types/position';
 import { Arrow } from '../types/Arrow';
 import { FloatingHooks, FloatingMixinOptions } from './Floating';
 
@@ -31,7 +31,8 @@ export interface FloatingTooltipProp extends FloatingAnchoredProp {
  * add closeOnClick prop to close the popover when the trigger element is clicked.
  * add clickOutside prop to close the popover when the user click outside the popover.
  */
-export interface FloatingPopoverProp extends FloatingAnchoredProp {
+export interface FloatingPopoverProp extends Omit<FloatingAnchoredProp, 'placement'> {
   closeOnClick?: boolean;
-  clickOutside?: boolean;
+  closeOnClickOutside?: boolean;
+  placement?: PopoverPosition;
 }

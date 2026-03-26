@@ -98,6 +98,7 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
       onPositionUpdate: result => this.handlePosition(result),
       onBeforeShow: () => this.validateShow(),
       onBeforeHide: (target: HTMLElement) => this.validateHide(target),
+      subscribeToTrigger: el => this.subscribe(el),
     };
   }
 
@@ -168,6 +169,14 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
       'tooltip-content': true,
       'tooltip-content--multiline': this.multiline,
     };
+  }
+
+  private subscribe(trigger: HTMLElement): void {
+    trigger.setAttribute('part', 'tooltip-trigger');
+    trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
+
+    trigger.addEventListener('mouseenter', () => this.show());
+    trigger.addEventListener('mouseleave', (e: MouseEvent) => this.hide(e.target as HTMLElement));
   }
 
   render() {

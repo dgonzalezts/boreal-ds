@@ -151,7 +151,7 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
      * @returns `false` if `triggerSlot` is not set, otherwise delegates to super
      */
     onBeforeShow(target?: HTMLElement): boolean {
-      if (this.triggerSlot === null) {
+      if (this.triggerSlot === null || this.triggerSlot === undefined) {
         this.logger.error('AnchoredMixin.show', 'triggerSlot is required');
         return false;
       }
@@ -254,7 +254,10 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
         void this.updatePosition(triggerElement, floatingElement, options, onPositionUpdate);
       };
       sync(); // run once immediately
-      this.cleanupAutoUpdate = autoUpdate(triggerElement, floatingElement, sync);
+      this.cleanupAutoUpdate = autoUpdate(triggerElement, floatingElement, sync, {
+        elementResize: true,
+        layoutShift: true,
+      });
     }
 
     /**
@@ -303,20 +306,16 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       this.stopAutoUpdate();
     }
 
-    subscribeToTrigger(trigger: Element) {
-      trigger.setAttribute('part', 'tooltip-trigger');
-      trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
-
-      trigger.addEventListener('mouseenter', () => this.show());
-      trigger.addEventListener('mouseleave', (e: MouseEvent) => this.hide(e.target as HTMLElement));
+    subscribeToTrigger(trigger: HTMLElement) {
+      this.hooks.subscribeToTrigger(trigger);
     }
 
     onBeforeLoad() {
       const parent = this.el.parentElement;
-      const trigger = parent.querySelector('[bds-tooltip]') || parent;
+      const trigger: HTMLElement = parent.querySelector('[bds-tooltip], [bds-popover]') || parent;
 
       if (trigger.isConnected) {
-        this.triggerSlot = trigger as HTMLElement;
+        this.triggerSlot = trigger;
         this.subscribeToTrigger(trigger);
       }
     }
