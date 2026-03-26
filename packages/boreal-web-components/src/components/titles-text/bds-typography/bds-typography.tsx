@@ -189,7 +189,12 @@ export class BdsTypography implements ITypography {
               *
             </em>
           )}
-          {this.tooltipText && canUseTooltip && <em class="bds-typography__info-icon bds-icon-info-circle"></em>}
+          {this.tooltipText && canUseTooltip && (
+            <span>
+              <em class="bds-typography__info-icon bds-icon-info-circle" aria-label={this.tooltipText}></em>
+              <bds-tooltip>{this.tooltipText}</bds-tooltip>
+            </span>
+          )}
         </TagName>
       </Host>
     );

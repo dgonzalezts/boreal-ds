@@ -1,5 +1,5 @@
-import { FloatingHooks } from '@/services/floating/interfaces/Floating';
-import { FloatingAnchoredProp } from '@/services/floating/interfaces/Props';
+import { FloatingHooks, FloatingMixinOptions, IFloatingMixin } from '@/services/floating/interfaces/Floating';
+import { FloatingProp } from '@/services/floating/interfaces/Props';
 import { MixedInCtor, State } from '@stencil/core';
 
 /**
@@ -62,12 +62,12 @@ import { MixedInCtor, State } from '@stencil/core';
  * ```
  */
 export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
-  class Floating extends Base {
+  class Floating extends Base implements IFloatingMixin {
     /**
      * Configuration prop passed by the consumer component.
      * Allows external control over lifecycle hooks and floating behavior.
      */
-    floatingOptions: FloatingAnchoredProp;
+    floatingOptions: FloatingProp;
 
     /**
      * Reference to the floating element in the DOM.
@@ -94,6 +94,17 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
      * @returns FloatingHooks — an object with optional lifecycle callbacks
      */
     get hooks(): FloatingHooks {
+      return {};
+    }
+
+    /**
+     * Default options for the floating mixin.
+     * Override this getter in the component to customize placement,
+     * offset, strategy, flip, shift, and arrow.
+     *
+     * @returns FloatingMixinOptions — default options for the mixin
+     */
+    get options(): FloatingMixinOptions {
       return {};
     }
 
@@ -155,6 +166,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
       if (this.isVisible) return;
 
       if (!this.onBeforeShow(target)) return;
+
       this.showElement();
       this.onAfterShow(target);
     }
