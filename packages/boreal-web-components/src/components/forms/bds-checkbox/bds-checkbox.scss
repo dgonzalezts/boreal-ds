@@ -12,10 +12,10 @@ bds-checkbox {
     justify-content: center;
     width: 18px;
     height: 18px;
-    border: 2px solid $boreal-stroke-default-light; // Default border
+    border: 2px solid $boreal-stroke-default-light;
     background: transparent;
     transition: all 0.2s ease;
-    border-radius: 4px; // Assuming a small radius
+    border-radius: 4px;
   }
 
   // ---------------------------------------------------------------------------
@@ -86,7 +86,7 @@ bds-checkbox {
   // Disabled State
   // ---------------------------------------------------------------------------
   &.bds-checkbox--disabled {
-    pointer-events: none; // Prevents hover/click interactions
+    pointer-events: none;
 
     .bds-checkbox__box {
       border-color: $boreal-stroke-default-light;
