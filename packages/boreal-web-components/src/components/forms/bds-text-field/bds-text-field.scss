@@ -21,7 +21,7 @@
 
   &__sublabel {
     @extend %flex-center;
-    @extend %field-inline-label;
+    @include field-inline-label;
 
     gap: $boreal-spacing-3xs;
     padding-left: $boreal-spacing-xs;
@@ -31,7 +31,7 @@
   }
 
   [slot='prefix'] {
-    @extend %field-inline-label;
+    @include field-inline-label;
 
     padding-left: $boreal-spacing-xs;
     overflow: hidden;
