@@ -1,0 +1,40 @@
+/**
+ * This file contains mixins and functions for common interactions styles such as focus rings and transitions.
+ * These are used across multiple components to ensure consistency in interaction feedback.
+ */
+
+@function bds-focus-ring-value($outer-color, $inner-color) {
+  // TODO: Refactor to use design tokens for shadow depth once available in boreal-styleguidelines
+  @return 0 0 0 1px $inner-color, 0 0 0 3px $outer-color;
+}
+
+@mixin bds-focus-ring($outer-color, $inner-color) {
+  box-shadow: bds-focus-ring-value($outer-color, $inner-color);
+}
+
+@mixin bds-transition-surface {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@mixin bds-transition-action {
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+@mixin bds-icon($size, $font-size) {
+  & em[class^='bds-icon-'],
+  & em[class*=' bds-icon-'] {
+    width: $size;
+    height: $size;
+    font-size: $font-size;
+    line-height: 1;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

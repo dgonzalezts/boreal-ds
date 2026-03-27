@@ -59,18 +59,16 @@ export function attachInternals() {
     window.ElementInternals = MockElementInternals;
   }
 
-  /** Define attachInternals on HTMLElement to return a new instance of the mock ElementInternals */
-  if (typeof HTMLElement.prototype.attachInternals === 'undefined') {
-    Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
-      value: function (this: HTMLElement) {
-        const internals = new MockElementInternals();
-        internals.form = this.closest('form');
-        return internals;
-      },
-      writable: true,
-      configurable: true,
-    });
-  }
+  /** Define attachInternals on HTMLElement prototype to enable form association in tests */
+  Object.defineProperty(HTMLElement.prototype, 'attachInternals', {
+    value: function (this: HTMLElement) {
+      const internals = new MockElementInternals();
+      internals.form = this.closest('form');
+      return internals;
+    },
+    writable: true,
+    configurable: true,
+  });
 
   /** Define requestSubmit on HTMLFormElement to simulate form submission */
   if (typeof HTMLFormElement !== 'undefined' && typeof HTMLFormElement.prototype.requestSubmit === 'undefined') {

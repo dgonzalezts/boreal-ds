@@ -26,10 +26,7 @@
       background-color: $hover-bg;
     }
 
-    box-shadow:
-      0px 0px 0px 1px $boreal-ui-inverse,
-      // TODO: Change to depth tokens, these aren't in the style guidelines
-      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
+    @include bds-focus-ring($boreal-stroke-focus, $boreal-ui-inverse);
   }
 
   &:active,
@@ -40,10 +37,7 @@
       background-color: $hover-bg;
     }
 
-    $shadow:
-      0px 0px 0px 1px $boreal-ui-inverse,
-      // TODO: Change to depth tokens, these aren't in the style guidelines
-      0px 0px 0px 3px $boreal-stroke-focus; // TODO: Change to depth tokens, these aren't in the style guidelines
+    $shadow: bds-focus-ring-value($boreal-stroke-focus, $boreal-ui-inverse);
 
     @if $has-inset-shadow {
       $shadow:
@@ -115,13 +109,10 @@ bds-button {
   appearance: none;
   border: 1px solid transparent;
   height: fit-content;
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+  @include bds-transition-surface;
   margin: $boreal-spacing-2xs $boreal-spacing-3xs;
   outline: none;
-  font-family: 'Inter', sans-serif;
+  font-family: $boreal-typography-font-family-primary;
   font-weight: $boreal-typography-font-weight-semibold;
   width: fit-content;
   vertical-align: middle;

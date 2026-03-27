@@ -1,4 +1,4 @@
-import { Prop, type EventEmitter, type MixedInCtor } from '@stencil/core';
+import { type EventEmitter, type MixedInCtor } from '@stencil/core';
 
 /**
  * Lifecycle callbacks that each Form-Associated Custom Element must implement.
@@ -10,7 +10,7 @@ import { Prop, type EventEmitter, type MixedInCtor } from '@stencil/core';
  *
  * @example
  * ```typescript
- * import { AttachInternals, Component, Event, EventEmitter, Mixin, Prop } from '@stencil/core';
+ * import { AttachInternals, Component, Event, EventEmitter, Mixin, Prop, State, Watch } from '@stencil/core';
  *
  * import { setFormValue } from '@/utils/form';
  * import { formAssociatedMixin, type IFormControl } from '@/mixins/form-associated.mixin';
@@ -18,6 +18,12 @@ import { Prop, type EventEmitter, type MixedInCtor } from '@stencil/core';
  * @Component({ tag: 'bds-text-field', formAssociated: true })
  * export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextField, IFormControl<string> {
  *   @AttachInternals() internals!: ElementInternals;
+ *
+ *   @Prop({ reflect: true }) readonly disabled: boolean = false;
+ *   @State() private isDisabled: boolean = false;
+ *
+ *   @Watch('disabled')
+ *   onDisabledChange(next: boolean) { this.isDisabled = next; }
  *
  *   @Prop({ mutable: true, reflect: true }) value: string = '';
  *
@@ -104,33 +110,28 @@ export interface IFormControl<T> extends IFormAssociatedCallbacks, IFormValueEmi
 /**
  * Shared base mixin for Form-Associated Custom Elements in Boreal DS.
  *
- * Provides:
- * - `name`, `disabled`, and `required` form props
- * - `formDisabledCallback` with universal disabled sync behavior
+ * Provides `formDisabledCallback` — the only behavior that is identical across
+ * all FACE components. It writes to the component's `isDisabled` state, which
+ * each component must declare as `@State() private isDisabled: boolean = false`.
  *
- * Each component must declare `@AttachInternals() internals!: ElementInternals`
- * directly on its class body — Stencil's compiler requires this decorator to be
- * statically visible on the component class, not inside a mixin factory.
+ * Each component must declare directly on its class body:
+ * - `@AttachInternals() internals!: ElementInternals`
+ * - `@Prop({ reflect: true }) readonly name!: string`
+ * - `@Prop({ reflect: true }) readonly disabled: boolean = false`
+ * - `@Prop({ reflect: true }) readonly required: boolean = false`
+ * - `@State() private isDisabled: boolean = false`
+ * - `@Watch('disabled') onDisabledChange(next: boolean) { this.isDisabled = next; }`
+ *
+ * Stencil's compiler requires `@Prop` and `@State` decorators to be statically
+ * visible on the component class — they cannot be inherited from a mixin.
  *
  * Components must also implement `IFormControl<T>` for value registration,
  * reset, state restoration, and 2-way binding event emission.
  */
 export const formAssociatedMixin = <B extends MixedInCtor>(Base: B) => {
   class FormAssociated extends Base {
-    /** Name of the form control, submitted as a key in the form data. */
-    @Prop({ reflect: true }) readonly name!: string;
-
-    /** Disables the control. Synced automatically from a parent `<fieldset>` or `<form>` via `formDisabledCallback`. */
-    @Prop({ reflect: true, mutable: true }) readonly disabled: boolean = false;
-
-    /** Marks the control as required for form submission. */
-    @Prop({ reflect: true }) readonly required: boolean = false;
-
-    /**
-     * Sync component disabled state with parent form disabled state.
-     */
     formDisabledCallback(disabled: boolean) {
-      (this as { disabled: boolean }).disabled = disabled;
+      (this as unknown as { isDisabled: boolean }).isDisabled = disabled;
     }
   }
 
