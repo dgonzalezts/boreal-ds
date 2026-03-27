@@ -14,8 +14,6 @@ describe('bds-tooltip floating hooks', () => {
 
     root.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
     await waitForChanges();
-
-    await waitForChanges();
     expect(spyShow).toHaveBeenCalled();
   });
   it('Should call mocked hidePopover when show is hidden', async () => {
