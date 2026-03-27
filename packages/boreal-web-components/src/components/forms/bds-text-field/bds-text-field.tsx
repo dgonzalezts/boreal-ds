@@ -14,7 +14,7 @@ import {
 } from '@stencil/core';
 import { formAssociatedMixin, type IFormControl } from '@/mixins';
 import type { IFormValidator, StyleModifiers } from '@/types';
-import { runValidators, setFormValue, validatePropValue } from '@/utils';
+import { ARIA_LABELS, ICONS, runValidators, setFormValue, validatePropValue } from '@/utils';
 import {
   TEXT_FIELD_TYPES,
   TEXT_FIELD_VARIANTS,
@@ -447,11 +447,11 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
   }
 
   private get iconClear(): string {
-    return this.clearable || this.clearOnHover ? 'bds-icon-close' : '';
+    return this.clearable || this.clearOnHover ? ICONS.Close : '';
   }
 
   private get showPasswordIcon(): string {
-    return this.showPassword ? 'bds-icon-sight-on' : 'bds-icon-sight-off';
+    return this.showPassword ? ICONS.SightOn : ICONS.SightOff;
   }
 
   render() {
@@ -472,7 +472,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
       <Host
         class={this.classMap}
         style={this.hostStyle}
-        tabIndex={this.isDisabled || this.readOnly ? -1 : 0}
+        tabIndex={-1}
         onFocus={() => !this.readOnly && (this.el as HTMLElement).querySelector<HTMLInputElement>('input')?.focus()}
       >
         {this.label !== '' && (
@@ -524,7 +524,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
                 <button
                   class="bds-text-field__action bds-text-field__action--clear"
                   type="button"
-                  aria-label="Clear"
+                  aria-label={ARIA_LABELS.Clear}
                   onClick={() => this.handleClear()}
                 >
                   <em class={this.iconClear}></em>
@@ -534,7 +534,7 @@ export class BdsTextField extends Mixin(formAssociatedMixin) implements ITextFie
                 <button
                   class="bds-text-field__action bds-text-field__action--password"
                   type="button"
-                  aria-label={this.showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={this.showPassword ? ARIA_LABELS.HidePassword : ARIA_LABELS.ShowPassword}
                   onClick={() => this.handleShowPassword()}
                 >
                   <em class={this.showPasswordIcon}></em>

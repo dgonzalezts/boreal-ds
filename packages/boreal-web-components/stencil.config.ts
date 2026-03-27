@@ -67,6 +67,7 @@ export const config: Config = {
 
       injectGlobalPaths: [
         require.resolve('@telesign/boreal-style-guidelines/stencil'),
+        resolve(__dirname, 'src/styles/_commons.scss'),
         resolve(__dirname, 'src/styles/_interactions.scss'),
       ],
     }),

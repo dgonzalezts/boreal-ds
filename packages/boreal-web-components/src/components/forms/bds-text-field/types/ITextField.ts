@@ -28,4 +28,5 @@ export interface ITextField {
   charCount: number;
   counter: boolean;
   customWidth: string;
+  idComponent: string;
 }
