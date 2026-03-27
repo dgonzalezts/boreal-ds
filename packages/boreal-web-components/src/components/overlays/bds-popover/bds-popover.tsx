@@ -38,12 +38,6 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    * If true, allows multiline content in the popover.
    * @default false
    */
-  @Prop() readonly trigger?: IPopover['trigger'];
-
-  /**
-   * If true, allows multiline content in the popover.
-   * @default false
-   */
   @Prop() readonly hasHeader?: IPopover['hasHeader'] = false;
 
   /**
@@ -62,8 +56,9 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
 
   @State() isVisible: boolean = false;
 
+  private trigger: Element;
+  private listenTarget: Element;
   private boundClickOutside!: (e: MouseEvent) => void;
-
   private arrowElement!: HTMLElement;
 
   /**
@@ -212,6 +207,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    * @param trigger - The trigger element to subscribe.
    */
   private subscribe(trigger: HTMLElement): void {
+    this.trigger = trigger;
     trigger.setAttribute('part', 'popover-trigger');
     trigger.setAttribute('ariaDescribedBy', 'popover-content');
     const parentBds = trigger.closest('bds-button, bds-input, bds-select');
@@ -219,10 +215,11 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     if (parentBds !== null && parentBds !== undefined) {
       const nativeEl = parentBds.querySelector('button, input');
       const listenTarget = nativeEl ?? parentBds;
+      this.listenTarget = listenTarget;
 
-      listenTarget.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.listenTarget.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
     } else {
-      trigger.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.trigger.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
     }
   }
   /**
@@ -262,6 +259,11 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    */
   get hasFooterSlot(): boolean {
     return this.el.querySelector('[slot="footer"]') !== null;
+  }
+
+  disconnectedCallback(): void {
+    this.listenTarget.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+    this.trigger.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
   }
 
   render() {
