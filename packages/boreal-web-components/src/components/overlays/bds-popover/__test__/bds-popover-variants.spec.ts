@@ -68,7 +68,7 @@ describe('bds-popover variants', () => {
       html: `<div><bds-button>Trigger <bds-popover width="500">Content</bds-popover></bds-button></div>`,
     });
     const popover = root.querySelector('.popover');
-    expect(popover?.getAttribute('style')).toBe('width: 500px');
+    expect(popover?.getAttribute('style')).toBe('width: 500px;');
   });
 
   it('Should apply fit-content when width is auto', async () => {
@@ -77,7 +77,7 @@ describe('bds-popover variants', () => {
       html: `<div><bds-button>Trigger <bds-popover width="auto">Content</bds-popover></bds-button></div>`,
     });
     const popover = root.querySelector('.popover');
-    expect(popover?.getAttribute('style')).toBe('width: auto');
+    expect(popover?.getAttribute('style')).toBe('width: auto;');
   });
 
   it('Should apply fit-content when width is full', async () => {
