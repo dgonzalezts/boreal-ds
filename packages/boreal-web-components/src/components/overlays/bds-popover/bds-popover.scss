@@ -6,13 +6,11 @@
 .popover {
   position: fixed;
   margin: 0;
-  border: 0;
   overflow: visible;
   border-radius: $boreal-radius-xs2;
   font-size: $boreal-typography-font-size-xs;
   line-height: $boreal-typography-line-height-xs;
   font-family: $boreal-typography-font-family-primary;
-  border: $boreal-spacing-2xs solid $boreal-ui-black;
   font-weight: $boreal-typography-font-weight-regular;
   background: $boreal-ui-inverse;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
