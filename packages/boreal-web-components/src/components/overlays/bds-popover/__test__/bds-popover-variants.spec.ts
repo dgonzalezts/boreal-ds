@@ -86,7 +86,7 @@ describe('bds-popover variants', () => {
       html: `<div><bds-button>Trigger <bds-popover width="full">Content</bds-popover></bds-button></div>`,
     });
     const popover = root.querySelector('.popover');
-    expect(popover?.getAttribute('style')).toBe('width: 100%');
+    expect(popover?.getAttribute('style')).toBe('width: 100%;');
   });
 
   // --- Slots ---
