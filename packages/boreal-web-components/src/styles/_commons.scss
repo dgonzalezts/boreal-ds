@@ -1,23 +1,17 @@
 /**
- * Common SCSS placeholder selectors and mixins shared across form and layout components.
+ * Common SCSS placeholder selectors shared across form and layout components.
  * This file is injected globally via `injectGlobalPaths` in `stencil.config.ts`,
- * so all component stylesheets can use these without an explicit import.
+ * so all component stylesheets can `@extend` these placeholders without an explicit import.
  *
- * NOTE: Placeholders (`%`) must only use raw CSS values — token variables (`$boreal-*`)
- * are not available at this level. Use `@mixin` for patterns that reference design tokens.
+ * NOTE: Placeholders must only use raw CSS values — `$boreal-*` token variables
+ * are not available at this level util use style-guidelines.
  */
 
 /**
- * TODO: Refactor to use styleguidelines 
+ * TODO: Refactor to use styleguidelines this work as first draft
  **/
 
 %flex-center {
   display: flex;
   align-items: center;
-}
-
-@mixin field-inline-label {
-  font-size: $boreal-typography-font-size-xs;
-  font-weight: $boreal-typography-font-weight-semibold;
-  line-height: $boreal-typography-line-height-xs;
 }

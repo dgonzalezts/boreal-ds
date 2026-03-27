@@ -1,3 +1,9 @@
+%field-inline-label {
+  font-size: $boreal-typography-font-size-xs;
+  font-weight: $boreal-typography-font-weight-semibold;
+  line-height: $boreal-typography-line-height-xs;
+}
+
 .bds-text-field {
   display: flex;
   flex-direction: column;
@@ -21,7 +27,7 @@
 
   &__sublabel {
     @extend %flex-center;
-    @include field-inline-label;
+    @extend %field-inline-label;
 
     gap: $boreal-spacing-3xs;
     padding-left: $boreal-spacing-xs;
@@ -31,7 +37,7 @@
   }
 
   [slot='prefix'] {
-    @include field-inline-label;
+    @extend %field-inline-label;
 
     padding-left: $boreal-spacing-xs;
     overflow: hidden;
