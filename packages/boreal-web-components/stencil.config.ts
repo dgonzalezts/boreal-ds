@@ -14,6 +14,9 @@ export const config: Config = {
   sourceMap: false,
   buildEs5: 'prod',
   globalStyle: 'src/styles/main.scss',
+  devServer: {
+    reloadStrategy: 'pageReload',
+  },
   extras: {
     experimentalSlotFixes: true,
     experimentalScopedSlotChanges: true,
@@ -61,9 +64,12 @@ export const config: Config = {
   plugins: [
     sass({
       includePaths: ['node_modules'],
-      // Injects the stencil SCSS tokens into every component SCSS file so that
-      // $boreal-* variables are available without a per-file import.
-      injectGlobalPaths: [require.resolve('@telesign/boreal-style-guidelines/stencil')],
+
+      injectGlobalPaths: [
+        require.resolve('@telesign/boreal-style-guidelines/stencil'),
+        resolve(__dirname, 'src/styles/_commons.scss'),
+        resolve(__dirname, 'src/styles/_interactions.scss'),
+      ],
     }),
   ],
   testing: testingConfig,

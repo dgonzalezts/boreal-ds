@@ -3,7 +3,6 @@ import { IButton } from './types/IButton';
 import { COMPONENT_STATES, ComponentState, StyleModifiers } from '@/types';
 import { BUTTON_SIZES, BUTTON_TYPES, BUTTON_VARIANTS } from './types/enum';
 import { CORE_COLORS, CoreColors } from '@/types/coreColors';
-//import { emitEvent } from '@/utils/helpers/eventEmitter';
 import { validatePropValue } from '@/utils/helpers/validateProps';
 import { ButtonSizes, ButtonTypes, ButtonVariant } from './types/types';
 
@@ -119,7 +118,7 @@ export class BdsButton implements IButton {
     );
   }
 
-  /**  */
+  /** Before component rendered */
   componentWillLoad() {
     this.checkPropValues();
   }
