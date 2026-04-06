@@ -119,6 +119,10 @@ export default defineConfig(
     files: ['**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
       'stencil/strict-boolean-conditions': 'off',
     },
   },
@@ -128,6 +132,14 @@ export default defineConfig(
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       'stencil/strict-boolean-conditions': 'off',
+    },
+  },
+  {
+    // Mixin files — constructors require `...args: any[]` to forward to the base class
+    files: ['**/mixins/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
     },
   },
   {

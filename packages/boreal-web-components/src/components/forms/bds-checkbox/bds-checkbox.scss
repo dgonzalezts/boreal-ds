@@ -1,0 +1,109 @@
+bds-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; // Adjust based on your design
+  cursor: pointer;
+  outline: none;
+
+  // Base Box Style
+  .bds-checkbox__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 2px solid $boreal-stroke-default-light;
+    background: transparent;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Interaction States (Hover, Focus, Active)
+  // ---------------------------------------------------------------------------
+  &:hover .bds-checkbox__box {
+    border-color: $boreal-stroke-default-light;
+  }
+
+  &:focus-visible .bds-checkbox__box {
+    border-color: $boreal-stroke-focus;
+    outline: 2px solid $boreal-stroke-focus;
+    outline-offset: 1px;
+  }
+
+  &:active .bds-checkbox__box {
+    border-color: $boreal-stroke-default-light;
+    background: $boreal-bg-neutral;
+    outline: 2px solid $boreal-stroke-primary-light;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Checked & Indeterminate
+  // ---------------------------------------------------------------------------
+  &.bds-checkbox--checked,
+  &.bds-checkbox--indeterminate {
+    .bds-checkbox__box {
+      border-color: $boreal-ui-primary-base;
+      background: $boreal-ui-primary-base;
+      color: #fff;
+    }
+
+    &:hover .bds-checkbox__box {
+      border-color: $boreal-ui-primary-dark;
+      background: $boreal-ui-primary-dark;
+    }
+
+    &:focus-visible .bds-checkbox__box {
+      border-color: $boreal-ui-primary-base;
+      background: $boreal-ui-primary-base;
+      outline: 2px solid $boreal-stroke-focus;
+    }
+
+    &:active .bds-checkbox__box {
+      border-color: $boreal-ui-primary-dark;
+      background: $boreal-ui-primary-dark;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Error State
+  // ---------------------------------------------------------------------------
+  &.bds-checkbox--error {
+    .bds-checkbox__box {
+      border-color: $boreal-stroke-danger-base;
+    }
+
+    &.bds-checkbox--checked,
+    &.bds-checkbox--indeterminate {
+      .bds-checkbox__box {
+        border-color: $boreal-stroke-danger-base;
+        background: $boreal-stroke-danger-base;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Disabled State
+  // ---------------------------------------------------------------------------
+  &.bds-checkbox--disabled {
+    pointer-events: none;
+
+    .bds-checkbox__box {
+      border-color: $boreal-stroke-default-light;
+      background: $boreal-bg-neutral;
+    }
+
+    .bds-checkbox__label {
+      color: $boreal-text-disabled;
+    }
+
+    &.bds-checkbox--checked,
+    &.bds-checkbox--indeterminate {
+      .bds-checkbox__box {
+        border-color: $boreal-ui-primary-light;
+        background: $boreal-ui-primary-light;
+        color: #fff;
+      }
+    }
+  }
+}

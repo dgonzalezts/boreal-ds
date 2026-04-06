@@ -7,6 +7,41 @@ import { IPopover } from './types/IBdsPopover';
 import { AnchoredHooks } from '@/services';
 import { BUTTON_SIZES } from '@/components/actions/bds-button/types/enum';
 
+/**
+ *
+ * @slot - Default slot for the popover body content.
+ * @slot header-icon - Slot for header icon.
+ * @slot header-title - Slot for header title.
+ * @slot footer-helper - Slot for footer helper content.
+ * @slot footer-button - Slot for footer actions.
+ *
+ * @attr {boolean} disabled - When true, prevents the popover from being shown.
+ * @attr {number | 'full' | 'auto'} width - Controls the width of the popover content.
+ * @attr {boolean} hasHeader - When true, displays the popover header.
+ * @attr {boolean} hasFooter - When true, displays the popover footer.
+ * @attr {boolean} showClose - When true, displays the close button in the header.
+ * @attr {IPopoverFloatingOptions} floatingOptions - Configuration object for floating behavior.
+ *
+ * @property {boolean} disabled - Disables the popover. Defaults to false.
+ * @property {number | 'full' | 'auto'} width - Width of the popover. Defaults to 320.
+ * @property {boolean} hasHeader - Enables the popover header. Defaults to false.
+ * @property {boolean} hasFooter - Enables the popover footer. Defaults to false.
+ * @property {boolean} showClose - Displays close button in header. Defaults to false.
+ * @property {IPopoverFloatingOptions} floatingOptions - Override default floating options.
+ *
+ * @property {string} floatingOptions.placement - Placement of the popover. Defaults to 'bottom'.
+ * @property {number} floatingOptions.offset - Distance between trigger and popover. Defaults to 8.
+ * @property {boolean} floatingOptions.hideArrow - When true, hides the arrow element.
+ * @property {boolean} floatingOptions.closeOnClick - When true, closes popover when clicking inside.
+ * @property {boolean} floatingOptions.closeOnClickOutside - When true, closes popover when clicking outside.
+ *
+ * @csspart popover-content - The main popover container element.
+ * @csspart arrow - The arrow element pointing toward the trigger.
+ * @csspart popover-trigger - The trigger element for the popover.
+ *
+ * @cssprop data-placement - Reflects the resolved placement on the popover element.
+ * @cssprop data-hidearrow - Reflects the hideArrow option.
+ */
 @Component({
   tag: 'bds-popover',
   styleUrl: 'bds-popover.scss',
