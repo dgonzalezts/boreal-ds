@@ -7,13 +7,18 @@ import { commonArgTypes, type CommonAttributes } from '@/utils/commonArgs';
 type StoryArgs = {
   variant: StatusVariant;
   enableClose: boolean;
+  closeButtonLabel: string;
+  idComponent: string;
 
-  close: CustomEvent<void>;
-
+  /**
+   * Slots control
+   */
   title: string;
   body: string;
   actions: string;
   showActions: boolean;
+
+  onBdsClose: () => void;
 } & CommonAttributes;
 
 type Story = BorealStory<StoryArgs>;
@@ -82,12 +87,27 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
     },
+    onBdsClose: {
+      action: 'closed: bdsClose emitted',
+      description: 'Callback function that is called when the banner is closed.',
+      table: {
+        category: 'Events',
+      },
+    },
+    closeButtonLabel: {
+      control: 'text',
+      description: 'Aria label for the close button when visible.',
+      table: {
+        category: 'Core',
+      },
+    },
     ...commonArgTypes['idComponent'],
   },
   args: {
     variant: 'info',
     enableClose: false,
     idComponent: '',
+    closeButtonLabel: '',
   },
 } satisfies BorealStoryMeta<StoryArgs>;
 
@@ -128,7 +148,7 @@ const renderBanner: Story['render'] = args => html`
   <bds-banner
     variant="${args.variant}"
     ?enable-close="${args.enableClose}"
-    ${args?.idComponent ? `idComponent=${args.idComponent}` : null}
+    @bdsClose=${args.onBdsClose}
   >
     <div slot="title">${args.title}</div>
     <div>${args.body}</div>
@@ -200,7 +220,7 @@ export const WithContentTitle: Story = {
 export const EnableClose: Story = {
   args: {
     title: 'Title',
-    body: 'This banner can be closed using the close button or keyboard navigation. It will emit a close event.',
+    body: 'This banner can be closed using the close button or keyboard navigation. It will emit a bdsClose event.',
     enableClose: true,
   },
   render: renderBanner,

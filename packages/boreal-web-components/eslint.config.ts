@@ -135,6 +135,14 @@ export default defineConfig(
     },
   },
   {
+    // Mixin files — constructors require `...args: any[]` to forward to the base class
+    files: ['**/mixins/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+    },
+  },
+  {
     // Component type files - enforce no default exports for Stencil's declaration generator compatibility
     files: ['src/**/types/*.ts'],
     rules: {

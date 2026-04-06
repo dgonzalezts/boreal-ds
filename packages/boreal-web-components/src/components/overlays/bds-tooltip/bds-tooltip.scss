@@ -1,0 +1,73 @@
+:root {
+  --tooltip-arrow-size: var(--boreal-spacing-s);
+  --tooltip-width: 320px;
+}
+
+.tooltip-content {
+  position: fixed;
+  margin: 0;
+  border: 0;
+  overflow: visible;
+  border-radius: $boreal-radius-xs2;
+  background: $boreal-ui-black;
+  color: $boreal-text-inverse;
+  padding: $boreal-spacing-2xs $boreal-spacing-s;
+  font-size: $boreal-typography-font-size-xs;
+  line-height: $boreal-typography-line-height-xs;
+  font-family: $boreal-typography-font-family-primary;
+  border: $boreal-spacing-2xs solid $boreal-ui-black;
+  font-weight: $boreal-typography-font-weight-regular;
+
+  &--multiline {
+    white-space: normal;
+    max-width: var(--tooltip-width, 320px);
+    word-break: break-word;
+    text-align: center;
+  }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: var(--tooltip-arrow-size);
+  height: var(--tooltip-arrow-size);
+  pointer-events: none;
+  z-index: -1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: var(--tooltip-arrow-size);
+    height: var(--tooltip-arrow-size);
+    background: $boreal-ui-black;
+    transform: rotate(45deg);
+  }
+}
+
+// Según el placement, la flecha asoma hacia afuera del tooltip
+.tooltip-content[data-placement^='top'] .tooltip-arrow {
+  bottom: calc(var(--tooltip-arrow-size) / -2);
+  &::before {
+    top: 0;
+  }
+}
+
+.tooltip-content[data-placement^='bottom'] .tooltip-arrow {
+  top: calc(var(--tooltip-arrow-size) / -2);
+  &::before {
+    top: 0;
+  }
+}
+
+.tooltip-content[data-placement^='left'] .tooltip-arrow {
+  right: calc(var(--tooltip-arrow-size) / -2);
+  &::before {
+    left: 0;
+  }
+}
+
+.tooltip-content[data-placement^='right'] .tooltip-arrow {
+  left: calc(var(--tooltip-arrow-size) / -2);
+  &::before {
+    left: 0;
+  }
+}
