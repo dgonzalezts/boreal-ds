@@ -1,0 +1,236 @@
+import {
+  Meta,
+  Canvas,
+  ArgTypes,
+  Title,
+  Subtitle,
+} from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { StoryName, Callout } from '@/components/docs';
+import * as BdsTextFieldStories from './bds-text-field.stories';
+
+<Meta of={BdsTextFieldStories} />
+
+<Title of={BdsTextFieldStories} />
+
+The `bds-text-field` component is a foundational element for capturing user input within forms. It extends the standard HTML `<input>` element with enhanced features, including integrated labels, helper text, validation states, character counting, and password visibility toggle, all while ensuring full accessibility and seamless form integration.
+
+<Callout variant="info" icon="ℹ️">
+  This component integrates with HTML forms via the `name` attribute for native form participation. For more details, see the [Form Integration](#form-integration) section.
+</Callout>
+
+<Subtitle>Table of contents</Subtitle>
+
+- [How to use it](#how-to-use-it)
+- [When to use it](#when-to-use-it)
+- [Component preview](#component-preview)
+- [States](#states)
+- [Form Integration](#form-integration)
+- [Accessibility](#accessibility)
+- [Properties](#properties)
+- [Interact with the component](#interact-with-the-component)
+
+<Subtitle>How to use it</Subtitle>
+
+1. Import the component into your project.
+
+```ts
+import '@telesign/boreal-web-components/bds-text-field';
+```
+
+2. Use the `<bds-text-field>` tag to display the component in your HTML.
+
+```html
+<bds-text-field
+  name="email"
+  label="Email address"
+  placeholder="you@company.com"
+  helper-text="We will never share your email"
+  required
+  validation-timing="blur"
+></bds-text-field>
+```
+
+<Subtitle>When to use it</Subtitle>
+
+Use `bds-text-field` when:
+
+- **Forms require text input** — any field that collects a single line of text, such as names, emails, or usernames.
+- **Validated fields** — inputs that need built-in or custom validation with configurable timing (blur, input, change, or submit).
+- **Password entry** — use `type="password"` to enable the visibility toggle button.
+- **Search inputs** — use the `plain` variant and optionally the prefix slot for an inline search icon.
+- **Read-only display** — use `readonly` to show a value that cannot be edited but is still submitted with the form.
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the TextField component.
+
+<Callout variant="tip" icon="💡">
+  You can click on the **Show code** button in the bottom-right section of the following code
+  snippets to see how to use the component.
+</Callout>
+
+### Basic Usage
+
+The most fundamental text field requires only a `label` to identify its purpose.
+
+<Canvas of={BdsTextFieldStories.WithLabel} />
+
+### With Sub-Label
+
+Use `sublabel` to display additional, non-critical information inside the input container — often used to mark fields as "(Optional)".
+
+<Canvas of={BdsTextFieldStories.WithSubLabel} />
+
+### With Helper Text
+
+The `helper-text` property provides instructional text that appears below the input, guiding the user on the expected data format or purpose.
+
+<Canvas of={BdsTextFieldStories.WithHelper} />
+
+### With Icon (Prefix slot)
+
+An icon can be placed inside the text field by adding content to the `prefix` slot. This enhances context, for example, by indicating a search field.
+
+<Canvas of={BdsTextFieldStories.WithIcon} />
+
+### With Character Counter
+
+Set both `counter` and `char-count` to enforce a maximum length. The component will display a running count of characters entered.
+
+<Canvas of={BdsTextFieldStories.WithCounter} />
+
+### Password Input
+
+To create a secure password field that masks input, set `type="password"`.
+
+<Canvas of={BdsTextFieldStories.Password} />
+
+### Variants
+
+The `bds-text-field` component supports two visual variants.
+
+#### Outline Variant
+
+The outline variant displays a full border around the input field. This is the default and is ideal for most form contexts.
+
+<Canvas of={BdsTextFieldStories.Variants} />
+
+#### Plain Variant
+
+The plain variant removes the border at rest, creating a minimal appearance. A border appears only on focus.
+
+<Canvas className='bds-doc__canvas--with-background' of={BdsTextFieldStories.PlainVariant} />
+
+## States
+
+The `bds-text-field` component supports several states to reflect user interaction and validation feedback.
+
+### Disabled
+
+Use the `disabled` property to render the field non-interactive. This is useful for preventing user input when a field is not applicable.
+
+<Canvas of={BdsTextFieldStories.Disabled} />
+
+### Read-Only
+
+The `readonly` property allows the field to display a value that cannot be edited by the user, but can still be selected and submitted with the form.
+
+<Canvas className='bds-doc__canvas--with-background' of={BdsTextFieldStories.ReadOnly} />
+
+### Error
+
+The `error` property visually marks the field as invalid and displays an error message. This is typically set in response to failed validation.
+
+<Canvas of={BdsTextFieldStories.Error} />
+
+## Form Integration
+
+The `bds-text-field` is designed for seamless integration with native HTML forms, supporting standard validation attributes and custom validation logic.
+
+<Callout variant="tip" icon="💡">
+  For best accessibility and form association, provide a unique `name` for each field. The component generates internal IDs automatically.
+</Callout>
+
+### Form Association
+
+The component automatically associates with HTML forms using the `name` attribute.
+
+```html
+<form id="user-registration">
+  <bds-text-field
+    name="username"
+    label="Username"
+    required
+  ></bds-text-field>
+  <bds-text-field
+    name="email"
+    label="Email"
+    type="text"
+    required
+  ></bds-text-field>
+</form>
+```
+
+### Validation
+
+#### Required
+
+Add the `required` property to ensure the field must be filled before form submission.
+
+<Canvas of={BdsTextFieldStories.Required} />
+
+#### Minimum Length
+
+Use the `min-length` property to enforce a minimum number of characters.
+
+<Canvas of={BdsTextFieldStories.WithMinLength} />
+
+#### Pattern Matching
+
+The `pattern` property allows you to specify a regular expression that the input value must match.
+
+<Canvas of={BdsTextFieldStories.WithPattern} />
+
+#### Custom Validation Message
+
+You can provide a custom error message using the `error-message` property, which will be shown when the field is invalid.
+
+<Canvas of={BdsTextFieldStories.WithCustomValidationMessage} />
+
+#### Custom Validation Timing
+
+Control when validation occurs by setting the `validation-timing` property to `blur` (default), `input`, `change`, or `submit`.
+
+<Canvas of={BdsTextFieldStories.WithCustomValidationTiming} />
+
+### Interactive Form Example
+
+The following example demonstrates how multiple `bds-text-field` components work together in a native HTML form. It shows real-time validation, form submission, and reset behaviour, with the submitted data displayed alongside the form.
+
+<Callout variant="info" icon="ℹ️">
+  This preview shows the form structure and styling. For the **full interactive experience** with working form submission, reset, and validation, visit the <LinkTo title={BdsTextFieldStories.default.title} story="interactive-form-example">Canvas tab</LinkTo>.
+</Callout>
+
+<Canvas of={BdsTextFieldStories.InteractiveFormExample} />
+
+<Subtitle>Accessibility</Subtitle>
+
+The TextField component is designed with accessibility in mind.
+
+- **ARIA attributes**: The inner `<input>` is wired with `aria-labelledby` (points to the label element), `aria-describedby` (points to the helper or error text), `aria-invalid="true"` when `error` is set, and `aria-required="true"` when `required` is set.
+- **Keyboard navigation**: `Tab` to focus the field, type to input text. The clear button and password visibility toggle are reachable by keyboard when visible.
+- **Screen reader announcements**: The label, sublabel, helper text, and error message are all announced by assistive technology. Error state changes are communicated via `aria-invalid`.
+- **Best practices**:
+  - Always provide a descriptive `label`.
+  - Use `helper-text` for supplementary instructions.
+  - Ensure custom `error-message` values are clear and concise.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsTextFieldStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsTextFieldStories.default.title} story="default">Default</LinkTo> section.
+
