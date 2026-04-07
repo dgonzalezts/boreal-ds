@@ -1,4 +1,4 @@
-import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 import { PositioningResult } from '@/services/floating/interfaces/Positioning';
@@ -86,6 +86,12 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
   @Prop() readonly showClose?: IPopover['showClose'] = false;
 
   @Element() el!: HTMLBdsPopoverElement;
+
+  /**
+   * Tracks the visibility state of the floating element.
+   * Triggers a re-render when changed.
+   */
+  @State() isVisible: boolean = false;
 
   private trigger!: HTMLElement;
   private listenTarget!: HTMLElement;
