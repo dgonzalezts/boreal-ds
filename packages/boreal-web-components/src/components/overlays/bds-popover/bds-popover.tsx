@@ -1,4 +1,4 @@
-import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 import { PositioningResult } from '@/services/floating/interfaces/Positioning';
@@ -87,6 +87,12 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
 
   @Element() el!: HTMLBdsPopoverElement;
 
+  /**
+   * Tracks the visibility state of the floating element.
+   * Triggers a re-render when changed.
+   */
+  @State() isVisible: boolean = false;
+
   private trigger!: HTMLElement;
   private listenTarget!: HTMLElement;
   private boundClickOutside!: (e: MouseEvent) => void;
@@ -139,7 +145,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    * If `closeOnClickOutside` is true, the popover will close when the user clicks outside.
    */
   private attachClickOutside() {
-    if (this.floatingOptions.closeOnClickOutside) return;
+    if (this.floatingOptions.closeOnClickOutside === false) return;
 
     this.boundClickOutside = (e: MouseEvent) => this.handleClickOutside(e);
     document.addEventListener('click', this.boundClickOutside);
@@ -246,7 +252,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     const parentBds = trigger.closest('bds-button, bds-input, bds-select');
 
     if (parentBds !== null && parentBds !== undefined) {
-      const nativeEl = parentBds.querySelector('button, input') ?? parentBds.shadowRoot?.querySelector('button, input');
+      const nativeEl = parentBds.querySelector('button, input');
       const listenTarget = nativeEl ?? parentBds;
       this.listenTarget = listenTarget as HTMLElement;
 
@@ -305,13 +311,13 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
         <div
           class="popover"
           style={{ width: this.popoverWidth }}
-          ref={el => (this.floatingContent = el as HTMLElement)}
           popover="manual"
           role="tooltip"
           data-placement={this.getPlacement}
           data-hidearrow={this.canShowArrow}
           aria-hidden={this.isVisible ? 'false' : 'true'}
           onClick={(e: MouseEvent) => e.stopPropagation()}
+          ref={el => (this.floatingContent = el as HTMLElement)}
         >
           {this.hasHeader && (
             <div class="popover-header">
