@@ -1,16 +1,49 @@
-import { Component, Element, Host, Mixin, Prop, State, h } from '@stencil/core';
+import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 import { PositioningResult } from '@/services/floating/interfaces/Positioning';
-import { EVENTS } from '@/utils/constants/common/Events';
 import { IPopover } from './types/IBdsPopover';
 import { AnchoredHooks } from '@/services';
 import { BUTTON_SIZES } from '@/components/actions/bds-button/types/enum';
 
+/**
+ *
+ * @slot - Default slot for the popover body content.
+ * @slot header-icon - Slot for header icon.
+ * @slot header-title - Slot for header title.
+ * @slot footer-helper - Slot for footer helper content.
+ * @slot footer-button - Slot for footer actions.
+ *
+ * @attr {boolean} disabled - When true, prevents the popover from being shown.
+ * @attr {number | 'full' | 'auto'} width - Controls the width of the popover content.
+ * @attr {boolean} hasHeader - When true, displays the popover header.
+ * @attr {boolean} hasFooter - When true, displays the popover footer.
+ * @attr {boolean} showClose - When true, displays the close button in the header.
+ * @attr {IPopoverFloatingOptions} floatingOptions - Configuration object for floating behavior.
+ *
+ * @property {boolean} disabled - Disables the popover. Defaults to false.
+ * @property {number | 'full' | 'auto'} width - Width of the popover. Defaults to 320.
+ * @property {boolean} hasHeader - Enables the popover header. Defaults to false.
+ * @property {boolean} hasFooter - Enables the popover footer. Defaults to false.
+ * @property {boolean} showClose - Displays close button in header. Defaults to false.
+ * @property {IPopoverFloatingOptions} floatingOptions - Override default floating options.
+ *
+ * @property {string} floatingOptions.placement - Placement of the popover. Defaults to 'bottom'.
+ * @property {number} floatingOptions.offset - Distance between trigger and popover. Defaults to 8.
+ * @property {boolean} floatingOptions.hideArrow - When true, hides the arrow element.
+ * @property {boolean} floatingOptions.closeOnClick - When true, closes popover when clicking inside.
+ * @property {boolean} floatingOptions.closeOnClickOutside - When true, closes popover when clicking outside.
+ *
+ * @csspart popover-content - The main popover container element.
+ * @csspart arrow - The arrow element pointing toward the trigger.
+ * @csspart popover-trigger - The trigger element for the popover.
+ *
+ * @cssprop data-placement - Reflects the resolved placement on the popover element.
+ * @cssprop data-hidearrow - Reflects the hideArrow option.
+ */
 @Component({
   tag: 'bds-popover',
   styleUrl: 'bds-popover.scss',
-  shadow: false,
 })
 export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
   /**
@@ -54,10 +87,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
 
   @Element() el!: HTMLBdsPopoverElement;
 
-  @State() isVisible: boolean = false;
-
-  private trigger: Element;
-  private listenTarget: Element;
+  private trigger!: HTMLElement;
+  private listenTarget!: HTMLElement;
   private boundClickOutside!: (e: MouseEvent) => void;
   private arrowElement!: HTMLElement;
 
@@ -99,7 +130,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
       onAfterShow: () => this.attachClickOutside(),
       onAfterHide: () => this.detachClickOutside(),
       onBeforeLoad: () => this.attachTrigger(),
-      subscribeToTrigger: el => this.subscribe(el),
+      subscribeToTrigger: (el?: HTMLElement) => this.subscribe(el),
     };
   }
 
@@ -111,7 +142,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     if (this.floatingOptions.closeOnClickOutside === false) return;
 
     this.boundClickOutside = (e: MouseEvent) => this.handleClickOutside(e);
-    document.addEventListener(EVENTS.Click, this.boundClickOutside);
+    document.addEventListener('click', this.boundClickOutside);
   }
 
   /**
@@ -120,8 +151,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    */
   private detachClickOutside() {
     if (this.boundClickOutside !== null) {
-      document.removeEventListener(EVENTS.Click, this.boundClickOutside);
-      this.boundClickOutside = undefined;
+      document.removeEventListener('click', this.boundClickOutside);
+      this.boundClickOutside = () => {};
     }
   }
 
@@ -206,7 +237,9 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    *  If the trigger is not a button, input, or select element, it will return.
    * @param trigger - The trigger element to subscribe.
    */
-  private subscribe(trigger: HTMLElement): void {
+  private subscribe(trigger?: HTMLElement): void {
+    if (trigger === undefined) return;
+
     this.trigger = trigger;
     trigger.setAttribute('part', 'popover-trigger');
     trigger.setAttribute('ariaDescribedBy', 'popover-content');
@@ -215,11 +248,11 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     if (parentBds !== null && parentBds !== undefined) {
       const nativeEl = parentBds.querySelector('button, input');
       const listenTarget = nativeEl ?? parentBds;
-      this.listenTarget = listenTarget;
+      this.listenTarget = listenTarget as HTMLElement;
 
-      this.listenTarget.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.listenTarget.addEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
     } else {
-      this.trigger.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.trigger.addEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
     }
   }
   /**
@@ -262,8 +295,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
   }
 
   disconnectedCallback(): void {
-    this.listenTarget.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
-    this.trigger.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+    this.listenTarget.removeEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
+    this.trigger.removeEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
   }
 
   render() {
