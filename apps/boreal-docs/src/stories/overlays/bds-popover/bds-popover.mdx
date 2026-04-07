@@ -1,0 +1,82 @@
+import { Meta, Title, Subtitle, Stories, ArgTypes, AnchorMdx } from '@storybook/addon-docs/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import * as BdsPopoverStories from './bds-popover.stories';
+
+<Meta of={BdsPopoverStories} />
+
+Popovers display additional information or actions upon click. Unlike tooltips, they support rich content such as headers, footers, and interactive elements, making them ideal for contextual menus, confirmations, and inline forms.
+
+<Title of={BdsPopoverStories} />
+
+<Subtitle>How to use it</Subtitle>
+
+<AnchorMdx target='_blank' href="https://telesign.atlassian.net/wiki/spaces/SENG/pages/1692663812/01+-+Floating+Component+Core#Popover">Click here to know about **Popover Floating Options**</AnchorMdx>
+
+1. Import the component into your project.
+```ts
+import { BdsPopover } from '@telesign/boreal-web-components';
+```
+
+2. Use the `<bds-popover>` tag inside a trigger element such as `<bds-button>`. The popover subscribes to its parent element and opens on click.
+```html
+<bds-button>
+    Open popover
+    <bds-popover id="my-popover" width="320" has-header has-footer show-close>
+        <em slot="header-icon" class="bds-icon-email"></em>
+        <div slot="header-title"><span>Header title</span></div>
+        <p>Popover body content goes here.</p>
+        <bds-typography slot="footer-helper" variant="helper">Helper text</bds-typography>
+        <bds-button slot="footer-button" variant="outline" color="primary" size="small">
+            Action
+        </bds-button>
+    </bds-popover>
+</bds-button>
+
+<script>
+    const popover = document.getElementById('my-popover');
+    popover.floatingOptions = {
+        placement: 'bottom-start',
+        hideArrow: false,
+        closeOnClickOutside: true,
+        closeOnClick: false,
+    }; // Other floatingOptions values
+</script>
+```
+
+<Subtitle>When to use it</Subtitle>
+
+The `bds-popover` component is a floating panel anchored to a trigger element that opens on click. It supports rich content including headers, footers, icons, and interactive elements. Here are some common use cases for the Popover component:
+
+- **Contextual Actions**
+    - **Action Menus:** Provide a list of actions related to a specific element without navigating away from the current view.
+    - **Quick Edit:** Allow users to make small inline edits directly from a popover without opening a full modal.
+- **Confirmations**
+    - **Destructive Actions:** Ask for confirmation before deleting or performing irreversible actions.
+    - **Form Submission:** Confirm the intent of a form submission with a summary of the data being sent.
+- **Inline Information**
+    - **Detail Panels:** Show additional details about a table row, list item, or card without leaving the current context.
+    - **User Profiles:** Display a user's profile summary when clicking on their avatar or name.
+- **Filters and Settings**
+    - **Filter Panels:** Expose filter controls for a list or table without taking up permanent screen space.
+    - **Preferences:** Allow users to adjust display settings or preferences directly in context.
+- **Notifications and Alerts**
+    - **Status Details:** Expand a status badge or indicator to show the full message or history.
+    - **Help and Guidance:** Provide step-by-step guidance or tips anchored to a specific UI element.
+
+<Subtitle>Component preview</Subtitle>
+
+The following examples showcase the core features and visual options of the Popover component.
+
+<Stories />
+
+<Subtitle>Accessibility</Subtitle>
+
+The Popover component is built with accessibility at its core. It uses the `popover="manual"` attribute to ensure proper stacking context and top-layer management via the browser's native Popover API. ARIA attributes keep assistive technologies informed at every lifecycle step — `aria-hidden` is toggled on show and hide, and the trigger element receives `ariaDescribedBy` pointing to the popover content. The close button is always reachable via keyboard interaction.
+
+<Subtitle>Properties</Subtitle>
+
+<ArgTypes of={BdsPopoverStories} />
+
+<Subtitle>Interact with the component</Subtitle>
+
+To interact with the component, test actions, verify accessibility compliance, and perform visual testing, navigate to the <LinkTo title={BdsPopoverStories.default} story="default">Default</LinkTo> section.

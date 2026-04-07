@@ -14,4 +14,5 @@ export const EVENTS: Events = {
   Focus: 'focus',
   Blur: 'blur',
   Click: 'click',
-};
+  BdsClick: 'bdsClick',
+} as const;

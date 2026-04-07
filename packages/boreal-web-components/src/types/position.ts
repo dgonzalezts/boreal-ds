@@ -10,4 +10,12 @@ export const POSITION = {
   RIGHT: 'right',
 } as const;
 
+export const POPOVER_POSITION = {
+  TOP: 'top-start',
+  BOTTOM: 'bottom-start',
+  LEFT: 'left',
+  RIGHT: 'right',
+} as const;
+
 export type Position = (typeof POSITION)[keyof typeof POSITION];
+export type PopoverPosition = (typeof POPOVER_POSITION)[keyof typeof POPOVER_POSITION];

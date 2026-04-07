@@ -67,7 +67,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
      * Configuration prop passed by the consumer component.
      * Allows external control over lifecycle hooks and floating behavior.
      */
-    floatingOptions: FloatingProp;
+    floatingOptions!: FloatingProp;
 
     /**
      * Reference to the floating element in the DOM.
@@ -84,7 +84,7 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
      * Tracks the visibility state of the floating element.
      * Triggers a re-render when changed.
      */
-    @State() isVisible: boolean;
+    @State() isVisible!: boolean;
 
     /**
      * Lifecycle hooks provided by the component.
@@ -182,7 +182,6 @@ export const floatingMixin = <B extends MixedInCtor>(Base: B) => {
       if (!this.onBeforeHide(target)) return;
 
       this.hideElement();
-
       this.onAfterHide(target);
     }
 
