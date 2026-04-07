@@ -2,7 +2,6 @@ import { Component, Element, Host, Mixin, Prop, h } from '@stencil/core';
 import { anchoredMixin } from '@/mixins/anchored.mixin';
 import { FloatingMixinOptions } from '@/services/floating/interfaces/Floating';
 import { PositioningResult } from '@/services/floating/interfaces/Positioning';
-import { EVENTS } from '@/utils/constants/common/Events';
 import { IPopover } from './types/IBdsPopover';
 import { AnchoredHooks } from '@/services';
 import { BUTTON_SIZES } from '@/components/actions/bds-button/types/enum';
@@ -45,7 +44,6 @@ import { BUTTON_SIZES } from '@/components/actions/bds-button/types/enum';
 @Component({
   tag: 'bds-popover',
   styleUrl: 'bds-popover.scss',
-  shadow: false,
 })
 export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
   /**
@@ -89,8 +87,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
 
   @Element() el!: HTMLBdsPopoverElement;
 
-  private trigger: Element;
-  private listenTarget: Element;
+  private trigger!: HTMLElement;
+  private listenTarget!: HTMLElement;
   private boundClickOutside!: (e: MouseEvent) => void;
   private arrowElement!: HTMLElement;
 
@@ -132,7 +130,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
       onAfterShow: () => this.attachClickOutside(),
       onAfterHide: () => this.detachClickOutside(),
       onBeforeLoad: () => this.attachTrigger(),
-      subscribeToTrigger: el => this.subscribe(el),
+      subscribeToTrigger: (el?: HTMLElement) => this.subscribe(el),
     };
   }
 
@@ -144,7 +142,7 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     if (this.floatingOptions.closeOnClickOutside) return;
 
     this.boundClickOutside = (e: MouseEvent) => this.handleClickOutside(e);
-    document.addEventListener(EVENTS.Click, this.boundClickOutside);
+    document.addEventListener('click', this.boundClickOutside);
   }
 
   /**
@@ -153,8 +151,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    */
   private detachClickOutside() {
     if (this.boundClickOutside !== null) {
-      document.removeEventListener(EVENTS.Click, this.boundClickOutside);
-      this.boundClickOutside = undefined;
+      document.removeEventListener('click', this.boundClickOutside);
+      this.boundClickOutside = () => {};
     }
   }
 
@@ -239,7 +237,9 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
    *  If the trigger is not a button, input, or select element, it will return.
    * @param trigger - The trigger element to subscribe.
    */
-  private subscribe(trigger: HTMLElement): void {
+  private subscribe(trigger?: HTMLElement): void {
+    if (trigger === undefined) return;
+
     this.trigger = trigger;
     trigger.setAttribute('part', 'popover-trigger');
     trigger.setAttribute('ariaDescribedBy', 'popover-content');
@@ -248,11 +248,11 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
     if (parentBds !== null && parentBds !== undefined) {
       const nativeEl = parentBds.querySelector('button, input') ?? parentBds.shadowRoot?.querySelector('button, input');
       const listenTarget = nativeEl ?? parentBds;
-      this.listenTarget = listenTarget;
+      this.listenTarget = listenTarget as HTMLElement;
 
-      this.listenTarget.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.listenTarget.addEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
     } else {
-      this.trigger.addEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+      this.trigger.addEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
     }
   }
   /**
@@ -295,8 +295,8 @@ export class BdsPopover extends Mixin(anchoredMixin) implements IPopover {
   }
 
   disconnectedCallback(): void {
-    this.listenTarget.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
-    this.trigger.removeEventListener(EVENTS.Click, (evt: MouseEvent) => this.handleShow(evt));
+    this.listenTarget.removeEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
+    this.trigger.removeEventListener('click', (evt: MouseEvent) => this.handleShow(evt));
   }
 
   render() {

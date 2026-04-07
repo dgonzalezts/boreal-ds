@@ -5,30 +5,41 @@ import { StyleModifiers } from '@/types';
 import { AnchoredHooks, FloatingMixinOptions, FloatingTooltipProp, PositioningResult } from '@/services';
 
 /**
- * Tooltip component used to display contextual information on hover or focus.
+ * Popover component used to display rich contextual content anchored to a trigger element.
  *
- * @summary Displays a floating tooltip anchored to a trigger element, with support
- * for placement, arrow, multiline content, and hover persistence.
+ * @summary Displays a floating popover anchored to a trigger element, with support
+ * for placement, arrow, optional header/footer, close button, and click-outside dismissal.
  *
- * @slot - Default slot for the tooltip body content.
+ * @slot - Default slot for the popover body content.
+ * @slot header-icon - Icon displayed in the popover header.
+ * @slot header-title - Title text displayed in the popover header.
+ * @slot footer-helper - Helper content placed on the left side of the popover footer.
+ * @slot footer-button - Action button placed on the right side of the popover footer.
  *
- * @attr {boolean} multiline - When true, allows the tooltip content to wrap across multiple lines.
- * @attr {boolean} disabled - When true, prevents the tooltip from being shown.
- * @attr {FloatingTooltipProp} floatingOptions - Configuration object for floating behavior.
+ * @attr {boolean} disabled - When true, prevents the popover from being shown.
+ * @attr {boolean} has-header - When true, renders the header section with icon and title slots.
+ * @attr {boolean} has-footer - When true, renders the footer section with helper and button slots.
+ * @attr {boolean} show-close - When true, renders a close button inside the popover header.
+ * @attr {number | 'full' | 'auto'} width - Width of the popover content.
+ * @attr {IFloatingOptions} floating-options - Configuration object for floating behavior.
  *
- * @property {boolean} multiline - Allows multiline content in the tooltip. Defaults to false.
- * @property {boolean} disabled - Disables the tooltip, preventing it from showing. Defaults to false.
- * @property {FloatingTooltipProp} floatingOptions - Override default floating options.
- * @property {number} floatingOptions.offset - Distance in pixels between the tooltip and the trigger. Defaults to 8.
+ * @property {boolean} disabled - Disables the popover, preventing it from showing. Defaults to false.
+ * @property {boolean} hasHeader - Renders the header section when true. Defaults to false.
+ * @property {boolean} hasFooter - Renders the footer section when true. Defaults to false.
+ * @property {boolean} showClose - Renders a close button in the header when true. Defaults to false.
+ * @property {number | 'full' | 'auto'} width - Width of the popover. Use a number for pixels, 'full' for 100% of the trigger width, or 'auto' to fit content. Defaults to 320.
+ * @property {IFloatingOptions} floatingOptions - Override default floating options.
+ * @property {Placement} floatingOptions.placement - Preferred placement relative to the trigger. Defaults to 'bottom'.
+ * @property {number} floatingOptions.offset - Distance in pixels between the popover and the trigger. Defaults to 8.
  * @property {boolean} floatingOptions.hideArrow - When true, hides the arrow element. Defaults to false.
- * @property {boolean} floatingOptions.stayOnHover - When true, keeps the tooltip visible while hovering over the tooltip content itself.
+ * @property {boolean} floatingOptions.closeOnClick - When true, closes the popover when clicking inside its content.
+ * @property {boolean} floatingOptions.closeOnClickOutside - When true, closes the popover when clicking outside.
  *
- * @csspart tooltip-content - The main tooltip container element.
  * @csspart arrow - The arrow element pointing toward the trigger.
+ * @csspart popover-content - The inner content wrapper inside the popover.
  *
- * @cssprop data-placement - Reflects the resolved placement on the tooltip-content element.
- * @cssprop data-multiline - Reflects the multiline prop on the tooltip-content element.
- * @cssprop data-hidearrow - Reflects the hideArrow option on the tooltip-content element.
+ * @cssprop data-placement - Reflects the resolved placement on the popover container element.
+ * @cssprop data-hidearrow - Reflects the hideArrow option on the popover container element.
  */
 @Component({
   tag: 'bds-tooltip',
@@ -97,8 +108,8 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
     return {
       onPositionUpdate: result => this.handlePosition(result),
       onBeforeShow: () => this.validateShow(),
-      onBeforeHide: (target: HTMLElement) => this.validateHide(target),
-      subscribeToTrigger: el => this.subscribe(el),
+      onBeforeHide: (el?: HTMLElement) => this.validateHide(el),
+      subscribeToTrigger: (el?: HTMLElement) => this.subscribe(el),
     };
   }
 
@@ -126,8 +137,8 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
    * @param target - The element the pointer is moving toward (relatedTarget of the mouseleave event).
    * @returns {boolean} `true` if the tooltip should hide; `false` if the hide should be cancelled.
    */
-  private validateHide(target: HTMLElement): boolean {
-    if (this.floatingOptions.stayOnHover && target.isConnected) {
+  private validateHide(target?: HTMLElement): boolean {
+    if (this.floatingOptions.stayOnHover && target !== undefined && target.isConnected) {
       const goingToFloating = this.floatingContent.contains(target) || this.floatingContent === target;
       if (goingToFloating) return false;
     }
@@ -163,15 +174,20 @@ export class BdsTooltip extends Mixin(anchoredMixin) implements ITooltip {
       });
     }
   }
+  get hasMultiline(): boolean {
+    return this.multiline !== undefined && this.multiline;
+  }
 
   get tooltipStyles(): StyleModifiers {
     return {
       'tooltip-content': true,
-      'tooltip-content--multiline': this.multiline,
+      'tooltip-content--multiline': this.hasMultiline,
     };
   }
 
-  private subscribe(trigger: HTMLElement): void {
+  private subscribe(trigger?: HTMLElement): void {
+    if (trigger === undefined) return;
+
     trigger.setAttribute('part', 'tooltip-trigger');
     trigger.setAttribute('ariaDescribedBy', 'tooltip-content');
 

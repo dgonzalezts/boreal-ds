@@ -306,12 +306,13 @@ export const anchoredMixin = <B extends MixedInCtor>(Base: B) => {
       this.stopAutoUpdate();
     }
 
-    subscribeToTrigger(trigger: HTMLElement) {
-      this.hooks.subscribeToTrigger(trigger);
+    subscribeToTrigger(trigger?: HTMLElement) {
+      if (this.hooks.subscribeToTrigger !== undefined) this.hooks.subscribeToTrigger(trigger);
     }
 
     onBeforeLoad() {
       const parent = this.el.parentElement;
+      if (parent === null) return;
       const trigger: HTMLElement = parent.querySelector('[bds-tooltip], [bds-popover]') || parent;
 
       if (trigger.isConnected) {
