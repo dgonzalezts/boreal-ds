@@ -26,7 +26,7 @@
 }
 
 .sbdocs-content a:not([class^='bds-'], [class*=' bds-']) {
-  color: var(--boreal-theme-primary-base);
+  color: var(--boreal-primary-base);
   font-size: inherit;
 }
 
@@ -73,6 +73,10 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+}
+
+div.bds-doc__canvas--with-background {
+  background-color: #e5e5e5;
 }
 
 [id^='stories-'],
