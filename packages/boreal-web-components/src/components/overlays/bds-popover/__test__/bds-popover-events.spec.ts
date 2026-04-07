@@ -11,7 +11,7 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover width="auto">Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
+    const trigger = doc.querySelector('button') as HTMLElement;
     const spyShow = jest.spyOn(HTMLElement.prototype, 'showPopover');
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -25,7 +25,7 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover width="auto">Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
+    const trigger = doc.querySelector('button') as HTMLElement;
     const spyHide = jest.spyOn(HTMLElement.prototype, 'hidePopover');
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -41,14 +41,14 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover has-header="true" show-close="true">Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
+    const trigger = doc.querySelector('button') as HTMLElement;
     const spyHide = jest.spyOn(HTMLElement.prototype, 'hidePopover');
-    const popover = doc.querySelector('.popover');
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
-    const closeBtn = root.querySelector('.popover-header__close');
+    const closeBtn = root?.querySelector('.popover-header__close') as HTMLElement;
     closeBtn.dispatchEvent(new CustomEvent('bdsClick', { bubbles: true }));
     await waitForChanges();
 
@@ -61,9 +61,9 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button><bds-popover has-footer="true"><bds-button slot="footer-button" id="footer-btn">OK</bds-button></bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
-    const popoverEl = doc.querySelector('bds-popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
+    const popoverEl = doc.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { closeOnClick: true };
     await waitForChanges();
 
@@ -71,7 +71,7 @@ describe('bds-popover events', () => {
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
-    const footerBtn = doc.querySelector('#footer-btn');
+    const footerBtn = doc.querySelector('#footer-btn') as HTMLElement;
     footerBtn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     expect(spyHide).toHaveBeenCalledTimes(0);
     await waitForChanges();
@@ -84,11 +84,9 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button><bds-popover has-footer="true"><button slot="footer-button" id="footer-btn">OK</button></bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    console.log(trigger.innerHTML);
-
-    const popover = doc.querySelector('.popover');
-    const popoverEl = doc.querySelector('bds-popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
+    const popoverEl = doc.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { closeOnClick: false };
     await waitForChanges();
 
@@ -96,7 +94,7 @@ describe('bds-popover events', () => {
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
-    const footerBtn = doc.querySelector('#footer-btn');
+    const footerBtn = doc.querySelector('#footer-btn') as HTMLElement;
     footerBtn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     expect(spyHide).toHaveBeenCalledTimes(0);
     await waitForChanges();
@@ -109,7 +107,7 @@ describe('bds-popover events', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
+    const trigger = doc.querySelector('button') as HTMLElement;
     const spyShow = jest.spyOn(HTMLElement.prototype, 'showPopover');
     const spyHide = jest.spyOn(HTMLElement.prototype, 'hidePopover');
 

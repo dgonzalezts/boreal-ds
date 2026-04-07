@@ -11,7 +11,7 @@ describe('bds-popover accessibility', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popover = root.querySelector('.popover');
+    const popover = root?.querySelector('.popover') as HTMLElement;
     expect(popover.getAttribute('aria-hidden')).toBe('true');
   });
 
@@ -20,8 +20,8 @@ describe('bds-popover accessibility', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
@@ -34,7 +34,7 @@ describe('bds-popover accessibility', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popover = doc.querySelector('.popover');
+    const popover = doc.querySelector('.popover') as HTMLElement;
     expect(popover.getAttribute('role')).toBe('tooltip');
   });
 
@@ -43,7 +43,7 @@ describe('bds-popover accessibility', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const segment = doc.querySelector('[part="popover-trigger"]');
+    const segment = doc.querySelector('[part="popover-trigger"]') as HTMLElement;
     expect(segment.getAttribute('ariaDescribedBy')).toBe('popover-content');
   });
 
@@ -61,8 +61,8 @@ describe('bds-popover accessibility', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover disabled="true">Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
     const spyShow = jest.spyOn(HTMLElement.prototype, 'showPopover');
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));

@@ -12,8 +12,8 @@ describe('bds-popover behavior', () => {
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
     const spyShow = jest.spyOn(HTMLElement.prototype, 'showPopover');
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
@@ -27,8 +27,8 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
@@ -44,9 +44,9 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div><div id="outside">Outside</div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
-    const outside = doc.getElementById('outside');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
+    const outside = doc.getElementById('outside') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
@@ -63,9 +63,9 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div><div id="outside">Outside</div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
-    const popoverEl = doc.querySelector('bds-popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
+    const popoverEl = doc.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { closeOnClickOutside: false };
     await waitForChanges();
 
@@ -73,8 +73,7 @@ describe('bds-popover behavior', () => {
     await waitForChanges();
     expect(popover.getAttribute('aria-hidden')).toBe('false');
 
-    const outside = doc.getElementById('outside');
-
+    const outside = doc.getElementById('outside') as HTMLElement;
     outside.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
@@ -86,15 +85,15 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover><p id="inner">Content</p></bds-popover></bds-button>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
-    const popoverEl = root.querySelector('bds-popover');
+    const popoverEl = root?.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { closeOnClick: true };
 
-    const content = root.querySelector('.popover-content');
+    const content = root?.querySelector('.popover-content') as HTMLElement;
     content.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
@@ -106,13 +105,13 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
-    const content = root.querySelector('.popover-content');
+    const content = root?.querySelector('.popover-content') as HTMLElement;
     content.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
 
@@ -124,12 +123,12 @@ describe('bds-popover behavior', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const trigger = doc.querySelector('button');
-    const popover = doc.querySelector('.popover');
+    const trigger = doc.querySelector('button') as HTMLElement;
+    const popover = doc.querySelector('.popover') as HTMLElement;
 
     trigger.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     await waitForChanges();
-    expect(root.querySelector('.popover').getAttribute('aria-hidden')).toBe('false');
+    expect(root?.querySelector('.popover')?.getAttribute('aria-hidden')).toBe('false');
 
     // Click inside popover should not re-trigger show via trigger
     popover.dispatchEvent(new MouseEvent('click', { bubbles: true }));

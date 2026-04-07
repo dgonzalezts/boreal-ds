@@ -12,7 +12,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popover = doc.querySelector('.popover');
+    const popover = doc.querySelector('.popover') as HTMLElement;
     expect(popover.getAttribute('data-placement')).toBe('bottom');
   });
 
@@ -21,7 +21,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popoverEl = root.querySelector('bds-popover');
+    const popoverEl = root?.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { placement: 'left' };
     await waitForChanges();
 
@@ -33,7 +33,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popoverEl = root.querySelector('bds-popover');
+    const popoverEl = root?.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { placement: 'right' };
     await waitForChanges();
 
@@ -46,7 +46,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    expect(root.querySelector('[part="arrow"]')).not.toBeNull();
+    expect(root?.querySelector('[part="arrow"]')).not.toBeNull();
   });
 
   it('Should hide arrow when hideArrow is true', async () => {
@@ -54,11 +54,11 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    const popoverEl = root.querySelector('bds-popover');
+    const popoverEl = root?.querySelector('bds-popover') as HTMLBdsPopoverElement;
     popoverEl.floatingOptions = { hideArrow: true };
     await waitForChanges();
 
-    expect(root.querySelector('[part="arrow"]')).toBeNull();
+    expect(root?.querySelector('[part="arrow"]')).toBeNull();
   });
 
   // --- Width ---
@@ -67,7 +67,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover width="500">Content</bds-popover></bds-button></div>`,
     });
-    const popover = root.querySelector('.popover');
+    const popover = root?.querySelector('.popover') as HTMLElement;
     expect(popover?.getAttribute('style')).toBe('width: 500px;');
   });
 
@@ -76,7 +76,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover width="auto">Content</bds-popover></bds-button></div>`,
     });
-    const popover = root.querySelector('.popover');
+    const popover = root?.querySelector('.popover') as HTMLElement;
     expect(popover?.getAttribute('style')).toBe('width: auto;');
   });
 
@@ -85,7 +85,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover width="full">Content</bds-popover></bds-button></div>`,
     });
-    const popover = root.querySelector('.popover');
+    const popover = root?.querySelector('.popover') as HTMLElement;
     expect(popover?.getAttribute('style')).toBe('width: 100%;');
   });
 
@@ -115,7 +115,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover>Content</bds-popover></bds-button></div>`,
     });
-    expect(root.querySelector('.popover-header')).toBeNull();
+    expect(root?.querySelector('.popover-header')).toBeNull();
   });
 
   it('Should render footer slot when hasFooter is true', async () => {
@@ -132,7 +132,7 @@ describe('bds-popover variants', () => {
       </div>
       `,
     });
-    expect(root.querySelector('.popover-footer')).not.toBeNull();
+    expect(root?.querySelector('.popover-footer')).not.toBeNull();
   });
 
   it('Should render close button only when showClose is true', async () => {
@@ -140,7 +140,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover],
       html: `<div><bds-button>Trigger <bds-popover has-header="true" show-close="true">Content</bds-popover></bds-button></div>`,
     });
-    expect(root.querySelector('.popover-header__close')).not.toBeNull();
+    expect(root?.querySelector('.popover-header__close')).not.toBeNull();
   });
 
   it('Should not render close button when showClose is false', async () => {
@@ -148,7 +148,7 @@ describe('bds-popover variants', () => {
       components: [BdsPopover, BdsButton],
       html: `<div><bds-button>Trigger <bds-popover has-header>Content</bds-popover></bds-button></div>`,
     });
-    expect(root.querySelector('.popover-header__close')).toBeNull();
+    expect(root?.querySelector('.popover-header__close')).toBeNull();
   });
 
   it('Should render header-icon slot inside header', async () => {
